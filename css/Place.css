@@ -1,0 +1,226 @@
+/*body{
+	width: 100%;
+}
+
+main{
+	display: inline-flex;
+	flex-direction: row;
+	width: 100%;
+	overflow: hidden;
+}
+
+.leftpage, .rightpage{
+	width: 100%!important;
+}
+
+.leftpage{
+	background-color: rgba(0,0,0,0.5);
+}
+
+.rightpage{
+	background-color: rgba(0,0,0,0.8);
+}*/
+
+.container{
+	margin: 0;
+	padding: 0;
+}
+
+.container *{
+	margin: 0;
+	padding: 0;
+}
+
+.container{
+	min-height: 667px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: -1;
+}
+
+div.container{
+	width: 100%;
+}
+
+body > div.container:nth-child(2){
+	margin-top: -50px;
+	background-image: url(../images/body_background2.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.header > h1,
+.header > ul{
+	width: 60%;
+	text-align: center;
+}
+
+.header > h1{
+	color: white;
+	font-family: "Gotham Medium";
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	font-size: 5em;
+	filter: blur(-5px);
+	background-color: rgba(0,0,0,0.6);
+	background-blend-mode: color-dodge;
+	padding: 15px 50px 5px 50px;
+}
+
+.header > ul{
+	list-style: none;
+	color: white;
+	display: flex;
+	justify-content: center;
+}
+
+.address{
+	background-color: rgba(0,0,0,0.6);
+	padding-bottom: 15px;
+}
+
+.address li{
+	font-family: "Gotham Light";
+	font-size: 1.3em;
+	font-weight: bold;
+	letter-spacing: 0.5em;
+	padding: 5px;
+	text-transform: uppercase;
+}
+
+.options{
+	margin-top: 20px;
+}
+
+.options li{
+	margin: 10px;
+}
+
+.options li a{
+	text-decoration: none;
+	background-color: #0097A7;
+	padding: 7px 15px;
+	font-size: 1em;
+	text-transform: uppercase;
+	font-family: "Gotham Light";
+	letter-spacing: 0.2em;
+	color: white;
+	transition: 0.2s;
+	border: 2px solid rgba(0,0,0,0);
+	border-radius: 3px;
+}
+
+.options li a:hover{
+	background-color: #00ACC1;
+	color: white;
+	border-color: white;
+}
+
+#desc{
+	background-color: #90A4AE;
+	color: white;
+}
+
+#desc h2{
+	text-transform: uppercase;
+	font-size: 2em;
+	letter-spacing: 0.3em;
+	font-family: "Gotham Medium";
+	background-color: rgba(0,0,0,0.3);
+	padding: 10px 30px;
+	width: 50%;
+	text-align: center;
+}
+
+#desc p{
+	width: 50%;
+	background-color: rgba(0,0,0,0.2);
+	padding: 10px 30px;
+	margin-top: 10px;
+	line-height: 2em;
+	font-family: "Chaparral pro";
+	font-size: 1.5em;
+	letter-spacing: 0.05em
+}
+
+#rev{}
+
+#rev h2,
+#post h2{
+	font-size: 3em;
+	font-family: "Gotham Medium";
+	color: #666;
+	text-transform: uppercase;
+	background-color: white;
+	padding: 15px 30px;
+}
+
+#post{
+	background-color: #CFD8DC;
+}
+
+#post p{
+	width: initial;
+	background-color: rgba(0,0,0,0.2);
+	text-transform: uppercase;
+	color: white;
+	padding: 10px 30px;
+	margin-top: 10px;
+	font-family: "Gotham Medium";
+	letter-spacing: 0.2em;
+}
+
+#backtop{
+	background-color: #0097A7;
+	width: 50px;
+	height: 50px;
+	color: white;
+	font-family: "Times New Roman";
+	font-weight: bold;
+	font-size: 3em;
+	text-align: center;
+	bottom: 20px;
+	right: 20px;
+	position: fixed;
+	border-radius: 50%;
+	text-decoration: none;
+	border: 2px solid rgba(0,0,0,0);
+	box-sizing: border-box;
+}
+
+#backtop:hover{
+	animation-name: floatupdown;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    background-color: #00ACC1;
+    box-shadow: 0 0 10px white;
+    border-color: white;
+}
+
+#backtop:hover + .tooltip{
+	animation-name: floatupdown;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes floatupdown {
+    50%  {transform: translate(0, -10px);}
+    100% {transform: translate(0, 0);}
+}
+
+#backtop + .tooltip > .tooltip-inner {
+    font-family: "Gotham Light";
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: black; 
+    color: #FFFFFF;
+    padding: 5px 10px;
+    font-size: 1.1em;
+}
+
+#backtop:focus + .tooltip{
+	opacity: 0;
+}

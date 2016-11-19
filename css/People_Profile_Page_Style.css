@@ -1,0 +1,86 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+/*
+.headerprofile{
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+}*/
+
+#coverphoto{
+	padding: 20px;
+	min-height: 310px;
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#user-photo{
+	display: block;
+	border: 2px solid white;
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	shape-outside: ellipse(200px 200px at 50% 50%);
+	float: left;
+	z-index: 1;
+	transition: 0.3s;
+}
+
+#username{
+	font-family: "Gotham Medium";
+	text-transform: uppercase;
+	font-size: 1.5em;
+	text-align: center;
+	margin: 0;
+	padding: 2px;
+	color: white;
+	letter-spacing: 0.1em;
+}
+
+#info{
+	color: #333;
+	display: flex;
+	flex-direction: column;
+	font-family: "Gotham Light";
+	font-weight: bold;
+	padding: 10px;
+	transition: 0.4s;
+	text-align: center;
+}
+
+#info a{
+	text-decoration: none;
+	color: #333;
+	padding: 2px;
+	font-size: 1.1em;
+	transform: translate(0, -500%);
+	color: white;
+	letter-spacing: 0.1em;
+	transition: 0.2s;
+	background-blend-mode: overlay;
+}
+
+#info a:hover{
+	letter-spacing: 0.15em;
+	background-color: rgba(0,229,255 ,0.5);
+}
+
+#info:hover > a{
+	transition-delay: 0s;	
+	transform: translate(0,0);
+	transform: translate(0,0);
+}
+
+#info > a:nth-child(4){
+	transition-delay: 0.2s;	
+}
+

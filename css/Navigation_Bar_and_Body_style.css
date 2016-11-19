@@ -1,0 +1,153 @@
+/*<div id = "navBar">
+	<h1>TOURISTA!</h1>
+	<form action = "test.html" method = "get">
+		<input type = "text">
+		<input type = "submit" value = "SEARCH">
+	</form>
+	<ul id = "navList">
+		<li><a href="#"> FEED </a></li>
+		<li><a href="#"> VISITS </a></li>
+		<li><a href="#"> STARED PLACES </a></li>
+		<li><a href="#"> NOTIFICATIONS </a></li>
+		<li> HELLO USER! </li>
+		<li><a href="#"> LOG OUT </a></li>
+	</ul>
+</div>*/
+
+body{
+	background-color: #ECEFF1;
+	margin: 0;
+}
+
+#navBar{
+	background-color: white;
+	display: inline-flex;
+	width: 100%;
+}
+
+#navBar img{
+	height: 50px;
+	box-sizing: border-box;
+	margin: 0 0 0 10px;
+	border-radius: 2px;
+}
+
+#navBar h1{
+	font-family: "Gotham Medium";
+	font-size: 20px;
+	letter-spacing: 5px;
+	color: #666;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+#navBar h1 span{
+	font-family: "Arial";
+	font-size: 12px;
+	letter-spacing: 1px;
+	color: #777;
+}
+
+#navList{
+	display: inline-flex;
+	justify-content: center;
+	align-content: center;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-left: auto;
+}
+
+#navList li{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	min-width: 100px;
+}
+
+#navList > li > a{
+	text-decoration: none;
+	display: block;
+	height: 100%;
+	padding: 10px;
+	border: solid rgba(0,0,0,0);
+	border-width: 0 0 5px 0;
+	text-align: center;
+	vertical-align: middle;
+	font-family: "Gotham Medium";
+	font-size: 14px;
+	letter-spacing: 2px;
+	color: #777;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	transition: 0.3s;
+}
+
+#navList > li > a:hover{
+	border-color: #4DD0E1;
+	text-decoration: none;
+}
+
+#navList > li > a:focus{
+	text-decoration: none;
+}
+
+#navList > li > a.active{
+	border-color: #00E5FF!important;
+	background-color: #B2EBF2;
+	color: white!important;
+	cursor: default;
+}
+
+#navBar form{
+	margin-left: 5%;
+	width: 28.25%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#navBar form input[type=text]{
+	color: #888;
+	border-style: none;
+	padding: 10px;
+	background-color: #ECEFF1;
+	width: 70%;
+	height: 34px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: 2px solid rgba(0,0,0,0);
+	transition: 0.2s;
+	font-family: "Gotham Light";
+	font-weight: bold;
+	font-size: initial;
+	letter-spacing: 0.05em;
+}
+
+#navBar form input[type=text]:active,
+#navBar form input[type=text]:focus{
+	outline: none;
+	border: none;
+	border: 2px solid #4DD0E1;
+}
+
+
+
+
+/*#navBar form input[type=submit]{
+	box-sizing: border-box;
+	font-family: "Gotham Book";
+	letter-spacing: 2px;
+	color: white;
+	background-color: #0097A7;
+	padding: 7px;
+	transition: 0.4s;
+	box-sizing: border-box;
+	border-style: none;
+	margin-left: -5px;
+	border-radius: 0 5px 5px 0;
+}*/
+

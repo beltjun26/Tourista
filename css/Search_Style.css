@@ -1,0 +1,154 @@
+/*<div class="search-filter-sidebar col-sm-3">	
+	<h2 class="sidebar-label">SEARCH FILTER:</h2>
+	<ul>
+		<li><a href="#">PLACES</a></li>
+		<li><a href="search_results_people.html">PEOPLE</a></li>
+	</ul>
+</div>*/	
+
+.search-filter,
+div.result-people,
+div.result-place{
+	background-color: white;
+	text-align: center;
+	border-radius: 5px;
+	margin-top: 10px;
+	border: 1px solid #CFD8DC;
+}
+
+.search-filter{
+	border-width: 1px 1px 0 1px;
+	border-radius: 2px 2px 0 0;
+}
+
+.label{
+	display: block;
+	margin: 0;
+	color: #666;
+	font-family: "Gotham Light";
+	font-weight: bold;
+	font-size: 15px;
+	letter-spacing: 1px;
+	padding: 10px;
+	border-radius: 2px 2px 0 0;
+}
+
+.search-filter ul{
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	padding: 10px 30px 0 30px;
+	border-bottom: 1px solid #CFD8DC;
+}
+
+.search-filter ul li{
+	margin: 0;
+	width: 100%;
+	margin-bottom: -2px;
+}
+
+.search-filter ul li a{
+	color: white;
+	font-family: "Gotham Light";
+	font-size: 13px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	display: block;
+	width: 100%;
+	background-color: #CFD8DC;
+	border-radius: 5px 5px 0 0;
+	border: 1px solid #CFD8DC;
+	border-bottom: 1px solid white;
+	box-sizing: border-box;
+	padding: 5px;
+	margin: 0;
+	transition: 0.4s;
+}
+
+.search-filter ul li a:hover{
+	text-decoration: none;
+	background-color: #80DEEA;
+	color: white;
+}
+
+.search-filter ul li a.active{
+	text-decoration: none;
+	background-color: white;
+	cursor: default;
+	color: #666;
+}
+
+.search-filter ul li:first-child a{
+	border-right: 0;
+}
+
+.results-container{
+	background-color: white;
+	overflow: auto;
+	margin-top: -10px;
+	border-radius: 0 0 5px 5px;
+	border: 1px solid #CFD8DC;
+	border-top: 0px;
+	padding: 3% 0.5% 0.5% 0.5%;
+	margin-bottom: 50px;
+}
+
+div.result-people{
+	float: left;
+	width: 49%;
+	margin: 0.5%;
+	padding: 0;
+	text-align: left;
+	display: flex;
+}
+
+div.result-people a h2{
+	color: #666;
+	font-size: 15px;
+	font-family: "Gotham Medium";
+	padding: 0 10px 0 10px;
+}
+
+div.result-people a img{
+	height: 100px;
+}
+
+div.result-people div.user-details p{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 10px 0 10px;
+}
+
+div.result-people div.user-details{
+	clear: left;
+}
+
+div.result-place{
+	float: left;
+	padding: 0;
+	width: 49%;
+	margin: 0.5%;
+}
+
+div.result-place a img{
+	width: 100%;
+
+}
+
+div.result-place h2{
+	padding: 0;
+	margin: 0;
+	color: #666;
+	font-family: "Gotham Medium";
+	font-size: 15px;
+	padding: 10px;
+}
+
+.container{
+	width: 60%;
+}
+

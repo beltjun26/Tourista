@@ -1,0 +1,104 @@
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 50px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;  /*Full width */
+    height: 100%;  /* Full height */
+    overflow: none; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: none;
+    width: 80%;
+    padding-top: 0%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    opacity: 0.8;
+    transition: 0.2s;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.9;
+    box-shadow: 0 0 5px white,  0 0 10px white,  0 0 15px white;
+}
+
+.modal-header {
+    padding: 0;
+    background-color: #0097A7;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 3px 3px 0 0;
+}
+
+.modal-header img{
+    max-height: 50px;
+    padding: 0;
+    margin: 0!important;
+}
+
+.modal-header h2{
+    font-size: 1.5em;
+    margin: 0 0 0 10px;
+    letter-spacing: 0.1em;
+}
+
+.modal-header span{
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.modal-body {padding: 0;}
+
+div.posted-container button.imagebtn{
+    height: initial;
+    padding: 0;
+}
+
+.modalimg{
+   max-width: 100%;
+   max-height: 100%;
+    /*max-height: 500px;*/
+}

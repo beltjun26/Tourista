@@ -1,0 +1,122 @@
+div.headerprofile{
+	background-color: white;
+	margin-top: 10px;
+	border: 1px solid #CFD8DC;
+	overflow: auto;
+}
+
+#coverphoto{
+	width: 100%;
+}
+
+#coverphoto img{
+	width: 100%;
+	box-shadow: -3px 3px 1px rgba(0,0,0,0.3);
+	/*position: absolute;
+	z-index: -1;*/
+}
+
+#coverphoto h1{
+	margin: 0;
+	color: white;
+	height: 30px;
+	font-family: "gotham Medium";
+	font-size: 25px;
+	letter-spacing: 2px;
+	padding-top: 5px;
+	margin-top: -55px;
+	padding-left: 200px;
+	text-shadow: -2px 2px 0px rgba(0,0,0,0.3);
+}
+
+#userphoto{
+	margin-top: -75px;
+	margin-left: 30px;
+	width: 150px;
+}
+
+#userphoto img{
+	height: 150px;
+	border-radius: 5px;
+	border: white solid 5px;
+	box-shadow: -3px 3px 1px rgba(0,0,0,0.3);
+}
+
+#follows{
+	float: left;
+	/*width: 14%;*/
+	color: #666;
+	/*font-family: "Gotham Light";*/
+	/*font-weight: bold;
+	letter-spacing: 1px;*/
+	margin: 5px 0 10px 35px;
+	padding-left: 20px;
+	box-sizing: border-box;
+
+}
+
+#follows p{
+	width: 150px;
+	margin: 0;
+}
+
+#aboutme{
+	float: left;
+	width: 80%;
+	margin-top: -60px;
+	color: #666;
+}
+
+#aboutme h1{
+	font-family: "Gotham Medium";
+	font-size: 20px;
+	margin-bottom: 0;
+}
+
+#aboutme p{
+	margin-top: -10px;
+	font-size: 12px;
+}
+
+h2.user-options,
+h2.visitor-options{
+	background: -webkit-linear-gradient(left, #00ACC1, #1DE9B6);
+	color: white;
+	font-family: "Gotham Medium";
+	font-size: 15px;
+	letter-spacing: 2px;
+	text-align: center;
+	border-radius: 5px 5px 0 0;
+	padding: 5px;
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+
+ul.user-options,
+ul.visitor-options{
+	list-style: none;
+	padding: 0;
+}
+
+ul.user-options li a,
+ul.visitor-options li a{
+	box-sizing: border-box;
+	display: block;
+	padding: 5px;
+	padding-left: 15px;
+	color: #666;
+	background-color: white;
+	border: solid #80DEEA;
+	border-width: 0 0 0 0;
+	transition: 0.2s;
+}
+
+ul.user-options li a:hover,
+ul.visitor-options li a:hover{
+	border-left-width: 5px;
+	text-decoration: none;
+	background-color: #00B8D4;
+	color: white;
+}
+
+
