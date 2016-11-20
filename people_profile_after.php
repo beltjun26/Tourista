@@ -4,13 +4,13 @@
 		<title>TourisTA! - Homepage</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-		<script src="../bootstrap/jquery/1.12.4/jquery.min.js"></script>
-		<script src="../bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="../css/navigation_bar_and_body_style.css">
-		<link rel="stylesheet" type="text/css" href="../css/Home_Page_style.css">
-		<link rel="stylesheet" type="text/css" href="../css/People_Profile_Page_style.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<script src="bootstrap/jquery/1.12.4/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
+		<link rel="stylesheet" type="text/css" href="css/Home_Page_style.css">
+		<link rel="stylesheet" type="text/css" href="css/People_Profile_Page_style.css">
 	</head>
 	<body>
 		<div id = "navBar">
@@ -27,9 +27,9 @@
 			</ul>
 		</div>
 		<div class="headerprofile">
-			<div id="coverphoto" style="background-image: url(../images/pp_cover/clyde2cover.jpg);">
+			<div id="coverphoto" style="background-image: url(images/pp_cover/clyde2cover.jpg);">
 				<div id="info">
-					<img src="../images/pp_cover/clyde2.jpg" id="user-photo">
+					<img src="images/pp_cover/clyde2.jpg" id="user-photo">
 					<h1 id="username">XON_123</h1>
 					<a href="#">Following: 111</a>
 					<a href="#">Followers: 0</a>
@@ -62,7 +62,7 @@
 					<div class="posting-container">
 						<h2>POST SOMETHING NEW?</h2>
 						<div class="col-sm-2">
-							<img src="../images/pp_cover/clyde1.jpg" alt="USER PHOTO">
+							<img src="images/pp_cover/clyde1.jpg" alt="USER PHOTO">
 						</div>
 						<div class="col-sm-10">
 							<a href="#">ADD A PHOTO</a>
@@ -74,9 +74,9 @@
 						</div>
 					</div>
 					<div class="posted-container">
-						<img src="../images/pp_cover/clyde1.jpg" alt="USER PHOTO" id="pp">
+						<img src="images/pp_cover/clyde1.jpg" alt="USER PHOTO" id="pp">
 						<h2 class="user-name">XON_123</h2>
-						<img src="../images/Body_Background.png">
+						<img src="images/Body_Background.png">
 						<div class="col-sm-10">
 							<p class = "posted-text">Miag-ao Church.</p>
 							<a href="#" class="tagged-location">MIAG-AO CHURCH</a>

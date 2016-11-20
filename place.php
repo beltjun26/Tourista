@@ -4,14 +4,14 @@
 		<title>TourisTA! - Homepage</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-		<script src="../bootstrap/jquery/1.12.4/jquery.min.js"></script>
-		<script src="../bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<script src="bootstrap/jquery/1.12.4/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="../css/navigation_bar_and_body_style.css">
-		<link rel="stylesheet" type="text/css" href="../css/Home_Page_style.css">
-		<link rel="stylesheet" type="text/css" href="../css/place.css">
+		<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
+		<link rel="stylesheet" type="text/css" href="css/Home_Page_style.css">
+		<link rel="stylesheet" type="text/css" href="css/place.css">
 	</head>
 	<body>
 		<div id = "navBar">
@@ -24,7 +24,7 @@
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="notifications.html"> NOTIFICATIONS </a></li>
 				<li><a href="login.html"> LOGOUT </a></li>
-				<li><img src="../images/temp_pp.png"></li>
+				<li><img src="images/temp_pp.png"></li>
 			</ul>
 		</div>
 		<!-- <main>

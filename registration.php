@@ -4,11 +4,11 @@
 		<title>Registration Page</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-		<script src="../bootstrap/jquery/1.12.4/jquery.min.js"></script>
-		<script src="../bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="../css/style_registration.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<script src="bootstrap/jquery/1.12.4/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style_registration.css">
 	</head>
 	<body>
 		<div class="container">

@@ -9,17 +9,17 @@
 		<meta name="James Anthony Yatar" content="Navigation Bar">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-		<script src="../bootstrap/jquery/1.12.4/jquery.min.js"></script>
-		<script src="../bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="../css/navigation_bar_and_body_style.css">
-		<link rel="stylesheet" type="text/css" href="../css/Home_Page_style.css">
-		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<script src="bootstrap/jquery/1.12.4/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
+		<link rel="stylesheet" type="text/css" href="css/Home_Page_style.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
 		<div id = "navBar">
-			<!-- <img src="../images/Tourista_Logo_outline_black.png">
+			<!-- <img src="images/Tourista_Logo_outline_black.png">
 			<h1>TOURISTA!<br><span> HELLO USER </span></h1> -->
 
 			<form action="search_results_places.html" method="get">
@@ -32,10 +32,10 @@
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="Notifications.html"> NOTIFICATIONS </a></li>
 				<li><a href="login.html"> LOGOUT </a></li>
-				<li><img src="../images/temp_pp.png"></li>
+				<li><img src="images/temp_pp.png"></li>
 				
 				<!-- <li class="dropdown">
-				    <a href="javascript:void(0)" class="dropbtn" onclick="myFunction()">PROFILE<img src="../images/temp_pp.png" class="dropbtn" alt="USER PHOTO" onclick="myFunction()"></a>
+				    <a href="javascript:void(0)" class="dropbtn" onclick="myFunction()">PROFILE<img src="images/temp_pp.png" class="dropbtn" alt="USER PHOTO" onclick="myFunction()"></a>
 				    <div class="dropdown-content" id="myDropdown">
 				      	<a href="#"> Visits </a>
 						<a href="#"> Starred Places </a>
@@ -50,8 +50,8 @@
 				<div class="col-sm-3">
 					<div class="user-box">
 						<a href="#">
-							<img src="../images/Body_Background.png" alt="USER PHOTO">
-							<img src="../images/temp_pp.png" alt="USER PHOTO">
+							<img src="images/Body_Background.png" alt="USER PHOTO">
+							<img src="images/temp_pp.png" alt="USER PHOTO">
 						</a>
 						<h2 class="user-box-heading">JOSP_123</h2>
 						<!-- <a href="#"><h3 id="following-link">FOLLOWING: 111</h3></a>
@@ -61,7 +61,7 @@
 				<div class="col-sm-6">
 					<div class="posting-container">
 						<div class="col-sm-2">
-							<img src="../images/temp_pp.png" alt="USER PHOTO">
+							<img src="images/temp_pp.png" alt="USER PHOTO">
 						</div>
 						<div class="col-sm-10">
 							<a href="#">ADD A PHOTO</a>
@@ -73,9 +73,9 @@
 						</div>
 					</div>
 					<div class="posted-container">
-						<img src="../images/temp_pp.png" alt="USER PHOTO" id="pp">
+						<img src="images/temp_pp.png" alt="USER PHOTO" id="pp">
 						<h2 class="user-name">JOSP_123</h2>
-						<button id="myBtn" class="imagebtn"><img src="../images/Body_Background.png"></button>
+						<button id="myBtn" class="imagebtn"><img src="images/Body_Background.png"></button>
 						<div class="col-sm-10">
 							<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
 							<a href="place.html" class="tagged-location">MIAG-AO CHURCH</a>
@@ -87,12 +87,12 @@
 					<div id="myModal" class="modal">
 					  	<div class="modal-content">
 					    	<div class="modal-header">
-					      		<img src="../images/temp_pp.png" alt="USER PHOTO" id="pp">
+					      		<img src="images/temp_pp.png" alt="USER PHOTO" id="pp">
 								<h2 class="user-name">JOSP_123</h2>
 					      		<span class="close">×</span>
 					    	</div>
 						    <div class="modal-body">
-						      	<img src="../images/Body_Background.png" class="modalimg">
+						      	<img src="images/Body_Background.png" class="modalimg">
 						    </div>
 					  	</div>
 					</div>

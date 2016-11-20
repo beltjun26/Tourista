@@ -3,7 +3,7 @@
 <head>
 	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
 	<title>Visited Page</title>
-	<link rel="stylesheet" type="text/css" href="../css/navigation_bar_and_body_style.css">
+	<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
 </head>
 <body>
 	<div id = "navBar">
@@ -16,7 +16,7 @@
 			<li><a href="#"> EXPLORE </a></li>
 			<li><a href="notifications.html"> NOTIFICATIONS </a></li>
 			<li><a href="login.html"> LOGOUT </a></li>
-			<li><img src="../images/temp_pp.png"></li>
+			<li><img src="images/temp_pp.png"></li>
 		</ul>
 	</div>
 <!-- insert nav here -->

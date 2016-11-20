@@ -6,13 +6,13 @@
 	<meta name="James Anthony Yatar" content="Navigation Bar">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<script src="../bootstrap/jquery/1.12.4/jquery.min.js"></script>
-	<script src="../bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../css/navigation_bar_and_body_style.css">
-	<link rel="stylesheet" type="text/css" href="../css/gallery.css">
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<script src="bootstrap/jquery/1.12.4/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
+	<link rel="stylesheet" type="text/css" href="css/gallery.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<div id = "navBar">
@@ -25,13 +25,13 @@
 			<li><a href="#"> EXPLORE </a></li>
 			<li><a href="notifications.html"> NOTIFICATIONS </a></li>
 			<li><a href="login.html"> LOGOUT </a></li>
-			<li><img src="../images/temp_pp.png"></li>
+			<li><img src="images/temp_pp.png"></li>
 		</ul>
 	</div>
 	<h2>Gallery for -Place-</h2>
 	<div class="container gal">
 		<div class="image"><button id="myBtn" class="imagebtn"></button></div>
-		<!-- <img id="myImg" src="../images/places/diwata/1.jpg" alt="Trolltunga, Norway" width="300" height="200"> -->
+		<!-- <img id="myImg" src="images/places/diwata/1.jpg" alt="Trolltunga, Norway" width="300" height="200"> -->
 		<div id="myModal" class="modal">
 		  	<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
 		  	<img class="modal-content" id="img01">
