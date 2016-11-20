@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<form action="thanks.html" id="regform">
+			<form action="thanks.php" id="regform">
 						<h1> CREATE ACCOUNT </h1>
 				<!-- <label for="first_name">FIRST NAME</label> -->
 				  		<input type="text" required id="first_name" name="firstname" placeholder="First Name" autofocus>
@@ -28,7 +28,7 @@
 				 		<!-- <textarea name="etc" form="regform">Enter text here...</textarea> -->
 						<input type="submit" value="CREATE">
 						<p>YOU HAVE AN ACCOUNT?</p>
-						<a class="pagelink" href="login.html">SIGN IN</a>
+						<a class="pagelink" href="login.php">SIGN IN</a>
 			</form>
 		</div>
 	</body>

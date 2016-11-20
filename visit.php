@@ -7,15 +7,15 @@
 </head>
 <body>
 	<div id = "navBar">
-		<form action="search_results_places.html" method="get">
+		<form action="search_results_places.php" method="get">
 			<input type="text" placeholder="Search...">
 		</form>
 		<ul id = "navList">
-			<li><a href="home_page.html"> HOME </a></li>
-			<li><a href="visit.html" class="active"> VISITS </a></li>
+			<li><a href="home_page.php"> HOME </a></li>
+			<li><a href="visit.php" class="active"> VISITS </a></li>
 			<li><a href="#"> EXPLORE </a></li>
-			<li><a href="notifications.html"> NOTIFICATIONS </a></li>
-			<li><a href="login.html"> LOGOUT </a></li>
+			<li><a href="notifications.php"> NOTIFICATIONS </a></li>
+			<li><a href="login.php"> LOGOUT </a></li>
 			<li><img src="images/temp_pp.png"></li>
 		</ul>
 	</div>

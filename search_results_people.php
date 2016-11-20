@@ -15,15 +15,15 @@
 	</head>
 	<body>
 		<div id = "navBar">
-			<form action="test.html" method="get">
+			<form action="test.php" method="get">
 				<input type="text" placeholder="Search...">
 			</form>
 			<ul id = "navList">
-				<li><a href="home_page.html"> HOME </a></li>
-				<li><a href="visit.html"> VISITS </a></li>
+				<li><a href="home_page.php"> HOME </a></li>
+				<li><a href="visit.php"> VISITS </a></li>
 				<li><a href="#"> EXPLORE </a></li>
-				<li><a href="notifications.html"> NOTIFICATIONS </a></li>
-				<li><a href="login.html"> LOGOUT </a></li>
+				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
+				<li><a href="login.php"> LOGOUT </a></li>
 				<li><img src="images/temp_pp.png"></li>
 			</ul>
 		</div>
@@ -31,7 +31,7 @@
 			<div class="search-filter">	
 				<h2 class="label result">You have searched for something. something results</h2>
 				<ul>
-					<li><a href="search_results_places.html">PLACES</a></li>
+					<li><a href="search_results_places.php">PLACES</a></li>
 					<li><a href="#" class="active">PEOPLE</a></li>
 				</ul>
 			</div>
@@ -136,11 +136,11 @@
 					</div>
 				</div>
 				<div class="result-people">
-					<a class="userphoto-link" href="people_profile.html">
+					<a class="userphoto-link" href="people_profile.php">
 						<img src = "images/pp_cover/clyde1.jpg" alt="user image">
 					</a>
 					<div class = "user-details">
-						<a href="people_profile.html" class = "username-link"><h2 class="username">XON_123</h2></a>
+						<a href="people_profile.php" class = "username-link"><h2 class="username">XON_123</h2></a>
 						<p>Lorem ipsum dolor sit amet, consectetur...</p>
 					</div>
 				</div>

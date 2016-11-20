@@ -13,15 +13,15 @@
 </head>
 <body>
 	<div id = "navBar">
-		<form action="search_results_places.html" method="get">
+		<form action="search_results_places.php" method="get">
 			<input type="text" placeholder="Search...">
 		</form>
 		<ul id = "navList">
-			<li><a href="home_page.html"> HOME </a></li>
-			<li><a href="visit.html"> VISITS </a></li>
+			<li><a href="home_page.php"> HOME </a></li>
+			<li><a href="visit.php"> VISITS </a></li>
 			<li><a href="#"> EXPLORE </a></li>
-			<li><a href="Notifications.html" class="active"> NOTIFICATIONS </a></li>
-			<li><a href="login.html"> LOGOUT </a></li>
+			<li><a href="Notifications.php" class="active"> NOTIFICATIONS </a></li>
+			<li><a href="login.php"> LOGOUT </a></li>
 			<li><img src="images/temp_pp.png"></li>
 		</ul>
 	</div>
@@ -32,7 +32,7 @@
 			<span class="username">Xon_123</span>
 			<span class="time-stamp">4:00AM November 14, 2016</span>
 			<p>Xon_123 started following you.</p><br>
-			<a href="people_profile.html" class="view">View</a>
+			<a href="people_profile.php" class="view">View</a>
 		</div>
 		<div class="notif-container">
 			<img class="user-photo" src="images/pp_cover/Clyde1.jpg">
@@ -40,7 +40,7 @@
 			<span class="username">Xon_123</span>
 			<span class="time-stamp">4:00AM November 14, 2016</span>
 			<p>Xon_123 started following you.</p><br>
-			<a href="people_profile.html" class="view">View</a>
+			<a href="people_profile.php" class="view">View</a>
 		</div>
 		<div class="notif-container">
 			<img class="user-photo" src="images/pp_cover/Clyde1.jpg">
@@ -48,7 +48,7 @@
 			<span class="username">Xon_123</span>
 			<span class="time-stamp">4:00AM November 14, 2016</span>
 			<p>Xon_123 started following you.</p><br>
-			<a href="people_profile.html" class="view">View</a>
+			<a href="people_profile.php" class="view">View</a>
 		</div>
 		<div class="notif-container">
 			<img class="user-photo" src="images/pp_cover/Clyde1.jpg">
@@ -56,7 +56,7 @@
 			<span class="username">Xon_123</span>
 			<span class="time-stamp">4:00AM November 14, 2016</span>
 			<p>Xon_123 started following you.</p><br>
-			<a href="people_profile.html" class="view">View</a>
+			<a href="people_profile.php" class="view">View</a>
 		</div>
 	</div>
 </body>

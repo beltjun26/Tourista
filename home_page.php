@@ -22,16 +22,16 @@
 			<!-- <img src="images/Tourista_Logo_outline_black.png">
 			<h1>TOURISTA!<br><span> HELLO USER </span></h1> -->
 
-			<form action="search_results_places.html" method="get">
+			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search...">
 				<!-- <input type="submit" value="SEARCH" > -->
 			</form>
 			<ul id = "navList">
 				<li><a href="#" class="active"> HOME </a></li>
-				<li><a href="visit.html"> VISITS </a></li>
+				<li><a href="visit.php"> VISITS </a></li>
 				<li><a href="#"> EXPLORE </a></li>
-				<li><a href="Notifications.html"> NOTIFICATIONS </a></li>
-				<li><a href="login.html"> LOGOUT </a></li>
+				<li><a href="Notifications.php"> NOTIFICATIONS </a></li>
+				<li><a href="login.php> LOGOUT </a></li>
 				<li><img src="images/temp_pp.png"></li>
 				
 				<!-- <li class="dropdown">
@@ -65,7 +65,7 @@
 						</div>
 						<div class="col-sm-10">
 							<a href="#">ADD A PHOTO</a>
-							<form action="output.html" method="get">
+							<form action="output.php" method="get">
 								<textarea id="post-text-area" cols="50" rows="5" placeholder="TEXT HERE..."></textarea>
 								<input type="text-field" placeholder="LOCATION TAG AUTOFILL">
 							 	<input type="submit" value="POST">
@@ -78,7 +78,7 @@
 						<button id="myBtn" class="imagebtn"><img src="images/Body_Background.png"></button>
 						<div class="col-sm-10">
 							<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
-							<a href="place.html" class="tagged-location">MIAG-AO CHURCH</a>
+							<a href="place.php" class="tagged-location">MIAG-AO CHURCH</a>
 						</div>
 						<div class="col-sm-2">
 							<button>LIKE</button>

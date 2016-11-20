@@ -14,15 +14,15 @@
 	</head>
 	<body>
 		<div id = "navBar">
-			<form action="search_results_places.html" method="get">
+			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search...">
 			</form>
 			<ul id = "navList">
-				<li><a href="home_page.html"> HOME </a></li>
-				<li><a href="visit.html"> VISITS </a></li>
+				<li><a href="home_page.php"> HOME </a></li>
+				<li><a href="visit.php"> VISITS </a></li>
 				<li><a href="#"> EXPLORE </a></li>
-				<li><a href="notifications.html"> NOTIFICATIONS </a></li>
-				<li><a href="login.html"> LOGOUT </a></li>
+				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
+				<li><a href="login.php"> LOGOUT </a></li>
 				<li><img src="images/temp_pp.png"></li>
 			</ul>
 		</div>
@@ -71,7 +71,7 @@
 						</div>
 						<div class="col-sm-10">
 							<a href="#">ADD A PHOTO</a>
-							<form action="output.html" method="get">
+							<form action="output.php" method="get">
 								<textarea id="post-text-area" cols="50" rows="5" placeholder="TEXT HERE..."></textarea>
 								<input type="text-field" placeholder="LOCATION TAG AUTOFILL">
 							 	<input type="submit" value="POST">
