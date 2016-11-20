@@ -1,0 +1,128 @@
+.modal.edit-profile div{
+	overflow: initial;
+}
+
+.modal.edit-profile .modal-content{
+	width: 50%;
+}
+
+.modal-header{
+	padding: 10px;
+}
+
+.modal-header h2{
+	font-family: "Gotham Light";
+	text-transform: uppercase;
+	text-align: center;
+	width: 100%;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+#output_cover{
+	object-fit: cover;
+	object-position: center;
+	width: 98%;
+	margin: 1%;
+	height: 250px;
+	border-radius: 5px;
+}
+
+#output_cover:hover + #output_profile{
+	opacity: 0.3;
+}
+
+#output_profile{
+	object-fit: cover;
+	object-position: center;
+	width: 150px;
+	height: 150px;
+	border: 5px solid rgba(255, 255, 255, 0.5);
+	border-radius: 5px;
+	margin: -290px 0 0 70px;
+	transition: 0.4s;
+}
+
+#output_profile:hover{
+	transform: scale(1.2, 1.2);
+}
+
+.modal-body{
+	overflow: auto;
+	background-color: #ECEFF1;
+}
+
+.modal-body form{
+	display: inline-flex;
+	flex-direction: column;
+	width: 98%;
+	margin: -1% 1% 1% 1%;
+	border-radius: 5px;
+	padding: 1% 24% 1% 24%;
+	box-sizing: border-box;
+	background-color: white;
+}
+
+.modal-body form textarea{
+	width: 100%;
+	box-sizing: border-box;
+	height: 100px;
+	padding: 20px;
+	resize: none;
+	border: 1px solid #DDD;
+	color: #777;
+	transition: 0.4s;
+}
+
+.modal-body form textarea:focus,
+.modal-body form textarea:active{
+	outline: none;
+	box-shadow: 0 0 5px rgba(0,184,212 ,0.8);
+	border-color: rgba(0,151,167 ,0.5);
+}
+
+.modal-body form div{
+	width: 100%;
+}
+
+.modal-body form div input,
+.modal-body form div label{
+	width: 35%;
+	padding: 10px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.modal-body form input[type=file]{
+	/*display: none;*/
+	/*opacity:0;*/
+	/*margin-top:-30px;*/
+}
+
+.upload,
+.modal-body form div input[type=submit]{
+	width: 20%;
+	background-color: #0097A7;
+	color: white;
+	font-family: "Gotham Light";
+	font-weight: bold;
+	font-size: 0.8em;
+	text-transform: uppercase;
+	border: 3px solid white;
+}
+
+.modal-body form div input[type=submit]{
+	padding: 10px;
+	float: right;
+}
+
+.option-buttons input,
+.option-buttons label{
+	transition: 0.4s;
+}
+
+.option-buttons input:hover,
+.option-buttons label:hover{
+	background-color: #4DD0E1!important;
+	box-shadow: 0 0 10px rgba(0,96,100 ,0.3);
+}

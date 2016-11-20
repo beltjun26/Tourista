@@ -105,7 +105,7 @@ div.posting-container textarea{
 	border-width: 0 1px 1px 1px;
 }
 
-div.posting-container input[type=submit], button{
+div.posting-container input[type=submit]{
 	box-sizing: border-box;
 	font-family: "Gotham Medium";
 	letter-spacing: 2px;
@@ -116,41 +116,15 @@ div.posting-container input[type=submit], button{
 	border-style: none;
 	padding: 10px;
 	border-radius: 0 0 5px 5px;
-	background: -webkit-linear-gradient(left, #00ACC1, #1DE9B6);
-	transition: 0.4s;
+	background-color: #0097A7;
+	transition: 0.2s;
 }
 
 div.posting-container input[type=submit]:hover{
-	text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
 	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
+	background-color: #00BCD4;
 }
 
-.buttons input[type=submit]{
-	box-sizing: border-box;
-	font-family: "Gotham Medium";
-	letter-spacing: 2px;
-	width: 20%;
-	display: inline-block;
-	color: white;
-	text-align: center;
-	border-style: none;
-	padding: 10px;
-	/*margin-left:20%;*/
-	border-radius: 0 0 5px 5px;
-	background: -webkit-linear-gradient(left, #00ACC1, #1DE9B6);
-	transition: 0.4s;
-}
-.buttons input[type=submit]:hover{
-	text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
-	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
-}
-
-div.posting-container input[type=submit]:hover{
-	text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
-	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
-}
-
-}
 div.posted-container img{
 	width: 100%;
 }
@@ -181,11 +155,13 @@ div.posted-container button{
 	margin-top: 10px;
 	border-radius: 50%;
 	border-style: none;
-	background: -webkit-linear-gradient(left, #00ACC1, #1DE9B6);
+	background-color: #0097A7;
+	transition: 0.2s;
 }
 
 div.posted-container button:hover{
-	background: -webkit-linear-gradient(left, #00BCD4, #64FFDA);
+	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
+	background-color: #00BCD4;
 }
 
 div.posted-container button:focus{
