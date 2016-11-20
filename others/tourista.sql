@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2016 at 07:58 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: Nov 20, 2016 at 09:44 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -51,6 +51,14 @@ CREATE TABLE `account` (
   `about_me` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`acc_id`, `username`, `firstname`, `middlename`, `lastname`, `password`, `email`, `address`, `profile_pick`, `cover_photo`, `about_me`) VALUES
+(2, 'maynard', 'Maynard', 'Fuentes', 'Vargas', 'vargas', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', '/images/temp_pp.png', '/images/cover_photo3.png', 'Best foods, natures spring, C2 tea. Dragon. '),
+(3, 'hello', 'Hello', 'Php', 'World', 'world', 'hello@gmail.com', 'Hello, World', '/images/temp_pp.png', '/images/cover_photo3.png', 'I am hello. I am your world.');
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +81,14 @@ CREATE TABLE `brgy` (
   `brgyname` varchar(50) NOT NULL,
   `town_id` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `brgy`
+--
+
+INSERT INTO `brgy` (`brgy_id`, `brgyname`, `town_id`) VALUES
+(3, 'Sapa', 2),
+(4, 'Bolho', 2);
 
 -- --------------------------------------------------------
 
@@ -133,6 +149,16 @@ CREATE TABLE `province` (
   `province_name` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `province`
+--
+
+INSERT INTO `province` (`province_id`, `province_name`) VALUES
+(1, 'Aklan'),
+(2, 'Iloilo'),
+(3, 'Antique'),
+(4, 'Capiz');
+
 -- --------------------------------------------------------
 
 --
@@ -167,6 +193,16 @@ CREATE TABLE `town` (
   `townname` varchar(50) NOT NULL,
   `province_id` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `town`
+--
+
+INSERT INTO `town` (`town_id`, `townname`, `province_id`) VALUES
+(1, 'Kalibo', 1),
+(2, 'Miagao', 2),
+(3, 'Oton', 2),
+(4, 'Tigbauan', 2);
 
 -- --------------------------------------------------------
 
@@ -236,12 +272,22 @@ ALTER TABLE `town`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `brgy`
+--
+ALTER TABLE `brgy`
+  MODIFY `brgy_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
   MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `town`
+--
+ALTER TABLE `town`
+  MODIFY `town_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
