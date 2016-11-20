@@ -36,9 +36,9 @@
 				<img src="images/Tourista_Logo_Outline.png" id="logo"><br>
 				<span>WELCOME TO</span><hr>
 				<h1>TOURISTA!</h1>
-				<a href="Registration.html">CREATE ACCOUNT</a>
+				<a href="Registration.php">CREATE ACCOUNT</a>
 			</div>
-			<form action="home_page.html">
+			<form action="home_page.php">
 					<label for="userName">USERNAME</label>
 			  		<input type="text" required id="user_name" name="userName">
 			  		<label for="first_name">PASSWORD</label>
