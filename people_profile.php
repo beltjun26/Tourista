@@ -17,11 +17,7 @@
 	<body>
 
 	<?php 
-	$host = 'localhost';  
-	$username = 'root'; 
-	$password = ''; 
-	$db = 'tourista'; 
-	$dbconn = mysqli_connect($host,$username,$password) or die("Could not connect to database!"); 
+	include 'connect.php';
 	mysqli_select_db($dbconn, $db) or die( "Unable to select database");
 	
 	session_start();

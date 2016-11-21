@@ -4,12 +4,7 @@
 	<head>
 	<?php 
 	
-		$host = 'localhost';
-		$username = 'root';
-		$password = '';
-		$db = 'tourista';
-	
-				$dbconn = mysqli_connect ($host, $username, $password, $db)
+		include 'connect.php';
 				or die ("Could not connect to database!");
 			
 			if (isset($_GET["search"])) {

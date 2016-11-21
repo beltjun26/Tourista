@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<script>
-//Javascript area looooool 
-var w = window,
-    d = document,
-    e = d.documentElement,
-    g = d.getElementsByTagName('body')[0],
-    x = w.innerWidth || e.clientWidth || g.clientWidth,
-    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-	//alert(x + ' × ' + y); 
-</script> 
 <html>
 <head>
 	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
@@ -19,7 +9,6 @@ var w = window,
   <?php 
       include 'connect.php';
    ?>
-<!-- insert nav here -->
 	<div id = "navBar">
 		<form action="" method="">
 			<input id="search_input" type="text" placeholder="Search...">
@@ -33,6 +22,7 @@ var w = window,
 			<li><img src="images/temp_pp.png"></li>
 		</ul>
 	</div>
+<!-- insert nav here -->
 <div style="height: 600px;width:100%" id="map"></div>
 <!-- modify map on css please -->
 </body>
@@ -43,48 +33,73 @@ var w = window,
 
       var map;
       var infowindow;
-
+      var geocoder;
       function initMap() {
-        var pyrmont = {lat: -33.867, lng: 151.195};
+        var pyrmont = {lat: 10.7201501, lng: 122.56210629999998};
 
         map = new google.maps.Map(document.getElementById('map'), {
           center: pyrmont,
           zoom: 15
         });
-
-        var input = document.getElementById('search_input');
-        var searchBox = new google.maps.places.SearchBox(input);
-
+        geocoder = new google.maps.Geocoder;
         infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-          location: pyrmont,
-          radius: 500,
-          type: ['store']
-        }, callback);
       }
-
-      function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+      function geocodePlaceId(geocoder, map, infowindow) {
+      var placeId = document.getElementById('place-id').value;
+      geocoder.geocode({'placeId': placeId}, function(results, status) {
+        if (status === 'OK') {
+          if (results[0]) {
+            map.setZoom(11);
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+            });
+            infowindow.setContent(results[0].formatted_address);
+            infowindow.open(map, marker);
+          } else {
+            window.alert('No results found');
           }
+        } else {
+          window.alert('Geocoder failed due to: ' + status);
         }
-      } 
+      });
+    }
 
-      function createMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
+        // var input = document.getElementById('search_input');
+        // var searchBox = new google.maps.places.SearchBox(input);
 
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
+        // infowindow = new google.maps.InfoWindow();
+        // var service = new google.maps.places.PlacesService(map);
+        // service.nearbySearch({
+        //   location: pyrmont,
+        //   radius: 500,
+        //   type: ['store']
+        // }, callback);
+      // }
+
+      // function callback(results, status) {
+      //   if (status === google.maps.places.PlacesServiceStatus.OK) {
+      //     for (var i = 0; i < results.length; i++) {
+      //       createMarker(results[i]);
+      //     }
+      //   }
+      // } 
+
+      // function createMarker(place) {
+      //   var placeLoc = place.geometry.location;
+      //   var marker = new google.maps.Marker({
+      //     map: map,
+      //     position: place.geometry.location
+      //   });
+
+      //   google.maps.event.addListener(marker, 'click', function() {
+      //     infowindow.setContent(place.name);
+      //     infowindow.open(map, this);
+      //   });
+      
+      
       
     </script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL698CLCTGKNTR4wU0-o_IXtTqdZAowGo&libraries=places&callback=initMap" async defer></script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBww8i2ICp66WttVNyEbgcQXbY8a8sxDrg&libraries=places&callback=initMap" async defer></script>
 </html>

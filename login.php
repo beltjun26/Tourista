@@ -2,17 +2,13 @@
 session_start();
 $error=0;
 if(isset($_POST["submit"])){
-	$username = $_POST["userName"];
-	$password = $_POST["password"];
-	echo "'$username' and '$password' <br>";
-	$connect = mysqli_connect("localhost","root","","tourista") or die("Could not connect to the database.");
-	$query = "Select username, password from account where account.username='$username' and account.password='$password'";
-	$result= mysqli_query($connect, $query) or die("Query failed.");
+	include 'connect.php';
+	$query = "Select username, password from account where account.username='{$_POST['userName']}' and account.password=md5('{$_POST['password']}')";
+	$result= mysqli_query($dbconn, $query) or die("Query failed.");
 
 	echo mysqli_num_rows($result);
 
 	if(mysqli_num_rows($result) == 1){
-			echo "fghj";
 				$_SESSION["userName"] = $username;
 				$_SESSION["password"] = $password;
 				header("Location:home_page.php");
