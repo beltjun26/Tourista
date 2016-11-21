@@ -138,8 +138,8 @@
 				<div class="col-sm-3">
 					<h2 class="visitor-options">VISITOR OPTIONS</h2>
 					<ul class="visitor-options">
-						<li><a href="#">Request for a tour</a></li>
-						<li><a href="#">Follow Xon_123</a></li>
+						<li><a href="Request_Form.php">Request for a tour</a></li>
+						<li><a href="follower.php">Follow Xon_123</a></li>
 					</ul>
 				</div>
 			</div>
