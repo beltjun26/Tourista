@@ -1,4 +1,4 @@
-+<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
