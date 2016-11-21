@@ -28,7 +28,7 @@
 			<h1>TOURISTA!<br><span> HELLO USER </span></h1> -->
 
 			<form action="search_results_places.php" method="get">
-				<input type="text" placeholder="Search...">
+				<input type="text" placeholder="Search..." name = "search">
 				<!-- <input type="submit" value="SEARCH" > -->
 			</form>
 			<ul id = "navList">
