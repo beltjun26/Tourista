@@ -20,7 +20,7 @@
 	$host = 'localhost';  
 	$username = 'root'; 
 	$password = ''; 
-	$db = 'bas asdfasdfsadfsdafsdf'; 
+	$db = 'tourista'; 
 	$dbconn = mysqli_connect($host,$username,$password) or die("Could not connect to database!"); 
 	mysqli_select_db($dbconn, $db) or die( "Unable to select database");
 	
