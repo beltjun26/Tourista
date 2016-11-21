@@ -1,4 +1,4 @@
-+<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
@@ -74,6 +74,7 @@
           infowindow.open(map, this);
         });
       }
+      
     </script>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL698CLCTGKNTR4wU0-o_IXtTqdZAowGo&libraries=places&callback=initMap" async defer></script>
 </html>
