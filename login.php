@@ -1,3 +1,27 @@
+<?php
+session_start();
+$error=0;
+if(isset($_POST["submit"])){
+	$username = $_POST["userName"];
+	$password = $_POST["password"];
+	echo "'$username' and '$password' <br>";
+	$connect = mysqli_connect("localhost","root","","tourista") or die("Could not connect to the database.");
+	$query = "Select username, password from account where account.username='$username' and account.password='$password'";
+	$result= mysqli_query($connect, $query) or die("Query failed.");
+
+	echo mysqli_num_rows($result);
+
+	if(mysqli_num_rows($result) == 1){
+			echo "fghj";
+				$_SESSION["userName"] = $username;
+				$_SESSION["password"] = $password;
+				header("Location:home_page.php");
+	}else{
+		$error = 1;
+	}
+}
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -38,14 +62,19 @@
 				<h1>TOURISTA!</h1>
 				<a href="Registration.php">CREATE ACCOUNT</a>
 			</div>
-			<form action="home_page.php">
+			<!-- <form action="home_page.php"> -->
+			<form method="post">
 					<label for="userName">USERNAME</label>
 			  		<input type="text" required id="user_name" name="userName">
-			  		<label for="first_name">PASSWORD</label>
-			  		<input type="password" required id="first_name" name="firstname">
-			  		<input type="checkbox" name="rememberMe" value="REMEMBER_ME" style="opacity: 0;">
-			  		<label for="rememberMe" style="opacity: 0;">REMEMBER ME</label>
-			  		<input type="submit" value="LOGIN">
+			  		<label for="password">PASSWORD</label>
+			  		<input type="password" required id="password" name="password">
+			  		<?php 
+					if($error == 1)
+						echo "The username/password you entered is incorrect.";
+					?>
+			  		<!-- <input type="checkbox" name="rememberMe" value="REMEMBER_ME" style="opacity: 0;">
+			  		<label for="rememberMe" style="opacity: 0;">REMEMBER ME</label> -->
+			  		<input type="submit" name="submit" value="LOGIN">
 			</form>
 		</header>
 	</div>
