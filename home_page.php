@@ -1,5 +1,10 @@
 <!-- THIS HAS NO NAV BAR -->
-
+<?php
+	session_start();  
+	if(!isset($_SESSION["userName"])){ 
+		header('location:login.php');
+	}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +36,7 @@
 				<li><a href="visit.php"> VISITS </a></li>
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="Notifications.php"> NOTIFICATIONS </a></li>
-				<li><a href="login.php"> LOGOUT </a></li>
+				<li><a href="logout.php"> LOGOUT </a></li>
 				<li><img src="images/temp_pp.png"></li>
 				
 				<!-- <li class="dropdown">
