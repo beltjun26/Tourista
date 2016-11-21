@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<script>
+//Javascript area looooool 
+var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    x = w.innerWidth || e.clientWidth || g.clientWidth,
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+	//alert(x + ' × ' + y); 
+</script> 
 <html>
 <head>
 	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
@@ -9,6 +19,7 @@
   <?php 
       include 'connect.php';
    ?>
+<!-- insert nav here -->
 	<div id = "navBar">
 		<form action="" method="">
 			<input id="search_input" type="text" placeholder="Search...">
@@ -22,7 +33,6 @@
 			<li><img src="images/temp_pp.png"></li>
 		</ul>
 	</div>
-<!-- insert nav here -->
 <div style="height: 600px;width:100%" id="map"></div>
 <!-- modify map on css please -->
 </body>

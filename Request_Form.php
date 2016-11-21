@@ -14,7 +14,7 @@
    <body>
     <?php 
       include 'connect.php';
-      mysqli_select_db($dbcon, $db);
+      mysqli_select_db($dbconn, $db);
       /*if($dbcon == True){ 
         echo "true";
       }else{

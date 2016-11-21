@@ -1,5 +1,10 @@
 <!-- THIS HAS NO NAV BAR -->
-
+<?php
+	session_start();  
+	if(!isset($_SESSION["userName"])){ 
+		header('location:login.php');
+	}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +28,7 @@
 			<h1>TOURISTA!<br><span> HELLO USER </span></h1> -->
 
 			<form action="search_results_places.php" method="get">
-				<input type="text" placeholder="Search...">
+				<input type="text" placeholder="Search..." name = "search">
 				<!-- <input type="submit" value="SEARCH" > -->
 			</form>
 			<ul id = "navList">
@@ -31,7 +36,7 @@
 				<li><a href="visit.php"> VISITS </a></li>
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="Notifications.php"> NOTIFICATIONS </a></li>
-				<li><a href="login.php"> LOGOUT </a></li>
+				<li><a href="logout.php"> LOGOUT </a></li>
 				<li><img src="images/temp_pp.png"></li>
 				
 				<!-- <li class="dropdown">
