@@ -1,9 +1,6 @@
 <?php
-	$db = 'tourista';
-	$connect = mysqli_connect('localhost', 'root', '', $db) or die('Could not connect to database.');
-	// $acc_id = $_GET['acc_id'];
-	$acc_id = 1;
-	$query = mysqli_query($connect, "SELECT acc_id_follows from follow where acc_id_follower = $acc_id");
+	include 'connect.php';
+	$query = mysqli_query($dbconn, "SELECT acc_id_follows from follow where acc_id_follower = $acc_id");
 ?>
 <!DOCTYPE html>
 <html>

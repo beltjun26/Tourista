@@ -13,11 +13,7 @@
   </head>
    <body>
     <?php 
-      $host = 'localhost';
-      $username = 'root';
-      $password = '';
-      $db = 'tourista';
-      $dbcon = mysqli_connect($host, $username, $password, $db) or die ("could not connect to database");
+      include 'connect.php';
       mysqli_select_db($dbcon, $db);
       /*if($dbcon == True){ 
         echo "true";

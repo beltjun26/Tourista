@@ -1,4 +1,4 @@
-<!DOCTYPE html>
++<!DOCTYPE html>
 <html>
 <head>
 	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
@@ -6,9 +6,12 @@
 	<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
 </head>
 <body>
+  <?php 
+      include 'connect.php';
+   ?>
 	<div id = "navBar">
-		<form action="search_results_places.php" method="get">
-			<input type="text" placeholder="Search...">
+		<form action="" method="">
+			<input id="search_input" type="text" placeholder="Search...">
 		</form>
 		<ul id = "navList">
 			<li><a href="home_page.php"> HOME </a></li>
@@ -39,6 +42,9 @@
           zoom: 15
         });
 
+        var input = document.getElementById('search_input');
+        var searchBox = new google.maps.places.SearchBox(input);
+
         infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch({
@@ -54,7 +60,7 @@
             createMarker(results[i]);
           }
         }
-      }
+      } 
 
       function createMarker(place) {
         var placeLoc = place.geometry.location;

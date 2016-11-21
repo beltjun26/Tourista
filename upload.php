@@ -1,9 +1,5 @@
 <?php
-	$host = 'localhost';  
-	$username = 'root'; 
-	$password = '';  
-	$dbconn = mysqli_connect($host,$username,$password) or die("Could not connect to database!"); 
-	mysqli_select_db($dbconn, 'tourista') or die( "Unable to select database");
+	include 'connect.php';
 	session_start();
 
 	$_SESSION['user_id'] = 1;
