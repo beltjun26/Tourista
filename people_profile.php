@@ -22,7 +22,7 @@
 	$password = ''; 
 	$db = 'tourista'; 
 	$dbconn = mysqli_connect($host,$username,$password) or die("Could not connect to database!"); 
-	mysqli_select_db($dbconn, 'tourista') or die( "Unable to select database");
+	mysqli_select_db($dbconn, $db) or die( "Unable to select database");
 	
 	session_start();
 	$_SESSION['user_id'] = 1;
@@ -43,16 +43,16 @@
 		$pathcp = $row["cover_photo"];
 	} ?>
 		<div id = "navBar">
-			<form action="search_results_places.html" method="get">
+			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search...">
 			</form>
 			<ul id = "navList">
-				<li><a href="home_page.html"> HOME </a></li>
-				<li><a href="#"> VISITS </a></li>
+				<li><a href="home_page.php"> HOME </a></li>
+				<li><a href="visit.php"> VISITS </a></li>
 				<li><a href="#"> STARRED PLACES </a></li>
-				<li><a href="#"> NOTIFICATIONS </a></li>
-				<li><a href="login.html"> LOGOUT </a></li>
-				<li><img src="images/pp_cover/<?php echo $pathpp;?>"></li>
+				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
+				<li><a href="login.php"> LOGOUT </a></li>
+				<li><!-- <a href="people_profile.php"> --><img src="images/pp_cover/<?php echo $pathpp;?>"><!-- </a> --></li>
 			</ul>
 		</div>
 		<div class="container">	
