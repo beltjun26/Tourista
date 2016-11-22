@@ -110,8 +110,16 @@ div.result-people a h2{
 	padding: 0 10px 0 10px;
 }
 
+div.result-people a{
+	height: 100px;
+	width: 100px;
+}
+
 div.result-people a img{
 	height: 100px;
+	width: 100px;
+	object-fit: cover;
+	object-position: center;
 }
 
 div.result-people div.user-details p{
@@ -134,9 +142,16 @@ div.result-place{
 	margin: 0.5%;
 }
 
-div.result-place a img{
-	width: 100%;
+div.result-place a{
+	height: 180px;
+	width: 375px;
+}
 
+div.result-place a img{
+	width: 375px;
+	height: 180px;
+	object-fit: cover;
+	object-position: center;
 }
 
 div.result-place h2{

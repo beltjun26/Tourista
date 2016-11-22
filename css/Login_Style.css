@@ -9,16 +9,17 @@ body{
 }
 
 div.container{
-	border: 5px rgba(255, 255, 255, 0.8) solid;
+	/*border: 5px rgba(255, 255, 255, 0.8) solid;
 	border-width: 0 5px 0 5px;
 	padding: 0;
-	background-color: rgba(0,0,0,0.3)
+	background-color: rgba(0,0,0,0.3)*/
 }
 
 
 header{
-	height: 667px;
+	height: 662px;
 	display: flex;
+	flex-direction: column!important;
 	align-items: center;
 	justify-content: center;
 }
@@ -26,9 +27,10 @@ header{
 header > div{
 	box-sizing: border-box;
 	text-align: center;
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.4);
 	padding: 30px;
-	border-right: 3px solid white;
+	border-bottom: 3px solid white;
+	width: 30%;
 }
 
 #logo{
@@ -53,6 +55,7 @@ h1{
 a{
 	box-sizing: border-box;
 	font-family: "Gotham Light";
+	font-weight: bold;
 	letter-spacing: 5px;
 	color: white;
 	background-color: #0097A7;
@@ -73,10 +76,10 @@ input[type=submit]:hover{
 }
 
 form{
-	background-color: rgba(0, 0, 0, 0.2);
-	padding: 10px;
-	height: 51.5%;
-	padding-top: 3%;
+	width: 30%;
+	background-color: rgba(0, 0, 0, 0.4);
+	padding: 10px 3%;
+	box-sizing: border-box;
 }
 
 input[type=text],
@@ -94,12 +97,13 @@ input[type=submit]{
 	display: block;
 	width: 125px;
 	font-family: "Gotham Light";
+	font-weight: bold;
 	letter-spacing: 5px;
 	color: white;
 	background-color: #0097A7;
 	padding: 10px;
 	border-radius: 5px;
-	margin: 10px auto 0 auto;
+	margin: 20px auto 0 auto;
 	transition: 0.4s;
 	box-sizing: border-box;
 	border: 2px solid rgba(0,0,0,0);

@@ -67,9 +67,6 @@
 						<h2 class="place-name">MIAG-AO CHURCH</h2>
 					</div>
 				<?php } ?>
-					
-
-				
 			</div>
 		</div>
 		
