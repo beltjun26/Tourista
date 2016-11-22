@@ -4,6 +4,12 @@
 	if(!isset($_SESSION["userName"])){ 
 		header('location:login.php');
 	}
+	$username = $_SESSION["userName"];
+
+	/*$query = "SELECT * FROM account WHERE username='{$_SESSION['username']}';";
+	$result= mysqli_query($connect, $query);
+	$row = mysqli_fetch_assoc($result);
+	$_SESSION["userID"] = $row['acc_id'];*/
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +42,7 @@
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="Notifications.php"> NOTIFICATIONS </a></li>
 				<li><a href="logout.php"> LOGOUT </a></li>
-				<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
+				<li><a href="people_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="container">
@@ -44,16 +50,16 @@
 				<div class="col-sm-4">
 					<div class="user-box">
 						<a href="people_profile.php">
-							<img src="images/pp_cover/cover_photo3.png" alt="user-cover" class="cover">
-							<img src="images/temp_pp.png" alt="user-profile" class="profile">
+							<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" class="cover">
+							<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="user-profile" class="profile">
 						</a>
-						<h2 class="user-box-heading">XON_123</h2>
+						<h2 class="user-box-heading"><?=$username?></h2>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="posting post-container">
-						<img src="images/temp_pp.png" alt="USER PHOTO" class="profile">
-						<p class="user-name">JOSP_123</p>
+						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
+						<p class="user-name"><?=$username?></p>
 						<form action="output.php" method="get">
 							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..."></textarea>
 							<label for="photo"><span class="glyphicon glyphicon-camera"> </span> Upload photo<input type="file" name="photo" class="inputphoto"></label>

@@ -27,6 +27,9 @@ body{
 
 #navBar img{
 	height: 50px;
+	width: 50px;
+	object-position: center;
+	object-fit: cover;
 	box-sizing: border-box;
 	margin: 0;
 	border-radius: 2px;
