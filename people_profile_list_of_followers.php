@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TourisTA! - Homepage</title>
+		<title>Toursita</title>
+		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -45,8 +46,8 @@
 				<li><a href="visit.php"> VISITS </a></li>
 				<li><a href="#"> STARRED PLACES </a></li>
 				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
-				<li><a href="login.php"> LOGOUT </a></li>
-				<li><a href="people_profile"><img src="images/pp_cover/<?php echo $pathpp;?>"></a></li>
+				<li><a href="login.html"> LOGOUT </a></li>
+				<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/<?php echo $pathpp;?>"></a></li>
 			</ul>
 		</div>
 		<div class="container">	

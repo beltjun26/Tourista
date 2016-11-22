@@ -1,14 +1,26 @@
 <!DOCTYPE html>
+<script>
+//Javascript area looooool 
+var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    x = w.innerWidth || e.clientWidth || g.clientWidth,
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+	//alert(x + ' × ' + y); 
+</script> 
 <html>
 <head>
 	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
-	<title>Visited Page</title>
+	<title>Toursita</title>
+	<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 	<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
 </head>
 <body>
   <?php 
       include 'connect.php';
    ?>
+<!-- insert nav here -->
 	<div id = "navBar">
 		<form action="" method="">
 			<input id="search_input" type="text" placeholder="Search...">
@@ -19,10 +31,9 @@
 			<li><a href="#"> EXPLORE </a></li>
 			<li><a href="notifications.php"> NOTIFICATIONS </a></li>
 			<li><a href="login.php"> LOGOUT </a></li>
-			<li><img src="images/temp_pp.png"></li>
+			<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
 		</ul>
 	</div>
-<!-- insert nav here -->
 <div style="height: 600px;width:100%" id="map"></div>
 <!-- modify map on css please -->
 </body>

@@ -1,8 +1,9 @@
 <?php
+
 	include 'connect.php';
 	session_start();
 
-	$_SESSION['user_id'] = 1;
+	$_SESSION['user_id'] = 2;
 	$user_id = $_SESSION['user_id'];
 
 	$errorinput = 0;

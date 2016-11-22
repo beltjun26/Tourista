@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TourisTA! - Homepage</title>
+		<title>Toursita</title>
+		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -24,7 +25,7 @@
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
 				<li><a href="login.php"> LOGOUT </a></li>
-				<li><img src="images/temp_pp.png"></li>
+				<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
 			</ul>
 		</div>
 		<!-- <main>

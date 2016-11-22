@@ -37,14 +37,14 @@
 	object-position: center;
 	width: 150px;
 	height: 150px;
-	border: 5px solid rgba(255, 255, 255, 0.5);
 	border-radius: 5px;
 	margin: -290px 0 0 70px;
 	transition: 0.4s;
+	border: none;
 }
 
 #output_profile:hover{
-	transform: scale(1.2, 1.2);
+	transform: scale(1.1, 1.1);
 }
 
 .modal-body{
@@ -108,7 +108,8 @@
 	font-weight: bold;
 	font-size: 0.8em;
 	text-transform: uppercase;
-	border: 3px solid white;
+	border: none;
+	border-radius: 3px;
 }
 
 .modal-body form div input[type=submit]{
@@ -126,3 +127,22 @@
 	background-color: #4DD0E1!important;
 	box-shadow: 0 0 10px rgba(0,96,100 ,0.3);
 }
+
+#Edit{
+	display: block;
+	width: 100%;
+	font-family: "Arial";
+	letter-spacing: 0.1em;
+	background-color: #00ACC1;
+	border-radius: 0 0 3px 3px;
+	color: white;
+	border: none;
+	padding: 5px;
+	transition: 0.4s;
+}
+
+#Edit:hover{
+	background-color: #26C6DA;
+}
+
+

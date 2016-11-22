@@ -2,6 +2,8 @@
 
 <html lang="en">
 	<head>
+		<title>Toursita</title>
+		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 	<?php 
 	
 		require "connect.php";
@@ -14,10 +16,6 @@
 				$numberR = mysqli_num_rows($result);
 			}
 	?>
-	
-	
-	
-		<title>TourisTA! - Search Results</title>
 		<meta name="Maynard Vargas and Rosjel Jolly Lambungan" content="Search results places">
 		<meta name="James Anthony Yatar" content="Navigation Bar">
 		<meta charset="utf-8">
@@ -43,7 +41,7 @@
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
 				<li><a href="login.php"> LOGOUT </a></li>
-				<li><img src="images/temp_pp.png"></li>
+				<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="container">
