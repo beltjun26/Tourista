@@ -1,9 +1,3 @@
-<?php 
-	if(is)
-
-
- ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -25,19 +19,17 @@
 	<body>
 
 	<?php 
-	$host = 'localhost';  
-	$username = 'root'; 
-	$password = ''; 
-	$db = 'tourista'; 
-	$dbconn = mysqli_connect($host,$username,$password) or die("Could not connect to database!"); 
-	mysqli_select_db($dbconn, $db) or die( "Unable to select database");
 	
-	session_start();
-	$_SESSION['user_id'] = 2;
-	$user_id = $_SESSION['user_id'];
-	// $user_id = 1;
-	$queryfollowers = "SELECT count(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $user_id && acc_id_follower=acc.acc_id";
-	$queryfollowing = "SELECT count(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id && acc_id_follower=$user_id";
+	require "connect.php"
+
+	if(isset($_GET['acc_id'])){
+		$user_id = $_GET['acc_id'];
+	}else{
+		header("Location:home_page.php");
+	}
+
+	$queryfollowers = "SELECT COUNT(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $user_id AND acc_id_follower = acc.acc_id";
+	$queryfollowing = "SELECT COUNT(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id AND acc_id_follower = $user_id";
 	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname', about_me FROM account where acc_id=$user_id";
 	$result = mysqli_query($dbconn, $queryfollowers);
 	$followerscount = mysqli_fetch_assoc($result);
