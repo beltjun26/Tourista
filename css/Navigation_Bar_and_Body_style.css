@@ -23,6 +23,11 @@ body{
 	background-color: white;
 	display: inline-flex;
 	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	z-index: 1;
+	border-bottom: 1px solid #DDD;
 }
 
 #navBar img{
@@ -152,6 +157,10 @@ body{
 #navBar a.active .glyphicon{
 	opacity: 1;
 	transform: scale(1,1);
+}
+
+.container{
+	margin-top: 50px;
 }
 
 
