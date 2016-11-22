@@ -18,20 +18,22 @@
 	</head>
 	<body>
 
-	<?php 
-<<<<<<< HEAD
-	require "connect.php";
-	session_start();
-=======
+	<?php 	
 
-	require "connect.php"
->>>>>>> cbf4c27efa159b418824c00c996b3edbbf97572a
+	session_start();
+	require "connect.php";
+
+
+
 
 	if(isset($_GET['acc_id'])){
+		if($_GET['acc_id'] == $_SESSION['userID']){
+			header("Location: my_profile.php");
+		}
 
 		$userID = $_GET['acc_id'];
 	}else{
-		header("Location: error");
+		header("Location: error_page.php");
 	}
 
 
@@ -53,9 +55,11 @@
 	$aboutme = $row['about_me'];
 	?>
 		<div id = "navBar">
+			
 			<form action="search_results_places.php" method="get">
-				<input type="text" placeholder="Search...">
+				<input type="text" placeholder="Search..." name="search">
 			</form>
+
 			<ul id = "navList">
 				<li><a href="home_page.php"> HOME </a></li>
 				<li><a href="#"> VISITS </a></li>
@@ -82,51 +86,16 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-3">
-					<button id="Edit">Edit Profile</button>
 					<h2 class="user-options">USER OPTIONS</h2>
 					<ul class="user-options">
-						<li><a href="#">Feed</a></li>
+					<!--<li><a href="#">Feed</a></li> -->
 						<li><a href="#">Visits</a></li>
 						<li><a href="people_profile_list_of_followers.php">Followers</a></li>
 						<li><a href="people_profile_list_of_following.php">Following</a></li>
-						<li><a href="#">Notifications</a></li>
 					</ul>
 				</div>
-				<div id="EditPanel" class="modal edit_profile">
-				  	<div class="modal-content">
-				    	<div class="modal-header">
-							<h2>Edit Profile</h2>
-				      		<span class="close">×</span>
-				    	</div>
-					    <div class="modal-body">
-				      		<img id="output_cover" src="images/pp_cover/<?php echo $pathcp;?>">
-				      		<img id="output_profile" src="images/pp_cover/<?php echo $pathpp;?>">
-					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
-					      		<div class="option-buttons">
-						      		<label for="profile" class="upload">Change Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
-						      		<label for="cover" class="upload">Change Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
-						      		<input type="submit" name="change_profile">
-					      		</div>
-					      	</form>
-					    </div>
-				  	</div>
-				</div>
+
 				<div class="col-sm-6">
-					<div class="posting post-container">
-						<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" alt="USER PHOTO" class="profile">
-						<p class="user-name"><?= $username ?></p>
-						<form action="output.php" method="get">
-							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..."></textarea>
-							<label for="photo"><span class="glyphicon glyphicon-camera"> </span> Upload photo<input type="file" name="photo" class="inputphoto"></label>
-							<!-- <img src="" alt="Preview Upload" class="preview-image"> -->
-							<input type="text-field" placeholder="Tag a location" class="tag-location">
-							<div class="contain">
-								<span>Tagging:</span><p class="tagged-location">Miagao Church</p>
-								<input type="submit" value="POST">
-							</div>
-						</form>
-					</div>
 					<div class="posted post-container">
 						<img src="images/pp_cover/<?php echo $pathpp;?>" alt="USER PHOTO" class="profile">
 						<h2 class="user-name">Nard_123</h2>
