@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title> Homepage </title>
-
+	<title>Toursita</title>
+	<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 	<!-- <link rel="stylesheet" type="text/css" href="/css/style.css"> -->
 
 	<meta charset="utf-8">

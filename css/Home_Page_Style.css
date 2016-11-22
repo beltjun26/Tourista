@@ -1,215 +1,33 @@
-/*<div class="user-box">
-	<h2 class="user-box-heading">USER NAME</h2>
-	<a href="#">
-		<img src="https://reference.wolfram.com/language/ref/Files/Circle.en/O_1.png" alt="USER PHOTO">
-		<a href="#"><h3 id="following-link">FOLLOWING: 111</h3></a>
-		<a href="#"><h3 id="followers-link">FOLLOWERS: 0</h3></a>
-	</a>
-</div>*/
-
-div.user-box{
+.user-box{
 	background-color: white;
-	text-align: center;
-	padding: 0;
-	border-radius: 5px;
 	margin-top: 10px;
-	border: 1px solid #CFD8DC;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	padding-bottom: 5px;
 }
 
-div.user-box h2{
-	font-family: "Gotham Medium";
-	font-size: 15px;
-	letter-spacing: 2px;
-	margin-top: 110px;
-	color: #777;
-}
-
-div.user-box img:first-child{
-	image-rendering: optimizeSpeed;
-	height: 100px;
+.user-box .cover{
 	width: 100%;
-	float: left;
+	height: 85px;
+	object-position: center;
+	object-fit: cover;
 }
 
-div.user-box img:nth-child(2){
-	height: 80px;
-	margin-top: -90px;
-	margin-left: 10px;
-	border-radius: 50%;
-	float: left;
-}
-
-div.user-box h3{
-	text-align: left;
-	font-family: "Gotham Medium";
-	font-size: 12px;
-	letter-spacing: 1px;
-	margin: 0;
-	padding: 5px;
-	padding-left: 30%;
-	color: #03A9F4;
-}
-
-div.posting-container,
-div.posted-container{
-	border: 1px solid #CFD8DC;
-	background-color: white;
-	padding: 10px 0 10px 0;
-	border-radius: 5px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	overflow: auto;
-
-}
-
-div.posting-container h2{
-	color: #666;
-	font-family: "Gotham Medium";
-	font-size: 15px;
-	text-align: center;
-	margin-top: 0;
-	padding-left: 20%;
-}
-
-div.posting-container img{
-	width: 100%;
-}
-
-div.posting-container > div.col-sm-10 > a{
-	display: block;
-	color: white;
-	font-family: "Gotham Medium";
-	letter-spacing: 2px;
-	text-align: center;
-	padding: 10px;
-	border-radius: 5px 5px 0 0;
-	background: -webkit-linear-gradient(left, #00ACC1, #1DE9B6);
-	background-image: url(../images/camera.png);
-	background-size: 100%;
-	text-decoration: none;
-}
-
-div.posting-container > div.col-sm-10 > a:hover{
-	background-image: url(../images/camera_light.png);
-	text-decoration: none;
-}
-
-div.posting-container input[type=text-field],
-div.posting-container textarea{
-	display: block;
-	width: 100%;
-	margin: auto;
-	border: solid #DDD;
-	padding: 5px;
-	resize: none;
-	border-width: 0 1px 1px 1px;
-}
-
-div.posting-container input[type=submit], button{
-	box-sizing: border-box;
-	font-family: "Gotham Medium";
-	letter-spacing: 2px;
-	width: 100%;
-	display: block;
-	color: white;
-	text-align: center;
-	border-style: none;
-	padding: 10px;
-	border-radius: 0 0 5px 5px;
-	background: -webkit-linear-gradient(left, #00ACC1, #1DE9B6);
-	transition: 0.4s;
-}
-
-div.posting-container input[type=submit]:hover{
-	text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
-	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
-}
-
-.buttons input[type=submit]{
-	box-sizing: border-box;
-	font-family: "Gotham Medium";
-	letter-spacing: 2px;
-	width: 20%;
-	display: inline-block;
-	color: white;
-	text-align: center;
-	border-style: none;
-	padding: 10px;
-	/*margin-left:20%;*/
-	border-radius: 0 0 5px 5px;
-	background: -webkit-linear-gradient(left, #00ACC1, #1DE9B6);
-	transition: 0.4s;
-}
-.buttons input[type=submit]:hover{
-	text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
-	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
-}
-
-div.posting-container input[type=submit]:hover{
-	text-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
-	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.4);
-}
-
-}
-div.posted-container img{
-	width: 100%;
-}
-
-#pp{
-	width: 50px;
-	float: left;
-	margin-left: 10px;
-	margin-bottom: 10px;
-}
-
-div.posted-container h2{
-	font-family: "Gotham Medium";
-	letter-spacing: 2px;
-	font-size: 15px;
-	color: #666;
-	float: left;
-	margin-left: 10px;
-}
-
-div.posted-container button{
-	font-family: "Gotham Medium";
-	letter-spacing: 2px;
-	font-size: 15px;
-	color: white;
-	float: right;
+.user-box .profile{
 	height: 50px;
-	margin-top: 10px;
-	border-radius: 50%;
-	border-style: none;
-	background: -webkit-linear-gradient(left, #00ACC1, #1DE9B6);
+	width: 50px;
+	object-fit: cover;
+	object-position: center;
+	margin: -105px 0 0 20px;
+	border-radius: 2px;
 }
 
-div.posted-container button:hover{
-	background: -webkit-linear-gradient(left, #00BCD4, #64FFDA);
-}
-
-div.posted-container button:focus{
-	background-color: #FFF59D;
-	box-shadow: 0 0 0 rgba(0,0,0,0);
-}
-
-p.posted-text{
-	color: #666;
-	padding-top: 10px;
-}
-
-a.tagged-location{
+.user-box h2{
 	font-family: "Gotham Light";
-	letter-spacing: 2px;
-	background-color: #B0BEC5;
-	color: white;
-	padding: 5px;
-	border-radius: 5px;
-	transition: 0.4s;
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.5em;
+	margin: -15px 0 0 0;
 }
 
-a.tagged-location:hover{
-	text-decoration: none;
-	background-color: #64B5F6;
-}
+
 

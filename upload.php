@@ -2,12 +2,12 @@
 	$host = 'localhost';  
 	$username = 'root'; 
 	$password = ''; 
-	$db = 'database_name'; 
+	$db = 'tourista'; 
 	$dbconn = mysqli_connect($host,$username,$password) or die("Could not connect to database!"); 
 	mysqli_select_db($dbconn, 'tourista') or die( "Unable to select database");
 	session_start();
 
-	$_SESSION['user_id'] = 1;
+	$_SESSION['user_id'] = 2;
 	$user_id = $_SESSION['user_id'];
 
 	$errorinput = 0;

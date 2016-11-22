@@ -1,0 +1,191 @@
+*:focus,
+*:active{
+	outline: none;
+}
+
+body{
+	padding-bottom: 20px;
+}
+
+@font-face{
+	font-family: Gotham;
+	src: url("../used_fonts/GOTHAM-LIGHT.TTF") format("truetype");
+}
+
+.col-sm-6{
+	padding: 0;
+}
+
+.post-container{
+	background-color: white;
+	padding: 10px;
+	border-radius: 2px;
+	width: 100%;
+	margin-top: 10px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.posting .profile,
+.posted  .profile{
+	height: 50px;
+	width: 50px; 
+	float: left;
+	box-shadow: 0 0 3px rgba(0,0,0,0.3);
+	border-radius: 2px;
+}
+
+.posting .user-name,
+.posted  .user-name{
+	font-family: Gotham;
+	font-weight: bold;
+	font-size: 1.3em;
+	float: left; 
+	margin: 13px auto 0 10px;
+}
+
+.posted > a > .user-name,
+.posted > a > .profile{
+	display: block;
+	color: #333;
+	transition: 0.3s;
+}
+
+.posted a:hover > .user-name{
+	color: #00B8D4;
+}
+
+.posted a:hover > .profile{
+	box-shadow: 0 0 5px #00B8D4;
+}
+
+.post-container:nth-child(2){
+	margin-top: 270px;
+}
+
+.posting{
+	position: absolute;
+}
+
+.posting > form{
+	clear: both;
+	display: flex;
+	flex-direction: column;
+	margin-top: 60px;
+}
+.posting > form > textarea{
+	border-radius: 2px;
+	resize: none;
+	border-color: #DDD;
+	padding: 10px 15px;
+	height: 40px;
+	overflow: hidden;
+	transition: 0.2s;
+	margin-bottom: 10px;
+}
+
+.posting > form > textarea:focus,
+.posting > form > textarea:active{
+	height: 100px;
+	outline: none;
+}
+
+.posting > form > label > input.inputphoto{
+	display: none;
+}
+
+.posting > form > label[for=photo]{
+	background-color: #555;
+	padding: 5px;
+	margin-bottom: 10px;
+	border-radius: 2px;
+	color: white;
+	font-family: Gotham;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	font-size: 0.8em;
+	text-align: center;
+}
+
+.posting > form > .contain > input[type=submit],
+.like{
+	background-color: #00BCD4;
+	color: white;
+	font-size: 1em;
+	font-family: Gotham;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	width: 20%;
+	margin-left: auto;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 2px;
+	transition: 0.3s;
+}
+
+.posting > form > .contain > input[type=submit]:hover,
+.like:hover{
+	 background-color: #00E5FF;
+}
+
+.tag-location{
+	margin: 0 0 10px 0;
+	border-radius: 2px;
+	border: 1px solid #DDD;
+	padding: 5px 10px;
+}
+
+.contain{
+	display: flex;
+}
+
+.contain > span{
+	margin: 5px 0;
+	padding: 3px 10px;
+}
+
+.tagged-location{
+	background-color: #555;
+	color: white;
+	padding: 3px 10px;
+	border-radius: 10px;
+	max-width: 50%;
+	margin: 5px 0;
+}
+
+
+.preview-image{
+	margin-bottom: 10px;
+}
+
+.posted-text{
+	clear: both;
+	width: 100%;
+	padding: 0;
+	margin: 60px 0 0 10px;
+}
+
+.posted > .imagebtn{
+	width: 100%;
+	margin: 10px 0;
+	padding: 0;
+	border: none;
+	border-radius: 2px;
+}
+
+.posted > .imagebtn > img{
+	width: 100%;
+	height: 250px;
+	object-position: center;
+	object-fit: cover;
+}
+
+a.tagged-location{
+	transition: 0.2s;
+}
+
+.posted .tagged-location:hover{
+	text-decoration: none;
+	color: white;
+	background-color: #00BCD4;
+}
