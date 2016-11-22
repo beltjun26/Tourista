@@ -93,7 +93,7 @@
 			</ul>
 			<div class="row">
 				<div class="col-sm-3">
-<<<<<<< HEAD
+
 					<h2 class="user-options">USER OPTIONS</h2>
 					<ul class="user-options">
 					<!--<li><a href="#">Feed</a></li> -->
@@ -101,14 +101,10 @@
 						<li><a href="people_profile_list_of_followers.php">Followers</a></li>
 						<li><a href="people_profile_list_of_following.php">Following</a></li>
 					</ul>
-=======
-					
->>>>>>> 0fd1df618144483a1e97853455a29f93a810e101
 				</div>
 
 				<div class="col-sm-6">
-<<<<<<< HEAD
-=======
+
 					<div class="posted post-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" alt="USER PHOTO" class="profile">
 						<h2 class="user-name"><?=$username?></h2>
@@ -129,7 +125,7 @@
 							<button class="like">LIKE</button>
 						</div>
 					</div>
->>>>>>> 0fd1df618144483a1e97853455a29f93a810e101
+					
 					<div class="posted post-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" alt="USER PHOTO" class="profile">
 						<h2 class="user-name"><?=$username?></h2>
