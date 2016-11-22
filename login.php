@@ -4,17 +4,17 @@ $error=0;
 if(isset($_POST["submit"])){
 	$username = $_POST["userName"];
 	$password = $_POST["password"];
-	echo "'$username' and '$password' <br>";
+	/*echo "'$username' and '$password' <br>";*/
 	$connect = mysqli_connect("localhost","root","","tourista") or die("Could not connect to the database.");
 	$query = "Select username, password from account where account.username='$username' and account.password='$password'";
 	$result= mysqli_query($connect, $query) or die("Query failed.");
 
-	echo mysqli_num_rows($result);
+	/*echo mysqli_num_rows($result);*/
 
 	if(mysqli_num_rows($result) == 1){
-			echo "fghj";
+			/*echo "fghj";
 				$_SESSION["userName"] = $username;
-				$_SESSION["password"] = $password;
+				$_SESSION["password"] = $password;*/
 				header("Location:home_page.php");
 	}else{
 		$error = 1;
@@ -58,7 +58,7 @@ if(isset($_POST["submit"])){
 		<header>
 			<div>
 				<img src="images/Tourista_Logo_Outline.png" id="logo"><br>
-				<span>WELCOME TO</span><hr>
+				<span class="welcome">WELCOME TO</span><hr>
 				<h1>TOURISTA!</h1>
 				<a href="Registration.php">CREATE ACCOUNT</a>
 			</div>
@@ -69,9 +69,9 @@ if(isset($_POST["submit"])){
 			  		<label for="password">PASSWORD</label>
 			  		<input type="password" required id="password" name="password">
 			  		<?php 
-					if($error == 1)
-						echo "The username/password you entered is incorrect.";
-					?>
+					if($error == 1){ ?>
+						<span class="error"><?="The username/password you entered is incorrect."?></span>
+					<?php } ?>
 			  		<!-- <input type="checkbox" name="rememberMe" value="REMEMBER_ME" style="opacity: 0;">
 			  		<label for="rememberMe" style="opacity: 0;">REMEMBER ME</label> -->
 			  		<input type="submit" name="submit" value="LOGIN">
