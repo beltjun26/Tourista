@@ -4,17 +4,7 @@ body{
 	background-size: 100%;
 	background-repeat: no-repeat;
 	background-color: #B3E5FC;
-	/*background-attachment: fixed;*/
-
 }
-
-div.container{
-	/*border: 5px rgba(255, 255, 255, 0.8) solid;
-	border-width: 0 5px 0 5px;
-	padding: 0;
-	background-color: rgba(0,0,0,0.3)*/
-}
-
 
 header{
 	height: 662px;
@@ -67,7 +57,6 @@ a{
 a:hover,
 a:focus,
 input[type=submit]:hover{
-	/*font-family: "Gotham Medium";*/
 	color: white;
 	text-decoration: none;
 	background-color: #00E5FF;
@@ -118,27 +107,6 @@ label{
 	margin-top: 20px;
 }
 
-input[type=checkbox] + label{
-	transform: translate(0px, -2px);
-}
-
-input[type=checkbox]{
-	opacity: 0.0;
-	transform: scale(1.5);
-}
-
-input[type=checkbox] + label:before{
-	content: " ";
-	display: inline-block;
-	height: 15px;
-	width: 15px;
-	border-radius: 50%;
-	margin-left: -12px;
-	margin-right: 10px;
-	transform: translate(-2px, 2px);
-	z-index: -1;
-}
-
 .error{
 	background-color: #E91E63;
 	padding: 5px 10px;
@@ -149,30 +117,3 @@ input[type=checkbox] + label:before{
 	font-size: 0.8em;
 	border-radius: 2px;
 }
-
-/*input[type=checkbox] + label:before{
-	height: 15px;
-	width: 15px;
-	display: inline-block;
-	box-sizing: border-box;
-	content: " ";
-	border: white solid 3px;
-	border-radius: 50%;
-	margin: 0px 5px 0 -35px; 
-	-webkit-transition: 0.4s;
-	transform: translate(0px, 2px);
-}
-input[type=checkbox]:hover + label:before{
-	border-color: #FFD54F;
-	-webkit-transform: matrix(1.2, 0, 0, 1.2, 0, 1);
-}
-
-input[type=checkbox]:checked + label:before{
-	border-color: #AA00FF;
-	-webkit-transform: matrix(1.3, 0, 0, 1.3, 0, 2);
-}
-label + input[type=checkbox]:checked{
-	color: #D500F9;
-	content: "O";
-}
-*/
