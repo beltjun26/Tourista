@@ -16,8 +16,9 @@
 	</head>
 	<body>
 		<div id = "navBar">
-			<form action="test.php" method="get">
-				<input type="text" placeholder="Search...">
+			<form action="search_results_places.php" method="get">
+				<input type="text" placeholder="Search..." name = "search">
+				<!-- <input type="submit" value="SEARCH" > -->
 			</form>
 			<ul id = "navList">
 				<li><a href="home_page.php"> HOME </a></li>

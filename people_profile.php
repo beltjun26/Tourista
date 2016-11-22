@@ -24,7 +24,7 @@
 	$password = ''; 
 	$db = 'tourista'; 
 	$dbconn = mysqli_connect($host,$username,$password) or die("Could not connect to database!"); 
-	mysqli_select_db($dbconn, 'tourista') or die( "Unable to select database");
+	mysqli_select_db($dbconn, $db) or die( "Unable to select database");
 	
 	session_start();
 	$_SESSION['user_id'] = 2;
@@ -133,8 +133,8 @@
 				<div class="col-sm-3">
 					<h2 class="visitor-options">VISITOR OPTIONS</h2>
 					<ul class="visitor-options">
-						<li><a href="#">Request for a tour</a></li>
-						<li><a href="#">Follow Xon_123</a></li>
+						<li><a href="Request_Form.php">Request for a tour</a></li>
+						<li><a href="follower.php">Follow Xon_123</a></li>
 					</ul>
 				</div>
 			</div>
