@@ -42,14 +42,14 @@
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="Notifications.php"> NOTIFICATIONS </a></li>
 				<li><a href="logout.php"> LOGOUT </a></li>
-				<li><a href="people_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
+				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4">
 					<div class="user-box">
-						<a href="people_profile.php">
+						<a href="my_profile.php">
 							<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" class="cover">
 							<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="user-profile" class="profile">
 						</a>
