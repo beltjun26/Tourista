@@ -128,21 +128,6 @@
 	box-shadow: 0 0 10px rgba(0,96,100 ,0.3);
 }
 
-#Edit{
-	display: block;
-	width: 100%;
-	font-family: "Arial";
-	letter-spacing: 0.1em;
-	background-color: #00ACC1;
-	border-radius: 0 0 3px 3px;
-	color: white;
-	border: none;
-	padding: 5px;
-	transition: 0.4s;
-}
 
-#Edit:hover{
-	background-color: #26C6DA;
-}
 
 

@@ -3,6 +3,12 @@
 <head>
 	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
 	<title>Toursita</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <script src="bootstrap/jquery/1.12.4/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 	<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
 </head>
@@ -15,11 +21,11 @@
 			<input id="search_input" type="text" placeholder="Search..." name = "search">
 		</form>
 		<ul id = "navList">
-			<li><a href="home_page.php"> HOME </a></li>
-			<li><a href="visit.php" class="active"> VISITS </a></li>
-			<li><a href="#"> EXPLORE </a></li>
-			<li><a href="notifications.php"> NOTIFICATIONS </a></li>
-			<li><a href="login.php"> LOGOUT </a></li>
+			<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
+			<li><a href="visit.php" class="active"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
+			<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
+			<li><a href="login.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
 			<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
 		</ul>
 	</div>

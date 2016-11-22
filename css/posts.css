@@ -58,7 +58,7 @@ body{
 	box-shadow: 0 0 5px #00B8D4;
 }
 
-.post-container:nth-child(2){
+.posting + .post-container:nth-child(2){
 	margin-top: 270px;
 }
 

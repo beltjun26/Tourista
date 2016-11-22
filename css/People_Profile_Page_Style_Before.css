@@ -103,48 +103,6 @@ div.headerprofile:hover > #follows{
 #aboutme p{
 	margin-top: -10px;
 	font-size: 12px;
-	/*z-index:1;*/
-}
-
-h2.user-options,
-h2.visitor-options{
-	background: -webkit-linear-gradient(left, #00ACC1, #1DE9B6);
-	color: white;
-	font-family: "Gotham Medium";
-	font-size: 15px;
-	letter-spacing: 2px;
-	text-align: center;
-	border-radius: 5px 5px 0 0;
-	padding: 5px;
-	margin-bottom: 0;
-	margin-top: 10px;
-}
-
-ul.user-options,
-ul.visitor-options{
-	list-style: none;
-	padding: 0;
-}
-
-ul.user-options li a,
-ul.visitor-options li a{
-	box-sizing: border-box;
-	display: block;
-	padding: 5px;
-	padding-left: 15px;
-	color: #666;
-	background-color: white;
-	border: solid #80DEEA;
-	border-width: 0 0 0 0;
-	transition: 0.2s;
-}
-
-ul.user-options li a:hover,
-ul.visitor-options li a:hover{
-	border-left-width: 5px;
-	text-decoration: none;
-	background-color: #00B8D4;
-	color: white;
 }
 
 .image-upload > input{
@@ -152,13 +110,10 @@ ul.visitor-options li a:hover{
 }
 .image-upload {
 	position:relative;
-	/*width:100%;*/
 }
 .image-upload > p{
 	position: absolute;
 	top: 200px;
-	/*left: 0;*/
-	/*width: 100%;*/
 	z-index:1;	
 }
 .image-upload p span{
@@ -166,5 +121,5 @@ ul.visitor-options li a:hover{
 	background: rgb(0,0,0);
 	background: rgba(0,0,0,0.7);
 	padding:5px;
-	/*position: absolute;*/
 }
+

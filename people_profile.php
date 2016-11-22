@@ -15,15 +15,14 @@
 		<link rel="stylesheet" type="text/css" href="css/Style_Modal.css">
 		<link rel="stylesheet" type="text/css" href="css/edit_profile_style.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
+		<link rel="stylesheet" type="text/css" href="css/profile_options.css">
 	</head>
 	<body>
 
-	<?php 	
 
-	session_start();
+	<?php 
 	require "connect.php";
-
-
+	session_start();
 
 
 	if(isset($_GET['acc_id'])){
@@ -61,12 +60,12 @@
 			</form>
 
 			<ul id = "navList">
-				<li><a href="home_page.php"> HOME </a></li>
-				<li><a href="#"> VISITS </a></li>
-				<li><a href="#"> EXPLORE </a></li>
-				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
-				<li><a href="login.php"> LOGOUT </a></li>
-				<li><a href="my_profile.php" class="image-list active"><img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg"></a></li>
+				<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
+				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
+				<li><a href="login.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
+				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="container">	
@@ -84,8 +83,17 @@
 					<p><?php echo $aboutme ;?></p>
 				</div>
 			</div>
+			<ul class="visitor-options">
+				<li><a href="#">Feed<span class="glyphicon glyphicon-credit-card"></a></li>
+				<li><a href="#">Follow<span class="glyphicon glyphicon-plus"></a></li>
+				<li><a href="#">Ask for a Tour<span class="glyphicon glyphicon-sunglasses"></a></li>
+				<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></a></li>
+				<li><a href="people_profile_list_of_followers.php">Followers<span class="glyphicon glyphicon-hand-left"></a></li>
+				<li><a href="people_profile_list_of_following.php">Following<span class="glyphicon glyphicon-hand-right"></a></li>
+			</ul>
 			<div class="row">
 				<div class="col-sm-3">
+<<<<<<< HEAD
 					<h2 class="user-options">USER OPTIONS</h2>
 					<ul class="user-options">
 					<!--<li><a href="#">Feed</a></li> -->
@@ -93,12 +101,38 @@
 						<li><a href="people_profile_list_of_followers.php">Followers</a></li>
 						<li><a href="people_profile_list_of_following.php">Following</a></li>
 					</ul>
+=======
+					
+>>>>>>> 0fd1df618144483a1e97853455a29f93a810e101
 				</div>
 
 				<div class="col-sm-6">
+<<<<<<< HEAD
+=======
 					<div class="posted post-container">
-						<img src="images/pp_cover/<?php echo $pathpp;?>" alt="USER PHOTO" class="profile">
-						<h2 class="user-name">Nard_123</h2>
+						<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" alt="USER PHOTO" class="profile">
+						<h2 class="user-name"><?=$username?></h2>
+						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
+						<button class="imagebtn"><img src="images/Body_Background.png"></button>
+						<div class="contain">
+							<a href="place.php" class="tagged-location">Miagao Church</a>
+							<button class="like">LIKE</button>
+						</div>
+					</div>
+					<div class="posted post-container">
+						<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" alt="USER PHOTO" class="profile">
+						<h2 class="user-name"><?=$username?></h2>
+						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
+						<button class="imagebtn"><img src="images/Body_Background.png"></button>
+						<div class="contain">
+							<a href="place.php" class="tagged-location">Miagao Church</a>
+							<button class="like">LIKE</button>
+						</div>
+					</div>
+>>>>>>> 0fd1df618144483a1e97853455a29f93a810e101
+					<div class="posted post-container">
+						<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" alt="USER PHOTO" class="profile">
+						<h2 class="user-name"><?=$username?></h2>
 						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
 						<button class="imagebtn"><img src="images/Body_Background.png"></button>
 						<div class="contain">
