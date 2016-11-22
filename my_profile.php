@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -41,7 +43,7 @@
 	?>
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
-				<input type="text" placeholder="Search...">
+				<input type="text" placeholder="Search..." name = "search">
 			</form>
 			<ul id = "navList">
 				<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>

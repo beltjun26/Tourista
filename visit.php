@@ -18,7 +18,7 @@
    ?>
 	<div id = "navBar">
 		<form action="" method="">
-			<input id="search_input" type="text" placeholder="Search...">
+			<input id="search_input" type="text" placeholder="Search..." name = "search">
 		</form>
 		<ul id = "navList">
 			<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>

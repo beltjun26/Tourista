@@ -19,16 +19,20 @@
 	</head>
 	<body>
 
+
 	<?php 
 	require "connect.php";
 	session_start();
 
 
 	if(isset($_GET['acc_id'])){
+		if($_GET['acc_id'] == $_SESSION['userID']){
+			header("Location: my_profile.php");
+		}
 
 		$userID = $_GET['acc_id'];
 	}else{
-		header("Location: error");
+		header("Location: error_page.php");
 	}
 
 
@@ -50,9 +54,11 @@
 	$aboutme = $row['about_me'];
 	?>
 		<div id = "navBar">
+			
 			<form action="search_results_places.php" method="get">
-				<input type="text" placeholder="Search...">
+				<input type="text" placeholder="Search..." name="search">
 			</form>
+
 			<ul id = "navList">
 				<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
@@ -87,29 +93,18 @@
 			</ul>
 			<div class="row">
 				<div class="col-sm-3">
-					
+
+					<h2 class="user-options">USER OPTIONS</h2>
+					<ul class="user-options">
+					<!--<li><a href="#">Feed</a></li> -->
+						<li><a href="#">Visits</a></li>
+						<li><a href="people_profile_list_of_followers.php">Followers</a></li>
+						<li><a href="people_profile_list_of_following.php">Following</a></li>
+					</ul>
 				</div>
-				<div id="EditPanel" class="modal edit_profile">
-				  	<div class="modal-content">
-				    	<div class="modal-header">
-							<h2>Edit Profile</h2>
-				      		<span class="close">×</span>
-				    	</div>
-					    <div class="modal-body">
-				      		<img id="output_cover" src="images/pp_cover/<?php echo $pathcp;?>">
-				      		<img id="output_profile" src="images/pp_cover/<?php echo $pathpp;?>">
-					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
-					      		<div class="option-buttons">
-						      		<label for="profile" class="upload">Change Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
-						      		<label for="cover" class="upload">Change Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
-						      		<input type="submit" name="change_profile">
-					      		</div>
-					      	</form>
-					    </div>
-				  	</div>
-				</div>
+
 				<div class="col-sm-6">
+
 					<div class="posted post-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" alt="USER PHOTO" class="profile">
 						<h2 class="user-name"><?=$username?></h2>
@@ -130,6 +125,7 @@
 							<button class="like">LIKE</button>
 						</div>
 					</div>
+					
 					<div class="posted post-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" alt="USER PHOTO" class="profile">
 						<h2 class="user-name"><?=$username?></h2>
