@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2016 at 05:01 AM
+-- Generation Time: Nov 22, 2016 at 08:16 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -54,8 +54,18 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`acc_id`, `username`, `firstname`, `middlename`, `lastname`, `password`, `email`, `address`, `about_me`) VALUES
+(1, 'clyde', 'Clyde', 'Middlenameclyde', 'Delgado', 'Delgado', 'clydedelgado@gmail.com', 'San Jose, Antique', 'Draw paint create master doctor derma '),
 (2, 'maynard', 'Maynard', 'Fuentes', 'Vargas', 'vargas', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'Best foods, natures spring, C2 tea. Dragon. '),
-(3, 'hello', 'Hello', 'Php', 'World', 'world', 'hello@gmail.com', 'Hello, World', 'I am hello. I am your world.');
+(3, 'rollin', 'Rollin', 'Dragonmaster', 'Pacheco', 'pacheco', 'rollinpachecko@gmail.com', 'Rollin City, Pacheco', 'Rollin in the deep.'),
+(4, 'alonzo', 'Alonzo', 'Middlename', 'Locsin', 'locsin', 'alonzolocsin@gmail.com', 'Alonzo City, Locsin, Iloilo', 'Ace hardware ace hardware.'),
+(5, 'andrew', 'Andrew', 'mname', 'Dagdag', 'dagdag', 'andrewdagdag@gmail.com', 'Andrew City, Dagdag', 'I am Andrew D.'),
+(6, 'diana', 'Diana Chris', 'middle', 'Pacaña', 'pacana', 'diana@gmail.com', 'Diana City, Miagao', 'Diana diana diana'),
+(7, 'donn', 'Donn', 'Middle', 'Cruz', 'cruz', 'donn_cruz@gmail.com', 'Address, Negros', 'Ako si Donn.'),
+(8, 'angelica', 'Ma. Angelica', 'Middlename', 'Talabucon', 'talabucon', 'jing@gmail.com', 'Somewhere, Capiz', 'Ako si Jong. '),
+(9, 'rosiebelt', 'Rosiebelt Jun', 'Ayupan', 'Abisado', 'abisado', 'beltjun@gmail.com', 'Lemery, Iloilo', 'About about about rosiebelt.'),
+(10, 'rosjel', 'Rosjel Jolly', 'Pamposa', 'Lambungan', 'lambungan', 'lambunganrosjel@gmail.com', 'Dueñas, Iloilo', 'Ako jolly jolly gid.'),
+(11, 'salvy', 'Salvy Jessa', 'Middle', 'Arnaiz', 'arnaiz', 'arnaiz@gmail.com', 'My Address, Somewhere', 'Hahahaha. '),
+(12, 'shebna', 'Shebna Rose', 'Middle', 'Fabilloren', 'fabilloren', 'shebnarose@gmail.com', 'Somewhere, Negros', 'Ako shebna shebna');
 
 -- --------------------------------------------------------
 
@@ -282,7 +292,7 @@ ALTER TABLE `town`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `brgy`
 --
