@@ -18,25 +18,15 @@
 
 	<?php 
 	include 'connect.php';
-
-
-
 	session_start();
-	$_SESSION['user_id'] = 1;
-	$user_id = $_SESSION['user_id'];
-	$queryfollowers = "SELECT count(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $user_id && acc_id_follower=acc.acc_id";
-	$queryfollowing = "SELECT count(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id && acc_id_follower=$user_id";
-	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname', about_me, profile_pic, cover_photo FROM account where acc_id=$user_id";
-	$result = mysqli_query($dbconn, $queryfollowers);
-	$followerscount = mysqli_fetch_assoc($result);
-	$result = mysqli_query($dbconn, $queryfollowing);
-	$followingcount = mysqli_fetch_assoc($result);
+	$user_id = $_SESSION['userID'];
+	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname', about_me FROM account where acc_id=$user_id";
+
 	$result = mysqli_query($dbconn, $queryuser);
+	$num_followers = mysqli_num_rows($result);
 	while($row = mysqli_fetch_array($result)){
 		$username = $row["fullname"];
 		$aboutme = $row["about_me"];
-		$pathpp = $row["profile_pic"];
-		$pathcp = $row["cover_photo"];
 	}
 	?>
 		<div id = "navBar">
@@ -49,7 +39,7 @@
 				<li><a href="#"> STARRED PLACES </a></li>
 				<li><a href=notifications.php> NOTIFICATIONS </a></li>
 				<li><a href="login.php"> LOGOUT </a></li>
-				<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/<?php echo $pathpp;?>"></a></li>
+				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
 		
@@ -62,23 +52,28 @@
 			</div>
 			<div class="results-container">
 				<?php
-					$queryfollowinglist = "SELECT CONCAT(firstname, ' ', lastname) as following_fullname, acc_id as following_id, about_me as following_aboutme, profile_pic, cover_photo from account, follow where acc_id_follows = acc_id && acc_id_follower= $user_id";	
-					$result = mysqli_query($dbconn, $queryfollowinglist);	
-					while($row = mysqli_fetch_array($result)){ 
-						$pp = $row["profile_pic"];
-						$following_name = $row["following_fullname"];
-						$following_about_me = $row["following_aboutme"];
-						$following_id = $row["following_id"]; ?>
-						<div class="result-people">
-							<a class="userphoto-link" href="people_profile.php?id=<?php echo $following_id;?>">
-								<img src = "images/pp_cover/<?php echo $pp;?>" alt="user image">
-							</a>
-							<div class = "user-details">
-								<a href="#" class = "username-link"><h2 class="username"><?php echo $following_name;?></h2></a>
-								<p><?php echo $following_about_me;?></p>
-							</div>
-						</div>
-					<?php } ?>	
+						$queryfollowinglist = "SELECT CONCAT(firstname, ' ', lastname) as following_fullname, acc_id as following_id, about_me as following_aboutme from account, follow where acc_id_follows = acc_id && acc_id_follower= $user_id";	
+						$result = mysqli_query($dbconn, $queryfollowinglist);	
+						$num_following = mysqli_num_rows($result);
+						if($num_following!=0){ 
+							while($row = mysqli_fetch_array($result)){ 							
+								$following_name = $row["following_fullname"];
+								$following_about_me = $row["following_aboutme"];
+								$followingid = $row["following_id"];  ?>
+								<div class="result-people">
+									<a class="userphoto-link" href="people_profile.php?id=<?php echo $following_id;?>">
+										<img src = "images/profile_pic_img/acc_id_<?=$row['following_id']?>.jpg" alt="user image">
+									</a>
+									<div class = "user-details">
+										<a href="#" class = "username-link"><h2 class="username"><?php echo $following_name;?></h2></a>
+										<p><?php echo $following_about_me;?></p>
+									</div>
+								</div>
+						<?php }
+					} elseif($num_following == 0) { ?>
+						<p>No following</p>
+		<?php			}
+					 ?>	
 			</div>
 		</div>
 	</body>

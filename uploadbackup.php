@@ -9,12 +9,12 @@
 	$upload_pp = 0;
 	$upload_cp = 0;
 	$change_desc = 0;
-	// $queryuser = "SELECT profile_pic, cover_photo, acc_id FROM account where acc_id=$user_id";
-	// $result = mysqli_query($dbconn, $queryuser);
-	// while($row = mysqli_fetch_array($result)){
-		// $pathpp = $row["profile_pic"];
-		// $pathcp = $row["cover_photo"];
-	// }
+	$queryuser = "SELECT profile_pic, cover_photo, acc_id FROM account where acc_id=$user_id";
+	$result = mysqli_query($dbconn, $queryuser);
+	while($row = mysqli_fetch_array($result)){
+		$pathpp = $row["profile_pic"];
+		$pathcp = $row["cover_photo"];
+	}
 		if($_FILES["profile"]["error"] == 4 && $_FILES["profile"]["error"] == 4){
 			$_about_me = addslashes($_POST["about_me_input"]);
 			$queryaboutme = "UPDATE account SET about_me = '$_about_me' WHERE account.acc_id = $user_id";
@@ -62,7 +62,7 @@
 			?>
 			<script type="text/javascript">
 				alert("Unsupported file type! Only .gif, .jpeg, .png only!");
-				window.location = 'my_profile.php';
+				window.location = 'people_profile.php';
 			</script> 
 			<?php 
 			die();
@@ -73,12 +73,16 @@
 			$resultchangeaboutme = mysqli_query($dbconn, $queryaboutme);
 		}
 		if($upload_pp == 1){
-			$newfilename = "acc_id_$user_id.jpg";
-			move_uploaded_file($_FILES['profile']['tmp_name'], 'images/profile_pic_img/' . $newfilename);
+			$path = $_FILES['profile']['name'];
+			$queryinsertpp = "UPDATE account SET profile_pic = '$path' WHERE acc_id = $user_id";
+			$result = mysqli_query($dbconn,$queryinsertpp);
+			move_uploaded_file($_FILES['profile']['tmp_name'],'images/profile_pic_img/acc_id_' . $_FILES['profile']['name']);
 		}
 		if($upload_cp == 1){
-			$newfilename = "cover_$user_id.png";
-			move_uploaded_file($_FILES['cover']['tmp_name'],'images/cover_img/' . $newfilename);
+			$path = $_FILES['cover']['name'];
+			$queryinsertcp = "UPDATE account SET cover_photo = '$path' WHERE acc_id = $user_id";
+			$result = mysqli_query($dbconn,$queryinsertcp);
+			move_uploaded_file($_FILES['cover']['tmp_name'],'images/cover_img/' . $_FILES['cover']['name']);
 		}
 		header("Location: my_profile.php");
 ?>
