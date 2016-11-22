@@ -4,18 +4,17 @@ $error=0;
 if(isset($_POST["submit"])){
 	$username = $_POST["userName"];
 	$password = $_POST["password"];
-	echo "'$username' and '$password' <br>";
 	$connect = mysqli_connect("localhost","root","","tourista") or die("Could not connect to the database.");
-	$query = "Select username, password from account where account.username='$username' and account.password='$password'";
+	$query = "SELECT username, password FROM account WHERE account.username='$username' AND account.password='$password'";
 	$result= mysqli_query($connect, $query) or die("Query failed.");
 
-	echo mysqli_num_rows($result);
-
 	if(mysqli_num_rows($result) == 1){
-			echo "fghj";
-				$_SESSION["userName"] = $username;
-				$_SESSION["password"] = $password;
-				header("Location:home_page.php");
+			$_SESSION["userName"] = $username;
+			$query = "SELECT acc_id FROM account WHERE username='$username';";
+			$result= mysqli_query($connect, $query);
+			$row = mysqli_fetch_assoc($result);
+			$_SESSION["userID"] = $row['acc_id'];
+			header("Location:home_page.php");
 	}else{
 		$error = 1;
 	}
@@ -27,8 +26,6 @@ if(isset($_POST["submit"])){
 <head>
 	<title>Toursita</title>
 	<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
-	<!-- <link rel="stylesheet" type="text/css" href="/css/style.css"> -->
-
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -58,22 +55,19 @@ if(isset($_POST["submit"])){
 		<header>
 			<div>
 				<img src="images/Tourista_Logo_Outline.png" id="logo"><br>
-				<span>WELCOME TO</span><hr>
+				<span class="welcome">WELCOME TO</span><hr>
 				<h1>TOURISTA!</h1>
 				<a href="Registration.php">CREATE ACCOUNT</a>
 			</div>
-			<!-- <form action="home_page.php"> -->
 			<form method="post">
 					<label for="userName">USERNAME</label>
 			  		<input type="text" required id="user_name" name="userName">
 			  		<label for="password">PASSWORD</label>
 			  		<input type="password" required id="password" name="password">
 			  		<?php 
-					if($error == 1)
-						echo "The username/password you entered is incorrect.";
-					?>
-			  		<!-- <input type="checkbox" name="rememberMe" value="REMEMBER_ME" style="opacity: 0;">
-			  		<label for="rememberMe" style="opacity: 0;">REMEMBER ME</label> -->
+					if($error == 1){ ?>
+						<span class="error"><?="The username/password you entered is incorrect."?></span>
+					<?php } ?>
 			  		<input type="submit" name="submit" value="LOGIN">
 			</form>
 		</header>
