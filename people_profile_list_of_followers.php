@@ -33,11 +33,11 @@
 				<input type="text" placeholder="Search...">
 			</form>
 			<ul id = "navList">
-				<li><a href="home_page.php"> HOME </a></li>
-				<li><a href="visit.php"> VISITS </a></li>
-				<li><a href="#"> STARRED PLACES </a></li>
-				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
-				<li><a href="login.html"> LOGOUT </a></li>
+				<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
+				<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
+				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
+				<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
 				<li><a href="people_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>

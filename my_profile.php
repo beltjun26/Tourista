@@ -15,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="css/Style_Modal.css">
 		<link rel="stylesheet" type="text/css" href="css/edit_profile_style.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
+		<link rel="stylesheet" type="text/css" href="css/my_profile.css">
 	</head>
 	<body>
 
@@ -49,11 +50,11 @@
 				<input type="text" placeholder="Search...">
 			</form>
 			<ul id = "navList">
-				<li><a href="home_page.php"> HOME </a></li>
-				<li><a href="visit.php"> VISITS </a></li>
-				<li><a href="#"> EXPLORE </a></li>
-				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
-				<li><a href="login.php"> LOGOUT </a></li>
+				<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
+				<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
+				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
+				<li><a href="login.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
 				<li><a href="my_profile.php" class="image-list active"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
@@ -67,22 +68,21 @@
 					<li><a href="people_profile_list_of_followers.php">Followers: <?php echo $followerscount['followerscount'];?></a></li>
 				</ul>
 				<div id="aboutme">
-					<h1>ABOUT ME:</h1>
+					<h1>ABOUT ME</h1>
 					<br>
 					<p><?php echo $aboutme ;?></p>
 				</div>
 			</div>
+			<ul class="user-options">
+				<li><button id="Edit">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>
+				<li><a href="#">Feed<span class="glyphicon glyphicon-credit-card"></span></a></li>
+				<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></span></a></li>
+				<li><a href="people_profile_list_of_followers.php">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
+				<li><a href="people_profile_list_of_following.php">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
+				<li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li>
+			</ul>
 			<div class="row">
 				<div class="col-sm-3">
-					<button id="Edit">Edit Profile</button>
-					<h2 class="user-options">USER OPTIONS</h2>
-					<ul class="user-options">
-						<li><a href="#">Feed</a></li>
-						<li><a href="#">Visits</a></li>
-						<li><a href="people_profile_list_of_followers.php">Followers</a></li>
-						<li><a href="people_profile_list_of_following.php">Following</a></li>
-						<li><a href="#">Notifications</a></li>
-					</ul>
 				</div>
 				<div id="EditPanel" class="modal edit_profile">
 				  	<div class="modal-content">
