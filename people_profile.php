@@ -18,7 +18,6 @@
 
 	<?php 
 	include 'connect.php';
-	mysqli_select_db($dbconn, $db) or die( "Unable to select database");
 	
 	session_start();
 	$_SESSION['user_id'] = 1;

@@ -4,9 +4,7 @@
 	<head>
 	<?php 
 	
-		include 'connect.php';
-				or die ("Could not connect to database!");
-			
+		include 'connect.php';			
 			if (isset($_GET["search"])) {
 				$searchVal = $_GET["search"];
 				
