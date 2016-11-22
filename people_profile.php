@@ -19,29 +19,35 @@
 	<body>
 
 	<?php 
+	require "connect.php";
+	session_start();
 
-	require "connect.php"
 
 	if(isset($_GET['acc_id'])){
-		$user_id = $_GET['acc_id'];
+
+		$userID = $_GET['acc_id'];
 	}else{
-		header("Location:home_page.php");
+		header("Location: error");
 	}
 
-	$queryfollowers = "SELECT COUNT(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $user_id AND acc_id_follower = acc.acc_id";
-	$queryfollowing = "SELECT COUNT(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id AND acc_id_follower = $user_id";
-	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname', about_me FROM account where acc_id=$user_id";
+
+
+
+
+	$queryfollowers = "SELECT count(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $userID && acc_id_follower=acc.acc_id";
+	$queryfollowing = "SELECT count(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id && acc_id_follower=$userID";
+	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname',about_me,username FROM account where acc_id = $userID";
+
 	$result = mysqli_query($dbconn, $queryfollowers);
 	$followerscount = mysqli_fetch_assoc($result);
 	$result = mysqli_query($dbconn, $queryfollowing);
 	$followingcount = mysqli_fetch_assoc($result);
 	$result = mysqli_query($dbconn, $queryuser);
-	while($row = mysqli_fetch_array($result)){
-		$username = $row["fullname"];
-		$aboutme = $row["about_me"];
-		$pathpp = $row["profile_pic"];
-		$pathcp = $row["cover_photo"];
-	} ?>
+	$row = mysqli_fetch_assoc($result);
+	$username = $row['username'];
+	$fullname = $row['fullname'];
+	$aboutme = $row['about_me'];
+	?>
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search...">
@@ -57,9 +63,9 @@
 		</div>
 		<div class="container">	
 			<div class="headerprofile">
-				<img src="images/pp_cover/<?php echo $pathcp;?>" id="coverphoto">
-				<h1 id="username"><?= $username ?><br><span class="usernameorig"><?= $username ?></span></h1>
-				<img src="images/pp_cover/<?php echo $pathpp;?>" id="userphoto">
+				<img src="images/cover_img/cover_<?=$_GET['acc_id']?>.png" alt="user-cover" id="coverphoto">
+				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
+				<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" id="userphoto">
 				<ul id="follows">
 					<li><a href="people_profile_list_of_following.php">Following: <?php echo $followingcount['followingcount']; ?></a></li>
 					<li><a href="people_profile_list_of_followers.php">Followers: <?php echo $followerscount['followerscount'];?></a></li>
@@ -104,7 +110,7 @@
 				</div>
 				<div class="col-sm-6">
 					<div class="posting post-container">
-						<img src="images/pp_cover/<?php echo $pathpp;?>" alt="USER PHOTO" class="profile">
+						<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" alt="USER PHOTO" class="profile">
 						<p class="user-name"><?= $username ?></p>
 						<form action="output.php" method="get">
 							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..."></textarea>
@@ -129,11 +135,11 @@
 					</div>
 				</div>
 				<div class="col-sm-3">
-					<h2 class="visitor-options">VISITOR OPTIONS</h2>
+					<!-- <h2 class="visitor-options">VISITOR OPTIONS</h2>
 					<ul class="visitor-options">
 						<li><a href="Request_Form.php">Request for a tour</a></li>
 						<li><a href="follower.php">Follow Xon_123</a></li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 		</div>

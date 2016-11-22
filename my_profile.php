@@ -20,13 +20,7 @@
 	<body>
 
 	<?php 
-	$host = 'localhost';  
-	$username = 'root'; 
-	$password = ''; 
-	$db = 'tourista'; 
-	$dbconn = mysqli_connect($host,$username,$password) or die("Could not connect to database!"); 
-	mysqli_select_db($dbconn, $db) or die( "Unable to select database");
-	
+	require "connect.php";
 	session_start();
 
 	$userID = $_SESSION['userID'];

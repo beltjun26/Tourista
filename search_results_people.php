@@ -58,11 +58,11 @@
 
 				<?php foreach ($result as $value) {?>
 					<div class="result-people">
-						<a class="userphoto-link" href="people_profile.php">
+						<a class="userphoto-link" href="people_profile.php?acc_id=<?=$value['acc_id']?>">
 							<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id'] ?>.jpg" alt="user image">
 						</a>
 						<div class = "user-details">
-							<a href="people_profile.php" class = "username-link">
+							<a href="people_profile.php?acc_id=<?=$value['acc_id']?>" class = "username-link">
 							<h2 class="username"><?php echo $value['firstname']." ".$value['lastname'] ?></h2></a>
 							<p><?=$value['about_me'] ?></p>
 						</div>
