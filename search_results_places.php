@@ -2,9 +2,13 @@
 
 <html lang="en">
 	<head>
+		<title>Toursita</title>
+		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 	<?php 
 	
-		include 'connect.php';			
+
+		require "connect.php";
+			
 			if (isset($_GET["search"])) {
 				$searchVal = $_GET["search"];
 				
@@ -13,10 +17,6 @@
 				$numberR = mysqli_num_rows($result);
 			}
 	?>
-	
-	
-	
-		<title>TourisTA! - Search Results</title>
 		<meta name="Maynard Vargas and Rosjel Jolly Lambungan" content="Search results places">
 		<meta name="James Anthony Yatar" content="Navigation Bar">
 		<meta charset="utf-8">
@@ -32,7 +32,7 @@
 	<body>
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
-				<input type="text" name = "search" value = <?=$searchVal?> >
+				<input type="text" placeholder="Search..." name = "search" value = <?=$searchVal?> >
 			</form>
 			
 			
@@ -42,7 +42,7 @@
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
 				<li><a href="login.php"> LOGOUT </a></li>
-				<li><img src="images/temp_pp.png"></li>
+				<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="container">
@@ -50,21 +50,18 @@
 				<h2 class="label result">You have searched for <?=$searchVal?>. <?=$numberR?> results</h2>
 				<ul>
 					<li><a href="#" class="active">PLACES</a></li>
-					<li><a href="search_results_people.php?search=<?=$searchVal?>&typeSearch=<?=$searchType?>">PEOPLE</a></li>
+					<li><a href="search_results_people.php?search=<?=$searchVal?>">PEOPLE</a></li>
 				</ul>
 			</div>	
 			<div class="results-container">
-				<?php foreach ($variable as $key => $value) {?>
+				<?php foreach ($result as $value) {?>
 					<div class="result-place">
 						<a class="place-link" href="place.php">
-							<img class = "place-photo" src="images/body_background2.png" alt="filler image">
+							<img class = "place-photo" src="images/places_img/place_id_<?=$value['place_id'] ?>.png" alt="filler image">
 						</a>
-						<h2 class="place-name">MIAG-AO CHURCH</h2>
+						<h2 class="place-name"><?=$value['name'] ?></h2>
 					</div>
 				<?php } ?>
-					
-
-				
 			</div>
 		</div>
 		

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2016 at 09:44 AM
+-- Generation Time: Nov 22, 2016 at 08:16 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -46,8 +46,6 @@ CREATE TABLE `account` (
   `password` varchar(30) NOT NULL,
   `email` varchar(40) NOT NULL,
   `address` varchar(30) NOT NULL,
-  `profile_pick` varchar(50) NOT NULL,
-  `cover_photo` varchar(50) NOT NULL,
   `about_me` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -55,9 +53,19 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`acc_id`, `username`, `firstname`, `middlename`, `lastname`, `password`, `email`, `address`, `profile_pick`, `cover_photo`, `about_me`) VALUES
-(2, 'maynard', 'Maynard', 'Fuentes', 'Vargas', 'vargas', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', '/images/temp_pp.png', '/images/cover_photo3.png', 'Best foods, natures spring, C2 tea. Dragon. '),
-(3, 'hello', 'Hello', 'Php', 'World', 'world', 'hello@gmail.com', 'Hello, World', '/images/temp_pp.png', '/images/cover_photo3.png', 'I am hello. I am your world.');
+INSERT INTO `account` (`acc_id`, `username`, `firstname`, `middlename`, `lastname`, `password`, `email`, `address`, `about_me`) VALUES
+(1, 'clyde', 'Clyde', 'Middlenameclyde', 'Delgado', 'Delgado', 'clydedelgado@gmail.com', 'San Jose, Antique', 'Draw paint create master doctor derma '),
+(2, 'maynard', 'Maynard', 'Fuentes', 'Vargas', 'vargas', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'Best foods, natures spring, C2 tea. Dragon. '),
+(3, 'rollin', 'Rollin', 'Dragonmaster', 'Pacheco', 'pacheco', 'rollinpachecko@gmail.com', 'Rollin City, Pacheco', 'Rollin in the deep.'),
+(4, 'alonzo', 'Alonzo', 'Middlename', 'Locsin', 'locsin', 'alonzolocsin@gmail.com', 'Alonzo City, Locsin, Iloilo', 'Ace hardware ace hardware.'),
+(5, 'andrew', 'Andrew', 'mname', 'Dagdag', 'dagdag', 'andrewdagdag@gmail.com', 'Andrew City, Dagdag', 'I am Andrew D.'),
+(6, 'diana', 'Diana Chris', 'middle', 'Pacaña', 'pacana', 'diana@gmail.com', 'Diana City, Miagao', 'Diana diana diana'),
+(7, 'donn', 'Donn', 'Middle', 'Cruz', 'cruz', 'donn_cruz@gmail.com', 'Address, Negros', 'Ako si Donn.'),
+(8, 'angelica', 'Ma. Angelica', 'Middlename', 'Talabucon', 'talabucon', 'jing@gmail.com', 'Somewhere, Capiz', 'Ako si Jong. '),
+(9, 'rosiebelt', 'Rosiebelt Jun', 'Ayupan', 'Abisado', 'abisado', 'beltjun@gmail.com', 'Lemery, Iloilo', 'About about about rosiebelt.'),
+(10, 'rosjel', 'Rosjel Jolly', 'Pamposa', 'Lambungan', 'lambungan', 'lambunganrosjel@gmail.com', 'Dueñas, Iloilo', 'Ako jolly jolly gid.'),
+(11, 'salvy', 'Salvy Jessa', 'Middle', 'Arnaiz', 'arnaiz', 'arnaiz@gmail.com', 'My Address, Somewhere', 'Hahahaha. '),
+(12, 'shebna', 'Shebna Rose', 'Middle', 'Fabilloren', 'fabilloren', 'shebnarose@gmail.com', 'Somewhere, Negros', 'Ako shebna shebna');
 
 -- --------------------------------------------------------
 
@@ -124,6 +132,18 @@ CREATE TABLE `places` (
   `desciption` varchar(100) NOT NULL,
   `brgy_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `places`
+--
+
+INSERT INTO `places` (`place_id`, `name`, `desciption`, `brgy_id`) VALUES
+(1, 'Miagao Church', 'This is Miagao Church.', 1),
+(2, 'Balay Cawayan', 'Balay nga cawayan', 2),
+(3, 'Lanz Pizza', 'Masharap na pizza lol', 1),
+(4, 'Plaza Miagao', 'Plaza sng Miagao', 2),
+(5, 'College of Arts and Sciences (CAS)', 'College of really cool people.', 1),
+(6, 'College of Fisheries and Ocean Studies', 'Isda isda fish fish', 2);
 
 -- --------------------------------------------------------
 
@@ -272,7 +292,7 @@ ALTER TABLE `town`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `brgy`
 --
@@ -282,7 +302,7 @@ ALTER TABLE `brgy`
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
-  MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `town`
 --

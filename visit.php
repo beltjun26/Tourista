@@ -2,7 +2,8 @@
 <html>
 <head>
 	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
-	<title>Visited Page</title>
+	<title>Toursita</title>
+	<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 	<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
 </head>
 <body>
@@ -19,7 +20,7 @@
 			<li><a href="#"> EXPLORE </a></li>
 			<li><a href="notifications.php"> NOTIFICATIONS </a></li>
 			<li><a href="login.php"> LOGOUT </a></li>
-			<li><img src="images/temp_pp.png"></li>
+			<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
 		</ul>
 	</div>
 <!-- insert nav here -->

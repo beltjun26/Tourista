@@ -19,47 +19,49 @@
 	<body>
 
 	<?php 
+	$host = 'localhost';  
+	$username = 'root'; 
+	$password = ''; 
+	$db = 'tourista'; 
+	$dbconn = mysqli_connect($host,$username,$password) or die("Could not connect to database!"); 
+	mysqli_select_db($dbconn, $db) or die( "Unable to select database");
+	
+	session_start();
 
-	require "connect.php"
+	$userID = $_SESSION['userID'];
+	$username = $_SESSION['userName'];
 
-	if(isset($_GET['acc_id'])){
-		$user_id = $_GET['acc_id'];
-	}else{
-		header("Location:home_page.php");
-	}
+	$queryfollowers = "SELECT count(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $userID && acc_id_follower=acc.acc_id";
+	$queryfollowing = "SELECT count(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id && acc_id_follower=$userID";
+	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname',about_me FROM account where acc_id = $userID";
 
-	$queryfollowers = "SELECT COUNT(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $user_id AND acc_id_follower = acc.acc_id";
-	$queryfollowing = "SELECT COUNT(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id AND acc_id_follower = $user_id";
-	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname', about_me FROM account where acc_id=$user_id";
 	$result = mysqli_query($dbconn, $queryfollowers);
 	$followerscount = mysqli_fetch_assoc($result);
 	$result = mysqli_query($dbconn, $queryfollowing);
 	$followingcount = mysqli_fetch_assoc($result);
 	$result = mysqli_query($dbconn, $queryuser);
-	while($row = mysqli_fetch_array($result)){
-		$username = $row["fullname"];
-		$aboutme = $row["about_me"];
-		$pathpp = $row["profile_pic"];
-		$pathcp = $row["cover_photo"];
-	} ?>
+	$row = mysqli_fetch_assoc($result);
+	$fullname = $row['fullname'];
+	$aboutme = $row['about_me'];
+	?>
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search...">
 			</form>
 			<ul id = "navList">
 				<li><a href="home_page.php"> HOME </a></li>
-				<li><a href="#"> VISITS </a></li>
+				<li><a href="visit.php"> VISITS </a></li>
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
 				<li><a href="login.php"> LOGOUT </a></li>
-				<li><a href="people_profile.php" class="image-list active"><img src="images/pp_cover/<?php echo $pathpp;?>"></a></li>
+				<li><a href="my_profile.php" class="image-list active"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="container">	
 			<div class="headerprofile">
-				<img src="images/pp_cover/<?php echo $pathcp;?>" id="coverphoto">
-				<h1 id="username"><?= $username ?><br><span class="usernameorig"><?= $username ?></span></h1>
-				<img src="images/pp_cover/<?php echo $pathpp;?>" id="userphoto">
+				<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" id="coverphoto">
+				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
+				<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" id="userphoto">
 				<ul id="follows">
 					<li><a href="people_profile_list_of_following.php">Following: <?php echo $followingcount['followingcount']; ?></a></li>
 					<li><a href="people_profile_list_of_followers.php">Followers: <?php echo $followerscount['followerscount'];?></a></li>
@@ -89,8 +91,8 @@
 				      		<span class="close">×</span>
 				    	</div>
 					    <div class="modal-body">
-				      		<img id="output_cover" src="images/pp_cover/<?php echo $pathcp;?>">
-				      		<img id="output_profile" src="images/pp_cover/<?php echo $pathpp;?>">
+				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
+				      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
 					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
 					      		<div class="option-buttons">
@@ -104,7 +106,7 @@
 				</div>
 				<div class="col-sm-6">
 					<div class="posting post-container">
-						<img src="images/pp_cover/<?php echo $pathpp;?>" alt="USER PHOTO" class="profile">
+						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
 						<p class="user-name"><?= $username ?></p>
 						<form action="output.php" method="get">
 							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..."></textarea>
@@ -118,8 +120,8 @@
 						</form>
 					</div>
 					<div class="posted post-container">
-						<img src="images/pp_cover/<?php echo $pathpp;?>" alt="USER PHOTO" class="profile">
-						<h2 class="user-name">Nard_123</h2>
+						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
+						<h2 class="user-name"><?=$username?></h2>
 						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
 						<button class="imagebtn"><img src="images/Body_Background.png"></button>
 						<div class="contain">
@@ -129,11 +131,11 @@
 					</div>
 				</div>
 				<div class="col-sm-3">
-					<h2 class="visitor-options">VISITOR OPTIONS</h2>
+					<!-- <h2 class="visitor-options">VISITOR OPTIONS</h2>
 					<ul class="visitor-options">
 						<li><a href="Request_Form.php">Request for a tour</a></li>
 						<li><a href="follower.php">Follow Xon_123</a></li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 		</div>

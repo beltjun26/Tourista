@@ -1,82 +1,96 @@
-div.headerprofile{
+.headerprofile{
 	background-color: white;
 	margin-top: 10px;
 	border: 1px solid #CFD8DC;
 	overflow: auto;
-	/*z-index:1;*/
 }
 
 #coverphoto{
 	width: 100%;
-	/*changes*/
-	/*max-height:300px;   */
-	overflow: hidden;
-	height:250px;
-
-}
-
-#coverphoto img{
-	width: 100%;
-	height:250px;
-
-	box-shadow: -3px 3px 1px rgba(0,0,0,0.3);
+	height:270px;
+	box-shadow: 0px 3px 1px rgba(0,0,0,0.3);
 	object-position: center;
 	object-fit: cover;
-	/*position: absolute;
-	z-index: -1;*/
 }
 
-#coverphoto h1{
+#username{
 	margin: 0;
 	color: white;
 	height: 30px;
-	font-family: "gotham Medium";
-	font-size: 25px;
+	font-family: "gotham Light";
+	font-size: 1.75em;
+	font-weight: bold;
 	letter-spacing: 2px;
 	padding-top: 5px;
-	margin-top: -45px;
+	margin: -150px 0 0 50px;
 	padding-left: 200px;
-	text-shadow: -2px 2px 0px rgba(0,0,0,0.3);
-	/*z-index:1;*/
+	text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+	transition: 0.4s;
+}
+
+#username span{
+	font-size: 0.5em;
+}
+
+#username span:before{
+	content: "@";
 }
 
 #userphoto{
-	margin-top: -75px;
-	margin-left: 30px;
-	width: 150px;
-}
-
-#userphoto img{
 	height: 150px;
 	border-radius: 5px;
-	border: white solid 5px;
 	box-shadow: -3px 3px 1px rgba(0,0,0,0.3);
-/*change*/
-	max-width:250px;
+	margin: -90px 0 0 60px;
+	width: 150px;
+	transition: 0.4s;
+}
+
+#userphoto:hover{
+	transform: scale(1.1, 1.1);
 }
 
 #follows{
-	float: left;
-	/*width: 14%;*/
 	color: #666;
-	/*font-family: "Gotham Light";*/
-	/*font-weight: bold;
-	letter-spacing: 1px;*/
-	margin: 5px 0 10px 35px;
-	padding-left: 20px;
 	box-sizing: border-box;
-
+	display: flex;
+	list-style: none;
+	margin: -50px 0 0 200px;
+	transform: translate(0, -5px);
+	opacity: 0;
+	transition: 0.4s;
 }
 
-#follows p{
-	width: 150px;
-	margin: 0;
+div.headerprofile:hover > #username{
+	transform: translate(0, -15px);
+}
+
+div.headerprofile:hover > #follows{
+	transform: translate(0,10px);
+	opacity: 1;
+}
+
+#follows li a{
+	font-family: "Gotham Light";
+	font-weight: bold;
+	font-size: 0.8em;
+	width: 30px;
+	background-color: #333;
+	border-radius: 20px;
+	color: white;
+	padding: 5px 10px;
+	margin: 10px;
+	transition: 0.2s;
+}
+
+#follows li a:hover{
+	text-decoration: none;
+	background-color: #00BCD4;
 }
 
 #aboutme{
-	float: left;
+	display: block;
+	margin: 100px 0 0 20px;
 	width: 80%;
-	margin-top: -60px;
 	color: #666;
 }
 
@@ -153,7 +167,4 @@ ul.visitor-options li a:hover{
 	background: rgba(0,0,0,0.7);
 	padding:5px;
 	/*position: absolute;*/
-}
-#username {
-	z-index:1;
 }

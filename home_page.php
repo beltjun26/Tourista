@@ -4,12 +4,19 @@
 	if(!isset($_SESSION["userName"])){ 
 		header('location:login.php');
 	}
+	$username = $_SESSION["userName"];
+
+	/*$query = "SELECT * FROM account WHERE username='{$_SESSION['username']}';";
+	$result= mysqli_query($connect, $query);
+	$row = mysqli_fetch_assoc($result);
+	$_SESSION["userID"] = $row['acc_id'];*/
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>TourisTA! - Homepage</title>
+		<title>Toursita</title>
+		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta name="Maynard Vargas and Rosjel Jolly Lambungan" content="Homepage">
 		<meta name="James Anthony Yatar" content="Navigation Bar">
 		<meta charset="utf-8">
@@ -21,12 +28,10 @@
 		<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
 		<link rel="stylesheet" type="text/css" href="css/Home_Page_style.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/posts.css">
 	</head>
 	<body>
 		<div id = "navBar">
-			<!-- <img src="images/Tourista_Logo_outline_black.png">
-			<h1>TOURISTA!<br><span> HELLO USER </span></h1> -->
-
 			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search..." name = "search">
 				<!-- <input type="submit" value="SEARCH" > -->
@@ -37,56 +42,45 @@
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="Notifications.php"> NOTIFICATIONS </a></li>
 				<li><a href="logout.php"> LOGOUT </a></li>
-				<li><img src="images/temp_pp.png"></li>
-				
-				<!-- <li class="dropdown">
-				    <a href="javascript:void(0)" class="dropbtn" onclick="myFunction()">PROFILE<img src="images/temp_pp.png" class="dropbtn" alt="USER PHOTO" onclick="myFunction()"></a>
-				    <div class="dropdown-content" id="myDropdown">
-				      	<a href="#"> Visits </a>
-						<a href="#"> Starred Places </a>
-						<a href="#"> Notifications </a>
-						<a href="#"> Logout </a>
-				    </div>
-				</li> -->
+				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					<div class="user-box">
-						<a href="#">
-							<img src="images/Body_Background.png" alt="USER PHOTO">
-							<img src="images/temp_pp.png" alt="USER PHOTO">
+						<a href="my_profile.php">
+							<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" class="cover">
+							<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="user-profile" class="profile">
 						</a>
-						<h2 class="user-box-heading">JOSP_123</h2>
-						<!-- <a href="#"><h3 id="following-link">FOLLOWING: 111</h3></a>
-							<a href="#"><h3 id="followers-link">FOLLOWERS: 0</h3></a> -->
+						<h2 class="user-box-heading"><?=$username?></h2>
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<div class="posting-container">
-						<div class="col-sm-2">
-							<img src="images/temp_pp.png" alt="USER PHOTO">
-						</div>
-						<div class="col-sm-10">
-							<a href="#">ADD A PHOTO</a>
-							<form action="output.php" method="get">
-								<textarea id="post-text-area" cols="50" rows="5" placeholder="TEXT HERE..."></textarea>
-								<input type="text-field" placeholder="LOCATION TAG AUTOFILL">
-							 	<input type="submit" value="POST">
-							</form>
-						</div>
+					<div class="posting post-container">
+						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
+						<p class="user-name"><?=$username?></p>
+						<form action="output.php" method="get">
+							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..."></textarea>
+							<label for="photo"><span class="glyphicon glyphicon-camera"> </span> Upload photo<input type="file" name="photo" class="inputphoto"></label>
+							<!-- <img src="" alt="Preview Upload" class="preview-image"> -->
+							<input type="text-field" placeholder="Tag a location" class="tag-location">
+							<div class="contain">
+								<span>Tagging:</span><p class="tagged-location">Miagao Church</p>
+								<input type="submit" value="POST">
+							</div>
+						</form>
 					</div>
-					<div class="posted-container">
-						<img src="images/temp_pp.png" alt="USER PHOTO" id="pp">
-						<h2 class="user-name">JOSP_123</h2>
-						<button id="myBtn" class="imagebtn"><img src="images/Body_Background.png"></button>
-						<div class="col-sm-10">
-							<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
-							<a href="place.php" class="tagged-location">MIAG-AO CHURCH</a>
-						</div>
-						<div class="col-sm-2">
-							<button>LIKE</button>
+					<div class="posted post-container">
+						<a href="people_profile.php">
+							<img src="images/temp_pp.png" alt="USER PHOTO" class="profile">
+							<h2 class="user-name">JOSP_123</h2>
+						</a>
+						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
+						<button class="imagebtn"><img src="images/Body_Background.png"></button>
+						<div class="contain">
+							<a href="place.php" class="tagged-location">Miagao Church</a>
+							<button class="like">LIKE</button>
 						</div>
 					</div>
 					<div id="myModal" class="modal">
