@@ -47,7 +47,7 @@
 		</div>
 		<div class="container">
 			<div class="search-filter">	
-				<h2 class="label result">You have searched for <?=$searchVal?>. <?=$numberR?> results</h2>
+				<h2 class="label result">You have searched for <span class="keyword"><?=$searchVal?></span>. <?=$numberR?> results</h2>
 				<ul>
 					<li><a href="#" class="active">PLACES</a></li>
 					<li><a href="search_results_people.php?search=<?=$searchVal?>">PEOPLE</a></li>
@@ -56,7 +56,7 @@
 			<div class="results-container">
 				<?php foreach ($result as $value) {?>
 					<div class="result-place">
-						<a class="place-link" href="place.php">
+						<a class="place-link" href="place.php?place_id=<?=$value['place_id']?>">
 							<img class = "place-photo" src="images/places_img/place_id_<?=$value['place_id'] ?>.png" alt="filler image">
 						</a>
 						<h2 class="place-name"><?=$value['name'] ?></h2>

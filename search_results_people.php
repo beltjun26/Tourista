@@ -44,7 +44,7 @@
 		</div>
 		<div class="container">
 			<div class="search-filter">	
-				<h2 class="label result">You have searched for <?=$searchVal?>. <?=$numberR?> results</h2>
+				<h2 class="label result">You have searched for <span class="keyword"><?=$searchVal?></span>. <?=$numberR?> results</h2>
 				<ul>
 					<li><a href="search_results_places.php?search=<?=$searchVal?>">PLACES</a></li>
 					<li><a href="#" class="active">PEOPLE</a></li>

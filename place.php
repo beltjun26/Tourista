@@ -15,6 +15,19 @@
 		<link rel="stylesheet" type="text/css" href="css/place.css">
 	</head>
 	<body>
+
+		<?php 
+			require "connect.php";
+			session_start();
+
+			$queryplaces = "SELECT * FROM places WHERE place_id = '{$_GET['place_id']}';";
+			$result = mysqli_query($dbconn, $queryplaces);
+			$row = mysqli_fetch_assoc($result);
+
+			$placename = $row['name'];
+			$description = $row['desciption'];
+		?>
+
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search...">
@@ -30,8 +43,8 @@
 		</div>
 		<!-- <main>
 			<div class="leftpage"> -->
-				<div class="container header" id="head">
-					<h1>PLACE NAME</h1>
+				<div class="container header" id="head" style="background-image: url(images/places_img/place_id_<?=$_GET['place_id']?>.png);">
+					<h1><?=$placename?></h1>
 					<ul class="address">
 						<li>Town,</li>
 						<li>Province,</li>
@@ -46,14 +59,7 @@
 				</div>
 				<div class="container" id="desc">
 					<h2>About the place</h2>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
+					<p><?=$description?></p>
 				</div>
 				<div class="container" id="rev">
 					<h2>Reviews</h2>

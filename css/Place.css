@@ -44,10 +44,11 @@ div.container{
 	width: 100%;
 }
 
-body > div.container:nth-child(2){
+#head{
 	margin-top: -50px;
-	background-image: url(../images/body_background2.png);
+	/*background-image: url(../images/body_background2.png);*/
 	background-size: cover;
+	background-position: center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
@@ -68,9 +69,11 @@ body > div.container:nth-child(2){
 	background-color: rgba(0,0,0,0.6);
 	background-blend-mode: color-dodge;
 	padding: 15px 50px 5px 50px;
+	border-radius: 5px 5px 0 0;
 }
 
 .header > ul{
+	border-radius: 0 0 5px 5px;
 	list-style: none;
 	color: white;
 	display: flex;

@@ -1,0 +1,51 @@
+.user-options,
+.visitor-options{
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	list-style: none;
+	background-color: white;
+	border: 1px solid #DDD;
+	border-top: 0;
+	border-radius: 0 0 2px 2px;
+}
+
+.user-options li,
+.visitor-options li{
+	border-right: 1px solid #DDD;
+	width: 100%;
+}
+
+.user-options li:last-child,
+.visitor-options li:last-child{
+	border-right: 0;
+}
+
+#Edit,
+.user-options li a,
+.visitor-options li a{
+	display: block;
+	width: 100%;
+	font-family: "Arial";
+	text-align: left;
+	letter-spacing: 0.1em;
+	background-color: white;
+	color: #888;
+	border: none;
+	padding: 5px 10px;
+	transition: 0.2s;
+}
+
+#Edit:hover,
+.user-options li a:hover,
+.visitor-options li a:hover{
+	background-color: #90A4AE;
+	text-decoration: none;
+	color: white;
+}
+
+.user-options .glyphicon,
+.visitor-options .glyphicon{
+	margin: 0 0 0 5px;
+}

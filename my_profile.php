@@ -15,7 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="css/Style_Modal.css">
 		<link rel="stylesheet" type="text/css" href="css/edit_profile_style.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
-		<link rel="stylesheet" type="text/css" href="css/my_profile.css">
+		<link rel="stylesheet" type="text/css" href="css/profile_options.css">
 	</head>
 	<body>
 

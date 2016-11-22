@@ -167,3 +167,12 @@ div.result-place h2{
 	width: 60%;
 }
 
+.keyword{
+	color: #00BCD4;
+}
+
+.keyword:before,
+.keyword:after{
+	content: "'";
+}
+
