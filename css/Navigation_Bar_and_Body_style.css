@@ -148,12 +148,8 @@ body{
 	width: 100%;
 }
 
-#navBar a.active .glyphicon,
-#navBar a.active:hover .glyphicon{
-	display: none;
-}
-
-#navBar a:hover .glyphicon{
+#navBar a:hover .glyphicon,
+#navBar a.active .glyphicon{
 	opacity: 1;
 	transform: scale(1,1);
 }
