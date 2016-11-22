@@ -2,19 +2,23 @@
 session_start();
 $error=0;
 if(isset($_POST["submit"])){
+
 	$username = $_POST["userName"];
 	$password = $_POST["password"];
 	$connect = mysqli_connect("localhost","root","","tourista") or die("Could not connect to the database.");
 	$query = "SELECT username, password FROM account WHERE account.username='$username' AND account.password='$password'";
 	$result= mysqli_query($connect, $query) or die("Query failed.");
 
+
 	if(mysqli_num_rows($result) == 1){
+
 			$_SESSION["userName"] = $username;
 			$query = "SELECT acc_id FROM account WHERE username='$username';";
 			$result= mysqli_query($connect, $query);
 			$row = mysqli_fetch_assoc($result);
 			$_SESSION["userID"] = $row['acc_id'];
 			header("Location:home_page.php");
+
 	}else{
 		$error = 1;
 	}

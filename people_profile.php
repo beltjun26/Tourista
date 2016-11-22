@@ -19,8 +19,13 @@
 	<body>
 
 	<?php 
+<<<<<<< HEAD
 	require "connect.php";
 	session_start();
+=======
+
+	require "connect.php"
+>>>>>>> cbf4c27efa159b418824c00c996b3edbbf97572a
 
 	if(isset($_GET['acc_id'])){
 

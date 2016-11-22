@@ -44,7 +44,7 @@
 			</form>
 			<ul id = "navList">
 				<li><a href="home_page.php"> HOME </a></li>
-				<li><a href="#"> VISITS </a></li>
+				<li><a href="visit.php"> VISITS </a></li>
 				<li><a href="#"> EXPLORE </a></li>
 				<li><a href="notifications.php"> NOTIFICATIONS </a></li>
 				<li><a href="login.php"> LOGOUT </a></li>
@@ -85,8 +85,8 @@
 				      		<span class="close">×</span>
 				    	</div>
 					    <div class="modal-body">
-				      		<img id="output_cover" src="images/pp_cover/<?php echo $pathcp;?>">
-				      		<img id="output_profile" src="images/pp_cover/<?php echo $pathpp;?>">
+				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
+				      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
 					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
 					      		<div class="option-buttons">
@@ -114,8 +114,8 @@
 						</form>
 					</div>
 					<div class="posted post-container">
-						<img src="images/pp_cover/<?php echo $pathpp;?>" alt="USER PHOTO" class="profile">
-						<h2 class="user-name">Nard_123</h2>
+						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
+						<h2 class="user-name"><?=$username?></h2>
 						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
 						<button class="imagebtn"><img src="images/Body_Background.png"></button>
 						<div class="contain">
