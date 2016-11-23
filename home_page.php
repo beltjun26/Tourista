@@ -77,23 +77,17 @@
 							<h2 class="user-name">JOSP_123</h2>
 						</a>
 						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
-						<button class="imagebtn"><img src="images/Body_Background.png"></button>
+						<button class="imagebtn"><img id="myImg" src="images/Body_Background.png"></button>
 						<div class="contain">
 							<a href="place.php" class="tagged-location">Miagao Church</a>
 							<button class="like">LIKE</button>
 						</div>
 					</div>
+					
 					<div id="myModal" class="modal">
-					  	<div class="modal-content">
-					    	<div class="modal-header">
-					      		<img src="images/temp_pp.png" alt="USER PHOTO" id="pp">
-								<h2 class="user-name">JOSP_123</h2>
-					      		<span class="close">×</span>
-					    	</div>
-						    <div class="modal-body">
-						      	<img src="images/Body_Background.png" class="modalimg">
-						    </div>
-					  	</div>
+						<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+						<img class="modal-content postImg" id="img01">
+						<div id="caption" class="caption"></div>
 					</div>
 				</div>
 			</div>
@@ -101,21 +95,19 @@
 
 		<script>
 			var modal = document.getElementById('myModal');
-			var btn = document.getElementById("myBtn");
+			var img = document.getElementById('myImg');
+			var modalImg = document.getElementById("img01");
+			var captionText = document.getElementById("caption");
+			img.onclick = function(){
+			    modal.style.display = "block";
+			    modalImg.src = this.src;
+			    captionText.innerHTML = this.alt;
+			}
+
 			var span = document.getElementsByClassName("close")[0];
 
-			btn.onclick = function() {
-			    modal.style.display = "block";
-			}
-
-			span.onclick = function() {
-			    modal.style.display = "none";
-			}
-
-			window.onclick = function(event) {
-			    if (event.target == modal) {
-			        modal.style.display = "none";
-			    }
+			span.onclick = function() { 
+			  modal.style.display = "none";
 			}
 		</script>
 	</body>
