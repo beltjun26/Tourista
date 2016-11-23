@@ -25,12 +25,12 @@
 	require "connect.php";
 	session_start();
 
-	$userID = $_SESSION['userID'];
+	$acc_id = $_SESSION['userID'];
 	$username = $_SESSION['userName'];
 
-	$queryfollowers = "SELECT count(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $userID && acc_id_follower=acc.acc_id";
-	$queryfollowing = "SELECT count(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id && acc_id_follower=$userID";
-	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname',about_me FROM account where acc_id = $userID";
+	$queryfollowers = "SELECT count(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $acc_id && acc_id_follower=acc.acc_id";
+	$queryfollowing = "SELECT count(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id && acc_id_follower=$acc_id";
+	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname',about_me FROM account where acc_id = $acc_id";
 
 	$result = mysqli_query($dbconn, $queryfollowers);
 	$followerscount = mysqli_fetch_assoc($result);
@@ -51,7 +51,7 @@
 				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="my_profile.php" class="image-list active"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
+				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list active"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="container">	
@@ -60,8 +60,8 @@
 				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
 				<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" id="userphoto">
 				<ul id="follows">
-					<li><a href="people_profile_list_of_following.php">Following: <?php echo $followingcount['followingcount']; ?></a></li>
-					<li><a href="people_profile_list_of_followers.php">Followers: <?php echo $followerscount['followerscount'];?></a></li>
+					<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following: <?php echo $followingcount['followingcount']; ?></a></li>
+					<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers: <?php echo $followerscount['followerscount'];?></a></li>
 				</ul>
 				<div id="aboutme">
 					<h1>ABOUT ME</h1>
@@ -73,8 +73,8 @@
 				<li><button id="Edit">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>
 				<li><a href="#">Feed<span class="glyphicon glyphicon-credit-card"></span></a></li>
 				<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></span></a></li>
-				<li><a href="people_profile_list_of_followers.php">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
-				<li><a href="people_profile_list_of_following.php">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
+				<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
+				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
 				<li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li>
 			</ul>
 			<div class="row">

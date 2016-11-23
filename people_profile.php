@@ -27,21 +27,17 @@
 
 	if(isset($_GET['acc_id'])){
 		if($_GET['acc_id'] == $_SESSION['userID']){
-			header("Location: my_profile.php");
+			header("Location: my_profile.php?acc_id=<?={$_SESSION['userID']}?>");
 		}
 
-		$userID = $_GET['acc_id'];
+		$acc_id = $_GET['acc_id'];
 	}else{
 		header("Location: error_page.php");
 	}
 
-
-
-
-
-	$queryfollowers = "SELECT count(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $userID && acc_id_follower=acc.acc_id";
-	$queryfollowing = "SELECT count(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id && acc_id_follower=$userID";
-	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname',about_me,username FROM account where acc_id = $userID";
+	$queryfollowers = "SELECT count(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $acc_id && acc_id_follower=acc.acc_id";
+	$queryfollowing = "SELECT count(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id && acc_id_follower=$acc_id";
+	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname',about_me,username FROM account where acc_id = $acc_id";
 
 	$result = mysqli_query($dbconn, $queryfollowers);
 	$followerscount = mysqli_fetch_assoc($result);
@@ -65,17 +61,17 @@
 				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
+				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="container">	
 			<div class="headerprofile">
-				<img src="images/cover_img/cover_<?=$_GET['acc_id']?>.png" alt="user-cover" id="coverphoto">
+				<img src="images/cover_img/cover_<?=$acc_id?>.png" alt="user-cover" id="coverphoto">
 				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
 				<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" id="userphoto">
 				<ul id="follows">
-					<li><a href="people_profile_list_of_following.php">Following: <?php echo $followingcount['followingcount']; ?></a></li>
-					<li><a href="people_profile_list_of_followers.php">Followers: <?php echo $followerscount['followerscount'];?></a></li>
+					<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following: <?php echo $followingcount['followingcount']; ?></a></li>
+					<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers: <?php echo $followerscount['followerscount'];?></a></li>
 				</ul>
 				<div id="aboutme">
 					<h1>ABOUT ME:</h1>
@@ -85,11 +81,21 @@
 			</div>
 			<ul class="visitor-options">
 				<li><a href="#">Feed<span class="glyphicon glyphicon-credit-card"></a></li>
-				<li><a href="#">Follow<span class="glyphicon glyphicon-plus"></a></li>
+				<li><a href="follow.php?acc_id=<?=$acc_id?>">
+					<?php
+						$query = "SELECT * FROM follow WHERE acc_id_follower = {$_SESSION['userID']} AND acc_id_follows = {$_GET['acc_id']};";	
+						$result = mysqli_query ($dbconn, $query);
+						if (mysqli_num_rows($result) == 0){
+							echo "Follow<span class='glyphicon glyphicon-plus'>";
+						} else{
+							echo "Unfollow<span class='glyphicon glyphicon-minus'>";
+						}
+					?>
+				</span></a></li>
 				<li><a href="#">Ask for a Tour<span class="glyphicon glyphicon-sunglasses"></a></li>
 				<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></a></li>
-				<li><a href="people_profile_list_of_followers.php">Followers<span class="glyphicon glyphicon-hand-left"></a></li>
-				<li><a href="people_profile_list_of_following.php">Following<span class="glyphicon glyphicon-hand-right"></a></li>
+				<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></a></li>
+				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></a></li>
 			</ul>
 			<div class="row">
 				<div class="col-sm-3">

@@ -22,11 +22,19 @@
       while($data = mysqli_fetch_assoc($result)){
           $row[] = $data;
       }
+
+      if (isset($_GET["search"])) {
+        $searchVal = $_GET["search"];
+        
+        $query = "SELECT * FROM places WHERE places.name like '%$searchVal%'";    
+        $result = mysqli_query ($dbconn, $query);
+        $numberR = mysqli_num_rows($result);
+      }
    ?>
 	<div id = "navBar">
-		<form action="" method="">
-			<input id="search_input" type="text" placeholder="Search..." name = "search">
-		</form>
+		<form action="search_results_places.php" method="get">
+        <input type="text" placeholder="Search..." name = "search">
+      </form>
 		<ul id = "navList">
 			<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
 			<li><a href="visit.php" class="active"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>

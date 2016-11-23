@@ -6,9 +6,14 @@
 	</ul>
 </div>*/	
 
-.search-filter,
-div.result-people,
-div.result-place{
+@font-face{
+	font-family: Gotham;
+	src: url("../used_fonts/GOTHAM-LIGHT.TTF") format("truetype");
+}
+
+.search-type,
+.result-people,
+.result-place{
 	background-color: white;
 	text-align: center;
 	border-radius: 5px;
@@ -16,9 +21,10 @@ div.result-place{
 	border: 1px solid #CFD8DC;
 }
 
-.search-filter{
+.search-type{
 	border-width: 1px 1px 0 1px;
 	border-radius: 2px 2px 0 0;
+
 }
 
 .label{
@@ -33,7 +39,7 @@ div.result-place{
 	border-radius: 2px 2px 0 0;
 }
 
-.search-filter ul{
+.search-type ul{
 	list-style: none;
 	padding: 0;
 	display: flex;
@@ -42,13 +48,13 @@ div.result-place{
 	border-bottom: 1px solid #CFD8DC;
 }
 
-.search-filter ul li{
+.search-type ul li{
 	margin: 0;
 	width: 100%;
 	margin-bottom: -2px;
 }
 
-.search-filter ul li a{
+.search-type ul li a{
 	color: white;
 	font-family: "Gotham Light";
 	font-size: 13px;
@@ -66,33 +72,35 @@ div.result-place{
 	transition: 0.4s;
 }
 
-.search-filter ul li a:hover{
+.search-type ul li a:hover{
 	text-decoration: none;
 	background-color: #80DEEA;
 	color: white;
 }
 
-.search-filter ul li a.active{
+.search-type ul li a.active{
 	text-decoration: none;
 	background-color: white;
 	cursor: default;
 	color: #666;
 }
 
-.search-filter ul li:first-child a{
+.search-type ul li:first-child a{
 	border-right: 0;
 }
 
 .results-container{
 	background-color: white;
 	overflow: auto;
+	margin: auto;
 	margin-top: -10px;
+	margin-bottom: 50px;
 	border-radius: 0 0 5px 5px;
 	border: 1px solid #CFD8DC;
 	border-top: 0px;
 	padding: 3% 0.5% 0.5% 0.5%;
-	margin-bottom: 50px;
 	list-style: none;
+
 }
 
 .result-people{
@@ -209,8 +217,9 @@ div.result-place{
 	text-decoration: none;
 }
 
-.container{
+.search-container{
 	width: 60%;
+	margin: auto;
 }
 
 .keyword{
@@ -223,14 +232,14 @@ div.result-place{
 }
 
 #Filter{
-    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-    background-position: 10px 12px; /* Position the search icon */
-    background-repeat: no-repeat; /* Do not repeat the icon image */
-    width: 50%; /* Full-width */
-    font-size: 16px; /* Increase font-size */
-    padding: 5px 15px; /* Add some padding */
-    border: 1px solid #ddd; /* Add a grey border */
-    margin-bottom: 12px; /* Add some space below the input */
+    background-image: url('/css/searchicon.png'); 
+    background-position: 10px 12px; 
+    background-repeat: no-repeat; 
+    width: 50%;
+    font-size: 16px; 
+    padding: 5px 15px; 
+    border: 1px solid #ddd; 
+    margin-top: 10px; 
     border-radius: 3px;
     outline: none;
 }
@@ -239,4 +248,24 @@ div.result-place{
 #Filter:active{
 	border-color: rgba(0,188,212 ,0.3);
 	box-shadow: 0 0 5px rgba(0,188,212 ,0.3);
+}
+
+.no-results-follow{
+	display: block;
+	width: 30%;
+	margin: 0 auto 20px auto;
+	color: #888;
+	text-align: center;
+	border: 1px solid #DDD;
+	padding: 10px 15px;
+	border-radius: 2px;
+	letter-spacing: 0.05em;
+}
+
+#follow-head{
+	margin: 30px auto 20px auto;
+	display: block;
+	text-align: center;
+	font-family: Gotham;
+	color: #777;
 }
