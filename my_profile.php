@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -55,6 +53,7 @@
 			</ul>
 		</div>
 		<div class="container">	
+			
 			<div class="headerprofile">
 				<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" id="coverphoto">
 				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
@@ -77,6 +76,9 @@
 				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
 				<li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li>
 			</ul>
+
+
+
 			<div class="row">
 				<div class="col-sm-3">
 				</div>

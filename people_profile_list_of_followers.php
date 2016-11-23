@@ -16,7 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="css/search_style.css">
 	</head>
 	<body>
-
+	
 		<?php 
 		require "connect.php";
 		session_start();

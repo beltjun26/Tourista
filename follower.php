@@ -13,6 +13,13 @@
 	</head>
 	<body>
 
+	<div class="container">
+		<?php require "header.php"; ?>
+	</div>
+
+
+
+
 <?php	while($following = mysqli_fetch_assoc($query)){
 		$follow_id = $following['acc_id_follows'];
 		$queryind = mysqli_query($connect, "SELECT username, profile_pick from account where acc_id = $follow_id");
