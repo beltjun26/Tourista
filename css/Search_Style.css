@@ -92,75 +92,121 @@ div.result-place{
 	border-top: 0px;
 	padding: 3% 0.5% 0.5% 0.5%;
 	margin-bottom: 50px;
+	list-style: none;
 }
 
-div.result-people{
+.result-people{
 	float: left;
 	width: 49%;
 	margin: 0.5%;
 	padding: 0;
 	text-align: left;
 	display: flex;
+	/*border: 1px solid #CCC;*/
+	overflow: auto;
+	border-radius: 2px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.15);
+	transition: 0.2s;
 }
 
-div.result-people a h2{
+.result-people:hover{
+	box-shadow: 0 0 10px #4DD0E1;
+}
+
+.result-people a:hover{
+	filter: brightness(110%);
+}
+
+.result-people a{
+	height: 100px;
+	width: 100%;
+	display: flex;
+	text-decoration: none;
+	transition: 0.2s;
+}
+
+/*.result-people a:hover{
+	text-decoration: none;
+	background-color: #A7FFEB;
+}
+
+.result-people a:hover h2,
+.result-people a:hover .user-details p{
+	color: #555;
+}*/
+
+.result-people h2{
 	color: #666;
+	font-family: Arial;
 	font-size: 15px;
-	font-family: "Gotham Medium";
+	font-weight: bold;
 	padding: 0 10px 0 10px;
 }
 
-div.result-people a{
-	height: 100px;
-	width: 100px;
-}
-
-div.result-people a img{
+.result-people img{
 	height: 100px;
 	width: 100px;
 	object-fit: cover;
 	object-position: center;
 }
 
-div.result-people div.user-details p{
+.result-people div.user-details p{
 	text-overflow: ellipsis;
 	white-space: nowrap;
     width: 250px;
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 0 10px 0 10px;
+    color: #666;
 }
 
-div.result-people div.user-details{
+.result-people div.user-details{
 	clear: left;
 }
 
-div.result-place{
+.result-place{
 	float: left;
 	padding: 0;
 	width: 49%;
 	margin: 0.5%;
+	border-radius: 2px;
+	border: 1px solid #DDD;
+	box-shadow: 0 0 10px rgba(0,0,0,0.15);
+	transition: 0.2s;
 }
 
-div.result-place a{
+.result-place:hover{
+	box-shadow: 0 0 10px #4DD0E1;
+	filter: brightness(110%);
+}
+.result-place a{
 	height: 180px;
-	width: 375px;
+	width: 100%;
+	color: #666;
+	text-decoration: none!important;
 }
 
-div.result-place a img{
+.result-place img{
 	width: 375px;
 	height: 180px;
 	object-fit: cover;
 	object-position: center;
+	border-radius: 2px 2px 0 0;
+	border-bottom: 1px solid #DDD;
 }
 
-div.result-place h2{
+.result-place h2{
 	padding: 0;
 	margin: 0;
 	color: #666;
-	font-family: "Gotham Medium";
 	font-size: 15px;
 	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.result-place h2:hover{
+	text-decoration: none;
 }
 
 .container{
@@ -176,3 +222,21 @@ div.result-place h2{
 	content: "'";
 }
 
+#Filter{
+    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 50%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 5px 15px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    border-radius: 3px;
+    outline: none;
+}
+
+#Filter:focus,
+#Filter:active{
+	border-color: rgba(0,188,212 ,0.3);
+	box-shadow: 0 0 5px rgba(0,188,212 ,0.3);
+}

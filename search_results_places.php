@@ -48,22 +48,42 @@
 		<div class="container">
 			<div class="search-filter">	
 				<h2 class="label result">You have searched for <span class="keyword"><?=$searchVal?></span>. <?=$numberR?> results</h2>
+				<input type="text" id="Filter" onkeyup="Filter()" placeholder="Filter places...">
 				<ul>
 					<li><a href="#" class="active">PLACES</a></li>
 					<li><a href="search_results_people.php?search=<?=$searchVal?>">PEOPLE</a></li>
 				</ul>
 			</div>	
-			<div class="results-container">
-				<?php foreach ($result as $value) {?>
-					<div class="result-place">
-						<a class="place-link" href="place.php?place_id=<?=$value['place_id']?>">
-							<img class = "place-photo" src="images/places_img/place_id_<?=$value['place_id'] ?>.png" alt="filler image">
-						</a>
-						<h2 class="place-name"><?=$value['name'] ?></h2>
-					</div>
-				<?php } ?>
-			</div>
+			<ul id="Results" class="results-container">
+			<?php foreach ($result as $value) {?>
+				<li class="result-place">
+					<a class="place-link" href="place.php?place_id=<?=$value['place_id']?>">
+						<img class = "place-photo" src="images/places_img/place_id_<?=$value['place_id'] ?>.png" alt="filler image">
+						<h2 class="place-name"><?=$value['name']?></h2>
+					</a>
+				</li>
+			<?php } ?>
+			</ul>
 		</div>
 		
+		<script>
+			function Filter() {
+			    var input, filter, ul, li, a, i;
+			    input = document.getElementById('Filter');
+			    filter = input.value.toUpperCase();
+			    ul = document.getElementById("Results");
+			    li = ul.getElementsByTagName('li');
+
+			    for (i = 0; i < li.length; i++) {
+			        a = li[i].getElementsByTagName("h2")[0];
+			        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+			            li[i].style.display = "";
+			        } else {
+			            li[i].style.display = "none";
+			        }
+			    }
+			}
+		</script>
+
 	</body>
 </html>

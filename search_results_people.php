@@ -45,33 +45,48 @@
 		<div class="container">
 			<div class="search-filter">	
 				<h2 class="label result">You have searched for <span class="keyword"><?=$searchVal?></span>. <?=$numberR?> results</h2>
+				<input type="text" id="Filter" onkeyup="Filter()" placeholder="Filter names...">
 				<ul>
 					<li><a href="search_results_places.php?search=<?=$searchVal?>">PLACES</a></li>
 					<li><a href="#" class="active">PEOPLE</a></li>
 				</ul>
 			</div>
-			<div class="results-container">
+			<ul id="Results" class="results-container">
 				
 
 
-
-
 				<?php foreach ($result as $value) {?>
-					<div class="result-people">
-						<a class="userphoto-link" href="people_profile.php?acc_id=<?=$value['acc_id']?>">
-							<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id'] ?>.jpg" alt="user image">
+					<li class="result-people">
+						<a href="people_profile.php?acc_id=<?=$value['acc_id']?>">
+								<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id'] ?>.jpg" alt="user image">
+							
+							<div class = "user-details">
+								<h2 class="username"><?php echo $value['firstname']." ".$value['lastname'] ?></h2>
+								<p><?=$value['about_me'] ?></p>
+							</div>
 						</a>
-						<div class = "user-details">
-							<a href="people_profile.php?acc_id=<?=$value['acc_id']?>" class = "username-link">
-							<h2 class="username"><?php echo $value['firstname']." ".$value['lastname'] ?></h2></a>
-							<p><?=$value['about_me'] ?></p>
-						</div>
-					</div>
+					</li>
 				<?php } ?>
-
-
-
-			</div>
+			</ul>
 		</div>
+
+		<script>
+			function Filter() {
+			    var input, filter, ul, li, a, i;
+			    input = document.getElementById('Filter');
+			    filter = input.value.toUpperCase();
+			    ul = document.getElementById("Results");
+			    li = ul.getElementsByTagName('li');
+
+			    for (i = 0; i < li.length; i++) {
+			        a = li[i].getElementsByTagName("h2")[0];
+			        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+			            li[i].style.display = "";
+			        } else {
+			            li[i].style.display = "none";
+			        }
+			    }
+			}
+		</script>
 	</body>
 </html>

@@ -93,14 +93,6 @@
 			</ul>
 			<div class="row">
 				<div class="col-sm-3">
-
-					<h2 class="user-options">USER OPTIONS</h2>
-					<ul class="user-options">
-					<!--<li><a href="#">Feed</a></li> -->
-						<li><a href="#">Visits</a></li>
-						<li><a href="people_profile_list_of_followers.php">Followers</a></li>
-						<li><a href="people_profile_list_of_following.php">Following</a></li>
-					</ul>
 				</div>
 
 				<div class="col-sm-6">
