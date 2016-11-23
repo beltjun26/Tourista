@@ -19,9 +19,13 @@
       $query = "Select * from images as i, post as p where p.acc_id = {$_SESSION['userID']} and p.post_id = i.post_id";
       $result = mysqli_query($dbconn, $query);
       $row = [];
-      while($data = mysqli_fetch_assoc($result)){
-          $row[] = $data;
+      if(mysqli_affected_rows($dbconn)!=0){
+        while($data = mysqli_fetch_assoc($result)){
+            $row[] = $data;
+          
+        }  
       }
+      
    ?>
 	<div id = "navBar">
 		<form action="" method="">
@@ -63,21 +67,21 @@
         var searchBox = new google.maps.places.SearchBox(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-        var map_icon = {
-          url: "images/location_pin.png",
-          scaledSize: new google.maps.Size(40, 50),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(0, 0)
-        }
-        var marker1 = new google.maps.Marker({
-          map: map,
-          position: pyrmont,
-          title: "Trial",
-          icon: map_icon
-        })
-        marker1.info = new google.map.InfoWindow({
+        // var map_icon = {
+        //   url: "images/location_pin.png",
+        //   scaledSize: new google.maps.Size(40, 50),
+        //   origin: new google.maps.Point(0, 0),
+        //   anchor: new google.maps.Point(0, 0)
+        // }
+        // var marker1 = new google.maps.Marker({
+        //   map: map,
+        //   position: pyrmont,
+        //   title: "Trial",
+        //   icon: map_icon
+        // })
+        // marker1.info = new google.map.InfoWindow({
 
-        })
+        // })
 
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());

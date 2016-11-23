@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2016 at 02:03 AM
+-- Generation Time: Nov 23, 2016 at 02:21 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -144,21 +144,26 @@ CREATE TABLE `post` (
   `post_id` int(9) NOT NULL,
   `content` varchar(70) NOT NULL,
   `acc_id` int(9) NOT NULL,
-  `time` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `loc_id` varchar(60) NOT NULL,
+  `time_post` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ;
 
 --
 -- Dumping data for table `post`
 --
 
-INSERT INTO `post` (`post_id`, `content`, `acc_id`, `time`, `location_id`) VALUES
-(1, 'Content of the post here', 2, '0000-00-00 00:00:00.000000', 'ChIJCfn0zHZcrjMRqI11lJHSPGY'),
-(2, 'Content of the post here', 4, '0000-00-00 00:00:00.000000', 'ChIJCfn0zHZcrjMRqI11lJHSPGY'),
-(3, 'content here', 5, '2016-11-22 17:11:24.235000', 'ChIJT4bs8HBcrjMR5uNjfChF9NA'),
-(4, 'Content here', 3, '0000-00-00 00:00:00.000000', 'ChIJ9SnGYYdbrjMRzTDMRHiMCos'),
-(7, 'Content here', 9, '0000-00-00 00:00:00.000000', 'ChIJETTaZCNVrjMRg1BnBP-10a0'),
-(8, 'Content here', 9, '0000-00-00 00:00:00.000000', 'ChIJPQHr8x8tkTMRWA3o67UViy0'),
-(9, 'Content here', 9, '2016-11-22 20:24:24.662639', 'ChIJxW6uf4pbrjMRsZwTF9N9lko');
+INSERT INTO `post` (`post_id`, `content`, `acc_id`, `loc_id`, `time_post`) VALUES
+(1, 'Content of the post here', 2, 'ChIJxW6uf4pbrjMRsZwTF9N9lko', '2016-11-22 22:00:00.000000'),
+(2, 'Content of the post here', 4, '', '2016-11-22 16:00:16.116000'),
+(3, 'content here', 5, '', '2016-11-22 17:11:24.235000'),
+(4, 'Content here', 3, '', '2016-11-22 23:00:00.000202'),
+(7, 'Content here', 9, '', '2016-11-22 16:00:00.163000'),
+(8, 'Content here', 9, '', '2016-11-22 22:28:17.000000'),
+(9, 'Content here', 9, '', '2016-11-22 20:24:24.662639'),
+(11, 'content here', 9, '', '2016-11-22 22:30:09.000999'),
+(12, 'Content of the post here', 2, '', '2016-11-22 22:00:00.000000'),
+(13, 'content here', 5, '', '2016-11-22 17:11:24.235000'),
+(14, 'Content here', 3, '', '2016-11-22 23:00:00.000202');
 
 -- --------------------------------------------------------
 
