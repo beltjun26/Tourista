@@ -107,7 +107,7 @@
 					<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">FOLLOWERS</a></li>
 				</ul>
 			</div>
-			<ul id="Result" class="results-container">
+			<ul id="Results" class="results-container">
 			<?php
 				$queryfollowinglist = "SELECT * from account, follow where acc_id_follows = acc_id && acc_id_follower= $acc_id";	
 				$result = mysqli_query($dbconn, $queryfollowinglist);	
