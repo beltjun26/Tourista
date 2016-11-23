@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2016 at 08:16 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- Generation Time: Nov 23, 2016 at 02:03 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -81,26 +81,6 @@ CREATE TABLE `bookmarks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brgy`
---
-
-CREATE TABLE `brgy` (
-  `brgy_id` int(30) NOT NULL,
-  `brgyname` varchar(50) NOT NULL,
-  `town_id` int(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `brgy`
---
-
-INSERT INTO `brgy` (`brgy_id`, `brgyname`, `town_id`) VALUES
-(3, 'Sapa', 2),
-(4, 'Bolho', 2);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `follow`
 --
 
@@ -120,6 +100,15 @@ CREATE TABLE `image` (
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`post_id`, `name`) VALUES
+(7, 'place-5555'),
+(8, 'place-4555'),
+(9, 'place-4412');
+
 -- --------------------------------------------------------
 
 --
@@ -130,20 +119,20 @@ CREATE TABLE `places` (
   `place_id` int(9) NOT NULL,
   `name` varchar(50) NOT NULL,
   `desciption` varchar(100) NOT NULL,
-  `brgy_id` int(9) NOT NULL
+  `location_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `places`
 --
 
-INSERT INTO `places` (`place_id`, `name`, `desciption`, `brgy_id`) VALUES
-(1, 'Miagao Church', 'This is Miagao Church.', 1),
-(2, 'Balay Cawayan', 'Balay nga cawayan', 2),
-(3, 'Lanz Pizza', 'Masharap na pizza lol', 1),
-(4, 'Plaza Miagao', 'Plaza sng Miagao', 2),
-(5, 'College of Arts and Sciences (CAS)', 'College of really cool people.', 1),
-(6, 'College of Fisheries and Ocean Studies', 'Isda isda fish fish', 2);
+INSERT INTO `places` (`place_id`, `name`, `desciption`, `location_id`) VALUES
+(1, 'Miagao Church', 'This is Miagao Church.', 'ChIJCfn0zHZcrjMRqI11lJHSPGY'),
+(2, 'Balay Cawayan', 'Balay nga cawayan', 'ChIJNyOoLYRbrjMRKgljYP_KdWo'),
+(3, 'Lanz Pizza', 'Masharap na pizza lol', 'ChIJadk10nZcrjMRZ66xPc1HlXg'),
+(4, 'Plaza Miagao', 'Plaza sng Miagao', '2'),
+(5, 'College of Arts and Sciences (CAS)', 'College of really cool people.', '1'),
+(6, 'College of Fisheries and Ocean Studies', 'Isda isda fish fish', '2');
 
 -- --------------------------------------------------------
 
@@ -158,26 +147,18 @@ CREATE TABLE `post` (
   `time` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `province`
+-- Dumping data for table `post`
 --
 
-CREATE TABLE `province` (
-  `province_id` int(30) NOT NULL,
-  `province_name` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `province`
---
-
-INSERT INTO `province` (`province_id`, `province_name`) VALUES
-(1, 'Aklan'),
-(2, 'Iloilo'),
-(3, 'Antique'),
-(4, 'Capiz');
+INSERT INTO `post` (`post_id`, `content`, `acc_id`, `time`, `location_id`) VALUES
+(1, 'Content of the post here', 2, '0000-00-00 00:00:00.000000', 'ChIJCfn0zHZcrjMRqI11lJHSPGY'),
+(2, 'Content of the post here', 4, '0000-00-00 00:00:00.000000', 'ChIJCfn0zHZcrjMRqI11lJHSPGY'),
+(3, 'content here', 5, '2016-11-22 17:11:24.235000', 'ChIJT4bs8HBcrjMR5uNjfChF9NA'),
+(4, 'Content here', 3, '0000-00-00 00:00:00.000000', 'ChIJ9SnGYYdbrjMRzTDMRHiMCos'),
+(7, 'Content here', 9, '0000-00-00 00:00:00.000000', 'ChIJETTaZCNVrjMRg1BnBP-10a0'),
+(8, 'Content here', 9, '0000-00-00 00:00:00.000000', 'ChIJPQHr8x8tkTMRWA3o67UViy0'),
+(9, 'Content here', 9, '2016-11-22 20:24:24.662639', 'ChIJxW6uf4pbrjMRsZwTF9N9lko');
 
 -- --------------------------------------------------------
 
@@ -201,28 +182,6 @@ CREATE TABLE `tag` (
   `acc_id` int(9) NOT NULL,
   `post_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `town`
---
-
-CREATE TABLE `town` (
-  `town_id` int(30) NOT NULL,
-  `townname` varchar(50) NOT NULL,
-  `province_id` int(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `town`
---
-
-INSERT INTO `town` (`town_id`, `townname`, `province_id`) VALUES
-(1, 'Kalibo', 1),
-(2, 'Miagao', 2),
-(3, 'Oton', 2),
-(4, 'Tigbauan', 2);
 
 -- --------------------------------------------------------
 
@@ -252,10 +211,10 @@ ALTER TABLE `bookmarks`
   ADD PRIMARY KEY (`place_id`,`acc_id`);
 
 --
--- Indexes for table `brgy`
+-- Indexes for table `image`
 --
-ALTER TABLE `brgy`
-  ADD PRIMARY KEY (`brgy_id`);
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`post_id`,`name`);
 
 --
 -- Indexes for table `places`
@@ -264,25 +223,10 @@ ALTER TABLE `places`
   ADD PRIMARY KEY (`place_id`);
 
 --
--- Indexes for table `province`
---
-ALTER TABLE `province`
-  ADD PRIMARY KEY (`province_id`),
-  ADD KEY `province_id` (`province_id`),
-  ADD KEY `province_id_2` (`province_id`);
-
---
 -- Indexes for table `rating`
 --
 ALTER TABLE `rating`
   ADD PRIMARY KEY (`account_id`,`place_id`);
-
---
--- Indexes for table `town`
---
-ALTER TABLE `town`
-  ADD PRIMARY KEY (`town_id`),
-  ADD KEY `province_id` (`province_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -294,30 +238,10 @@ ALTER TABLE `town`
 ALTER TABLE `account`
   MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `brgy`
---
-ALTER TABLE `brgy`
-  MODIFY `brgy_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
   MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `town`
---
-ALTER TABLE `town`
-  MODIFY `town_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `town`
---
-ALTER TABLE `town`
-  ADD CONSTRAINT `town_ibfk_1` FOREIGN KEY (`province_id`) REFERENCES `province` (`province_id`);
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -14,7 +14,14 @@
 </head>
 <body>
   <?php 
+      session_start();
       include 'connect.php';
+      $query = "Select * from images as i, post as p where p.acc_id = {$_SESSION['userID']} and p.post_id = i.post_id";
+      $result = mysqli_query($dbconn, $query);
+      $row = [];
+      while($data = mysqli_fetch_assoc($result)){
+          $row[] = $data;
+      }
    ?>
 	<div id = "navBar">
 		<form action="" method="">
@@ -56,6 +63,21 @@
         var searchBox = new google.maps.places.SearchBox(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+        var map_icon = {
+          url: "images/location_pin.png",
+          scaledSize: new google.maps.Size(40, 50),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(0, 0)
+        }
+        var marker1 = new google.maps.Marker({
+          map: map,
+          position: pyrmont,
+          title: "Trial",
+          icon: map_icon
+        })
+        marker1.info = new google.map.InfoWindow({
+
+        })
 
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());
@@ -80,29 +102,25 @@
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
             console.log(place.place_id);
-            console.log(place.locality);
 
-            geocoder.geocode({'placeId': placeId}, function(results, status) {
+            geocoder.geocode({'placeId':place.place_id }, function(results, status) {
             if (status === 'OK') {
               if (results[0]) {
-                console.log(results[0].);
-                map.setZoom(11);
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                  map: map,
-                  position: results[0].geometry.location
-                });
-                infowindow.setContent(results[0].formatted_address);
-                infowindow.open(map, marker);
+                console.log(results[0]);
+                console.log(results[0].formatted_address);
+                // map.setZoom(11);
+                // map.setCenter(results[0].geometry.location);
+                // var marker = new google.maps.Marker({
+                //   map: map,
+                //   position: results[0].geometry.location
+                // });
+                // infowindow.setContent(results[0].formatted_address);
+                // infowindow.open(map, marker);
               } else {
                 window.alert('No results found');
               }
             }
           });
-
-
-
-
 
             if (!place.geometry) {
               console.log("Returned place contains no geometry");
@@ -133,52 +151,7 @@
           
           });
           map.fitBounds(bounds);
-        });searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
-            return;
-          }
-
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
-          });
-          markers = [];
-
-          // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
         });
-
       }
 
       function geocodePlaceId(geocoder, map, infowindow) {
@@ -238,5 +211,5 @@
        
       
     </script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBww8i2ICp66WttVNyEbgcQXbY8a8sxDrg&libraries=places&callback=initMap" async defer></script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjA-G7nAd-602rgQZiEzTq_hBzxM8eM0E&libraries=places&callback=initMap" async defer></script>
 </html>
