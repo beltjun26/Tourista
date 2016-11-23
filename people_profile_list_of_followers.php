@@ -17,9 +17,10 @@
 	<body>
 
 	<?php 
+	
+	session_start();
 	include 'connect.php';
 
-	session_start();
 	$user_id = $_SESSION['userID'];
 	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname', about_me FROM account where acc_id=$user_id";
 	$result = mysqli_query($dbconn, $queryuser);
