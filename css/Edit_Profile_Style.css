@@ -1,13 +1,11 @@
-.modal.edit-profile div{
+.modal-content{
 	overflow: initial;
-}
-
-.modal.edit-profile .modal-content{
-	width: 50%;
+	width: 70%;
 }
 
 .modal-header{
-	padding: 10px;
+	padding: 0;
+	background-color: #00BCD4;
 }
 
 .modal-header h2{
@@ -17,9 +15,12 @@
 	width: 100%;
 	font-weight: bold;
 	font-size: 1em;
+	margin: 10px 0;
+	color: white;
 }
 
-#output_cover{
+#output_cover,
+#output_cover2{
 	object-fit: cover;
 	object-position: center;
 	width: 98%;
@@ -43,6 +44,15 @@
 	border: none;
 }
 
+#output_profile2{
+	object-fit: cover;
+	object-position: center;
+	width: 388px;
+	height: 388px;
+	transition: 0.4s;
+	border: none;
+}
+
 #output_profile:hover{
 	transform: scale(1.1, 1.1);
 }
@@ -50,6 +60,7 @@
 .modal-body{
 	overflow: auto;
 	background-color: #ECEFF1;
+	padding: 0;
 }
 
 .modal-body form{
@@ -87,21 +98,17 @@
 
 .modal-body form div input,
 .modal-body form div label{
-	width: 35%;
 	padding: 10px;
 	cursor: pointer;
 	text-align: center;
 }
 
-.modal-body form input[type=file]{
-	/*display: none;*/
-	/*opacity:0;*/
-	/*margin-top:-30px;*/
-}
 
 .upload,
-.modal-body form div input[type=submit]{
-	width: 20%;
+#EditAll input[type=submit],
+#EditProfilePicture input[type=submit],
+#EditCoverPhoto input[type=submit],
+#EditDescription input[type=submit]{
 	background-color: #0097A7;
 	color: white;
 	font-family: "Gotham Light";
@@ -110,11 +117,15 @@
 	text-transform: uppercase;
 	border: none;
 	border-radius: 3px;
+	padding: 10px 15px;
+	display: block;
+	width: 100%;
+	margin: 5px 0 0 0;
+	text-align: center;
 }
 
 .modal-body form div input[type=submit]{
 	padding: 10px;
-	float: right;
 }
 
 .option-buttons input,
@@ -127,6 +138,43 @@
 	background-color: #4DD0E1!important;
 	box-shadow: 0 0 10px rgba(0,96,100 ,0.3);
 }
+
+#EditProfilePicture > .modal-content{
+	width: 400px;
+}
+
+#EditProfilePicture .modal-body{
+	padding: 5px;
+}
+
+#EditProfilePicture form{
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+#EditDescription > .modal-content{
+	width: 30%;
+}
+
+#EditDescription form{
+	margin: 0;
+	padding: 5px;
+	width: 100%;
+}
+
+.modal-body form input[type=file]{
+	display: hidden;
+	/*opacity:0;*/
+	/*margin-top:-30px;*/
+	width: 100%;
+	padding: 0;
+	text-align: center;
+}
+
+
+
+
 
 
 

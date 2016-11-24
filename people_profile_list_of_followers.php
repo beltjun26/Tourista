@@ -22,11 +22,10 @@
 		session_start();
 
 		$acc_id = $_GET['acc_id'];
-		$username = $_SESSION['userName'];
 
 		$queryfollowers = "SELECT count(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $acc_id && acc_id_follower=acc.acc_id";
 		$queryfollowing = "SELECT count(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id && acc_id_follower=$acc_id";
-		$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname',about_me FROM account where acc_id = $acc_id";
+		$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname',about_me,username FROM account where acc_id = $acc_id";
 
 		$result = mysqli_query($dbconn, $queryfollowers);
 		$followerscount = mysqli_fetch_assoc($result);
@@ -36,6 +35,7 @@
 		$row = mysqli_fetch_assoc($result);
 		$fullname = $row['fullname'];
 		$aboutme = $row['about_me'];
+		$username = $row['username'];
 		?>
 
 		<div id = "navBar">
@@ -51,28 +51,99 @@
 				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
+
 		<div class="container">
 			<div class="headerprofile">
-				<img src="images/cover_img/cover_<?=$acc_id?>.png" alt="user-cover" id="coverphoto">
+				<div id="coverphoto">
+					<img src="images/cover_img/cover_<?=$acc_id?>.png" alt="user-cover">
+					<?php if ($acc_id==$_SESSION['userID']) { ?> <button id="Editcovbtn">Edit Cover <span class="glyphicon glyphicon-pencil"></span></button> <?php } ?>
+				</div>
 				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
-				<img src="images/profile_pic_img/acc_id_<?=$acc_id?>.jpg" id="userphoto">
+				<div id="userphoto">
+					<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg">
+					<?php if ($acc_id==$_SESSION['userID']) { ?> <button id="Editpicbtn">Edit Profile Picture <span class="glyphicon glyphicon-pencil"></span></button> <?php } ?>
+				</div>
 				<ul id="follows">
 					<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following: <?php echo $followingcount['followingcount']; ?></a></li>
-					<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers: <?php echo $followerscount['followerscount'];?></a></li>
+					<li><a href="#follow-head">Followers: <?php echo $followerscount['followerscount'];?></a></li>
 				</ul>
 				<div id="aboutme">
 					<h1>ABOUT ME</h1>
 					<br>
 					<p><?php echo $aboutme ;?></p>
+					<?php if ($acc_id==$_SESSION['userID']) { ?> <button id="Editdesbtn">Edit Description <span class="glyphicon glyphicon-pencil"></span></button> <?php } ?>
 				</div>
 			</div>
-			<?php 
-				if ($acc_id == $_SESSION['userID']) { ?>
+			<?php if ($acc_id == $_SESSION['userID']) { ?>
+				<div id="EditAll" class="modal edit_profile">
+					  	<div class="modal-content">
+					    	<div class="modal-header">
+								<h2>Edit Profile</h2>
+					      		<span class="close">×</span>
+					    	</div>
+						    <div class="modal-body">
+					      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
+					      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
+						      	<form method="post" action="upload.php" enctype="multipart/form-data">
+						      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
+						      		<div class="option-buttons">
+							      		<label for="profile" class="upload">Choose Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
+							      		<label for="cover" class="upload">Choose Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
+							      		<input type="submit" name="change_profile">
+						      		</div>
+						      	</form>
+						    </div>
+					  	</div>
+					</div>
+					<div id="EditProfilePicture" class="modal edit_profile">
+					  	<div class="modal-content">
+					    	<div class="modal-header">
+								<h2>Edit Profile Picture</h2>
+					      		<span class="close">×</span>
+					    	</div>
+						    <div class="modal-body">
+					      		<img id="output_profile2" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
+						      	<form method="post" action="upload.php" enctype="multipart/form-data">
+							      	<label for="profile" class="upload">Choose Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
+							      	<input type="submit" name="change_profile">
+						      	</form>
+						    </div>
+					  	</div>
+					</div>
+					<div id="EditCoverPhoto" class="modal edit_profile">
+					  	<div class="modal-content">
+					    	<div class="modal-header">
+								<h2>Edit Cover Photo</h2>
+					      		<span class="close">×</span>
+					    	</div>
+						    <div class="modal-body">
+					      		<img id="output_cover2" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
+						      	<form method="post" action="upload.php" enctype="multipart/form-data">
+						      		<label for="cover" class="upload">Choose Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
+						      		<input type="submit" name="change_profile">
+						      	</form>
+						    </div>
+					  	</div>
+					</div>
+					<div id="EditDescription" class="modal edit_profile">
+					  	<div class="modal-content">
+					    	<div class="modal-header">
+								<h2>Edit Description</h2>
+					      		<span class="close">×</span>
+					    	</div>
+						    <div class="modal-body">
+						      	<form method="post" action="upload.php" enctype="multipart/form-data">
+						      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
+							      	<input type="submit" name="change_profile">
+						      	</form>
+						    </div>
+					  	</div>
+					</div>
 					<ul class="user-options">
-						<li><button id="Edit">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>
-						<li><a href="#">Feed<span class="glyphicon glyphicon-credit-card"></span></a></li>
+						<li><button id="Editallbtn">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>
+						<li><a href="my_profile.php?acc_id=<?=$acc_id?>">Feed<span class="glyphicon glyphicon-credit-card"></span></a></li>
 						<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></span></a></li>
-						<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
+						<li><a href="#follow-head" class="active">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
 						<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
 						<li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li>
 					</ul>
@@ -92,8 +163,8 @@
 						</span></a></li>
 						<li><a href="#">Ask for a Tour<span class="glyphicon glyphicon-sunglasses"></a></li>
 						<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></a></li>
-						<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></a></li>
 						<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></a></li>
+						<li><a href="#" class="active">Followers<span class="glyphicon glyphicon-hand-left"></a></li>
 					</ul>
 			<?php } ?>
 		</div>
@@ -128,6 +199,23 @@
 			<?php } ?>
 			</ul>
 		</div>
+
+		<script>
+			$(function() {
+			  $('a[href*="#"]:not([href="#"])').click(function() {
+			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			      var target = $(this.hash);
+			      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			      if (target.length) {
+			        $('html, body').animate({
+			          scrollTop: target.offset().top
+			        }, 1000);
+			        return false;
+			      }
+			    }
+			  });
+			});
+		</script>
 
 		<script>
 			function Filter() {

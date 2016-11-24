@@ -64,23 +64,27 @@
 				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
-		<div class="container">	
+		<div class="container">
 			<div class="headerprofile">
-				<img src="images/cover_img/cover_<?=$acc_id?>.png" alt="user-cover" id="coverphoto">
+				<div id="coverphoto">
+					<img src="images/cover_img/cover_<?=$acc_id?>.png" alt="user-cover">
+				</div>
 				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
-				<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" id="userphoto">
+				<div id="userphoto">
+					<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg">
+				</div>
 				<ul id="follows">
 					<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following: <?php echo $followingcount['followingcount']; ?></a></li>
 					<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers: <?php echo $followerscount['followerscount'];?></a></li>
 				</ul>
 				<div id="aboutme">
-					<h1>ABOUT ME:</h1>
+					<h1>ABOUT ME</h1>
 					<br>
 					<p><?php echo $aboutme ;?></p>
 				</div>
 			</div>
 			<ul class="visitor-options">
-				<li><a href="#">Feed<span class="glyphicon glyphicon-credit-card"></a></li>
+				<li><a href="#"  class="active">Feed<span class="glyphicon glyphicon-credit-card"></a></li>
 				<li><a href="follow.php?acc_id=<?=$acc_id?>">
 					<?php
 						$query = "SELECT * FROM follow WHERE acc_id_follower = {$_SESSION['userID']} AND acc_id_follows = {$_GET['acc_id']};";	
@@ -98,11 +102,8 @@
 				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></a></li>
 			</ul>
 			<div class="row">
-				<div class="col-sm-3">
-				</div>
-
+				<div class="col-sm-3"></div>
 				<div class="col-sm-6">
-
 					<div class="posted post-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" alt="USER PHOTO" class="profile">
 						<h2 class="user-name"><?=$username?></h2>
