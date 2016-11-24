@@ -75,6 +75,70 @@
 				</div>
 			</div>
 			<?php if ($acc_id == $_SESSION['userID']) { ?>
+				<div id="EditAll" class="modal edit_profile">
+					  	<div class="modal-content">
+					    	<div class="modal-header">
+								<h2>Edit Profile</h2>
+					      		<span class="close">×</span>
+					    	</div>
+						    <div class="modal-body">
+					      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
+					      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
+						      	<form method="post" action="upload.php" enctype="multipart/form-data">
+						      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
+						      		<div class="option-buttons">
+							      		<label for="profile" class="upload">Choose Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
+							      		<label for="cover" class="upload">Choose Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
+							      		<input type="submit" name="change_profile">
+						      		</div>
+						      	</form>
+						    </div>
+					  	</div>
+					</div>
+					<div id="EditProfilePicture" class="modal edit_profile">
+					  	<div class="modal-content">
+					    	<div class="modal-header">
+								<h2>Edit Profile Picture</h2>
+					      		<span class="close">×</span>
+					    	</div>
+						    <div class="modal-body">
+					      		<img id="output_profile2" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
+						      	<form method="post" action="upload.php" enctype="multipart/form-data">
+							      	<label for="profile" class="upload">Choose Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
+							      	<input type="submit" name="change_profile">
+						      	</form>
+						    </div>
+					  	</div>
+					</div>
+					<div id="EditCoverPhoto" class="modal edit_profile">
+					  	<div class="modal-content">
+					    	<div class="modal-header">
+								<h2>Edit Cover Photo</h2>
+					      		<span class="close">×</span>
+					    	</div>
+						    <div class="modal-body">
+					      		<img id="output_cover2" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
+						      	<form method="post" action="upload.php" enctype="multipart/form-data">
+						      		<label for="cover" class="upload">Choose Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
+						      		<input type="submit" name="change_profile">
+						      	</form>
+						    </div>
+					  	</div>
+					</div>
+					<div id="EditDescription" class="modal edit_profile">
+					  	<div class="modal-content">
+					    	<div class="modal-header">
+								<h2>Edit Description</h2>
+					      		<span class="close">×</span>
+					    	</div>
+						    <div class="modal-body">
+						      	<form method="post" action="upload.php" enctype="multipart/form-data">
+						      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
+							      	<input type="submit" name="change_profile">
+						      	</form>
+						    </div>
+					  	</div>
+					</div>
 					<ul class="user-options">
 						<li><button id="Editallbtn">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>
 						<li><a href="my_profile.php?acc_id=<?=$acc_id?>">Feed<span class="glyphicon glyphicon-credit-card"></span></a></li>
