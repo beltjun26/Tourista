@@ -4,7 +4,14 @@
 			
 		if (isset($_GET["search"])) {
 			$searchVal = $_GET["search"];
-			$query = "SELECT * FROM account WHERE username like '%$searchVal%' or firstname like '%$searchVal%' or middlename like '%$searchVal%' or lastname like '%$searchVal%' or email like '%$searchVal%'";		
+			$query = "SELECT * FROM account 
+					  WHERE username 
+					  like '%$searchVal%' 
+					  or firstname 
+					  like '%$searchVal%'
+					  or lastname 
+					  like '%$searchVal%' 
+					  ";		
 			$result = mysqli_query ($dbconn, $query);
 			$numberR = mysqli_num_rows($result);
 		}

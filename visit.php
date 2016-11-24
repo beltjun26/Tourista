@@ -1,49 +1,50 @@
-*<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<head>
-	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
-	<title>Toursita</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <script src="bootstrap/jquery/1.12.4/jquery.min.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
-	<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
-  
-</head>
-<body>
-  <?php 
-      session_start();
-      include 'connect.php';
-      $query = "SELECT post_id, p.place_id, if_image, name, location_id from  posted as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id";
-      $result = mysqli_query($dbconn, $query);
-      $row = [];
-      if(mysqli_affected_rows($dbconn)!=0){
-        while($data = mysqli_fetch_assoc($result)){
-            $row[] = $data;
-        }  
-      }
-      
-   ?>
-	<div id = "navBar">
-		<form action="" method="">
-			<input id="search_input" type="text" placeholder="Search..." name = "search">
-		</form>
-		<ul id = "navList">
-			<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
-			<li><a href="visit.php" class="active"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
-			<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
-			<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
-			<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-			<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
-		</ul>
-	</div>
-<!-- insert nav here -->
-<div id="map"></div>
-<!-- modify map on css please -->
-</body>
+
+	<head>
+		<title>Toursita</title>
+		<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<script src="bootstrap/jquery/1.12.4/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
+		<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<?php 
+			session_start();
+			include 'connect.php';
+			$query = "SELECT post_id, p.place_id, if_image, name, location_id from post as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id";
+			$result = mysqli_query($dbconn, $query);
+			$row = [];
+			if(mysqli_affected_rows($dbconn)!=0){
+				while($data = mysqli_fetch_assoc($result)){
+					$row[] = $data;
+				}  
+			}
+			//Comment out the if condition to see correct placement.
+		?>
+		<div id = "navBar">
+			<form action="search_results_places.php" method="get">
+				<input type="text" placeholder="Search..." name = "search">
+			</form>
+			<ul id = "navList">
+				<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
+				<li><a href="visit.php" class="active"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
+				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
+				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
+				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
+			</ul>
+		</div>
+		<div id="map"></div>
+	</body>
 	<script>
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
@@ -123,11 +124,14 @@
       }
 
     </script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjA-G7nAd-602rgQZiEzTq_hBzxM8eM0E&libraries=places&callback=initMap" async defer></script>
-     <script>
-        x = screen.height;
-        x = x-130;
-        document.getElementById('map').setAttribute("style","height: "+x+"px;width:100%;padding-top:50px");
-        console.log("lol");
-  </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjA-G7nAd-602rgQZiEzTq_hBzxM8eM0E&libraries=places&callback=initMap" async defer></script>
+	<script>
+		h = $('#navBar').outerHeight(true);
+		console.log(h);
+		x = window.innerHeight;
+		console.log(x);
+		x = x - h;
+		console.log(x);
+		document.getElementById('map').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;");
+	</script>
 </html>

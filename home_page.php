@@ -5,11 +5,6 @@
 		header('location:login.php');
 	}
 	$username = $_SESSION["userName"];
-
-	/*$query = "SELECT * FROM account WHERE username='{$_SESSION['username']}';";
-	$result= mysqli_query($connect, $query);
-	$row = mysqli_fetch_assoc($result);
-	$_SESSION["userID"] = $row['acc_id'];*/
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +29,6 @@
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search..." name = "search">
-				<!-- <input type="submit" value="SEARCH" > -->
 			</form>
 			<ul id = "navList">
 				<li><a href="#" class="active"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
@@ -60,35 +54,69 @@
 					<div class="posting post-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
 						<p class="user-name"><?=$username?></p>
-						<form action="output.php" method="get">
-							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..."></textarea>
-							<label for="photo"><span class="glyphicon glyphicon-camera"> </span> Upload photo<input type="file" name="photo" class="inputphoto"></label>
-							<!-- <img src="" alt="Preview Upload" class="preview-image"> -->
+						<form action="post.php" method="post" enctype="multipart/form-data">
+							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..." name = "post"></textarea>
+							<label for="photo"><span class="glyphicon glyphicon-camera"></span> Upload photo<input type="file" name="photo" class="inputphoto" id = "photo" onchange="loadFile(event)" name = "photo"></label>
+							<img src="" alt="" id = "image_preview" >
+
 							<input type="text-field" placeholder="Tag a location" class="tag-location">
 							<div class="contain">
-								<span>Tagging:</span><p class="tagged-location">Miagao Church</p>
+								<span>Tagging:</span><p class="tagged-location">Filler text only</p>
 								<input type="submit" value="POST">
 							</div>
 						</form>
 					</div>
-					<div class="posted post-container">
-						<a href="people_profile.php">
-							<img src="images/temp_pp.png" alt="USER PHOTO" class="profile">
-							<h2 class="user-name">JOSP_123</h2>
-						</a>
-						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
-						<button class="imagebtn"><img id="myImg" src="images/Body_Background.png"></button>
-						<div class="contain">
-							<a href="place.php" class="tagged-location">Miagao Church</a>
-							<button class="like">LIKE</button>
-						</div>
-					</div>
+
+<!-- 				START OF POSTED -->
+					<?php 
+						require "connect.php";
+						$acc_id = $_SESSION['userID'];
+						$query = "SELECT * 
+								  FROM posted 
+								  NATURAL JOIN account
+								  NATURAL JOIN places
+								  WHERE acc_id 
+								  IN (SELECT acc_id_follows 
+								  	  FROM follow 
+								  	  WHERE acc_id_follower = $acc_id)
+								  OR acc_id = $acc_id 
+								  ORDER BY time_post 
+								  DESC;";
+
+						$result = mysqli_query ($dbconn, $query);
+						$num_rows = mysqli_num_rows($result);
+
+						foreach ($result as $value):?>
+							<div class="posted post-container">
+								<a href="people_profile.php">
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile">
+									<h2 class="user-name"><?=$value['username'];?></h2>
+								</a>
+								<p class = "posted-text"><?=$value['content'];?></p>
+								
+								<?php if($value['if_image'] == 1): ?>
+									<button class="imagebtn"><img class="myImg" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
+								<?php endif; ?>
+
+								<div class="contain">
+									<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
+									<button class="like">LIKE</button>
+								</div>
+							</div>
+							
+							<div class="myModal" class="modal">
+								<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+								<img class="modal-content postImg" id="img01">
+								<div id="caption" class="caption"></div>
+							</div>
+						<?php endforeach; ?>
+
+
+
+
 					
-					<div id="myModal" class="modal">
-						<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-						<img class="modal-content postImg" id="img01">
-						<div id="caption" class="caption"></div>
-					</div>
+<!-- 				END OF POSTED -->
+
 				</div>
 			</div>
 		</div>
@@ -110,5 +138,13 @@
 			  modal.style.display = "none";
 			}
 		</script>
+		
+		<script>
+			var loadFile = function(event){
+				var image_preview = document.getElementById('image_preview');
+				image_preview.src = URL.createObjectURL(event.target.files[0]);
+			};
+		</script>
+
 	</body>
 </html>

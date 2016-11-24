@@ -13,10 +13,6 @@
 	</head>
 	<body>
 
-	<div class="container">
-		<?php require "header.php"; ?>
-	</div>
-
 
 
 

@@ -6,15 +6,14 @@ body{
 	background-color: #B3E5FC;
 }
 
-header{
-	height: 662px;
+.container{
 	display: flex;
 	flex-direction: column!important;
 	align-items: center;
 	justify-content: center;
 }
 
-header > div{
+.container > div{
 	box-sizing: border-box;
 	text-align: center;
 	background-color: rgba(0, 0, 0, 0.4);

@@ -22,7 +22,10 @@
 	border-right: 0;
 }
 
-#Edit,
+#Editallbtn,
+/*#Editpicbtn,
+#Editcovbtn,
+#Editdesbtn,*/
 .user-options li a,
 .visitor-options li a{
 	display: block;
@@ -37,7 +40,7 @@
 	transition: 0.2s;
 }
 
-#Edit:hover,
+#Editallbtn:hover,
 .user-options li a:hover,
 .visitor-options li a:hover{
 	background-color: #90A4AE;
@@ -48,4 +51,11 @@
 .user-options .glyphicon,
 .visitor-options .glyphicon{
 	margin: 0 0 0 5px;
+}
+
+.user-options li a.active,
+.visitor-options li a.active{
+	background-color: #CFD8DC;
+	color: #888;
+	cursor: default;
 }
