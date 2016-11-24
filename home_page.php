@@ -5,11 +5,6 @@
 		header('location:login.php');
 	}
 	$username = $_SESSION["userName"];
-
-	/*$query = "SELECT * FROM account WHERE username='{$_SESSION['username']}';";
-	$result= mysqli_query($connect, $query);
-	$row = mysqli_fetch_assoc($result);
-	$_SESSION["userID"] = $row['acc_id'];*/
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +29,6 @@
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search..." name = "search">
-				<!-- <input type="submit" value="SEARCH" > -->
 			</form>
 			<ul id = "navList">
 				<li><a href="#" class="active"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
