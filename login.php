@@ -55,28 +55,31 @@ if(isset($_POST["submit"])){
 	</script>	
 </head>
 <body>
-	<div class="container">
-		<header>
-			<div>
-				<img src="images/Tourista_Logo_Outline.png" id="logo"><br>
-				<span class="welcome">WELCOME TO</span><hr>
-				<h1>TOURISTA!</h1>
-				<a href="Registration.php">CREATE ACCOUNT</a>
-			</div>
-			<form method="post">
-					<label for="userName">USERNAME</label>
-			  		<input type="text" required id="user_name" name="userName">
-			  		<label for="password">PASSWORD</label>
-			  		<input type="password" required id="password" name="password">
-			  		<?php 
-					if($error == 1){ ?>
-						<span class="error"><?="The username/password you entered is incorrect."?></span>
-					<?php } ?>
-			  		<input type="submit" name="submit" value="LOGIN">
-			</form>
-		</header>
+	<div id="container" class="container">
+		<div>
+			<img src="images/Tourista_Logo_Outline.png" id="logo"><br>
+			<span class="welcome">WELCOME TO</span><hr>
+			<h1>TOURISTA!</h1>
+			<a href="Registration.php">CREATE ACCOUNT</a>
+		</div>
+		<form method="post">
+				<label for="userName">USERNAME</label>
+		  		<input type="text" required id="user_name" name="userName">
+		  		<label for="password">PASSWORD</label>
+		  		<input type="password" required id="password" name="password">
+		  		<?php 
+				if($error == 1){ ?>
+					<span class="error"><?="The username/password you entered is incorrect."?></span>
+				<?php } ?>
+		  		<input type="submit" name="submit" value="LOGIN">
+		</form>
 	</div>
-	
+	<script>
+		html = document.getElementsByTagName("html")[0];
+		windowHeight = window.innerHeight;
+		document.getElementById('container').setAttribute("style","height: "+windowHeight+"px;");
+		html.setAttribute("style","height: "+windowHeight+"px;width:100%;");
+	</script>
 </body>
 
 </html>
