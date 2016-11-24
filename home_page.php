@@ -60,8 +60,8 @@
 					<div class="posting post-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
 						<p class="user-name"><?=$username?></p>
-						<form action="output.php" method="get">
-							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..."></textarea>
+						<form action="post.php" method="post">
+							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..." name = "post"></textarea>
 							<label for="photo"><span class="glyphicon glyphicon-camera"> </span> Upload photo<input type="file" name="photo" class="inputphoto"></label>
 							<!-- <img src="" alt="Preview Upload" class="preview-image"> -->
 							<input type="text-field" placeholder="Tag a location" class="tag-location">
