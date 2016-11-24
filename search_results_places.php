@@ -34,27 +34,24 @@
 			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search..." name = "search" value = <?=$searchVal?> >
 			</form>
-			
-			
 			<ul id = "navList">
 				<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
 				<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
+				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
 			</ul>
 		</div>
-		<div class="container">
-			<div class="search-filter">	
+		<div class="search-container" style="margin-top: 60px;">
+			<div class="search-type">	
 				<h2 class="label result">You have searched for <span class="keyword"><?=$searchVal?></span>. <?=$numberR?> results</h2>
-				<input type="text" id="Filter" onkeyup="Filter()" placeholder="Filter places...">
 				<ul>
 					<li><a href="#" class="active">PLACES</a></li>
 					<li><a href="search_results_people.php?search=<?=$searchVal?>">PEOPLE</a></li>
 				</ul>
 			</div>	
-			<ul id="Results" class="results-container">
+			<ul class="results-container">
 			<?php foreach ($result as $value) {?>
 				<li class="result-place">
 					<a class="place-link" href="place.php?place_id=<?=$value['place_id']?>">
@@ -65,25 +62,6 @@
 			<?php } ?>
 			</ul>
 		</div>
-		
-		<script>
-			function Filter() {
-			    var input, filter, ul, li, a, i;
-			    input = document.getElementById('Filter');
-			    filter = input.value.toUpperCase();
-			    ul = document.getElementById("Results");
-			    li = ul.getElementsByTagName('li');
-
-			    for (i = 0; i < li.length; i++) {
-			        a = li[i].getElementsByTagName("h2")[0];
-			        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-			            li[i].style.display = "";
-			        } else {
-			            li[i].style.display = "none";
-			        }
-			    }
-			}
-		</script>
 
 	</body>
 </html>

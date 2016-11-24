@@ -11,24 +11,33 @@
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
 		<link rel="stylesheet" type="text/css" href="css/Home_Page_style.css">
-		<link rel="stylesheet" type="text/css" href="css/People_Profile_Page_style.css">
+		<link rel="stylesheet" type="text/css" href="css/People_Profile_Page_Style_Before.css">
+		<link rel="stylesheet" type="text/css" href="css/profile_options.css">
 		<link rel="stylesheet" type="text/css" href="css/search_style.css">
 	</head>
 	<body>
 
-	<?php 
-	include 'connect.php';
-	session_start();
-	$user_id = $_SESSION['userID'];
-	$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname', about_me FROM account where acc_id=$user_id";
+		<?php 
+		require "connect.php";
+		session_start();
 
-	$result = mysqli_query($dbconn, $queryuser);
-	$num_followers = mysqli_num_rows($result);
-	while($row = mysqli_fetch_array($result)){
-		$username = $row["fullname"];
-		$aboutme = $row["about_me"];
-	}
-	?>
+		$acc_id = $_GET['acc_id'];
+		$username = $_SESSION['userName'];
+
+		$queryfollowers = "SELECT count(*) as followerscount FROM account as acc, follow WHERE acc_id_follows = $acc_id && acc_id_follower=acc.acc_id";
+		$queryfollowing = "SELECT count(*) as followingcount FROM account as acc, follow WHERE acc_id_follows = acc_id && acc_id_follower=$acc_id";
+		$queryuser = "SELECT  CONCAT(firstname,' ', lastname) as 'fullname',about_me FROM account where acc_id = $acc_id";
+
+		$result = mysqli_query($dbconn, $queryfollowers);
+		$followerscount = mysqli_fetch_assoc($result);
+		$result = mysqli_query($dbconn, $queryfollowing);
+		$followingcount = mysqli_fetch_assoc($result);
+		$result = mysqli_query($dbconn, $queryuser);
+		$row = mysqli_fetch_assoc($result);
+		$fullname = $row['fullname'];
+		$aboutme = $row['about_me'];
+		?>
+
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search..." name = "search">
@@ -39,42 +48,105 @@
 				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
 				<li><a href=notifications.php><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
+				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
 		
 		<div class="container">
-			<div class="search-filter">	
+			<div class="headerprofile">
+				<img src="images/cover_img/cover_<?=$acc_id?>.png" alt="user-cover" id="coverphoto">
+				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
+				<img src="images/profile_pic_img/acc_id_<?=$acc_id?>.jpg" id="userphoto">
+				<ul id="follows">
+					<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following: <?php echo $followingcount['followingcount']; ?></a></li>
+					<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers: <?php echo $followerscount['followerscount'];?></a></li>
+				</ul>
+				<div id="aboutme">
+					<h1>ABOUT ME</h1>
+					<br>
+					<p><?php echo $aboutme ;?></p>
+				</div>
+			</div>
+			<?php if ($acc_id == $_SESSION['userID']) { ?>
+					<ul class="user-options">
+						<li><button id="Edit">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>
+						<li><a href="#">Feed<span class="glyphicon glyphicon-credit-card"></span></a></li>
+						<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></span></a></li>
+						<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
+						<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
+						<li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li>
+					</ul>
+			<?php } else { ?>
+					<ul class="visitor-options">
+						<li><a href="people_profile.php?acc_id=<?=$value['acc_id']?>">Feed<span class="glyphicon glyphicon-credit-card"></a></li>
+						<li><a href="follow.php?acc_id=<?=$acc_id?>">
+							<?php
+								$query = "SELECT * FROM follow WHERE acc_id_follower = {$_SESSION['userID']} AND acc_id_follows = $acc_id;";	
+								$result = mysqli_query ($dbconn, $query);
+								if (mysqli_num_rows($result) == 0){
+									echo "Follow<span class='glyphicon glyphicon-plus'>";
+								} else{
+									echo "Unfollow<span class='glyphicon glyphicon-minus'>";
+								}
+							?>
+						</span></a></li>
+						<li><a href="#">Ask for a Tour<span class="glyphicon glyphicon-sunglasses"></a></li>
+						<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></a></li>
+						<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></a></li>
+						<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></a></li>
+					</ul>
+			<?php } ?>
+		</div>
+
+		<div class="search-container">
+			<h1 id="follow-head">FOLLOWING</h1>
+			<div class="search-type">	
+				<input type="text" id="Filter" onkeyup="Filter()" placeholder="Filter names...">
 				<ul>
 					<li><a href="#" class="active">FOLLOWING</a></li>				
-					<li><a href="people_profile_list_of_followers.php">FOLLOWERS</a></li>
+					<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">FOLLOWERS</a></li>
 				</ul>
 			</div>
-			<div class="results-container">
-				<?php
-						$queryfollowinglist = "SELECT CONCAT(firstname, ' ', lastname) as following_fullname, acc_id as following_id, about_me as following_aboutme from account, follow where acc_id_follows = acc_id && acc_id_follower= $user_id";	
-						$result = mysqli_query($dbconn, $queryfollowinglist);	
-						$num_following = mysqli_num_rows($result);
-						if($num_following!=0){ 
-							while($row = mysqli_fetch_array($result)){ 							
-								$following_name = $row["following_fullname"];
-								$following_about_me = $row["following_aboutme"];
-								$followingid = $row["following_id"];  ?>
-								<div class="result-people">
-									<a class="userphoto-link" href="people_profile.php?id=<?php echo $following_id;?>">
-										<img src = "images/profile_pic_img/acc_id_<?=$row['following_id']?>.jpg" alt="user image">
-									</a>
-									<div class = "user-details">
-										<a href="#" class = "username-link"><h2 class="username"><?php echo $following_name;?></h2></a>
-										<p><?php echo $following_about_me;?></p>
-									</div>
+			<ul id="Results" class="results-container">
+			<?php
+				$queryfollowinglist = "SELECT * from account, follow where acc_id_follows = acc_id && acc_id_follower= $acc_id";	
+				$result = mysqli_query($dbconn, $queryfollowinglist);	
+				$num_following = mysqli_num_rows($result);
+				if($num_following!=0){ 
+					foreach ($result as $value) {?>
+						<li class="result-people">
+							<a href="people_profile.php?acc_id=<?=$value['acc_id']?>">
+									<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id'] ?>.jpg" alt="user image">
+								<div class = "user-details">
+									<h2 class="username"><?php echo $value['firstname']." ".$value['lastname'] ?></h2>
+									<p><?=$value['about_me'] ?></p>
 								</div>
-						<?php }
-					} elseif($num_following == 0) { ?>
-						<p>No following</p>
-		<?php			}
-					 ?>	
-			</div>
+							</a>
+						</li>
+			<?php 	}
+				} else { ?>
+					<p class="no-results-follow">No following</p>
+			<?php } ?>	
+			</ul>
 		</div>
+
+		<script>
+			function Filter() {
+			    var input, filter, ul, li, a, i;
+			    input = document.getElementById('Filter');
+			    filter = input.value.toUpperCase();
+			    ul = document.getElementById("Results");
+			    li = ul.getElementsByTagName('li');
+
+			    for (i = 0; i < li.length; i++) {
+			        a = li[i].getElementsByTagName("h2")[0];
+			        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+			            li[i].style.display = "";
+			        } else {
+			            li[i].style.display = "none";
+			        }
+			    }
+			}
+		</script>
 	</body>
 </html>
