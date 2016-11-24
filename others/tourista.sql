@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2016 at 03:50 PM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: Nov 24, 2016 at 11:33 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -99,7 +99,10 @@ INSERT INTO `follow` (`acc_id_follower`, `acc_id_follows`) VALUES
 (2, 10),
 (3, 2),
 (3, 1),
-(2, 3);
+(2, 3),
+(2, 8),
+(9, 2),
+(9, 3);
 
 -- --------------------------------------------------------
 
@@ -167,7 +170,20 @@ INSERT INTO `posted` (`post_id`, `content`, `place_id`, `acc_id`, `time_post`, `
 (4, 'asd\r\n', 4, 9, '2016-11-24 13:05:22', 0),
 (5, 'Hello\r\nRosiebelt\r\nKonichiwa Rosie san Ligo na', 3, 9, '2016-11-24 13:40:21', 0),
 (6, 'qweqweqwe', 2, 2, '2016-11-24 08:36:10', 0),
-(7, 'asdghdkjasdjahd', 2, 2, '2016-11-24 09:00:21', 0);
+(7, 'asdghdkjasdjahd', 2, 2, '2016-11-24 09:00:21', 0),
+(8, 'dragonite', 2, 2, '2016-11-24 15:30:39', 0),
+(13, 'Rollin post 1', 2, 3, '2016-11-24 18:08:02', 0),
+(14, 'Rollin post 2', 2, 3, '2016-11-24 18:08:07', 0),
+(15, 'Post 3', 2, 8, '2016-11-24 18:08:22', 0),
+(16, 'Post 4', 2, 8, '2016-11-24 18:08:28', 0),
+(17, 'I love balay cawayan!!!', 2, 2, '2016-11-24 18:47:03', 0),
+(18, 'a\r\n', 2, 2, '2016-11-24 19:20:40', 0),
+(19, '', 2, 2, '2016-11-24 19:20:44', 0),
+(20, 'asdasdasdd', 2, 2, '2016-11-24 20:19:46', 0),
+(22, 'Komsai <3', 2, 2, '2016-11-24 22:01:56', 1),
+(23, 'Hehe. POSTING DONE!', 2, 2, '2016-11-24 22:15:34', 1),
+(24, 'Just posted an inception. ðŸ˜ƒ ðŸ¤¤', 2, 2, '2016-11-24 22:16:50', 0),
+(25, 'Hello', 2, 2, '2016-11-24 22:29:38', 1);
 
 -- --------------------------------------------------------
 
@@ -266,7 +282,7 @@ ALTER TABLE `places`
 -- AUTO_INCREMENT for table `posted`
 --
 ALTER TABLE `posted`
-  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

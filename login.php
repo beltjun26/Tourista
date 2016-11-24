@@ -13,10 +13,13 @@ if(isset($_POST["submit"])){
 	if(mysqli_num_rows($result) == 1){
 
 			$_SESSION["userName"] = $username;
+
+
 			$query = "SELECT acc_id FROM account WHERE username='$username';";
 			$result= mysqli_query($connect, $query);
 			$row = mysqli_fetch_assoc($result);
 			$_SESSION["userID"] = $row['acc_id'];
+
 			header("Location:home_page.php");
 
 	}else{

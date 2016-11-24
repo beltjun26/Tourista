@@ -15,6 +15,7 @@
 		// $pathpp = $row["profile_pic"];
 		// $pathcp = $row["cover_photo"];
 	// }
+	//WHY BOTH?
 		if($_FILES["profile"]["error"] == 4 && $_FILES["profile"]["error"] == 4){
 			$_about_me = addslashes($_POST["about_me_input"]);
 			$queryaboutme = "UPDATE account SET about_me = '$_about_me' WHERE account.acc_id = $user_id";
