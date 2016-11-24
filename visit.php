@@ -19,11 +19,14 @@
 	<body>
 		<?php 
 			session_start();
+      if(!$_SESSION['userID']){
+        header("Location:login.php");
+      }
 			include 'connect.php';
-			$query = "SELECT post_id, p.place_id, if_image, name, location_id from post as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id";
+			$query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id";
 			$result = mysqli_query($dbconn, $query);
 			$row = [];
-			if(mysqli_affected_rows($dbconn)!=0){
+			if(!mysqli_affected_rows($dbconn)==0){
 				while($data = mysqli_fetch_assoc($result)){
 					$row[] = $data;
 				}  

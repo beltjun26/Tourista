@@ -59,9 +59,9 @@
 							<label for="photo"><span class="glyphicon glyphicon-camera"></span> Upload photo<input type="file" name="photo" class="inputphoto" id = "photo" onchange="loadFile(event)" name = "photo"></label>
 							<img src="" alt="" id = "image_preview" >
 
-							<input type="text-field" placeholder="Tag a location" class="tag-location">
+							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag" required>
 							<div class="contain">
-								<span>Tagging:</span><p class="tagged-location">Filler text only</p>
+								<span>Tagging:</span><p id="tagged_place" class="tagged-location">Filler text only</p>
 								<input type="submit" value="POST">
 							</div>
 						</form>
@@ -95,7 +95,7 @@
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
 								<?php if($value['if_image'] == 1): ?>
-									<button class="imagebtn"><img class="myImg" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
+									<button class="imagebtn"><img id="myImg" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
 								<?php endif; ?>
 
 								<div class="contain">
@@ -104,7 +104,7 @@
 								</div>
 							</div>
 							
-							<div class="myModal" class="modal">
+							<div id="myModal" class="modal">
 								<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
 								<img class="modal-content postImg" id="img01">
 								<div id="caption" class="caption"></div>
@@ -145,6 +145,16 @@
 				image_preview.src = URL.createObjectURL(event.target.files[0]);
 			};
 		</script>
-
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjA-G7nAd-602rgQZiEzTq_hBzxM8eM0E&libraries=places&callback=initTag" async defer></script>\
+		<script >
+			function initTag(){
+				var input = document.getElementById('location_tag');
+        		var searchBox = new google.maps.places.SearchBox(input);
+        		searchBox.addListerner('place_changed' function({
+        			// document.getElementById
+        		}))
+			}
+			
+		</script>
 	</body>
 </html>
