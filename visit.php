@@ -78,27 +78,21 @@
         infowindow = new google.maps.InfoWindow();
 
 
-        var map_icon = {
-          url: "images/location_pin.png",
-          scaledSize: new google.maps.Size(40, 50),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(0, 0)
-        }
-        
+
           <?php foreach ($row as $value):?>
-              putplace(map, '<?php echo $value['location_id'] ?>', map_icon,'<?php echo $value['post_id'] ?>', '<?php echo $value['name'] ?>', '<?php echo $value['if_image'] ?>', '<?php echo $value['place_id']?>');
+              putplace(map, '<?php echo $value['location_id'] ?>','<?php echo $value['post_id'] ?>', '<?php echo $value['name'] ?>', '<?php echo $value['if_image'] ?>', '<?php echo $value['place_id']?>');
           <?php endforeach?>
       }
 
 
-      function putplace(map, place_id, micon, img_id,name, if_img, dplace_id){
+      function putplace(map, place_id, img_id,name, if_img, dplace_id){
         geocoder.geocode({'placeId': place_id}, function(results, status) {
               if (status === 'OK') {
                 if (results[0]) {
                   console.log(img_id);
                   var newmarker= new google.maps.Marker({
                   map: map,
-                  icon: micon,
+                  icon: "images/location_pin.png",
                   title: results[0].formatted_address,
                   position: results[0].geometry.location
                 });
