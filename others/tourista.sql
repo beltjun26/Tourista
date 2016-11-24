@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2016 at 02:21 PM
+-- Generation Time: Nov 24, 2016 at 03:50 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -55,7 +55,7 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`acc_id`, `username`, `firstname`, `middlename`, `lastname`, `password`, `email`, `address`, `about_me`) VALUES
 (1, 'clyde', 'Clyde', 'Middlenameclyde', 'Delgado', 'Delgado', 'clydedelgado@gmail.com', 'San Jose, Antique', 'Draw paint create master doctor derma '),
-(2, 'maynard', 'Maynard', 'Fuentes', 'Vargas', 'vargas', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'Best foods, natures spring, C2 tea. Dragon. '),
+(2, 'maynard', 'Maynard', 'Fuentes', 'Vargas', 'vargas', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'asdfghjk12345678'),
 (3, 'rollin', 'Rollin', 'Dragonmaster', 'Pacheco', 'pacheco', 'rollinpachecko@gmail.com', 'Rollin City, Pacheco', 'Rollin in the deep.'),
 (4, 'alonzo', 'Alonzo', 'Middlename', 'Locsin', 'locsin', 'alonzolocsin@gmail.com', 'Alonzo City, Locsin, Iloilo', 'Ace hardware ace hardware.'),
 (5, 'andrew', 'Andrew', 'mname', 'Dagdag', 'dagdag', 'andrewdagdag@gmail.com', 'Andrew City, Dagdag', 'I am Andrew D.'),
@@ -63,9 +63,11 @@ INSERT INTO `account` (`acc_id`, `username`, `firstname`, `middlename`, `lastnam
 (7, 'donn', 'Donn', 'Middle', 'Cruz', 'cruz', 'donn_cruz@gmail.com', 'Address, Negros', 'Ako si Donn.'),
 (8, 'angelica', 'Ma. Angelica', 'Middlename', 'Talabucon', 'talabucon', 'jing@gmail.com', 'Somewhere, Capiz', 'Ako si Jong. '),
 (9, 'rosiebelt', 'Rosiebelt Jun', 'Ayupan', 'Abisado', 'abisado', 'beltjun@gmail.com', 'Lemery, Iloilo', 'About about about rosiebelt.'),
-(10, 'rosjel', 'Rosjel Jolly', 'Pamposa', 'Lambungan', 'lambungan', 'lambunganrosjel@gmail.com', 'Dueñas, Iloilo', 'Ako jolly jolly gid.'),
+(10, 'rosjel', 'Rosjel Jolly', 'Pamposa', 'Lambungan', 'lambungan', 'lambunganrosjel@gmail.com', 'Dueñas, Iloilo', 'Adventure junkie\r\n'),
 (11, 'salvy', 'Salvy Jessa', 'Middle', 'Arnaiz', 'arnaiz', 'arnaiz@gmail.com', 'My Address, Somewhere', 'Hahahaha. '),
-(12, 'shebna', 'Shebna Rose', 'Middle', 'Fabilloren', 'fabilloren', 'shebnarose@gmail.com', 'Somewhere, Negros', 'Ako shebna shebna');
+(12, 'shebna', 'Shebna Rose', 'Middle', 'Fabilloren', 'fabilloren', 'shebnarose@gmail.com', 'Somewhere, Negros', 'Ako shebna shebna'),
+(13, 'popo', 'Dragon', '', 'Hehe', 'popopo123', 'popo@gmail.com', '', ''),
+(14, 'hello', 'Alcohol', '', 'Ethyl', 'aasdassddsa1', 'assd@gmail.com', '', '');
 
 -- --------------------------------------------------------
 
@@ -89,25 +91,30 @@ CREATE TABLE `follow` (
   `acc_id_follows` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `follow`
+--
+
+INSERT INTO `follow` (`acc_id_follower`, `acc_id_follows`) VALUES
+(2, 10),
+(3, 2),
+(3, 1),
+(2, 3);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image`
+-- Table structure for table `notification`
 --
 
-CREATE TABLE `image` (
-  `post_id` int(9) NOT NULL,
-  `name` varchar(30) NOT NULL
+CREATE TABLE `notification` (
+  `notification_id` int(10) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` int(10) NOT NULL,
+  `notif_from` int(10) NOT NULL,
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `image`
---
-
-INSERT INTO `image` (`post_id`, `name`) VALUES
-(7, 'place-5555'),
-(8, 'place-4555'),
-(9, 'place-4412');
 
 -- --------------------------------------------------------
 
@@ -130,40 +137,37 @@ INSERT INTO `places` (`place_id`, `name`, `desciption`, `location_id`) VALUES
 (1, 'Miagao Church', 'This is Miagao Church.', 'ChIJCfn0zHZcrjMRqI11lJHSPGY'),
 (2, 'Balay Cawayan', 'Balay nga cawayan', 'ChIJNyOoLYRbrjMRKgljYP_KdWo'),
 (3, 'Lanz Pizza', 'Masharap na pizza lol', 'ChIJadk10nZcrjMRZ66xPc1HlXg'),
-(4, 'Plaza Miagao', 'Plaza sng Miagao', '2'),
-(5, 'College of Arts and Sciences (CAS)', 'College of really cool people.', '1'),
-(6, 'College of Fisheries and Ocean Studies', 'Isda isda fish fish', '2');
+(4, 'Plaza Miagao', 'Plaza sng Miagao', 'ChIJxW6uf4pbrjMRsZwTF9N9lko'),
+(5, 'College of Arts and Sciences (CAS)', 'College of really cool people.', 'ChIJRfmlQnpcrjMRO3w9ayZy24g'),
+(6, 'College of Fisheries and Ocean Studies', 'Isda isda fish fish', 'ChIJG1tKfY1CrjMRRMPdEBPMm_g');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post`
+-- Table structure for table `posted`
 --
 
-CREATE TABLE `post` (
+CREATE TABLE `posted` (
   `post_id` int(9) NOT NULL,
-  `content` varchar(70) NOT NULL,
-  `acc_id` int(9) NOT NULL,
-  `loc_id` varchar(60) NOT NULL,
-  `time_post` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ;
+  `content` varchar(300) NOT NULL,
+  `place_id` int(11) NOT NULL,
+  `acc_id` int(11) NOT NULL,
+  `time_post` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `if_image` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `post`
+-- Dumping data for table `posted`
 --
 
-INSERT INTO `post` (`post_id`, `content`, `acc_id`, `loc_id`, `time_post`) VALUES
-(1, 'Content of the post here', 2, 'ChIJxW6uf4pbrjMRsZwTF9N9lko', '2016-11-22 22:00:00.000000'),
-(2, 'Content of the post here', 4, '', '2016-11-22 16:00:16.116000'),
-(3, 'content here', 5, '', '2016-11-22 17:11:24.235000'),
-(4, 'Content here', 3, '', '2016-11-22 23:00:00.000202'),
-(7, 'Content here', 9, '', '2016-11-22 16:00:00.163000'),
-(8, 'Content here', 9, '', '2016-11-22 22:28:17.000000'),
-(9, 'Content here', 9, '', '2016-11-22 20:24:24.662639'),
-(11, 'content here', 9, '', '2016-11-22 22:30:09.000999'),
-(12, 'Content of the post here', 2, '', '2016-11-22 22:00:00.000000'),
-(13, 'content here', 5, '', '2016-11-22 17:11:24.235000'),
-(14, 'Content here', 3, '', '2016-11-22 23:00:00.000202');
+INSERT INTO `posted` (`post_id`, `content`, `place_id`, `acc_id`, `time_post`, `if_image`) VALUES
+(1, 'Hello', 1, 9, '2016-11-24 13:03:22', 1),
+(2, 'Text', 3, 9, '2016-11-24 13:39:09', 1),
+(3, 'aaaaaa', 3, 9, '2016-11-24 13:03:31', 1),
+(4, 'asd\r\n', 4, 9, '2016-11-24 13:05:22', 0),
+(5, 'Hello\r\nRosiebelt\r\nKonichiwa Rosie san Ligo na', 3, 9, '2016-11-24 13:40:21', 0),
+(6, 'qweqweqwe', 2, 2, '2016-11-24 08:36:10', 0),
+(7, 'asdghdkjasdjahd', 2, 2, '2016-11-24 09:00:21', 0);
 
 -- --------------------------------------------------------
 
@@ -216,16 +220,22 @@ ALTER TABLE `bookmarks`
   ADD PRIMARY KEY (`place_id`,`acc_id`);
 
 --
--- Indexes for table `image`
+-- Indexes for table `notification`
 --
-ALTER TABLE `image`
-  ADD PRIMARY KEY (`post_id`,`name`);
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`notification_id`);
 
 --
 -- Indexes for table `places`
 --
 ALTER TABLE `places`
   ADD PRIMARY KEY (`place_id`);
+
+--
+-- Indexes for table `posted`
+--
+ALTER TABLE `posted`
+  ADD PRIMARY KEY (`post_id`);
 
 --
 -- Indexes for table `rating`
@@ -241,12 +251,22 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `notification_id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
   MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `posted`
+--
+ALTER TABLE `posted`
+  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
