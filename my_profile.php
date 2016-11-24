@@ -120,8 +120,8 @@
 					<div class="posted post-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
 						<h2 class="user-name"><?=$username?></h2>
-						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
-						<button class="imagebtn"><img src="images/Body_Background.png"></button>
+						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p><!-- 
+						<button class="imagebtn"><img src="images/Body_Background.png"></button> -->
 						<div class="contain">
 							<a href="place.php" class="tagged-location">Miagao Church</a>
 							<button class="like">LIKE</button>

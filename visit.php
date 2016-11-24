@@ -16,13 +16,12 @@
   <?php 
       session_start();
       include 'connect.php';
-      $query = "Select * from images as i, post as p where p.acc_id = {$_SESSION['userID']} and p.post_id = i.post_id";
+      $query = "SELECT * from image as i, post as p, places as l where p.acc_id = {$_SESSION['userID']} and p.post_id = i.post_id and l.place_id = p.place_id";
       $result = mysqli_query($dbconn, $query);
       $row = [];
       if(mysqli_affected_rows($dbconn)!=0){
         while($data = mysqli_fetch_assoc($result)){
             $row[] = $data;
-          
         }  
       }
 
@@ -49,7 +48,7 @@
 	</div>
 <!-- insert nav here -->
 <input type="text" name="pac-input" id="pac-input">
-<div style="height: 600px;width:100%" id="map"></div>
+<div style="height: 600px;width:100%;padding-top:28px" id="map"></div>
 <!-- modify map on css please -->
 </body>
 	<script>
@@ -60,6 +59,20 @@
       var map;
       var infowindow;
       var geocoder;
+      var bounds;
+      var markers = [];
+      $(window).bind("load", function() {
+        bounds = new google.maps.LatLngBounds();
+          console.log(markers.length);  
+          for (var i = 0; i < markers.length; i++) {
+            console.log(markers[i].getPosition());
+           bounds.extend(markers[i].getPosition());
+          }
+
+          map.fitBounds(bounds);
+          map.panToBounds(bounds);
+          console.log(map.getBounds());
+      });
       function initMap() {
         var pyrmont = {lat: 10.7201501, lng: 122.56210629999998};
 
@@ -70,157 +83,41 @@
         geocoder = new google.maps.Geocoder;
         infowindow = new google.maps.InfoWindow();
 
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-        // var map_icon = {
-        //   url: "images/location_pin.png",
-        //   scaledSize: new google.maps.Size(40, 50),
-        //   origin: new google.maps.Point(0, 0),
-        //   anchor: new google.maps.Point(0, 0)
-        // }
-        // var marker1 = new google.maps.Marker({
-        //   map: map,
-        //   position: pyrmont,
-        //   title: "Trial",
-        //   icon: map_icon
-        // })
-        // marker1.info = new google.map.InfoWindow({
-
-        // })
-
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
-
-        var markers = [];
-
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
-            return;
-          }
-
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
-          });
-          markers = [];
-
-          // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            console.log(place.place_id);
-
-            geocoder.geocode({'placeId':place.place_id }, function(results, status) {
-            if (status === 'OK') {
-              if (results[0]) {
-                console.log(results[0]);
-                console.log(results[0].formatted_address);
-                // map.setZoom(11);
-                // map.setCenter(results[0].geometry.location);
-                // var marker = new google.maps.Marker({
-                //   map: map,
-                //   position: results[0].geometry.location
-                // });
-                // infowindow.setContent(results[0].formatted_address);
-                // infowindow.open(map, marker);
-              } else {
-                window.alert('No results found');
-              }
-            }
-          });
-
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
+        var map_icon = {
+          url: "images/location_pin.png",
+          scaledSize: new google.maps.Size(40, 50),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(0, 0)
+        }
+        
+          <?php foreach ($row as $value):?>
+              putplace(map, '<?php echo $value['location_id'] ?>', map_icon);
+          <?php endforeach?>
+          console.log("haaha");
           
-          });
-          map.fitBounds(bounds);
-        });
       }
 
-      function geocodePlaceId(geocoder, map, infowindow) {
-      var placeId = document.getElementById('place-id').value;
-      geocoder.geocode({'placeId': placeId}, function(results, status) {
-        if (status === 'OK') {
-          if (results[0]) {
-            map.setZoom(11);
-            map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: map,
-              position: results[0].geometry.location
-            });
-            infowindow.setContent(results[0].formatted_address);
-            infowindow.open(map, marker);
-          } else {
-            window.alert('No results found');
-          }
-        } else {
-          window.alert('Geocoder failed due to: ' + status);
-        }
-      });
-    }
 
-        // var input = document.getElementById('search_input');
-        // var searchBox = new google.maps.places.SearchBox(input);
-
-        // infowindow = new google.maps.InfoWindow();
-        // var service = new google.maps.places.PlacesService(map);
-        // service.nearbySearch({
-        //   location: pyrmont,
-        //   radius: 500,
-        //   type: ['store']
-        // }, callback);
-      // }
-
-      // function callback(results, status) {
-      //   if (status === google.maps.places.PlacesServiceStatus.OK) {
-      //     for (var i = 0; i < results.length; i++) {
-      //       createMarker(results[i]);
-      //     }
-      //   }
-      // } 
-
-      // function createMarker(place) {
-      //   var placeLoc = place.geometry.location;
-      //   var marker = new google.maps.Marker({
-      //     map: map,
-      //     position: place.geometry.location
-      //   });
-
-      //   google.maps.event.addListener(marker, 'click', function() {
-      //     infowindow.setContent(place.name);
-      //     infowindow.open(map, this);
-      //   });
-      
-       
-      
+      function putplace(map, place_id, micon){
+        geocoder.geocode({'placeId': place_id}, function(results, status) {
+              if (status === 'OK') {
+                if (results[0]) {
+                  markers.push(new google.maps.Marker({
+                  map: map,
+                  icon: micon,
+                  title: results[0].formatted_address,
+                  position: results[0].geometry.location
+                }));
+                  console.log(markers.length);
+                } else {
+                  window.alert('No results found');
+                }
+              } else {
+                window.alert('Geocoder failed due to: ' + status);
+              }
+            });    
+      }
     </script>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjA-G7nAd-602rgQZiEzTq_hBzxM8eM0E&libraries=places&callback=initMap" async defer></script>
 </html>
