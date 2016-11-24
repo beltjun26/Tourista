@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+*<!DOCTYPE html>
 <html>
 <head>
 	<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
@@ -11,12 +11,13 @@
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 	<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
+  
 </head>
 <body>
   <?php 
       session_start();
       include 'connect.php';
-      $query = "SELECT * from image as i, post as p, places as l where p.acc_id = {$_SESSION['userID']} and p.post_id = i.post_id and l.place_id = p.place_id";
+      $query = "SELECT post_id, p.place_id, if_image, name, location_id from  posted as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id";
       $result = mysqli_query($dbconn, $query);
       $row = [];
       if(mysqli_affected_rows($dbconn)!=0){
@@ -24,19 +25,12 @@
             $row[] = $data;
         }  
       }
-
-      if (isset($_GET["search"])) {
-        $searchVal = $_GET["search"];
-        
-        $query = "SELECT * FROM places WHERE places.name like '%$searchVal%'";    
-        $result = mysqli_query ($dbconn, $query);
-        $numberR = mysqli_num_rows($result);
-      }
+      
    ?>
 	<div id = "navBar">
-		<form action="search_results_places.php" method="get">
-        <input type="text" placeholder="Search..." name = "search">
-      </form>
+		<form action="" method="">
+			<input id="search_input" type="text" placeholder="Search..." name = "search">
+		</form>
 		<ul id = "navList">
 			<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
 			<li><a href="visit.php" class="active"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
@@ -47,8 +41,7 @@
 		</ul>
 	</div>
 <!-- insert nav here -->
-<input type="text" name="pac-input" id="pac-input">
-<div style="height: 600px;width:100%;padding-top:28px" id="map"></div>
+<div id="map"></div>
 <!-- modify map on css please -->
 </body>
 	<script>
@@ -60,6 +53,7 @@
       var infowindow;
       var geocoder;
       var bounds;
+      var infor_array = [];
       var markers = [];
       $(window).bind("load", function() {
         bounds = new google.maps.LatLngBounds();
@@ -92,24 +86,39 @@
         }
         
           <?php foreach ($row as $value):?>
-              putplace(map, '<?php echo $value['location_id'] ?>', map_icon);
+              putplace(map, '<?php echo $value['location_id'] ?>', map_icon,'<?php echo $value['post_id'] ?>', '<?php echo $value['name'] ?>', '<?php echo $value['if_image'] ?>', '<?php echo $value['place_id']?>');
           <?php endforeach?>
-          console.log("haaha");
-          
       }
 
 
-      function putplace(map, place_id, micon){
+      function putplace(map, place_id, micon, img_id,name, if_img, dplace_id){
         geocoder.geocode({'placeId': place_id}, function(results, status) {
               if (status === 'OK') {
                 if (results[0]) {
-                  markers.push(new google.maps.Marker({
+                  console.log(img_id);
+                  var newmarker= new google.maps.Marker({
                   map: map,
                   icon: micon,
                   title: results[0].formatted_address,
                   position: results[0].geometry.location
-                }));
-                  console.log(markers.length);
+                });
+                if(if_img==1){
+                  var infowindow = new google.maps.InfoWindow({
+                  content:'<IMG BORDER="0" ALIGN="Left" style="width:100px;height:auto" SRC="images/post_img/'+img_id+'.jpg"><br><a href="place.php?place_id=1">Visit page<a/><br><p>'+name+'<p/>'
+                  });  
+                }else{
+                    var infowindow = new google.maps.InfoWindow({
+                    content:'<a href="place.php?place_id='+dplace_id+'">Visit page<a/><br><p>'+name+'<p/>'
+                    });
+                }
+                
+                newmarker.addListener('click', function(){
+                  infowindow.open(map, newmarker);
+                });
+                infor_array.push(infowindow);
+                markers.push(newmarker);
+
+
                 } else {
                   window.alert('No results found');
                 }
@@ -118,6 +127,13 @@
               }
             });    
       }
+
     </script>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjA-G7nAd-602rgQZiEzTq_hBzxM8eM0E&libraries=places&callback=initMap" async defer></script>
+     <script>
+        x = screen.height;
+        x = x-130;
+        document.getElementById('map').setAttribute("style","height: "+x+"px;width:100%;padding-top:50px");
+        console.log("lol");
+  </script>
 </html>
