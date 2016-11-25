@@ -42,7 +42,7 @@ if( isset($_POST['submit']) ) {
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Toursita</title>
+		<title>TourisTA!</title>
 		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,25 +53,49 @@ if( isset($_POST['submit']) ) {
 		<link rel="stylesheet" type="text/css" href="css/style_registration.css">
 	</head>
 	<body>
-		<div class="container">
+		<div class="container" id="container">
+			<h1> CREATE ACCOUNT </h1>
 			<form method = "post">
-						<h1> CREATE ACCOUNT </h1>
-				<!-- <label for="first_name">FIRST NAME</label> -->
+
 				  		<input type="text" required id="first_name" name="firstname"  value="<?php if(isset($_POST['submit'])) echo ($_POST['firstname']); ?>" placeholder="First Name" autofocus>
-				<!-- <label for="last_name">LAST NAME</label> -->
+				  		<span class="error"><!-- Echo errors here --></span>
+
+
 				  		<input type="text" required id="last_name" name="lastname"  value="<?php if(isset($_POST['submit'])) echo ($_POST['lastname']); ?>" placeholder="Last Name">
-				<!-- <label for="user_name">USERNAME</label> -->
+				  		<span class="error"><!-- Echo errors here --></span>
+
+
+						<!-- Add minimum length 8 and at least 1 integer. -->
 				  		<input type="text" required id="user_name" name="username"  value="<?php if(isset($_POST['submit']) && !$userNameError) echo ($_POST['username']); ?>" placeholder="Username">
-				<!-- <label for="password">PASSWORD</label> -->
+				  		<span class="error"><!-- Echo errors here --></span>
+
+
 				  		<input pattern = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" type="password" required id="password" name="password" placeholder="Password">
-				<!-- <label for="email">E-MAIL</label> -->
+				  		<span class="error"><!-- Echo errors here --></span>
+
+
+				  		<!-- Need to retype password for verification. -->
+				  		<input type="password" name="retype" placeholder="Retype Password">
+				  		<span class="error"><!-- Echo errors here --></span>
+
+
 				 		<input type="email"  required name="email"  value="<?php if(isset($_POST['submit']) && !$emailError) echo ($_POST['email']); ?>" placeholder="Email (example123@sample.com)">
-				<!-- <label for="etc"> ETC.(IMPORTANT DETAILS) </label> -->
-				 		<!-- <textarea name="etc" form="regform">Enter text here...</textarea> -->
+				  		<span class="error"><!-- Echo errors here --></span>
+
+
 						<input type="submit" name="submit" value="CREATE">
 						<p>YOU HAVE AN ACCOUNT?</p>
 						<a class="pagelink" href="login.php">SIGN IN</a>
 			</form>
 		</div>
+		<script>
+			h = $('#navBar').outerHeight(true);
+			console.log(h);
+			x = window.innerHeight;
+			console.log(x);
+			x = x - h;
+			console.log(x);
+			document.getElementById('container').setAttribute("style","min-height: "+x+"px;width:100%;margin-top:"+h+"px;");
+		</script>
 	</body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Toursita</title>
+		<title>TourisTA!</title>
 		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,37 +41,34 @@
 				<li><a href="my_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
 			</ul>
 		</div>
-		<!-- <main>
-			<div class="leftpage"> -->
-				<div class="container header" id="head" style="background-image: url(images/places_img/place_id_<?=$_GET['place_id']?>.png);">
-					<h1><?=$placename?></h1>
-					<ul class="address">
-						<li>Town,</li>
-						<li>Province,</li>
-						<li>Barangay</li>
-					</ul>
-					<ul class="options">
-						<li><a href="#desc">About</a></li>
-						<li><a href="#rev">Reviews</a></li>
-						<li><a href="#post">Posts</a></li>
-						<li><a href="gallery.php">Gallery</a></li>
-					</ul>
-				</div>
-				<div class="container" id="desc">
-					<h2>About the place</h2>
-					<p><?=$description?></p>
-				</div>
-				<div class="container" id="rev">
-					<h2>Reviews</h2>
-				</div>
-			<!-- </div>
-			<div class="rightpage"> -->
-				<div class="container" id="post">
-					<h2>Posts go here</h2>
-					<p>Temporary</p>
-				</div>
-			<!-- </div>
-		</main> -->
+		<div class="container header" id="head" style="">
+			<h1><?=$placename?></h1>
+			<ul class="address">
+				<li>Town,</li>
+				<li>Province,</li>
+				<li>Barangay</li>
+			</ul>
+			<ul class="options">
+				<li><a href="#desc">About</a></li>
+				<li><a href="#rev">Reviews</a></li>
+				<li><a href="#post">Posts</a></li>
+			</ul>
+			<div class="gallery">
+				<span class="glyphicon glyphicon-camera"></span>
+				<a href="gallery.php">View Gallery</a>
+			</div>
+		</div>
+		<div class="container" id="desc">
+			<h2>About the place</h2>
+			<p><?=$description?></p>
+		</div>
+		<div class="container" id="rev">
+			<h2>Reviews</h2>
+		</div>
+		<div class="container" id="post">
+			<h2>Posts go here</h2>
+			<p>Temporary</p>
+		</div>
 		<a href="#head" id="backtop" data-toggle="tooltip" data-placement="left" title="Back to top?" trigger="hover">^</a>
 	</body>
 
@@ -96,5 +93,15 @@
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
+	</script>
+
+	<script>
+		h = $('#navBar').outerHeight(true);
+		console.log(h);
+		x = window.innerHeight;
+		console.log(x);
+		x = x - h;
+		console.log(x);
+		document.getElementById('head').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;background-image: url(images/places_img/place_id_<?=$_GET['place_id']?>.png);");
 	</script>
 </html>

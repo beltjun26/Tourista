@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title>Toursita</title>
+		<title>TourisTA!</title>
 		<meta name="author" content="Rosiebelt Jun Abisado and Andrew">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">

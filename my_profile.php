@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Toursita</title>
+		<title>TourisTA!</title>
 		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="css/edit_profile_style.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 		<link rel="stylesheet" type="text/css" href="css/profile_options.css">
+		<link rel="stylesheet" type="text/css" href="css/input_file.css">
 	</head>
 	<body>
 
@@ -38,6 +39,13 @@
 	$row = mysqli_fetch_assoc($result);
 	$fullname = $row['fullname'];
 	$aboutme = $row['about_me'];
+
+	if(isset($_POST['change_profile'])){
+		$about_me_val = $_POST['about_me_input'];
+		$queryaboutme = "UPDATE account SET about_me = '$about_me_val' WHERE account.acc_id = $acc_id";
+		$resultchangeaboutme = mysqli_query($dbconn, $queryaboutme);
+		header("Location: my_profile.php");
+	}
 	?>
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
@@ -76,14 +84,15 @@
 				</div>
 			</div>
 			<ul class="user-options">
-				<li><button id="Editallbtn">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>
 				<li><a href="#" class="active">Feed<span class="glyphicon glyphicon-credit-card"></span></a></li>
 				<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></span></a></li>
 				<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
 				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
-				<li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li>
+				<!-- <li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li> -->
+				<li><a href="Change_account.php">Change Account<span class="glyphicon glyphicon-cog"></span></a></li>
+				<!-- <li><button id="Editallbtn">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>	 -->
 			</ul>
-			<div class="row">
+			<!-- <div class="row">
 				<div id="EditAll" class="modal edit_profile">
 				  	<div class="modal-content">
 				    	<div class="modal-header">
@@ -103,7 +112,7 @@
 					      	</form>
 					    </div>
 				  	</div>
-				</div>
+				</div> -->
 				<div id="EditProfilePicture" class="modal edit_profile">
 				  	<div class="modal-content">
 				    	<div class="modal-header">
@@ -111,10 +120,11 @@
 				      		<span class="close">×</span>
 				    	</div>
 					    <div class="modal-body">
-				      		<img id="output_profile2" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
+				      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-						      	<label for="profile" class="upload">Choose Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
-						      	<input type="submit" name="change_profile">
+						      	<input type="file" name="profile" id="profile" class="inputfile" onchange="loadFile(event)">
+						      	<label for="profile">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
+						      	<input type="submit" name="change_profilepic" value="CHANGE">
 					      	</form>
 					    </div>
 				  	</div>
@@ -126,10 +136,11 @@
 				      		<span class="close">×</span>
 				    	</div>
 					    <div class="modal-body">
-				      		<img id="output_cover2" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
+				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-					      		<label for="cover" class="upload">Choose Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
-					      		<input type="submit" name="change_profile">
+					      		<input type="file" name="cover" id="cover" class="inputfile" onchange="loadFilecover(event)">
+						      	<label for="cover">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
+					      		<input type="submit" name="change_profilecover" value="CHANGE">
 					      	</form>
 					    </div>
 				  	</div>
@@ -141,9 +152,9 @@
 				      		<span class="close">×</span>
 				    	</div>
 					    <div class="modal-body">
-					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
-						      	<input type="submit" name="change_profile">
+							<form method="post" action="<?php $_PHP_SELF; ?>">
+					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea>
+						      	<input type="submit" name="change_profile" value="CHANGE">
 					      	</form>
 					    </div>
 				  	</div>
@@ -156,7 +167,8 @@
 						<p class="user-name"><?= $username ?></p>
 						<form action="output.php" method="get">
 							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..."></textarea>
-							<label for="photo"><span class="glyphicon glyphicon-camera"> </span> Upload photo<input type="file" name="photo" class="inputphoto"></label>
+							<input type="file" name="file" id="file" class="inputfile" />
+							<label for="file">Upload photo<span class="glyphicon glyphicon-download-alt"></span></label>
 							<!-- <img src="" alt="Preview Upload" class="preview-image"> -->
 							<input type="text-field" placeholder="Tag a location" class="tag-location">
 							<div class="contain">
@@ -165,17 +177,52 @@
 							</div>
 						</form>
 					</div>
-					<div class="posted post-container">
-						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
-						<h2 class="user-name"><?=$username?></h2>
-						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
-						<button class="imagebtn"><img src="images/Body_Background.png"></button>
-						<div class="contain">
-							<a href="place.php" class="tagged-location">Miagao Church</a>
-							<button class="like">LIKE</button>
-						</div>
+
+
+
+
+
+					<div class="posted-container">
+					<?php 
+						require "connect.php";
+						$acc_id = $_SESSION['userID'];
+						$query = "SELECT * 
+								  FROM posted 
+								  NATURAL JOIN account
+								  NATURAL JOIN places
+								  WHERE acc_id = $acc_id 
+								  ORDER BY time_post 
+								  DESC;";
+
+						$result = mysqli_query ($dbconn, $query);
+						$num_rows = mysqli_num_rows($result);
+
+						foreach ($result as $value):?>
+
+						<div class="posted post-container">
+								<a href="people_profile.php">
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile">
+									<h2 class="user-name"><?=$value['username'];?></h2>
+								</a>
+								<p class = "posted-text"><?=$value['content'];?></p>
+								
+								<?php if($value['if_image'] == 1): ?>
+									<button class="imagebtn"><img id="myImg" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
+								<?php endif; ?>
+
+								<div class="contain">
+									<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
+									<button class="like">LIKE</button>
+								</div>
+							</div>
+							
+							<div id="myModal" class="modal">
+								<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+								<img class="modal-content postImg" id="img01">
+								<div id="caption" class="caption"></div>
+							</div>
+						<?php endforeach; ?>
 					</div>
-				</div>
 				<div class="col-sm-3">
 					<!-- <h2 class="visitor-options">VISITOR OPTIONS</h2>
 					<ul class="visitor-options">
@@ -186,55 +233,55 @@
 			</div>
 		</div>
 		<script>
-			var Editall = document.getElementById("EditAll");
+			/*var Editall = document.getElementById("EditAll");*/
 			var Editpic = document.getElementById("EditProfilePicture");
 			var Editcov = document.getElementById("EditCoverPhoto");
 			var Editdes = document.getElementById("EditDescription");
-			var btn1 = document.getElementById("Editallbtn");
-			var btn2 = document.getElementById("Editpicbtn");
-			var btn3 = document.getElementById("Editcovbtn");
-			var btn4 = document.getElementById("Editdesbtn");
+			/*var btn1 = document.getElementById("Editallbtn");*/
+			var btn1 = document.getElementById("Editpicbtn");
+			var btn2 = document.getElementById("Editcovbtn");
+			var btn3 = document.getElementById("Editdesbtn");
 			var close1 = document.getElementsByClassName("close")[0];
 			var close2 = document.getElementsByClassName("close")[1];
 			var close3 = document.getElementsByClassName("close")[2];
-			var close4 = document.getElementsByClassName("close")[3];
+			/*var close4 = document.getElementsByClassName("close")[3];*/
+
+			/*btn1.onclick = function() {
+			    Editall.style.display = "flex";
+			}*/
 
 			btn1.onclick = function() {
-			    Editall.style.display = "flex";
-			}
-
-			btn2.onclick = function() {
 			    Editpic.style.display = "flex";
 			}
 
-			btn3.onclick = function() {
+			btn2.onclick = function() {
 			    Editcov.style.display = "flex";
 			}
 
-			btn4.onclick = function() {
+			btn3.onclick = function() {
 			    Editdes.style.display = "flex";
 			}
 
-			close1.onclick = function() {
+			/*close1.onclick = function() {
 			    Editall.style.display = "none";
-			}
+			}*/
 
-			close2.onclick = function() {
+			close1.onclick = function() {
 			    Editpic.style.display = "none";
 			}
 
-			close3.onclick = function() {
+			close2.onclick = function() {
 			    Editcov.style.display = "none";
 			}
 
-			close4.onclick = function() {
+			close3.onclick = function() {
 			    Editdes.style.display = "none";
 			}
 
 			window.onclick = function(event) {
-			    if (event.target == Editall) {
+			    /*if (event.target == Editall) {
 			        Editall.style.display = "none";
-			    } else if (event.target == Editpic){
+			    } else */if (event.target == Editpic){
 			    	Editpic.style.display = "none";
 			    } else if (event.target == Editcov){
 			    	Editcov.style.display = "none";

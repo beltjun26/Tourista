@@ -1,0 +1,44 @@
+@font-face{
+    font-family: Gotham;
+    src: url("../used_fonts/GOTHAM-LIGHT.TTF") format("truetype");
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1em;
+    font-family: Gotham;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: white;
+    background-color: #00BCD4;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 5px 15px;
+    margin: 5px auto 5px auto;
+    width: 100%;
+    text-align: center;
+    transition: 0.4s;
+}
+
+.inputfile:focus + label,
+.inputfile:active + label{
+    outline: none;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #00E5FF;
+}
+
+label > .glyphicon .glyphicon-download-alt{
+    transform: rotate(90deg);
+}
