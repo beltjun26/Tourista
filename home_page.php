@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Tourista</title>
+		<title>TourisTA!</title>
 		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta name="Maynard Vargas and Rosjel Jolly Lambungan" content="Homepage">
 		<meta name="James Anthony Yatar" content="Navigation Bar">
