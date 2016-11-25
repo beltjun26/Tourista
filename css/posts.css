@@ -103,7 +103,7 @@ body{
 	text-align: center;
 }
 
-.posting > form > .contain > input[type=submit],
+#posting,
 .like{
 	background-color: #00BCD4;
 	color: white;
@@ -119,7 +119,7 @@ body{
 	transition: 0.3s;
 }
 
-.posting > form > .contain > input[type=submit]:hover,
+#posting:hover,
 .like:hover{
 	 background-color: #00E5FF;
 }
