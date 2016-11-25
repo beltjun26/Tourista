@@ -72,6 +72,11 @@
 							</div>
 						</form>
 					</div>
+					<div id="unavailable" class="modal">
+						<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+						<img class="modal-content postImg" id="img01">
+						<div id="caption" class="caption"></div>
+					</div>		
 					<div class="posted-container">
 					<!-- START OF POSTED -->
 					<?php 
