@@ -16,6 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="css/edit_profile_style.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 		<link rel="stylesheet" type="text/css" href="css/profile_options.css">
+		<link rel="stylesheet" type="text/css" href="css/input_file.css">
 	</head>
 	<body>
 
@@ -120,8 +121,9 @@
 					    <div class="modal-body">
 				      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-						      	<label for="profile" class="upload">Choose Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
-						      	<input type="submit" name="change_profilepic">
+						      	<input type="file" name="profile" id="profile" class="inputfile" onchange="loadFilecover(event)">
+						      	<label for="profile">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
+						      	<input type="submit" name="change_profilepic" value="CHANGE">
 					      	</form>
 					    </div>
 				  	</div>
@@ -135,8 +137,9 @@
 					    <div class="modal-body">
 				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-					      		<label for="cover" class="upload">Choose Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
-					      		<input type="submit" name="change_profilecover">
+					      		<input type="file" name="profile" id="cover" class="inputfile" onchange="loadFilecover(event)">
+						      	<label for="cover">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
+					      		<input type="submit" name="change_profilecover" value="CHANGE">
 					      	</form>
 					    </div>
 				  	</div>
@@ -149,8 +152,8 @@
 				    	</div>
 					    <div class="modal-body">
 							<form method="post" action="<?php $_PHP_SELF; ?>">
-					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
-						      	<input type="submit" name="change_profile">
+					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea>
+						      	<input type="submit" name="change_profile" value="CHANGE">
 					      	</form>
 					    </div>
 				  	</div>
@@ -163,7 +166,8 @@
 						<p class="user-name"><?= $username ?></p>
 						<form action="output.php" method="get">
 							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..."></textarea>
-							<label for="photo"><span class="glyphicon glyphicon-camera"> </span> Upload photo<input type="file" name="photo" class="inputphoto"></label>
+							<input type="file" name="file" id="file" class="inputfile" />
+							<label for="file">Upload photo<span class="glyphicon glyphicon-download-alt"></span></label>
 							<!-- <img src="" alt="Preview Upload" class="preview-image"> -->
 							<input type="text-field" placeholder="Tag a location" class="tag-location">
 							<div class="contain">

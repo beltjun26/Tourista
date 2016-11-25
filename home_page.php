@@ -24,6 +24,7 @@
 		<link rel="stylesheet" type="text/css" href="css/Home_Page_style.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
+		<link rel="stylesheet" type="text/css" href="css/input_file.css">
 	</head>
 	<body>
 		<div id = "navBar">
@@ -56,8 +57,13 @@
 						<p class="user-name"><?=$username?></p>
 						<form action="post.php" method="post" enctype="multipart/form-data">
 							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..." name = "post"></textarea>
-							<label for="photo"><span class="glyphicon glyphicon-camera"></span> Upload photo<input type="file" name="photo" class="inputphoto" id = "photo" onchange="loadFile(event)" name = "photo"></label>
-							<img src="" alt="" id = "image_preview" >
+							<input type="file" name="file" id="file" class="inputfile"/>
+							<label for="file">Upload photo<span class="glyphicon glyphicon-download-alt"></span></label>
+							<!-- <div id="uploadphoto">
+								<span class="glyphicon glyphicon-camera"></span>
+								<label for="photo" id="photo"><input type="file" name="photo" class="inputphoto" onchange="loadFile(event)"></label>
+							</div> -->
+							<img src="" alt="" id="image_preview" >
 
 							<input type="text-field" placeholder="Tag a location" class="tag-location">
 							<div class="contain">
@@ -66,8 +72,8 @@
 							</div>
 						</form>
 					</div>
-
-<!-- 				START OF POSTED -->
+					<div class="posted-container">
+					<!-- START OF POSTED -->
 					<?php 
 						require "connect.php";
 						$acc_id = $_SESSION['userID'];
@@ -88,7 +94,7 @@
 
 						foreach ($result as $value):?>
 							<div class="posted post-container">
-								<a href="people_profile.php">
+								<a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>">
 									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile">
 									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>
@@ -111,8 +117,8 @@
 							</div>
 						<?php endforeach; ?>
 						
-<!-- 				END OF POSTED -->
-
+						<!-- END OF POSTED -->
+					</div>
 				</div>
 			</div>
 		</div>
