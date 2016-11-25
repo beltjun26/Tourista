@@ -52,6 +52,17 @@
 					</div>
 				</div>
 				<div class="col-sm-6">
+					<div id="addplace" class="modal">
+						<div id="unavailable" class="modal-content">
+							<div class="modal-header">
+							    <span class="close">×</span>
+							    <h2>Place is unvailable.</h2>
+							 </div>
+							<span>This place is unavailable. Do you want to add it?</span>
+							<div id="map">Place map here.</div>
+							<input type="submit" name="place" value="Register">
+						</div>
+					</div>
 					<div class="posting post-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
 						<p class="user-name"><?=$username?></p>
@@ -64,20 +75,19 @@
 								<label for="photo" id="photo"><input type="file" name="photo" class="inputphoto" onchange="loadFile(event)"></label>
 							</div> -->
 							<img src="" alt="" id="image_preview" >
-
 							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag" required>
+							<div class="warning">
+								<span>Place not available.</span>
+								<button id="addform">add</button>
+							</div>
 							<div class="contain">
 								<span>Tagging:</span><p id="tagged_place" class="tagged-location">Filler text only</p>
 								<input id="posting" type="button" value="POST">
 							</div>
 						</form>
+					</div>	
 					</div>
-					
-					<div id="unavailable" class="modal">
-						<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-						<img class="modal-content postImg" id="img01">
-						<div id="caption" class="caption"></div>
-					</div>		
+					<!-- Error message -->
 
 					<div class="posted-container">
 					<!-- START OF POSTED -->
@@ -147,8 +157,24 @@
 				  modal.style.display = "none";
 				}
 			}
-			
-			
+		</script>
+
+		<script>
+			var add = document.getElementById('addplace');
+			var addform = document.getElementById('addform');
+			var closeadd = document.getElementsByClassName("close")[0];
+
+			addform.onclick = function() {
+			    add.style.display = "block";
+			}
+			closeadd.onclick = function() {
+			    add.style.display = "none";
+			}
+			window.onclick = function(event) {
+			    if (event.target == add) {
+			        add.style.display = "none";
+			    }
+			}
 		</script>
 		
 		<script>
