@@ -181,7 +181,7 @@
 
 
 
-
+					<div class="posted-container">
 					<?php 
 						require "connect.php";
 						$acc_id = $_SESSION['userID'];

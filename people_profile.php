@@ -104,7 +104,7 @@
 			<div class="row">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6">
-					
+					<div class="posted-container">
 <!-- 				START OF POSTED -->
 					<?php 
 						require "connect.php";
@@ -143,8 +143,8 @@
 								<img class="modal-content postImg" id="img01">
 								<div id="caption" class="caption"></div>
 							</div>
-						<?php endforeach; ?>
-						
+					<?php endforeach; ?>
+					</div>
 <!-- 				END OF POSTED -->
 				</div>
 				<div class="col-sm-3">
