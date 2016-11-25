@@ -44,6 +44,7 @@
 		$about_me_val = $_POST['about_me_input'];
 		$queryaboutme = "UPDATE account SET about_me = '$about_me_val' WHERE account.acc_id = $acc_id";
 		$resultchangeaboutme = mysqli_query($dbconn, $queryaboutme);
+		header("Location: my_profile.php");
 	}
 	?>
 		<div id = "navBar">
@@ -121,7 +122,7 @@
 					    <div class="modal-body">
 				      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-						      	<input type="file" name="profile" id="profile" class="inputfile" onchange="loadFilecover(event)">
+						      	<input type="file" name="profile" id="profile" class="inputfile" onchange="loadFile(event)">
 						      	<label for="profile">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
 						      	<input type="submit" name="change_profilepic" value="CHANGE">
 					      	</form>
@@ -137,7 +138,7 @@
 					    <div class="modal-body">
 				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-					      		<input type="file" name="profile" id="cover" class="inputfile" onchange="loadFilecover(event)">
+					      		<input type="file" name="cover" id="cover" class="inputfile" onchange="loadFilecover(event)">
 						      	<label for="cover">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
 					      		<input type="submit" name="change_profilecover" value="CHANGE">
 					      	</form>
