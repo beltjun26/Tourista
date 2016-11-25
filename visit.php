@@ -59,6 +59,7 @@
       var bounds;
       var infor_array = [];
       var markers = [];
+
       $(window).bind("load", function() {
         bounds = new google.maps.LatLngBounds();
           console.log(markers.length);  
@@ -72,11 +73,11 @@
           console.log(map.getBounds());
       });
       function initMap() {
-        var pyrmont = {lat: 10.7201501, lng: 122.56210629999998};
+        var pyrmont = {lat: 12.879721, lng: 121.77401699999996};
 
         map = new google.maps.Map(document.getElementById('map'), {
           center: pyrmont,
-          zoom: 15
+          zoom: 5
         });
         geocoder = new google.maps.Geocoder;
         infowindow = new google.maps.InfoWindow();
