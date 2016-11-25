@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Toursita</title>
+		<title>TourisTA!</title>
 		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta name="Maynard Vargas and Rosjel Jolly Lambungan" content="Homepage">
 		<meta name="James Anthony Yatar" content="Navigation Bar">
@@ -95,7 +95,7 @@
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
 								<?php if($value['if_image'] == 1): ?>
-									<button class="imagebtn"><img class="myImg" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
+									<button class="imagebtn"><img id="myImg" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
 								<?php endif; ?>
 
 								<div class="contain">
@@ -104,17 +104,13 @@
 								</div>
 							</div>
 							
-							<div class="myModal" class="modal">
+							<div id="myModal" class="modal">
 								<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
 								<img class="modal-content postImg" id="img01">
 								<div id="caption" class="caption"></div>
 							</div>
 						<?php endforeach; ?>
-
-
-
-
-					
+						
 <!-- 				END OF POSTED -->
 
 				</div>
