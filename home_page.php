@@ -55,7 +55,7 @@
 					<div class="posting post-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
 						<p class="user-name"><?=$username?></p>
-						<form action="post.php" method="post" enctype="multipart/form-data">
+						<form id="formsubmit" enctype="multipart/form-data">
 							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..." name = "post"></textarea>
 							<input type="file" name="file" id="file" class="inputfile"/>
 							<label for="file">Upload photo<span class="glyphicon glyphicon-download-alt"></span></label>
@@ -65,18 +65,20 @@
 							</div> -->
 							<img src="" alt="" id="image_preview" >
 
-							<input type="text-field" placeholder="Tag a location" class="tag-location">
+							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag" required>
 							<div class="contain">
-								<span>Tagging:</span><p class="tagged-location">Filler text only</p>
-								<input type="submit" value="POST">
+								<span>Tagging:</span><p id="tagged_place" class="tagged-location">Filler text only</p>
+								<input id="posting" type="button" value="POST">
 							</div>
 						</form>
 					</div>
+					
 					<div id="unavailable" class="modal">
 						<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
 						<img class="modal-content postImg" id="img01">
 						<div id="caption" class="caption"></div>
 					</div>		
+
 					<div class="posted-container">
 					<!-- START OF POSTED -->
 					<?php 
@@ -96,7 +98,6 @@
 
 						$result = mysqli_query ($dbconn, $query);
 						$num_rows = mysqli_num_rows($result);
-
 						foreach ($result as $value):?>
 							<div class="posted post-container">
 								<a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>">
@@ -106,7 +107,8 @@
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
 								<?php if($value['if_image'] == 1): ?>
-									<button class="imagebtn"><img id="myImg" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
+									<button class="imagebtn"><img id="myImg<?=$value['post_id']?>" onclick="showModal(<?=$value['post_id']?>)" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
+
 								<?php endif; ?>
 
 								<div class="contain">
@@ -115,10 +117,11 @@
 								</div>
 							</div>
 							
-							<div id="myModal" class="modal">
-								<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-								<img class="modal-content postImg" id="img01">
-								<div id="caption" class="caption"></div>
+							<div id="myModal<?=$value['post_id']?>" class="modal">
+								<span class="close" onclick="document.getElementById('myModal<?=$value['post_id']?>').style.display='none'">&times;</span>
+								<img class="modal-content postImg"  id="img<?=$value['post_id']?>">
+								<div id="caption<?=$value['post_id']?>" class="caption"></div>
+
 							</div>
 						<?php endforeach; ?>
 						
@@ -129,21 +132,23 @@
 		</div>
 
 		<script>
-			var modal = document.getElementById('myModal');
-			var img = document.getElementById('myImg');
-			var modalImg = document.getElementById("img01");
-			var captionText = document.getElementById("caption");
-			img.onclick = function(){
+			function showModal(post_id){
+				var modal = document.getElementById('myModal'+post_id);
+				var img = document.getElementById('myImg'+post_id);
+				var modalImg = document.getElementById("img"+post_id);
+				var captionText = document.getElementById("caption"+post_id);
 			    modal.style.display = "block";
-			    modalImg.src = this.src;
+			    modalImg.src = "images/post_img/"+post_id+".jpg";
 			    captionText.innerHTML = this.alt;
-			}
 
-			var span = document.getElementsByClassName("close")[0];
+				var span = document.getElementsByClassName("close")[0];
 
-			span.onclick = function() { 
-			  modal.style.display = "none";
+				span.onclick = function() { 
+				  modal.style.display = "none";
+				}
 			}
+			
+			
 		</script>
 		
 		<script>
@@ -152,6 +157,44 @@
 				image_preview.src = URL.createObjectURL(event.target.files[0]);
 			};
 		</script>
-
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjA-G7nAd-602rgQZiEzTq_hBzxM8eM0E&libraries=places&callback=initTag" async defer></script>\
+		<script >
+			var searchBox;
+			function initTag(){
+				var input = document.getElementById('location_tag');
+        		searchBox = new google.maps.places.SearchBox(input);
+        		searchBox.addListener('places_changed', function() {
+        			document.getElementById('tagged_place').innerHTML = document.getElementById('location_tag').value;
+        		});
+			}
+			$(function(){
+				$("#posting").click(function(){
+					var places = searchBox.getPlaces();
+					places.forEach(function(place){
+						placeId = place.place_id;
+					});
+					var formData = new FormData($("#formsubmit")[0]);
+					console.log(placeId);
+					console.log(formData);
+					formData.append('place', placeId);
+					$.ajax({
+						url: "post.php",
+						type: "post",
+						data: formData,
+						success:function(data){
+							
+							// $("div.posted").hide()
+						},
+						contentType: false,
+        				processData: false
+					});
+				
+					
+					
+					
+				});
+			});
+			
+		</script>
 	</body>
 </html>

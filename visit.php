@@ -19,11 +19,14 @@
 	<body>
 		<?php 
 			session_start();
+      if(!$_SESSION['userID']){
+        header("Location:login.php");
+      }
 			include 'connect.php';
-			$query = "SELECT post_id, p.place_id, if_image, name, location_id from post as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id";
+			$query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id";
 			$result = mysqli_query($dbconn, $query);
 			$row = [];
-			if(mysqli_affected_rows($dbconn)!=0){
+			if(!mysqli_affected_rows($dbconn)==0){
 				while($data = mysqli_fetch_assoc($result)){
 					$row[] = $data;
 				}  
@@ -56,6 +59,7 @@
       var bounds;
       var infor_array = [];
       var markers = [];
+
       $(window).bind("load", function() {
         bounds = new google.maps.LatLngBounds();
           console.log(markers.length);  
@@ -69,37 +73,31 @@
           console.log(map.getBounds());
       });
       function initMap() {
-        var pyrmont = {lat: 10.7201501, lng: 122.56210629999998};
+        var pyrmont = {lat: 12.879721, lng: 121.77401699999996};
 
         map = new google.maps.Map(document.getElementById('map'), {
           center: pyrmont,
-          zoom: 15
+          zoom: 5
         });
         geocoder = new google.maps.Geocoder;
         infowindow = new google.maps.InfoWindow();
 
 
-        var map_icon = {
-          url: "images/location_pin.png",
-          scaledSize: new google.maps.Size(40, 50),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(0, 0)
-        }
-        
+
           <?php foreach ($row as $value):?>
-              putplace(map, '<?php echo $value['location_id'] ?>', map_icon,'<?php echo $value['post_id'] ?>', '<?php echo $value['name'] ?>', '<?php echo $value['if_image'] ?>', '<?php echo $value['place_id']?>');
+              putplace(map, '<?php echo $value['location_id'] ?>','<?php echo $value['post_id'] ?>', '<?php echo $value['name'] ?>', '<?php echo $value['if_image'] ?>', '<?php echo $value['place_id']?>');
           <?php endforeach?>
       }
 
 
-      function putplace(map, place_id, micon, img_id,name, if_img, dplace_id){
+      function putplace(map, place_id, img_id,name, if_img, dplace_id){
         geocoder.geocode({'placeId': place_id}, function(results, status) {
               if (status === 'OK') {
                 if (results[0]) {
                   console.log(img_id);
                   var newmarker= new google.maps.Marker({
                   map: map,
-                  icon: micon,
+                  icon: "images/location_pin.png",
                   title: results[0].formatted_address,
                   position: results[0].geometry.location
                 });
