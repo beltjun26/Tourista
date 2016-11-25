@@ -27,7 +27,6 @@
 	
 	mysqli_query($dbconn, $query);
 	if(mysqli_affected_rows($dbconn)){
-		
 	}
 	$query = "INSERT INTO posted(`post_id`, `content`, `place_id`, `acc_id`, `time_post`, `if_image`) 
 				VALUES (NULL, '$post', '$locationID', '$userID', CURRENT_TIMESTAMP, '$if_image');";

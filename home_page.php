@@ -176,7 +176,7 @@
 						type: "post",
 						data: formData,
 						success:function(data){
-							
+							var insert = ''
 							// $("div.posted").hide()
 						},
 						contentType: false,
