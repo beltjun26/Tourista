@@ -61,9 +61,20 @@ if( isset($_POST['submit']) ) {
 				<!-- <label for="last_name">LAST NAME</label> -->
 				  		<input type="text" required id="last_name" name="lastname"  value="<?php if(isset($_POST['submit'])) echo ($_POST['lastname']); ?>" placeholder="Last Name">
 				<!-- <label for="user_name">USERNAME</label> -->
+
+
+						<!-- Add minimum length 8 and at least 1 integer. -->
 				  		<input type="text" required id="user_name" name="username"  value="<?php if(isset($_POST['submit']) && !$userNameError) echo ($_POST['username']); ?>" placeholder="Username">
+
+
 				<!-- <label for="password">PASSWORD</label> -->
 				  		<input pattern = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" type="password" required id="password" name="password" placeholder="Password">
+
+
+				  		<!-- Need to retype password for verification. -->
+				  		<input type="password" name="retype">
+
+
 				<!-- <label for="email">E-MAIL</label> -->
 				 		<input type="email"  required name="email"  value="<?php if(isset($_POST['submit']) && !$emailError) echo ($_POST['email']); ?>" placeholder="Email (example123@sample.com)">
 				<!-- <label for="etc"> ETC.(IMPORTANT DETAILS) </label> -->
