@@ -38,6 +38,12 @@
 	$row = mysqli_fetch_assoc($result);
 	$fullname = $row['fullname'];
 	$aboutme = $row['about_me'];
+
+	if(isset($_POST['change_profile'])){
+		$about_me_val = $_POST['about_me_input'];
+		$queryaboutme = "UPDATE account SET about_me = '$about_me_val' WHERE account.acc_id = $acc_id";
+		$resultchangeaboutme = mysqli_query($dbconn, $queryaboutme);
+	}
 	?>
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
@@ -58,7 +64,7 @@
 				<div id="coverphoto">
 					<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" >
 					<button id="Editcovbtn">Edit Cover <span class="glyphicon glyphicon-pencil"></span></button>
-				</div>
+\				</div>
 				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
 				<div id="userphoto">
 					<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
@@ -83,7 +89,7 @@
 				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
 				<li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li>
 			</ul>
-			<div class="row">
+			<!-- <div class="row">
 				<div id="EditAll" class="modal edit_profile">
 				  	<div class="modal-content">
 				    	<div class="modal-header">
@@ -103,7 +109,7 @@
 					      	</form>
 					    </div>
 				  	</div>
-				</div>
+				</div> -->
 				<div id="EditProfilePicture" class="modal edit_profile">
 				  	<div class="modal-content">
 				    	<div class="modal-header">
@@ -111,10 +117,10 @@
 				      		<span class="close">×</span>
 				    	</div>
 					    <div class="modal-body">
-				      		<img id="output_profile2" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
+				      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
 						      	<label for="profile" class="upload">Choose Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
-						      	<input type="submit" name="change_profile">
+						      	<input type="submit" name="change_profilepic">
 					      	</form>
 					    </div>
 				  	</div>
@@ -126,10 +132,10 @@
 				      		<span class="close">×</span>
 				    	</div>
 					    <div class="modal-body">
-				      		<img id="output_cover2" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
+				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
 					      		<label for="cover" class="upload">Choose Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
-					      		<input type="submit" name="change_profile">
+					      		<input type="submit" name="change_profilecover">
 					      	</form>
 					    </div>
 				  	</div>
@@ -141,7 +147,7 @@
 				      		<span class="close">×</span>
 				    	</div>
 					    <div class="modal-body">
-					      	<form method="post" action="upload.php" enctype="multipart/form-data">
+							<form method="post" action="<?php $_PHP_SELF; ?>">
 					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
 						      	<input type="submit" name="change_profile">
 					      	</form>
