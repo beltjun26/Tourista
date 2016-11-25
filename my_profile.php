@@ -64,7 +64,7 @@
 				<div id="coverphoto">
 					<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" >
 					<button id="Editcovbtn">Edit Cover <span class="glyphicon glyphicon-pencil"></span></button>
-\				</div>
+				</div>
 				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
 				<div id="userphoto">
 					<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
@@ -82,12 +82,13 @@
 				</div>
 			</div>
 			<ul class="user-options">
-				<li><button id="Editallbtn">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>
 				<li><a href="#" class="active">Feed<span class="glyphicon glyphicon-credit-card"></span></a></li>
 				<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></span></a></li>
 				<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
 				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
-				<li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li>
+				<!-- <li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li> -->
+				<li><a href="Change_account.php">Change Account<span class="glyphicon glyphicon-cog"></span></a></li>
+				<!-- <li><button id="Editallbtn">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>	 -->
 			</ul>
 			<!-- <div class="row">
 				<div id="EditAll" class="modal edit_profile">
@@ -192,55 +193,55 @@
 			</div>
 		</div>
 		<script>
-			var Editall = document.getElementById("EditAll");
+			/*var Editall = document.getElementById("EditAll");*/
 			var Editpic = document.getElementById("EditProfilePicture");
 			var Editcov = document.getElementById("EditCoverPhoto");
 			var Editdes = document.getElementById("EditDescription");
-			var btn1 = document.getElementById("Editallbtn");
-			var btn2 = document.getElementById("Editpicbtn");
-			var btn3 = document.getElementById("Editcovbtn");
-			var btn4 = document.getElementById("Editdesbtn");
+			/*var btn1 = document.getElementById("Editallbtn");*/
+			var btn1 = document.getElementById("Editpicbtn");
+			var btn2 = document.getElementById("Editcovbtn");
+			var btn3 = document.getElementById("Editdesbtn");
 			var close1 = document.getElementsByClassName("close")[0];
 			var close2 = document.getElementsByClassName("close")[1];
 			var close3 = document.getElementsByClassName("close")[2];
-			var close4 = document.getElementsByClassName("close")[3];
+			/*var close4 = document.getElementsByClassName("close")[3];*/
+
+			/*btn1.onclick = function() {
+			    Editall.style.display = "flex";
+			}*/
 
 			btn1.onclick = function() {
-			    Editall.style.display = "flex";
-			}
-
-			btn2.onclick = function() {
 			    Editpic.style.display = "flex";
 			}
 
-			btn3.onclick = function() {
+			btn2.onclick = function() {
 			    Editcov.style.display = "flex";
 			}
 
-			btn4.onclick = function() {
+			btn3.onclick = function() {
 			    Editdes.style.display = "flex";
 			}
 
-			close1.onclick = function() {
+			/*close1.onclick = function() {
 			    Editall.style.display = "none";
-			}
+			}*/
 
-			close2.onclick = function() {
+			close1.onclick = function() {
 			    Editpic.style.display = "none";
 			}
 
-			close3.onclick = function() {
+			close2.onclick = function() {
 			    Editcov.style.display = "none";
 			}
 
-			close4.onclick = function() {
+			close3.onclick = function() {
 			    Editdes.style.display = "none";
 			}
 
 			window.onclick = function(event) {
-			    if (event.target == Editall) {
+			    /*if (event.target == Editall) {
 			        Editall.style.display = "none";
-			    } else if (event.target == Editpic){
+			    } else */if (event.target == Editpic){
 			    	Editpic.style.display = "none";
 			    } else if (event.target == Editcov){
 			    	Editcov.style.display = "none";
