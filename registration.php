@@ -42,7 +42,7 @@ if( isset($_POST['submit']) ) {
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Toursita</title>
+		<title>Tourista</title>
 		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">

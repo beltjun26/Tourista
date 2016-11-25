@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2016 at 11:33 PM
+-- Generation Time: Nov 25, 2016 at 08:05 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -41,7 +41,6 @@ CREATE TABLE `account` (
   `acc_id` int(9) NOT NULL,
   `username` varchar(50) NOT NULL,
   `firstname` varchar(30) NOT NULL,
-  `middlename` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
   `email` varchar(40) NOT NULL,
@@ -53,21 +52,21 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`acc_id`, `username`, `firstname`, `middlename`, `lastname`, `password`, `email`, `address`, `about_me`) VALUES
-(1, 'clyde', 'Clyde', 'Middlenameclyde', 'Delgado', 'Delgado', 'clydedelgado@gmail.com', 'San Jose, Antique', 'Draw paint create master doctor derma '),
-(2, 'maynard', 'Maynard', 'Fuentes', 'Vargas', 'vargas', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'asdfghjk12345678'),
-(3, 'rollin', 'Rollin', 'Dragonmaster', 'Pacheco', 'pacheco', 'rollinpachecko@gmail.com', 'Rollin City, Pacheco', 'Rollin in the deep.'),
-(4, 'alonzo', 'Alonzo', 'Middlename', 'Locsin', 'locsin', 'alonzolocsin@gmail.com', 'Alonzo City, Locsin, Iloilo', 'Ace hardware ace hardware.'),
-(5, 'andrew', 'Andrew', 'mname', 'Dagdag', 'dagdag', 'andrewdagdag@gmail.com', 'Andrew City, Dagdag', 'I am Andrew D.'),
-(6, 'diana', 'Diana Chris', 'middle', 'Pacaña', 'pacana', 'diana@gmail.com', 'Diana City, Miagao', 'Diana diana diana'),
-(7, 'donn', 'Donn', 'Middle', 'Cruz', 'cruz', 'donn_cruz@gmail.com', 'Address, Negros', 'Ako si Donn.'),
-(8, 'angelica', 'Ma. Angelica', 'Middlename', 'Talabucon', 'talabucon', 'jing@gmail.com', 'Somewhere, Capiz', 'Ako si Jong. '),
-(9, 'rosiebelt', 'Rosiebelt Jun', 'Ayupan', 'Abisado', 'abisado', 'beltjun@gmail.com', 'Lemery, Iloilo', 'About about about rosiebelt.'),
-(10, 'rosjel', 'Rosjel Jolly', 'Pamposa', 'Lambungan', 'lambungan', 'lambunganrosjel@gmail.com', 'Dueñas, Iloilo', 'Adventure junkie\r\n'),
-(11, 'salvy', 'Salvy Jessa', 'Middle', 'Arnaiz', 'arnaiz', 'arnaiz@gmail.com', 'My Address, Somewhere', 'Hahahaha. '),
-(12, 'shebna', 'Shebna Rose', 'Middle', 'Fabilloren', 'fabilloren', 'shebnarose@gmail.com', 'Somewhere, Negros', 'Ako shebna shebna'),
-(13, 'popo', 'Dragon', '', 'Hehe', 'popopo123', 'popo@gmail.com', '', ''),
-(14, 'hello', 'Alcohol', '', 'Ethyl', 'aasdassddsa1', 'assd@gmail.com', '', '');
+INSERT INTO `account` (`acc_id`, `username`, `firstname`, `lastname`, `password`, `email`, `address`, `about_me`) VALUES
+(1, 'clyde', 'Clyde', 'Delgado', 'Delgado', 'clydedelgado@gmail.com', 'San Jose, Antique', 'Draw paint create master doctor derma '),
+(2, 'maynard', 'Maynard', 'Vargas', 'vargas', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'asdfghjk12345678'),
+(3, 'rollin', 'Rollin', 'Pacheco', 'pacheco', 'rollinpachecko@gmail.com', 'Rollin City, Pacheco', 'Rollin in the deep.'),
+(4, 'alonzo', 'Alonzo', 'Locsin', 'locsin', 'alonzolocsin@gmail.com', 'Alonzo City, Locsin, Iloilo', 'Ace hardware ace hardware.'),
+(5, 'andrew', 'Andrew', 'Dagdag', 'dagdag', 'andrewdagdag@gmail.com', 'Andrew City, Dagdag', 'I am Andrew D.'),
+(6, 'diana', 'Diana Chris', 'Pacaña', 'pacana', 'diana@gmail.com', 'Diana City, Miagao', 'Diana diana diana'),
+(7, 'donn', 'Donn', 'Cruz', 'cruz', 'donn_cruz@gmail.com', 'Address, Negros', 'Ako si Donn.'),
+(8, 'angelica', 'Ma. Angelica', 'Talabucon', 'talabucon', 'jing@gmail.com', 'Somewhere, Capiz', 'Ako si Jong. '),
+(9, 'rosiebelt', 'Rosiebelt Jun', 'Abisado', 'abisado', 'beltjun@gmail.com', 'Lemery, Iloilo', 'About about about rosiebelt.'),
+(10, 'rosjel', 'Rosjel Jolly', 'Lambungan', 'lambungan', 'lambunganrosjel@gmail.com', 'Dueñas, Iloilo', 'Adventure junkie\r\n'),
+(11, 'salvy', 'Salvy Jessa', 'Arnaiz', 'arnaiz', 'arnaiz@gmail.com', 'My Address, Somewhere', 'Hahahaha. '),
+(12, 'shebna', 'Shebna Rose', 'Fabilloren', 'fabilloren', 'shebnarose@gmail.com', 'Somewhere, Negros', 'Ako shebna shebna'),
+(13, 'popo', 'Dragon', 'Hehe', 'popopo123', 'popo@gmail.com', '', ''),
+(14, 'hello', 'Alcohol', 'Ethyl', 'aasdassddsa1', 'assd@gmail.com', '', '');
 
 -- --------------------------------------------------------
 
@@ -183,7 +182,9 @@ INSERT INTO `posted` (`post_id`, `content`, `place_id`, `acc_id`, `time_post`, `
 (22, 'Komsai <3', 2, 2, '2016-11-24 22:01:56', 1),
 (23, 'Hehe. POSTING DONE!', 2, 2, '2016-11-24 22:15:34', 1),
 (24, 'Just posted an inception. ðŸ˜ƒ ðŸ¤¤', 2, 2, '2016-11-24 22:16:50', 0),
-(25, 'Hello', 2, 2, '2016-11-24 22:29:38', 1);
+(25, 'Hello', 2, 2, '2016-11-24 22:29:38', 1),
+(26, '', 2, 2, '2016-11-25 03:34:20', 1),
+(27, 'a', 2, 2, '2016-11-25 04:43:05', 0);
 
 -- --------------------------------------------------------
 
@@ -282,7 +283,7 @@ ALTER TABLE `places`
 -- AUTO_INCREMENT for table `posted`
 --
 ALTER TABLE `posted`
-  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

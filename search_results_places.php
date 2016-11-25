@@ -2,7 +2,7 @@
 
 <html lang="en">
 	<head>
-		<title>Toursita</title>
+		<title>Tourista</title>
 		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 	<?php 
 	

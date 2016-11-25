@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Toursita</title>
+		<title>Tourista</title>
 		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -165,17 +165,52 @@
 							</div>
 						</form>
 					</div>
-					<div class="posted post-container">
-						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
-						<h2 class="user-name"><?=$username?></h2>
-						<p class = "posted-text">Here in Miag-ao Church. This place is old!</p>
-						<button class="imagebtn"><img src="images/Body_Background.png"></button>
-						<div class="contain">
-							<a href="place.php" class="tagged-location">Miagao Church</a>
-							<button class="like">LIKE</button>
-						</div>
+
+
+
+
+
+
+					<?php 
+						require "connect.php";
+						$acc_id = $_SESSION['userID'];
+						$query = "SELECT * 
+								  FROM posted 
+								  NATURAL JOIN account
+								  NATURAL JOIN places
+								  WHERE acc_id = $acc_id 
+								  ORDER BY time_post 
+								  DESC;";
+
+						$result = mysqli_query ($dbconn, $query);
+						$num_rows = mysqli_num_rows($result);
+
+						foreach ($result as $value):?>
+
+						<div class="posted post-container">
+								<a href="people_profile.php">
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile">
+									<h2 class="user-name"><?=$value['username'];?></h2>
+								</a>
+								<p class = "posted-text"><?=$value['content'];?></p>
+								
+								<?php if($value['if_image'] == 1): ?>
+									<button class="imagebtn"><img id="myImg" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
+								<?php endif; ?>
+
+								<div class="contain">
+									<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
+									<button class="like">LIKE</button>
+								</div>
+							</div>
+							
+							<div id="myModal" class="modal">
+								<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+								<img class="modal-content postImg" id="img01">
+								<div id="caption" class="caption"></div>
+							</div>
+						<?php endforeach; ?>
 					</div>
-				</div>
 				<div class="col-sm-3">
 					<!-- <h2 class="visitor-options">VISITOR OPTIONS</h2>
 					<ul class="visitor-options">
