@@ -109,70 +109,46 @@ body{
 }
 
 #posting,
-.like{
+.like button{
 	background-color: #00BCD4;
 	color: white;
 	font-size: 1em;
 	font-family: Gotham;
 	font-weight: bold;
 	letter-spacing: 0.1em;
-	width: 20%;
 	margin-left: auto;
-	padding: 5px 10px;
+	padding: 5px 15px;
 	border: none;
 	border-radius: 2px;
 	transition: 0.3s;
 }
 
 #posting:hover,
-.like:hover{
+.like button:hover{
 	 background-color: #00E5FF;
 }
 
-.tag-location{
-	margin: 5px 0 10px 0;
-	border-radius: 2px;
-	border: 1px solid #DDD;
-	padding: 5px 10px;
+#image_preview{
+	display: hidden;
+	max-height: 200px;
+	margin: 5px auto 5px auto;
 }
 
-.contain{
-	display: flex;
-}
-
-.contain > span{
-	margin: 5px 0;
-	padding: 3px 10px;
-}
-
-.tagged-location{
-	background-color: #555;
-	color: white;
-	padding: 3px 10px;
-	border-radius: 10px;
-	max-width: 50%;
-	margin: 5px 0;
-}
-
-.preview-image{
-	margin-bottom: 10px;
-}
-
-.posted-container{
-	margin-top: 270px;
-	overflow: all;
+.posted{
+	overflow: auto;
 }
 
 .posted-text{
 	clear: both;
 	width: 100%;
 	padding: 0;
-	margin: 60px 0 0 10px;
+	margin: 60px 0 0 0;
+	text-indent: 10px;
 }
 
 .posted > .imagebtn{
 	width: 100%;
-	margin: 10px 0;
+	margin: 5px 0;
 	padding: 0;
 	border: none;
 	border-radius: 2px;
@@ -186,7 +162,14 @@ body{
 }
 
 a.tagged-location{
+	display: block;
+	float: left;
 	transition: 0.2s;
+	padding: 5px 15px;
+	margin-top: 5px;
+	background-color: #4DD0E1;
+	color: white;
+	border-radius: 3px;
 }
 
 .posted .tagged-location:hover{
@@ -270,9 +253,12 @@ a.tagged-location{
 	background-color: #FFEB3B;
 	color: white;
 	font-family: Gotham;
+	text-transform: uppercase;
+	font-weight: bold;
 	letter-spacing: 0.05em;
 	padding: 5px 10px;
-	margin-bottom: 10px;
+	margin: 5px 0 5px 0;
+	border-radius: 2px;
 }
 
 .warning button{
@@ -288,4 +274,65 @@ a.tagged-location{
 
 .warning button:hover{
 	background-color: rgba(255,255,255,0.2);
+}
+
+.tag-location,
+.tag-person{
+	padding: 5px 10px;
+	margin: 5px 0;
+	border-radius: 3px;
+	border: 1px solid #DDD;
+}
+
+.tagged-people{
+	display: flex;
+	list-style: none;
+	padding: 0 0 5px 5px;
+	margin: 5px 0 5px 0;
+	border-radius: 3px;
+	background-color: #EEE;
+}
+
+.tagged-people li{
+	background-color: #555;
+	color: white;
+	margin: 5px 5px 0 0;
+	padding: 3px 10px;
+	border: 1px solid white;
+	border-radius: 3px;
+}
+
+span.tagged-location{
+	background-color: #555;
+	color: white;
+	width: 20%;
+	padding: 5px 10px;
+	border-radius: 3px 0 0 3px;
+	float: left;
+	margin: 5px 0;
+}
+
+#tagged_place{
+	width: 80%;
+	padding: 5px 10px;
+	height: 30px;
+	margin: 5px 0;
+	background-color: #00BCD4;
+	color: white;
+	border-radius: 0 3px 3px 0;
+	text-align: left;
+	float: left;
+}
+
+.num-likes{
+	color: #00BCD4;
+	font-family: Gotham;
+	font-weight: bold;
+	font-size: 1em;
+	padding: 5px;
+}
+
+.like{
+	float: right;
+	margin-top: 5px;
 }

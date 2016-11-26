@@ -3,6 +3,19 @@
 	src: url("../used_fonts/GOTHAM-LIGHT.TTF") format("truetype");
 }
 
+@font-face{
+	font-family: GothamMed;
+	src: url("../used_fonts/GOTHAM-MEDIUM.TTF") format("truetype");
+}
+
+.header > h1, #desc h2, #rev h2, #post h2, #post p{
+	font-family: GothamMed;
+}
+
+.address li, .options li a, #backtop + .tooltip > .tooltip-inner, .gallery a{
+	font-family: Gotham;
+}
+
 .container *{
 	margin: 0;
 	padding: 0;
@@ -21,7 +34,6 @@
 
 #head{
 	margin-top: 52px;
-	/*background-image: url(../images/body_background2.png);*/
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -40,7 +52,6 @@
 
 .header > h1{
 	color: white;
-	font-family: "Gotham Medium";
 	text-transform: uppercase;
 	letter-spacing: 5px;
 	font-size: 3em;
@@ -65,7 +76,6 @@
 }
 
 .address li{
-	font-family: "Gotham Light";
 	font-size: 1.3em;
 	font-weight: bold;
 	letter-spacing: 0.5em;
@@ -87,7 +97,6 @@
 	padding: 10px 15px;
 	font-size: 1em;
 	text-transform: uppercase;
-	font-family: Gotham;
 	font-weight: bold;
 	letter-spacing: 0.2em;
 	color: white;
@@ -110,7 +119,6 @@
 	text-transform: uppercase;
 	font-size: 2em;
 	letter-spacing: 0.3em;
-	font-family: "Gotham Medium";
 	background-color: rgba(0,0,0,0.3);
 	padding: 10px 30px;
 	width: 50%;
@@ -133,7 +141,6 @@
 #rev h2,
 #post h2{
 	font-size: 3em;
-	font-family: "Gotham Medium";
 	color: #666;
 	text-transform: uppercase;
 	background-color: white;
@@ -151,7 +158,6 @@
 	color: white;
 	padding: 10px 30px;
 	margin-top: 10px;
-	font-family: "Gotham Medium";
 	letter-spacing: 0.2em;
 }
 
@@ -194,7 +200,6 @@
 }
 
 #backtop + .tooltip > .tooltip-inner {
-    font-family: "Gotham Light";
     font-weight: bold;
     letter-spacing: 1px;
     background-color: black; 
@@ -230,7 +235,6 @@
 }
 
 .gallery a{
-	font-family: Gotham;
 	font-weight: bold;
 	text-transform: uppercase;
 	display: block;

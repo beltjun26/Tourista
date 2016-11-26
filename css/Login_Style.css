@@ -1,7 +1,7 @@
 body{
 	background: -webkit-linear-gradient(left, black, white);
 	background-image: url(../images/Boracay_Background3.png);
-	background-size: 100%;
+	background-size: cover;
 	background-repeat: no-repeat;
 	background-color: #B3E5FC;
 }

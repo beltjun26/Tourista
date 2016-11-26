@@ -14,33 +14,25 @@ div.headerprofile{
 #coverphoto img{
 	width: 100%;
 	box-shadow: -3px 3px 1px rgba(0,0,0,0.3);
-	/*position: absolute;*/
-	/*z-index: -1;*/
 }
-/*.image-upload > label {*/
-	/*cursor: pointer;*/
-/*}*/
 
 .image-upload > input{
 	display:none;
 }
 .image-upload {
 	position:relative;
-	/*width:100%;*/
 }
 .image-upload > p{
 	position: absolute;
 	top: 200px;
 	left: 0;
 	width: 100%;
-	/*z-index:1;*/
 }
 .image-upload p span{
 	color:white;
 	background: rgb(0,0,0);
 	background: rgba(0,0,0,0.7);
 	padding:5px;
-	/*position: absolute;*/
 }
 #coverphoto h1{
 	margin: 0;
@@ -60,16 +52,9 @@ div.headerprofile{
 	margin-top: -75px;
 	margin-left: 30px;
 	max-width: 150px;
-    /*overflow:hidden;*/
-    /*display: none;*/
-    /*max-width:;*/
-    /*border: 5px white solid;*/
-    /*border-radius: 5px;*/
-    /*padding: 5px;*/
 }
 
 #userphoto img{
-	/*cursor: pointer;*/
 	max-width:250px;
 	border: 5px white solid;
 	height: 150px;
@@ -78,11 +63,7 @@ div.headerprofile{
 
 #follows{
 	float: left;
-	/*width: 14%;*/
 	color: #666;
-	/*font-family: "Gotham Light";*/
-	/*font-weight: bold;
-	letter-spacing: 1px;*/
 	margin: 5px 0 10px 35px;
 	padding-left: 20px;
 	box-sizing: border-box;
@@ -110,44 +91,3 @@ div.headerprofile{
 	margin-top: -10px;
 	font-size: 12px;
 }
-
-/*h2.user-options,
-h2.visitor-options{
-	background: -webkit-linear-gradient(left, #00ACC1, #1DE9B6);
-	color: white;
-	font-family: "Gotham Medium";
-	font-size: 15px;
-	letter-spacing: 2px;
-	text-align: center;
-	border-radius: 5px 5px 0 0;
-	padding: 5px;
-	margin-bottom: 0;
-	margin-top: 10px;
-}
-
-ul.user-options,
-ul.visitor-options{
-	list-style: none;
-	padding: 0;
-}
-
-ul.user-options li a,
-ul.visitor-options li a{
-	box-sizing: border-box;
-	display: block;
-	padding: 5px;
-	padding-left: 15px;
-	color: #666;
-	background-color: white;
-	border: solid #80DEEA;
-	border-width: 0 0 0 0;
-	transition: 0.2s;
-}
-
-ul.user-options li a:hover,
-ul.visitor-options li a:hover{
-	border-left-width: 5px;
-	text-decoration: none;
-	background-color: #00B8D4;
-	color: white;
-}*/
