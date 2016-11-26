@@ -284,8 +284,7 @@ a.tagged-location{
 	border: 1px solid #DDD;
 }
 
-.tagged-people,
-.tagged-place{
+.tagged-people{
 	display: flex;
 	list-style: none;
 	padding: 0 0 5px 5px;
@@ -294,8 +293,7 @@ a.tagged-location{
 	background-color: #EEE;
 }
 
-.tagged-people li,
-.tagged-place li{
+.tagged-people li{
 	background-color: #555;
 	color: white;
 	margin: 5px 5px 0 0;
@@ -304,8 +302,26 @@ a.tagged-location{
 	border-radius: 3px;
 }
 
-.tagged-place li p{
-	margin: 0;
+span.tagged-location{
+	background-color: #555;
+	color: white;
+	width: 20%;
+	padding: 5px 10px;
+	border-radius: 3px 0 0 3px;
+	float: left;
+	margin: 5px 0;
+}
+
+#tagged_place{
+	width: 80%;
+	padding: 5px 10px;
+	height: 30px;
+	margin: 5px 0;
+	background-color: #00BCD4;
+	color: white;
+	border-radius: 0 3px 3px 0;
+	text-align: left;
+	float: left;
 }
 
 .num-likes{

@@ -26,7 +26,7 @@
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 		<link rel="stylesheet" type="text/css" href="css/input_file.css">
 	</head>
-	<body>
+	<body style="padding: 0;"> 
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search..." name = "search">
@@ -42,95 +42,24 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4">
-					<div class="user-box">
-						<a href="my_profile.php">
-							<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" class="cover">
-							<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="user-profile" class="profile">
-						</a>
-						<h2 class="user-box-heading"><?=$username?></h2>
-					</div>
+				<div class="col-sm-3">
 				</div>
-				<div class="col-sm-6">
-					<div id="addplace" class="modal">
-						<div id="unavailable" class="modal-content">
-							<div class="modal-header">
-							    <span id="close2" class="close">×</span>
-							    <h2>Place is unvailable.</h2>
-							 </div>
-							<span>This place is unavailable. Do you want to add it?</span>
-							<div id="map"></div>
-							<input type="button" name="place" value="Register">
-						</div>
-					</div>
-					<div class="posting post-container" id="posting-container">
-						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
-						<p class="user-name"><?=$username?></p>
-						<form id="formsubmit" enctype="multipart/form-data">
-							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..." name = "post"></textarea>
-							<input id="file" type="file" name="photo" class="inputfile" onchange="loadFile(event)">
-							<label for="file">Upload photo<span class="glyphicon glyphicon-download-alt"></span></label>
-							<!-- <div id="uploadphoto">
-								<span class="glyphicon glyphicon-camera"></span>
-								<label for="photo" id="photo"><input type="file" name="photo" class="inputphoto" onchange="loadFile(event)"></label>
-							</div> -->
-							<img src="" alt="" id="image_preview" style="display: block">
-							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag" required>
-							<div class="location">	
-							<span class="tagged-location">Tagged place:</span>
-							<p id="tagged_place" class="tagged-location">Filler text only</p>
-							</div>
-							<div class="warning" style="display: none">
-								<span>Place not available.</span>
-								<input id="addform" type="button" name="addform" value="add">
-								<!-- <button id="addform">add</button> -->
-							</div>
-							<input type="text-field" placeholder="Tag a person" class="tag-person" id="person_tag">
-							<ul class="tagged-people">
-								<!-- Echo people here. -->
-								<li>Someone Somebody</li>
-								<li>Somebody Something</li>
-								<li>Something Someone</li>
-							</ul>
-							<input id="posting" type="button" value="POST">
-						</form>
-					</div>	
-
-					<!-- Error message -->
+				<div class="col-sm-6" id="one-post">
 
 					<div class="posted-container" id="posted-container">
 					<!-- START OF POSTED -->
-					<?php 
-						require "connect.php";
-						$acc_id = $_SESSION['userID'];
-						$query = "SELECT * 
-								  FROM posted 
-								  NATURAL JOIN account
-								  NATURAL JOIN places
-								  WHERE acc_id 
-								  IN (SELECT acc_id_follows 
-								  	  FROM follow 
-								  	  WHERE acc_id_follower = $acc_id)
-								  OR acc_id = $acc_id 
-								  ORDER BY time_post 
-								  DESC;";
 
-						$result = mysqli_query ($dbconn, $query);
-						$num_rows = mysqli_num_rows($result);
-						foreach ($result as $value):?>
 							<div class="posted post-container">
-								<a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>">
-									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile">
-									<h2 class="user-name"><?=$value['username'];?></h2>
+								<a href="people_profile.php?acc_id_=1">
+									<img src="images/profile_pic_img/acc_id_1.jpg" alt="USER PHOTO" class="profile">
+									<h2 class="user-name"><!-- <?=$value['username'];?> -->Hello</h2>
 								</a>
-								<p class = "posted-text"><?=$value['content'];?></p>
+								<p class = "posted-text">asdasdasd</p>
 								
-								<?php if($value['if_image'] == 1): ?>
-									<button class="imagebtn"><img id="myImg<?=$value['post_id']?>" onclick="showModal(<?=$value['post_id']?>)" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
+									<button class="imagebtn"><img id="myImg1" onclick="showModal(1)" src="images/post_img/1.jpg"></button>
 
-								<?php endif; ?>
 
-								<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
+								<a href="place.php?place_id=1" class="tagged-location">asdads</a>
 								<div class="like">
 									<span class="num-likes">3 Likes</span>
 									<button>LIKE</button>
@@ -143,21 +72,10 @@
 								<div id="caption<?=$value['post_id']?>" class="caption"></div>
 							</div>
 
-						<?php endforeach; ?>
-						
-						<!-- END OF POSTED -->
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<script>
-			containerheight = $('#posting-container').outerHeight(true);
-			console.log(containerheight);
-			containerheight = containerheight + 10;
-			console.log(containerheight);
-			document.getElementById("posted-container").setAttribute("style","margin: "+containerheight+"px 0 20px 0;overflow: all;");
-		</script>
 
 		<script>
 			function showModal(post_id){
@@ -267,7 +185,15 @@
 				});
 
 			});
-			
+		</script>
+		<script>
+			h = $('#navBar').outerHeight(true);
+			console.log(h);
+			x = window.innerHeight;
+			console.log(x);
+			x = x - h;
+			console.log(x);
+			document.getElementById('one-post').setAttribute("style","min-height: "+x+"px;");
 		</script>
 	</body>
 </html>
