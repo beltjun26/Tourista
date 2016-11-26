@@ -55,12 +55,12 @@
 					<div id="addplace" class="modal">
 						<div id="unavailable" class="modal-content">
 							<div class="modal-header">
-							    <span class="close">×</span>
+							    <span id="close2" class="close">×</span>
 							    <h2>Place is unvailable.</h2>
 							 </div>
 							<span>This place is unavailable. Do you want to add it?</span>
-							<div id="map">Place map here.</div>
-							<input type="submit" name="place" value="Register">
+							<div id="map"></div>
+							<input type="button" name="place" value="Register">
 						</div>
 					</div>
 					<div class="posting post-container">
@@ -76,9 +76,10 @@
 							</div> -->
 							<img src="" alt="" id="image_preview" >
 							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag" required>
-							<div class="warning">
+							<div class="warning" style="display: none">
 								<span>Place not available.</span>
-								<button id="addform">add</button>
+								<input id="addform" type="button" name="addform" value="add">
+								<!-- <button id="addform">add</button> -->
 							</div>
 							<div class="contain">
 								<span>Tagging:</span><p id="tagged_place" style="display: none" class="tagged-location"></p>
@@ -86,7 +87,7 @@
 							</div>
 						</form>
 					</div>	
-					</div>
+
 					<!-- Error message -->
 
 					<div class="posted-container">
@@ -128,7 +129,7 @@
 							</div>
 							
 							<div id="myModal<?=$value['post_id']?>" class="modal">
-								<span class="close" onclick="document.getElementById('myModal<?=$value['post_id']?>').style.display='none'">&times;</span>
+								<span id="close1" class="close" onclick="document.getElementById('myModal<?=$value['post_id']?>').style.display='none'">&times;</span>
 								<img class="modal-content postImg"  id="img<?=$value['post_id']?>">
 								<div id="caption<?=$value['post_id']?>" class="caption"></div>
 
@@ -152,7 +153,7 @@
 			    
 			    captionText.innerHTML = this.alt;
 
-				var span = document.getElementsByClassName("close")[0];
+				var span = document.getElementById("close1");
 
 				span.onclick = function() { 
 				  modal.style.display = "none";
@@ -161,21 +162,23 @@
 		</script>
 
 		<script>
-			var add = document.getElementById('addplace');
-			var addform = document.getElementById('addform');
-			var closeadd = document.getElementsByClassName("close")[0];
+			function initMap(){
+				var pyrmont = {lat: 12.879721, lng: 121.77401699999996};
 
-			addform.onclick = function() {
-			    add.style.display = "block";
-			}
-			closeadd.onclick = function() {
-			    add.style.display = "none";
-			}
-			window.onclick = function(event) {
-			    if (event.target == add) {
-			        add.style.display = "none";
-			    }
-			}
+		        map = new google.maps.Map(document.getElementById('map'), {
+		          center: pyrmont,
+		          zoom: 5
+		        });
+			};
+			$(function(){
+				$("#addform").click(function(){
+					$("#addplace").css("display", "block");
+					initMap();
+				})
+				$("#close2").click(function(){
+					$("#addplace").css("display", "none");
+				})
+			});
 		</script>
 		
 		<script>
@@ -209,7 +212,7 @@
 						data:{'place':google_placeId},
 						success:function(data1){
 							if(data1=='0'){
-								console.log("wala nag sulod haha");
+								$(".warning").css("display","block");
 							}else{
 								var formData = new FormData($("#formsubmit")[0]);
 								formData.append('place', data1);
@@ -245,6 +248,7 @@
 						}
 					});
 				});
+
 			});
 			
 		</script>
