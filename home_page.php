@@ -60,7 +60,7 @@
 							 </div>
 							<span>This place is unavailable. Do you want to add it?</span>
 							<div id="map"></div>
-							<input type="button" name="place" value="Register">
+							<input id="add_place" type="button" name="place" value="Register">
 						</div>
 					</div>
 					<div class="posting post-container">
@@ -83,7 +83,7 @@
 							</div>
 							<div class="contain">
 								<span>Tagging:</span><p id="tagged_place" style="display: none" class="tagged-location"></p>
-								<input id="posting" type="button" value="POST">
+								<input id="posting" type="button" value="POST" >
 							</div>
 						</form>
 					</div>	
@@ -143,6 +143,7 @@
 		</div>
 
 		<script>
+			//modal of pictures
 			function showModal(post_id){
 				var modal = document.getElementById('myModal'+post_id);
 				var img = document.getElementById('myImg'+post_id);
@@ -162,17 +163,51 @@
 		</script>
 
 		<script>
+			//show map if add the place is clicked
 			function initMap(){
 				var pyrmont = {lat: 12.879721, lng: 121.77401699999996};
-
+				var map;
 		        map = new google.maps.Map(document.getElementById('map'), {
 		          center: pyrmont,
 		          zoom: 5
 		        });
-			};
+		        var places = searchBox.getPlaces();
+		        var bounds = new google.maps.LatLngBounds();
+		        places.forEach(function(place){
+		        	if (!place.geometry) {
+		              console.log("Returned place contains no geometry");
+		              return;
+		            }
+		            var icon = {
+						url: place.icon,
+						size: new google.maps.Size(71, 71),
+						origin: new google.maps.Point(0, 0),
+						anchor: new google.maps.Point(17, 34),
+						scaledSize: new google.maps.Size(25, 25)
+					};
+					var marker = new google.maps.Marker({
+						map: map,
+						icon: icon,
+						title: place.name,
+						position: place.geometry.location
+		            });
+				            if (place.geometry.viewport) {
+		              // Only geocodes have viewport.
+		              bounds.union(place.geometry.viewport);
+		            } else {
+		              bounds.extend(place.geometry.location);
+		            }
+		          
+		          });
+		        map.fitBounds(bounds);
+		        };
+		        
+		
+			//show or unshow the modal for the place
 			$(function(){
 				$("#addform").click(function(){
 					$("#addplace").css("display", "block");
+					
 					initMap();
 				})
 				$("#close2").click(function(){
@@ -196,10 +231,14 @@
         		searchBox.addListener('places_changed', function() {
         			document.getElementById('tagged_place').style.display = "block";
         			document.getElementById('tagged_place').innerHTML = document.getElementById('location_tag').value;
+        			$(".warning").css("display", "none");
         		});
 
 			}
 			$(function(){
+				$("#add_place").click(function(){
+
+				});
 
 				$("#posting").click(function(){
 					var places = searchBox.getPlaces();
@@ -234,6 +273,7 @@
 										document.getElementById('file').value="";
 										document.getElementById('location_tag').value="";
 										document.getElementById('image_preview').src="";
+										$(".warning").css("display", "none");
 										$("#tagged_place").css("display", "none");
 										$(".posted-container").hide();
 										$(".posted-container").prepend(insert);
