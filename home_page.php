@@ -76,14 +76,22 @@
 							</div> -->
 							<img src="" alt="" id="image_preview" >
 							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag" required>
+							<ul class="tagged-place">
+								<!-- Echo place here. -->
+								<li><p id="tagged_place" class="tagged-location">Filler text only</p></li>
+							</ul>
 							<div class="warning">
 								<span>Place not available.</span>
 								<button id="addform">add</button>
 							</div>
-							<div class="contain">
-								<span>Tagging:</span><p id="tagged_place" class="tagged-location">Filler text only</p>
-								<input id="posting" type="button" value="POST">
-							</div>
+							<input type="text-field" placeholder="Tag a person" class="tag-person" id="person_tag">
+							<ul class="tagged-people">
+								<!-- Echo people here. -->
+								<li>Someone Somebody</li>
+								<li>Somebody Something</li>
+								<li>Something Someone</li>
+							</ul>
+							<input id="posting" type="button" value="POST">
 						</form>
 					</div>	
 					</div>

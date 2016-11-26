@@ -122,36 +122,12 @@ body{
 	border: none;
 	border-radius: 2px;
 	transition: 0.3s;
+	margin-top: 5px;
 }
 
 #posting:hover,
 .like:hover{
 	 background-color: #00E5FF;
-}
-
-.tag-location{
-	margin: 5px 0 10px 0;
-	border-radius: 2px;
-	border: 1px solid #DDD;
-	padding: 5px 10px;
-}
-
-.contain{
-	display: flex;
-}
-
-.contain > span{
-	margin: 5px 0;
-	padding: 3px 10px;
-}
-
-.tagged-location{
-	background-color: #555;
-	color: white;
-	padding: 3px 10px;
-	border-radius: 10px;
-	max-width: 50%;
-	margin: 5px 0;
 }
 
 .preview-image{
@@ -270,9 +246,12 @@ a.tagged-location{
 	background-color: #FFEB3B;
 	color: white;
 	font-family: Gotham;
+	text-transform: uppercase;
+	font-weight: bold;
 	letter-spacing: 0.05em;
 	padding: 5px 10px;
-	margin-bottom: 10px;
+	margin: 5px 0 5px 0;
+	border-radius: 2px;
 }
 
 .warning button{
@@ -288,4 +267,36 @@ a.tagged-location{
 
 .warning button:hover{
 	background-color: rgba(255,255,255,0.2);
+}
+
+.tag-location,
+.tag-person{
+	padding: 5px 10px;
+	margin: 5px 0;
+	border-radius: 3px;
+	border: 1px solid #DDD;
+}
+
+.tagged-people,
+.tagged-place{
+	display: flex;
+	list-style: none;
+	padding: 0 0 5px 5px;
+	margin: 5px 0 5px 0;
+	border-radius: 3px;
+	background-color: #EEE;
+}
+
+.tagged-people li,
+.tagged-place li{
+	background-color: #555;
+	color: white;
+	margin: 5px 5px 0 0;
+	padding: 3px 10px;
+	border: 1px solid white;
+	border-radius: 3px;
+}
+
+.tagged-place li p{
+	margin: 0;
 }
