@@ -63,7 +63,7 @@
 							<input type="button" name="place" value="Register">
 						</div>
 					</div>
-					<div class="posting post-container">
+					<div class="posting post-container" id="posting-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
 						<p class="user-name"><?=$username?></p>
 						<form id="formsubmit" enctype="multipart/form-data">
@@ -74,7 +74,7 @@
 								<span class="glyphicon glyphicon-camera"></span>
 								<label for="photo" id="photo"><input type="file" name="photo" class="inputphoto" onchange="loadFile(event)"></label>
 							</div> -->
-							<img src="" alt="" id="image_preview" >
+							<img src="" alt="" id="image_preview" style="display: block">
 							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag" required>
 							<ul class="tagged-place">
 								<!-- Echo place here. -->
@@ -98,7 +98,7 @@
 
 					<!-- Error message -->
 
-					<div class="posted-container">
+					<div class="posted-container" id="posted-container">
 					<!-- START OF POSTED -->
 					<?php 
 						require "connect.php";
@@ -130,9 +130,10 @@
 
 								<?php endif; ?>
 
-								<div class="contain">
-									<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
-									<button class="like">LIKE</button>
+								<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
+								<div class="like">
+									<span class="num-likes">3 Likes</span>
+									<button>LIKE</button>
 								</div>
 							</div>
 							
@@ -140,8 +141,8 @@
 								<span id="close1" class="close" onclick="document.getElementById('myModal<?=$value['post_id']?>').style.display='none'">&times;</span>
 								<img class="modal-content postImg"  id="img<?=$value['post_id']?>">
 								<div id="caption<?=$value['post_id']?>" class="caption"></div>
-
 							</div>
+
 						<?php endforeach; ?>
 						
 						<!-- END OF POSTED -->
@@ -149,6 +150,14 @@
 				</div>
 			</div>
 		</div>
+
+		<script>
+			containerheight = $('#posting-container').outerHeight(true);
+			console.log(containerheight);
+			containerheight = containerheight + 10;
+			console.log(containerheight);
+			document.getElementById("posted-container").setAttribute("style","margin: "+containerheight+"px 0 20px 0;overflow: all;");
+		</script>
 
 		<script>
 			function showModal(post_id){
