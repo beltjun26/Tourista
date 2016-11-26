@@ -57,7 +57,7 @@
 						<p class="user-name"><?=$username?></p>
 						<form id="formsubmit" enctype="multipart/form-data">
 							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..." name = "post"></textarea>
-							<input type="file" name="file" id="file" class="inputfile"/>
+							<input id="file" type="file" name="photo" class="inputfile" onchange="loadFile(event)">
 							<label for="file">Upload photo<span class="glyphicon glyphicon-download-alt"></span></label>
 							<!-- <div id="uploadphoto">
 								<span class="glyphicon glyphicon-camera"></span>
@@ -67,7 +67,7 @@
 
 							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag" required>
 							<div class="contain">
-								<span>Tagging:</span><p id="tagged_place" class="tagged-location">Filler text only</p>
+								<span>Tagging:</span><p id="tagged_place" style="display: none" class="tagged-location"></p>
 								<input id="posting" type="button" value="POST">
 							</div>
 						</form>
@@ -138,7 +138,8 @@
 				var modalImg = document.getElementById("img"+post_id);
 				var captionText = document.getElementById("caption"+post_id);
 			    modal.style.display = "block";
-			    modalImg.src = "images/post_img/"+post_id+".jpg";
+			    modalImg.src = 'images/post_img/'+post_id+'.jpg';
+			    
 			    captionText.innerHTML = this.alt;
 
 				var span = document.getElementsByClassName("close")[0];
@@ -164,34 +165,59 @@
 				var input = document.getElementById('location_tag');
         		searchBox = new google.maps.places.SearchBox(input);
         		searchBox.addListener('places_changed', function() {
+        			document.getElementById('tagged_place').style.display = "block";
         			document.getElementById('tagged_place').innerHTML = document.getElementById('location_tag').value;
         		});
+
 			}
 			$(function(){
+
 				$("#posting").click(function(){
 					var places = searchBox.getPlaces();
 					places.forEach(function(place){
-						placeId = place.place_id;
+						google_placeId = place.place_id;
 					});
-					var formData = new FormData($("#formsubmit")[0]);
-					console.log(placeId);
-					console.log(formData);
-					formData.append('place', placeId);
 					$.ajax({
-						url: "post.php",
-						type: "post",
-						data: formData,
-						success:function(data){
-							var insert = ''
-							// $("div.posted").hide()
-						},
-						contentType: false,
-        				processData: false
+						url:"check_place.php",
+						type:"post",
+						data:{'place':google_placeId},
+						success:function(data1){
+							if(data1=='0'){
+								console.log("wala nag sulod haha");
+							}else{
+								var formData = new FormData($("#formsubmit")[0]);
+								formData.append('place', data1);
+								$.ajax({
+									url: "post.php",
+									type: "post",
+									data: formData,
+									success:function(data){
+										var values = JSON.parse(data);
+										if(values.if_image==0){
+											var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><button class="like">LIKE</button></div></div>';
+										}else{
+											var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><button class="like">LIKE</button></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
+										}
+										
+										
+										// console.log(values.if_image);
+										document.getElementById('post-text-area').value="";
+										document.getElementById('file').value="";
+										document.getElementById('location_tag').value="";
+										document.getElementById('image_preview').src="";
+										$("#tagged_place").css("display", "none");
+										$(".posted-container").hide();
+										$(".posted-container").prepend(insert);
+										$(".posted-container").fadeIn();
+										$("html, body").animate({ scrollTop: 200 }, "slow");
+									},
+									contentType: false,
+			        				processData: false
+								});	
+							}
+							
+						}
 					});
-				
-					
-					
-					
 				});
 			});
 			
