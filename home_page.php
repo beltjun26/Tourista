@@ -105,6 +105,12 @@
 					<?php 
 						require "connect.php";
 						$acc_id = $_SESSION['userID'];
+						$query = "SELECT * from upvote where acc_id = $acc_id";
+						$result = mysqli_query($dbconn, $query);
+						$likes_array=[];
+						while($data = mysqli_fetch_assoc($result)){
+							$likes_array[]=$data['post_id'];
+						}
 						$query = "SELECT * 
 								  FROM posted 
 								  NATURAL JOIN account
@@ -122,13 +128,10 @@
 						// Loop each post
 						foreach ($result as $value):?>
 							<div class="posted post-container">
-<<<<<<< HEAD
+
 								<a href="people_profile.php">
 									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_cover.png'" alt="USER PHOTO" class="profile">
-=======
-								<a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>">
-									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile">
->>>>>>> 4324f339dd2c7fa94a150d6072cea6c26c8c992d
+
 									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>
 								<p class = "posted-text"><?=$value['content'];?></p>
@@ -142,7 +145,7 @@
 								<div class="like">
 								<span id="likes<?=$value['post_id']?>" class="num-likes">
 								<?php 
-									$query = "SELECT count(*) as likes, acc_id from upvote where post_id = {$value['post_id']};";
+									$query = "SELECT count(*) as likes from upvote where post_id = {$value['post_id']};";
 									$result = mysqli_query($dbconn, $query);
 									$row = 0;
 									$style = " ";
@@ -151,8 +154,7 @@
 										$row = $data['likes'];
 									}
 									if($row){
-										$query = "Select * from upvote where acc_id ={$_SESSION['userID']} and post_id ={$value['post_id']}";
-										if($data['acc_id']==$_SESSION['userID']){
+										if(in_array($value['post_id'], $likes_array)){
 											$style = "style='background-color: grey'";
 										}
 										if($row==1){
@@ -332,9 +334,9 @@
 								success:function(data){
 									var values = JSON.parse(data);
 									if(values.if_image==0){
-										var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span class="num-likes">3 Likes</span><button>LIKE</button></div>';
+										var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div>';
 									}else{
-										var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span class="num-likes">3 Likes</span><button>LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
+										var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
 									}
 									
 									

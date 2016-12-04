@@ -195,11 +195,21 @@
 					<?php 
 						require "connect.php";
 						$acc_id = $_SESSION['userID'];
+						$query = "SELECT * from upvote where acc_id = $acc_id";
+						$result = mysqli_query($dbconn, $query);
+						$likes_array=[];
+						while($data = mysqli_fetch_assoc($result)){
+							$likes_array[]=$data['post_id'];
+						}
 						$query = "SELECT * 
 								  FROM posted 
 								  NATURAL JOIN account
 								  NATURAL JOIN places
-								  WHERE acc_id = $acc_id 
+								  WHERE acc_id 
+								  IN (SELECT acc_id_follows 
+								  	  FROM follow 
+								  	  WHERE acc_id_follower = $acc_id)
+								  OR acc_id = $acc_id 
 								  ORDER BY time_post 
 								  DESC;";
 
@@ -208,8 +218,10 @@
 						// Loop each post
 						foreach ($result as $value):?>
 							<div class="posted post-container">
-								<a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>">
-									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile">
+
+								<a href="people_profile.php">
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_cover.png'" alt="USER PHOTO" class="profile">
+
 									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>
 								<p class = "posted-text"><?=$value['content'];?></p>
@@ -223,8 +235,8 @@
 								<div class="like">
 								<span id="likes<?=$value['post_id']?>" class="num-likes">
 								<?php 
-									$query1 = "SELECT count(*) as likes, acc_id from upvote where post_id = {$value['post_id']};";
-									$result = mysqli_query($dbconn, $query1);
+									$query = "SELECT count(*) as likes from upvote where post_id = {$value['post_id']};";
+									$result = mysqli_query($dbconn, $query);
 									$row = 0;
 									$style = " ";
 									if(mysqli_affected_rows($dbconn)){
@@ -232,7 +244,7 @@
 										$row = $data['likes'];
 									}
 									if($row){
-										if($data['acc_id']==$_SESSION['userID']){
+										if(in_array($value['post_id'], $likes_array)){
 											$style = "style='background-color: grey'";
 										}
 										if($row==1){
