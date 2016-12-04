@@ -17,7 +17,7 @@
 		$followprof_username = $followprof['username'];
 		$followprof_pp = $followprof['profile_pick'];?>
 		Username: <?php echo $followprof_username ;?>
-		<img src="images/<?php echo $followprof_pp;?>"><br>
+		<img src="images/<?php echo $followprof_pp;?>" onerror = "this.src = 'images/default_profile.png'"><br>
 		<?php } ?>
 	</body>
 </html>

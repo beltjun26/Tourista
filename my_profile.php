@@ -57,19 +57,19 @@
 				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list active"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
+				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list active"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'"></a></li>
 			</ul>
 		</div>
 		<div class="container">	
 			
 			<div class="headerprofile">
 				<div id="coverphoto">
-					<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" >
+					<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover"  onerror = "this.src = 'images/default_cover.png'">
 					<button id="Editcovbtn">Edit Cover <span class="glyphicon glyphicon-pencil"></span></button>
 				</div>
 				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
 				<div id="userphoto">
-					<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
+					<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'" >
 					<button id="Editpicbtn">Edit Profile Picture <span class="glyphicon glyphicon-pencil"></span></button>
 				</div>
 				<ul id="follows">
@@ -98,7 +98,7 @@
 				      		<span class="close">×</span>
 				    	</div>
 					    <div class="modal-body">
-				      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
+				      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
 						      	<input type="file" name="profile" id="profile" class="inputfile" onchange="loadFile(event)">
 						      	<label for="profile">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
@@ -115,7 +115,7 @@
 				      		<span class="close">×</span>
 				    	</div>
 					    <div class="modal-body">
-				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
+				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" onerror = "this.src = 'images/default_cover.png'">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
 					      		<input type="file" name="cover" id="cover" class="inputfile" onchange="loadFilecover(event)">
 						      	<label for="cover">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
