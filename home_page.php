@@ -36,7 +36,7 @@
 				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
 				<li><a href="Notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
+				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'"></a></li>
 			</ul>
 		</div>
 		<div class="container">
@@ -44,15 +44,15 @@
 				<div class="col-sm-4">
 					<div class="user-box">
 						<a href="my_profile.php">
-							<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" class="cover">
-							<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="user-profile" class="profile">
+							<img src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" alt="user-cover" class="cover" onerror = "this.src = 'images/default_cover.png'">
+							<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="user-profile" onerror = "this.src = 'images/default_profile.png'" class="profile">
 						</a>
 						<h2 class="user-box-heading"><?=$username?></h2>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="posting post-container">
-						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
+						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" onerror = "this.src = 'images/default_profile.png'" class="profile">
 						<p class="user-name"><?=$username?></p>
 						<form action="post.php" method="post" enctype="multipart/form-data">
 							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..." name = "post"></textarea>
@@ -89,7 +89,7 @@
 						foreach ($result as $value):?>
 							<div class="posted post-container">
 								<a href="people_profile.php">
-									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile">
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_cover.png'" alt="USER PHOTO" class="profile">
 									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>
 								<p class = "posted-text"><?=$value['content'];?></p>
