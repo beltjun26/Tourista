@@ -104,7 +104,7 @@
 			<div class="row">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6">
-					
+					<div class="posted-container">
 <!-- 				START OF POSTED -->
 					<?php 
 						require "connect.php";
@@ -119,7 +119,6 @@
 
 						$result = mysqli_query ($dbconn, $query);
 						$num_rows = mysqli_num_rows($result);
-
 						foreach ($result as $value):?>
 							<div class="posted post-container">
 								<a href="people_profile.php">
@@ -129,30 +128,28 @@
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
 								<?php if($value['if_image'] == 1): ?>
-									<button class="imagebtn"><img id="myImg" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
+									<button class="imagebtn"><img id="myImg<?=$value['post_id']?>" onclick="showModal(<?=$value['post_id']?>)" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
+
 								<?php endif; ?>
 
-								<div class="contain">
-									<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
-									<button class="like">LIKE</button>
-								</div>
+								<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
+								<div class="like">
+									<span class="num-likes">3 Likes</span>
+									<button>LIKE</button>
+								</div>			
 							</div>
 							
-							<div id="myModal" class="modal">
-								<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-								<img class="modal-content postImg" id="img01">
-								<div id="caption" class="caption"></div>
+							<div id="myModal<?=$value['post_id']?>" class="modal">
+								<span id="close1" class="close" onclick="document.getElementById('myModal<?=$value['post_id']?>').style.display='none'">&times;</span>
+								<img class="modal-content postImg"  id="img<?=$value['post_id']?>">
+								<div id="caption<?=$value['post_id']?>" class="caption"></div>
 							</div>
-						<?php endforeach; ?>
-						
+
+					<?php endforeach; ?>
+					</div>
 <!-- 				END OF POSTED -->
 				</div>
 				<div class="col-sm-3">
-					<!-- <h2 class="visitor-options">VISITOR OPTIONS</h2>
-					<ul class="visitor-options">
-						<li><a href="Request_Form.php">Request for a tour</a></li>
-						<li><a href="follower.php">Follow Xon_123</a></li>
-					</ul> -->
 				</div>
 			</div>
 		</div>

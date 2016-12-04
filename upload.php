@@ -18,6 +18,7 @@
 			}			
 		}
 	}
+	// die();
 	
 	if(isset($_POST['change_profilepic'])){
 		if($_FILES["profile"]["error"] == 0){
@@ -47,6 +48,7 @@
 		$newfilename = "acc_id_$user_id.jpg";
 		move_uploaded_file($_FILES['profile']['tmp_name'], 'images/profile_pic_img/' . $newfilename);
 	}
+	// die();
 	header("Location: my_profile.php");
 
 ?>

@@ -16,6 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="css/edit_profile_style.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 		<link rel="stylesheet" type="text/css" href="css/profile_options.css">
+		<link rel="stylesheet" type="text/css" href="css/input_file.css">
 	</head>
 	<body>
 
@@ -43,6 +44,7 @@
 		$about_me_val = $_POST['about_me_input'];
 		$queryaboutme = "UPDATE account SET about_me = '$about_me_val' WHERE account.acc_id = $acc_id";
 		$resultchangeaboutme = mysqli_query($dbconn, $queryaboutme);
+		header("Location: my_profile.php");
 	}
 	?>
 		<div id = "navBar">
@@ -86,31 +88,9 @@
 				<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></span></a></li>
 				<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
 				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
-				<!-- <li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li> -->
 				<li><a href="Change_account.php">Change Account<span class="glyphicon glyphicon-cog"></span></a></li>
-				<!-- <li><button id="Editallbtn">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>	 -->
 			</ul>
-			<!-- <div class="row">
-				<div id="EditAll" class="modal edit_profile">
-				  	<div class="modal-content">
-				    	<div class="modal-header">
-							<h2>Edit Profile</h2>
-				      		<span class="close">×</span>
-				    	</div>
-					    <div class="modal-body">
-				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png">
-				      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg">
-					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
-					      		<div class="option-buttons">
-						      		<label for="profile" class="upload">Choose Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
-						      		<label for="cover" class="upload">Choose Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
-						      		<input type="submit" name="change_profile">
-					      		</div>
-					      	</form>
-					    </div>
-				  	</div>
-				</div> -->
+
 				<div id="EditProfilePicture" class="modal edit_profile">
 				  	<div class="modal-content">
 				    	<div class="modal-header">
@@ -120,12 +100,14 @@
 					    <div class="modal-body">
 				      		<img id="output_profile" src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-						      	<label for="profile" class="upload">Choose Profile Picture<input type="file" name="profile" onchange="loadFile(event)"></label>
-						      	<input type="submit" name="change_profilepic">
+						      	<input type="file" name="profile" id="profile" class="inputfile" onchange="loadFile(event)">
+						      	<label for="profile">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
+						      	<input type="submit" name="change_profilepic" value="CHANGE">
 					      	</form>
 					    </div>
 				  	</div>
 				</div>
+
 				<div id="EditCoverPhoto" class="modal edit_profile">
 				  	<div class="modal-content">
 				    	<div class="modal-header">
@@ -135,12 +117,14 @@
 					    <div class="modal-body">
 				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" onerror = "this.src = 'images/default_cover.png'">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
-					      		<label for="cover" class="upload">Choose Cover Photo<input type="file" name="cover" onchange="loadFilecover(event)"></label>
-					      		<input type="submit" name="change_profilecover">
+					      		<input type="file" name="cover" id="cover" class="inputfile" onchange="loadFilecover(event)">
+						      	<label for="cover">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
+					      		<input type="submit" name="change_profilecover" value="CHANGE">
 					      	</form>
 					    </div>
 				  	</div>
 				</div>
+
 				<div id="EditDescription" class="modal edit_profile">
 				  	<div class="modal-content">
 				    	<div class="modal-header">
@@ -149,35 +133,54 @@
 				    	</div>
 					    <div class="modal-body">
 							<form method="post" action="<?php $_PHP_SELF; ?>">
-					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea><br>
-						      	<input type="submit" name="change_profile">
+					      		<textarea placeholder="About Me..." name="about_me_input"><?php echo $aboutme;?></textarea>
+						      	<input type="submit" name="change_profile" value="CHANGE">
 					      	</form>
 					    </div>
 				  	</div>
 				</div>
+
 				<div class="col-sm-3">
 				</div>
 				<div class="col-sm-6">
-					<div class="posting post-container">
+					<div class="posting post-container" id="posting-container">
 						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
-						<p class="user-name"><?= $username ?></p>
-						<form action="output.php" method="get">
-							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..."></textarea>
-							<label for="photo"><span class="glyphicon glyphicon-camera"> </span> Upload photo<input type="file" name="photo" class="inputphoto"></label>
-							<!-- <img src="" alt="Preview Upload" class="preview-image"> -->
-							<input type="text-field" placeholder="Tag a location" class="tag-location">
-							<div class="contain">
-								<span>Tagging:</span><p class="tagged-location">Miagao Church</p>
-								<input type="submit" value="POST">
+						<p class="user-name"><?=$username?></p>
+						<form id="formsubmit" enctype="multipart/form-data">
+							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..." name = "post"></textarea>
+							<input id="file" type="file" name="photo" class="inputfile" onchange="loadFile(event)">
+							<label for="file">Upload photo<span class="glyphicon glyphicon-download-alt"></span></label>
+							<!-- <div id="uploadphoto">
+								<span class="glyphicon glyphicon-camera"></span>
+								<label for="photo" id="photo"><input type="file" name="photo" class="inputphoto" onchange="loadFile(event)"></label>
+							</div> -->
+							<img src="" alt="" id="image_preview" >
+							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag" required>
+							<ul class="tagged-place">
+								<!-- Echo place here. -->
+								<li><p id="tagged_place" class="tagged-location">Filler text only</p></li>
+							</ul>
+							<div class="warning" style="display: none">
+								<span>Place not available.</span>
+								<input id="addform" type="button" name="addform" value="add">
+								<!-- <button id="addform">add</button> -->
 							</div>
+							<input type="text-field" placeholder="Tag a person" class="tag-person" id="person_tag">
+							<ul class="tagged-people">
+								<!-- Echo people here. -->
+								<li>Someone Somebody</li>
+								<li>Somebody Something</li>
+								<li>Something Someone</li>
+							</ul>
+							<input id="posting" type="button" value="POST">
 						</form>
-					</div>
+					</div>	
 
 
 
 
 
-
+					<div class="posted-container" id="posted-container">
 					<?php 
 						require "connect.php";
 						$acc_id = $_SESSION['userID'];
@@ -227,6 +230,15 @@
 				</div>
 			</div>
 		</div>
+
+		<script>
+			containerheight = $('#posting-container').outerHeight(true);
+			console.log(containerheight);
+			containerheight = containerheight + 10;
+			console.log(containerheight);
+			document.getElementById("posted-container").setAttribute("style","margin: "+containerheight+"px 0 20px 0;overflow: all;");
+		</script>
+
 		<script>
 			/*var Editall = document.getElementById("EditAll");*/
 			var Editpic = document.getElementById("EditProfilePicture");

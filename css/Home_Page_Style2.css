@@ -1,12 +1,3 @@
-/*<div class="user-box">
-	<h2 class="user-box-heading">USER NAME</h2>
-	<a href="#">
-		<img src="https://reference.wolfram.com/language/ref/Files/Circle.en/O_1.png" alt="USER PHOTO">
-		<a href="#"><h3 id="following-link">FOLLOWING: 111</h3></a>
-		<a href="#"><h3 id="followers-link">FOLLOWERS: 0</h3></a>
-	</a>
-</div>*/
-
 div.user-box{
 	background-color: white;
 	text-align: center;

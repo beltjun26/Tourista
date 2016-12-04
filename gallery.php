@@ -29,8 +29,8 @@
 			<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
 		</ul>
 	</div>
-	<h2>Gallery for -Place-</h2>
 	<div class="container gal">
+		<h2>Gallery for -Place-</h2>
 		<div class="image"><button id="myBtn" class="imagebtn"></button></div>
 		<!-- <img id="myImg" src="images/places/diwata/1.jpg" alt="Trolltunga, Norway" width="300" height="200"> -->
 		<div id="myModal" class="modal">

@@ -140,12 +140,11 @@
 					  	</div>
 					</div>
 					<ul class="user-options">
-						<li><button id="Editallbtn">Edit Profile<span class="glyphicon glyphicon-pencil"></span></button></li>
 						<li><a href="my_profile.php?acc_id=<?=$acc_id?>">Feed<span class="glyphicon glyphicon-credit-card"></span></a></li>
 						<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></span></a></li>
 						<li><a href="#follow-head" class="active">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
 						<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
-						<li><a href="#">Notifications<span class="glyphicon glyphicon-bell"></span></a></li>
+						<li><a href="Change_account.php">Change Account<span class="glyphicon glyphicon-cog"></span></a></li>
 					</ul>
 			<?php } else { ?>
 					<ul class="visitor-options">

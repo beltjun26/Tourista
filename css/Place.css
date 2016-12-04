@@ -1,29 +1,19 @@
-/*body{
-	width: 100%;
+@font-face{
+	font-family: Gotham;
+	src: url("../used_fonts/GOTHAM-LIGHT.TTF") format("truetype");
 }
 
-main{
-	display: inline-flex;
-	flex-direction: row;
-	width: 100%;
-	overflow: hidden;
+@font-face{
+	font-family: GothamMed;
+	src: url("../used_fonts/GOTHAM-MEDIUM.TTF") format("truetype");
 }
 
-.leftpage, .rightpage{
-	width: 100%!important;
+.header > h1, #desc h2, #rev h2, #post h2, #post p{
+	font-family: GothamMed;
 }
 
-.leftpage{
-	background-color: rgba(0,0,0,0.5);
-}
-
-.rightpage{
-	background-color: rgba(0,0,0,0.8);
-}*/
-
-.container{
-	margin: 0;
-	padding: 0;
+.address li, .options li a, #backtop + .tooltip > .tooltip-inner, .gallery a{
+	font-family: Gotham;
 }
 
 .container *{
@@ -32,25 +22,26 @@ main{
 }
 
 .container{
+	margin: 0;
 	min-height: 667px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	z-index: -1;
-}
-
-div.container{
 	width: 100%;
 }
 
 #head{
-	margin-top: -50px;
-	/*background-image: url(../images/body_background2.png);*/
+	margin-top: 52px;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+}
+
+#head h1{
+	margin-top: -20px;
 }
 
 .header > h1,
@@ -61,10 +52,9 @@ div.container{
 
 .header > h1{
 	color: white;
-	font-family: "Gotham Medium";
 	text-transform: uppercase;
 	letter-spacing: 5px;
-	font-size: 5em;
+	font-size: 3em;
 	filter: blur(-5px);
 	background-color: rgba(0,0,0,0.6);
 	background-blend-mode: color-dodge;
@@ -86,7 +76,6 @@ div.container{
 }
 
 .address li{
-	font-family: "Gotham Light";
 	font-size: 1.3em;
 	font-weight: bold;
 	letter-spacing: 0.5em;
@@ -104,22 +93,21 @@ div.container{
 
 .options li a{
 	text-decoration: none;
-	background-color: #0097A7;
-	padding: 7px 15px;
+	background-color: #00BCD4;
+	padding: 10px 15px;
 	font-size: 1em;
 	text-transform: uppercase;
-	font-family: "Gotham Light";
+	font-weight: bold;
 	letter-spacing: 0.2em;
 	color: white;
 	transition: 0.2s;
-	border: 2px solid rgba(0,0,0,0);
 	border-radius: 3px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
 .options li a:hover{
-	background-color: #00ACC1;
+	background-color: #00E5FF;
 	color: white;
-	border-color: white;
 }
 
 #desc{
@@ -131,7 +119,6 @@ div.container{
 	text-transform: uppercase;
 	font-size: 2em;
 	letter-spacing: 0.3em;
-	font-family: "Gotham Medium";
 	background-color: rgba(0,0,0,0.3);
 	padding: 10px 30px;
 	width: 50%;
@@ -154,7 +141,6 @@ div.container{
 #rev h2,
 #post h2{
 	font-size: 3em;
-	font-family: "Gotham Medium";
 	color: #666;
 	text-transform: uppercase;
 	background-color: white;
@@ -172,7 +158,6 @@ div.container{
 	color: white;
 	padding: 10px 30px;
 	margin-top: 10px;
-	font-family: "Gotham Medium";
 	letter-spacing: 0.2em;
 }
 
@@ -215,7 +200,6 @@ div.container{
 }
 
 #backtop + .tooltip > .tooltip-inner {
-    font-family: "Gotham Light";
     font-weight: bold;
     letter-spacing: 1px;
     background-color: black; 
@@ -226,4 +210,47 @@ div.container{
 
 #backtop:focus + .tooltip{
 	opacity: 0;
+}
+
+.gallery{
+	height: 40px;
+	overflow: hidden;
+	background-color: rgba(0,188,212 ,1);
+	border-radius: 3px;
+	transition: 0.2s;
+	transform: translate(0,50px);
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.gallery:hover{
+	background-color: rgba(0,229,255 ,1);
+}
+
+.gallery:hover > a{
+	transform: translate(0, -100%);
+}
+
+.gallery:hover > span{
+	transform: translate(0, -150%);
+}
+
+.gallery a{
+	font-weight: bold;
+	text-transform: uppercase;
+	display: block;
+	color: white;
+	padding: 10px 15px;
+	text-decoration: none;
+	transition: 0.2s;
+}
+
+.gallery span{
+	display: block;
+	width: 100%;
+	height: 40px;
+	transition: 0.2s;
+	text-align: center;
+	padding: 10px 15px;
+	font-size: 1.3em;
+	color: white;
 }
