@@ -28,6 +28,7 @@ body{
 	width: 100%;
 	margin-top: 10px;
 	box-shadow: 0 0 5px rgba(0,0,0,0.3);
+	position: relative;
 }
 
 .posting .profile,
@@ -212,14 +213,15 @@ a.tagged-location{
 }
 
 #unavailable #map{
-	margin: 5px;
 	width: auto;
 	height: 300px;
 	background-color: #ddd;
 	color: white;
+	margin-bottom: 10px;
+	border-radius: 3px;
 }
 
-#unavailable input[type=submit]{
+/*#unavailable input[type=submit]{
 	float: right;
 	padding: 10px 15px;
 	font-family: Gotham;
@@ -233,7 +235,7 @@ a.tagged-location{
 	margin: 0 5px 5px 0;
 	transition: 0.4s;
 }
-
+*/
 #unavailable input[type=submit]:hover{
 	background-color: #00E5FF;
 }
@@ -332,4 +334,113 @@ span.tagged-location{
 .like{
 	float: right;
 	margin-top: 5px;
+}
+
+.dropdown{
+	display: none;
+}
+
+.show-dropdown{
+	height: 10px;
+	width: 10px;
+	color: #00BCD4;
+	top: 10px;
+	right: 15px;
+	position: absolute;
+}
+
+.show-dropdown:hover + .dropdown,
+.dropdown:hover{
+	display: flex;
+}
+
+.dropdown{
+	padding: 0;
+	top: 25px;
+	right: 15px;
+	position: absolute;
+	background-color: white;
+	list-style: none;
+	box-shadow: 0 0 10px rgba(0,0,0,0.15);
+	flex-direction: column;
+}
+
+.dropdown button{
+	display: block;
+	width: 100%;
+	text-align: left;
+	background-color: transparent;
+	color: #888;
+	transition: 0.3s;
+	border: none;
+	border-bottom: 1px solid #DDD;
+}
+
+.dropdown button:hover{
+	background-color: #26C6DA;
+	color: white;
+}
+
+.dropdown .delete:hover{
+	color: white;
+	background-color: #EC407A;
+}
+
+#addplace{
+	align-items: center;
+}
+
+#unavailable{
+	width: 30%;
+	margin: auto;
+}
+
+#unavailable .modal-body{
+	padding: 10px 20px;
+}
+
+#unavailable form input[type=text],
+#unavailable form textarea{
+	display: block;
+	width: 100%;
+	padding: 5px 15px;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	margin: 10px 0;
+	transition: 0.3s;
+}
+
+#unavailable form textarea{
+	max-height: 150px;
+	resize: vertical;
+}
+
+#unavailable form input[type=text]:focus,
+#unavailable form textarea:focus{
+	border-color: #00BCD4;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#unavailable form textarea:focus{
+	height: 150px;
+}
+
+#add_place{
+	margin: 0 0 0 auto;
+	display: block;
+	background-color: #26C6DA;
+	border: none;
+	border-radius: 3px;
+	color: white;
+	padding: 10px 15px;
+	text-align: center;
+	transition: 0.3s;
+	font-family: Gotham;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+}
+
+#add_place:hover{
+	background-color: #00E5FF;
 }

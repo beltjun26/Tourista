@@ -57,10 +57,16 @@
 							<div class="modal-header">
 							    <span id="closeA2" class="close">×</span>
 							    <h2>Place is unvailable.</h2>
-							 </div>
-							<span>This place is unavailable. Do you want to add it?</span>
-							<div id="map"></div>
-							<input id="add_place" type="button" name="place" value="Register">
+							</div>
+							<div class="modal-body">
+								<span>This place is unavailable. Fill this form to register place.</span>
+								<form id="addplaceform" enctype="multipart/form-data">
+									<input id="place_name" type="text" name="place_name" placeholder="Place name...">
+									<textarea id="description" name="description" placeholder="Description..."></textarea>
+									<div id="map"></div>
+									<input id="add_place" type="button" name="place" value="Register">
+								</form>
+							</div>
 						</div>
 					</div>
 					<div class="posting post-container" id="posting-container">
@@ -126,7 +132,11 @@
 						// Loop each post
 						foreach ($result as $value):?>
 							<div class="posted post-container">
-
+								<span class="show-dropdown glyphicon glyphicon-chevron-down"></span>
+								<ul class="dropdown">
+									<li><button class="delete">Delete</button></li>
+									<li><button>Edit</button></li>
+								</ul>
 								<a href="<?php 
 									if($value['acc_id']==$_SESSION['userID']){
 										echo "my_profile.php";
@@ -306,12 +316,46 @@
 		}
 		$(function(){
 			$("#add_place").click(function(){
+				var place_name = document.getElementById('place_name').value;
+				var description = document.getElementById('description').value;
+				if(place_name==""&&description==""){
+					alert("Please enter the fields");
+				}
+				else if(place_name==""){
+					alert("Please enter the Place name");
+				}else if(description==""){
+					alert("Please enter the description of place");
+				}else{
+					var places = searchBox.getPlaces();
+					var google_placeId;
+					places.forEach(function(place){
+						google_placeId = place.place_id;
+					});
+					var formData = new FormData($("#addplaceform")[0]);
+					console.log(formData);
+					formData.append('place_id',google_placeId);
+					$.ajax({
+						url:"addplace.php",
+						type:"POST",
+						data:formData,
+						success:function(data){
+							$(".warning").css("display", "none");
+							$("#addplace").css("display", "none");
+							alert(data);
+							document.getElementById('place_name').value="";
+							document.getElementById('description').value="";
 
+						},
+						contentType: false,
+		        		processData: false
+					});
+				}
 			});
 
 			$("#posting").click(function(){
 
 				var places = searchBox.getPlaces();
+				var google_placeId;
 				places.forEach(function(place){
 					google_placeId = place.place_id;
 				});
