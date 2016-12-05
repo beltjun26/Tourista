@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2016 at 08:05 AM
+-- Generation Time: Dec 05, 2016 at 08:06 AM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,7 +42,7 @@ CREATE TABLE `account` (
   `username` varchar(50) NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `email` varchar(40) NOT NULL,
   `address` varchar(30) NOT NULL,
   `about_me` varchar(60) NOT NULL
@@ -53,20 +53,22 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`acc_id`, `username`, `firstname`, `lastname`, `password`, `email`, `address`, `about_me`) VALUES
-(1, 'clyde', 'Clyde', 'Delgado', 'Delgado', 'clydedelgado@gmail.com', 'San Jose, Antique', 'Draw paint create master doctor derma '),
-(2, 'maynard', 'Maynard', 'Vargas', 'vargas', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'asdfghjk12345678'),
-(3, 'rollin', 'Rollin', 'Pacheco', 'pacheco', 'rollinpachecko@gmail.com', 'Rollin City, Pacheco', 'Rollin in the deep.'),
-(4, 'alonzo', 'Alonzo', 'Locsin', 'locsin', 'alonzolocsin@gmail.com', 'Alonzo City, Locsin, Iloilo', 'Ace hardware ace hardware.'),
-(5, 'andrew', 'Andrew', 'Dagdag', 'dagdag', 'andrewdagdag@gmail.com', 'Andrew City, Dagdag', 'I am Andrew D.'),
-(6, 'diana', 'Diana Chris', 'Pacaña', 'pacana', 'diana@gmail.com', 'Diana City, Miagao', 'Diana diana diana'),
-(7, 'donn', 'Donn', 'Cruz', 'cruz', 'donn_cruz@gmail.com', 'Address, Negros', 'Ako si Donn.'),
-(8, 'angelica', 'Ma. Angelica', 'Talabucon', 'talabucon', 'jing@gmail.com', 'Somewhere, Capiz', 'Ako si Jong. '),
-(9, 'rosiebelt', 'Rosiebelt Jun', 'Abisado', 'abisado', 'beltjun@gmail.com', 'Lemery, Iloilo', 'About about about rosiebelt.'),
-(10, 'rosjel', 'Rosjel Jolly', 'Lambungan', 'lambungan', 'lambunganrosjel@gmail.com', 'Dueñas, Iloilo', 'Adventure junkie\r\n'),
-(11, 'salvy', 'Salvy Jessa', 'Arnaiz', 'arnaiz', 'arnaiz@gmail.com', 'My Address, Somewhere', 'Hahahaha. '),
-(12, 'shebna', 'Shebna Rose', 'Fabilloren', 'fabilloren', 'shebnarose@gmail.com', 'Somewhere, Negros', 'Ako shebna shebna'),
-(13, 'popo', 'Dragon', 'Hehe', 'popopo123', 'popo@gmail.com', '', ''),
-(14, 'hello', 'Alcohol', 'Ethyl', 'aasdassddsa1', 'assd@gmail.com', '', '');
+(1, 'clyde', 'Clyde', 'Delgado', '1f3e1525c6ee8678781be4b3dd87f778', 'clydedelgado@gmail.com', 'San Jose, Antique', 'Draw paint create master doctor derma '),
+(2, 'maynard', 'Maynard', 'Vargas', 'd49fab26ac2dfc1970ae462229264f35', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'asdfghjk12345678'),
+(3, 'rollin', 'Rollin', 'Pacheco', 'e3b9592341f871b73ecff949459ba9c1', 'rollinpachecko@gmail.com', 'Rollin City, Pacheco', 'Rollin in the deep.'),
+(4, 'alonzo', 'Alonzo', 'Locsin', '0d2c075f8c7fe0ccb116bc03c9f6fac2', 'alonzolocsin@gmail.com', 'Alonzo City, Locsin, Iloilo', 'Ace hardware ace hardware.'),
+(5, 'andrew', 'Andrew', 'Dagdag', '0fd3764434fe203a9079675d7925a0ee', 'andrewdagdag@gmail.com', 'Andrew City, Dagdag', 'I am Andrew D.'),
+(6, 'diana', 'Diana Chris', 'Pacaña', '76409f904586a65c02a4b0dadce8a033', 'diana@gmail.com', 'Diana City, Miagao', 'Diana diana diana'),
+(7, 'donn', 'Donn', 'Cruz', '52c7915d4e0b6d93268b1f63bfd4578b', 'donn_cruz@gmail.com', 'Address, Negros', 'Ako si Donn.'),
+(8, 'angelica', 'Ma. Angelica', 'Talabucon', 'b2a7885c40e12bc9478916ff561937c9', 'jing@gmail.com', 'Somewhere, Capiz', 'Ako si Jong. '),
+(9, 'rosiebelt', 'Rosiebelt Jun', 'Abisado', 'b60a41f4619d920abe5550473176f2e3', 'beltjun@gmail.com', 'Lemery, Iloilo', 'About about about rosiebelt.'),
+(10, 'rosjel', 'Rosjel Jolly', 'Lambungan', 'b853337477f12302aee400fa56edfcbf', 'lambunganrosjel@gmail.com', 'Dueñas, Iloilo', 'Adventure junkie\r\n'),
+(11, 'salvy', 'Salvy Jessa', 'Arnaiz', '734a5311c4b5470784a16f600297b9ac', 'arnaiz@gmail.com', 'My Address, Somewhere', 'Hahahaha. '),
+(12, 'shebna', 'Shebna Rose', 'Fabilloren', '38a542d4677b83db32880b30057eacf7', 'shebnarose@gmail.com', 'Somewhere, Negros', 'Ako shebna shebna'),
+(13, 'popo', 'Dragon', 'Hehe', 'bd69c3999632d318b7973038b8964448', 'popo@gmail.com', '', ''),
+(14, 'hello', 'Alcohol', 'Ethyl', 'c7e7f28c887e9fdad93ed092cbb6a026', 'assd@gmail.com', '', ''),
+(16, 'shebna12', 'Shebna', 'Fabilloren', '482c811da5d5b4bc6d497ffa98491e38', 'jujujaja@mail.com', '', ''),
+(17, 'alexsandra', 'Alex', 'Sandra', '482c811da5d5b4bc6d497ffa98491e38', 'alex@mail.com', '', '');
 
 -- --------------------------------------------------------
 
@@ -101,7 +103,8 @@ INSERT INTO `follow` (`acc_id_follower`, `acc_id_follows`) VALUES
 (2, 3),
 (2, 8),
 (9, 2),
-(9, 3);
+(9, 3),
+(12, 2);
 
 -- --------------------------------------------------------
 
@@ -184,7 +187,8 @@ INSERT INTO `posted` (`post_id`, `content`, `place_id`, `acc_id`, `time_post`, `
 (24, 'Just posted an inception. ðŸ˜ƒ ðŸ¤¤', 2, 2, '2016-11-24 22:16:50', 0),
 (25, 'Hello', 2, 2, '2016-11-24 22:29:38', 1),
 (26, '', 2, 2, '2016-11-25 03:34:20', 1),
-(27, 'a', 2, 2, '2016-11-25 04:43:05', 0);
+(27, 'a', 2, 2, '2016-11-25 04:43:05', 0),
+(28, 'adasdasd', 2, 12, '2016-12-05 06:21:15', 0);
 
 -- --------------------------------------------------------
 
@@ -219,6 +223,13 @@ CREATE TABLE `upvote` (
   `acc_id` int(9) NOT NULL,
   `post_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `upvote`
+--
+
+INSERT INTO `upvote` (`acc_id`, `post_id`) VALUES
+(12, 28);
 
 --
 -- Indexes for dumped tables
@@ -268,7 +279,7 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `notification`
 --
@@ -283,7 +294,7 @@ ALTER TABLE `places`
 -- AUTO_INCREMENT for table `posted`
 --
 ALTER TABLE `posted`
-  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
