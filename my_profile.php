@@ -365,13 +365,6 @@
 			var captionText = document.getElementById("caption"+post_id);
 		    modal.style.display = "block";
 		    modalImg.src = 'images/post_img/'+post_id+'.jpg';
-		    
-		    captionText.innerHTML = this.alt;
-
-			var span = document.getElementById("closeA1");
-
-			span.onclick = function() { 
-			  modal.style.display = "none";
 			}
 		}
 

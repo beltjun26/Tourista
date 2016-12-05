@@ -17,9 +17,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-		<script src="bootstrap/jquery/1.12.4/jquery.min.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/jquery-1.12.4.js" ></script>
+		<script src="js/jquery-ui.js" ></script>
 		<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
 		<link rel="stylesheet" type="text/css" href="css/Home_Page_style.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -87,11 +87,8 @@
 								<!-- <button id="addform">add</button> -->
 							</div>
 							<input type="text-field" placeholder="Tag a person" class="tag-person" id="person_tag">
-							<ul class="tagged-people">
+							<ul id="tag_list" style="display: none;" class="tagged-people">
 								<!-- Echo people here. -->
-								<li>Someone Somebody</li>
-								<li>Somebody Something</li>
-								<li>Something Someone</li>
 							</ul>
 							<input id="posting" type="button" value="POST">
 
@@ -129,7 +126,13 @@
 						foreach ($result as $value):?>
 							<div class="posted post-container">
 
-								<a href="people_profile.php">
+								<a href="<?php 
+									if($value['acc_id']==$_SESSION['userID']){
+										echo "my_profile.php";
+									}else{
+										echo "people_profile.php?acc_id=".$value['acc_id'];
+									}
+								 ?>">
 									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_cover.png'" alt="USER PHOTO" class="profile">
 
 									<h2 class="user-name"><?=$value['username'];?></h2>
@@ -170,12 +173,13 @@
 									<button id="likebutton<?=$value['post_id']?>" <?=$style?> onclick="likeTriggered(<?=$value['post_id']?>)">LIKE</button>
 								</div>
 							</div>
-							
+							<?php if($value['if_image'] == 1): ?>
 							<div id="myModal<?=$value['post_id']?>" class="modal">
-								<span id="closeA1" class="close" onclick="document.getElementById('myModal<?=$value['post_id']?>').style.display='none'">&times;</span>
+								<span class="close" onclick="document.getElementById('myModal<?=$value['post_id']?>').style.display='none'">&times;</span>
 								<img class="modal-content postImg"  id="img<?=$value['post_id']?>">
 								<div id="caption<?=$value['post_id']?>" class="caption"></div>
 							</div>
+							<?php endif; ?>
 
 						<?php endforeach; ?>
 						
@@ -201,14 +205,7 @@
 			var captionText = document.getElementById("caption"+post_id);
 		    modal.style.display = "block";
 		    modalImg.src = 'images/post_img/'+post_id+'.jpg';
-		    
-		    captionText.innerHTML = this.alt;
 
-			var span = document.getElementById("closeA1");
-
-			span.onclick = function() { 
-			  modal.style.display = "none";
-			}
 		}
 
 		//show map if add the place is clicked
@@ -359,6 +356,18 @@
 						
 					}
 				});
+			});
+
+			$("#person_tag").autocomplete({
+				source:"tag_person.php",
+				minLength:2,
+				select: function(event, ui){
+					var insert = "<li>"+ui.item.value+"</li>";
+					$("#tag_list").css("display","block");
+					$("#tag_list").append(insert);
+					document.getElementById('person_tag').value="sdf";
+				}
+				
 			});
 
 
