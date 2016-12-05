@@ -52,7 +52,7 @@
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<div id="addplace" class="modal" style="display: block;" >
+					<div id="addplace" class="modal">
 						<div id="unavailable" class="modal-content">
 							<div class="modal-header">
 							    <span id="closeA2" class="close">×</span>
