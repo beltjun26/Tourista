@@ -78,9 +78,10 @@
 							<img src="" alt="" id="image_preview" style="display: block">
 							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag">
 							<div class="location">	
-							<span class="tagged-location">Tagged place:</span>
-							<p id="tagged_place" class="tagged-location"></p>
+								<span class="tagged-location">Tagged place:</span>
+								<p id="tagged_place" class="tagged-location"></p>
 							</div>
+							<div class="error" style="display: none;">Please tag a location</div>
 							<div class="warning" style="display: none">
 								<span>Place not available.</span>
 								<input id="addform" type="button" name="addform" value="add">
