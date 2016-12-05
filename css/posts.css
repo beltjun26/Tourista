@@ -411,7 +411,7 @@ span.tagged-location{
 }
 
 #unavailable form textarea{
-	max-height: 100px;
+	max-height: 150px;
 	resize: vertical;
 }
 
@@ -419,6 +419,10 @@ span.tagged-location{
 #unavailable form textarea:focus{
 	border-color: #00BCD4;
 	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#unavailable form textarea:focus{
+	height: 150px;
 }
 
 #add_place{

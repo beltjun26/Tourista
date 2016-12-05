@@ -119,4 +119,19 @@ ul.visitor-options li a:hover{
 	color: white;
 }
 
+ ul.visitor-options a.follow:hover{
+	background-color: #00BCD4;
+	color: white;
+}
+
+ul.visitor-options a.following{
+	background-color: #00BCD4;
+	color: white;
+}
+
+ul.visitor-options a.following:hover{
+	background-color: #E91E63;
+}
+
+
 

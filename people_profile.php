@@ -85,14 +85,14 @@
 			</div>
 			<ul class="visitor-options">
 				<li><a href="#"  class="active">Feed<span class="glyphicon glyphicon-credit-card"></a></li>
-				<li><a href="follow.php?acc_id=<?=$acc_id?>">
+				<li><a href="follow.php?acc_id=<?=$acc_id?>"
 					<?php
 						$query = "SELECT * FROM follow WHERE acc_id_follower = {$_SESSION['userID']} AND acc_id_follows = {$_GET['acc_id']};";	
 						$result = mysqli_query ($dbconn, $query);
 						if (mysqli_num_rows($result) == 0){
-							echo "Follow<span class='glyphicon glyphicon-plus'>";
+							echo " class='follow'>Follow<span class='glyphicon glyphicon-plus'>";
 						} else{
-							echo "Unfollow<span class='glyphicon glyphicon-minus'>";
+							echo " class='following'>Unfollow<span class='glyphicon glyphicon-minus'>";
 						}
 					?>
 				</span></a></li>
