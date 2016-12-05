@@ -85,7 +85,7 @@
 			</div>
 			<ul class="visitor-options">
 				<li><a href="#"  class="active">Feed<span class="glyphicon glyphicon-credit-card"></a></li>
-				<li><a id="followuser"> href="follow.php?acc_id=<?=$acc_id?>">
+				<li><a id="followuser">
 					<?php
 						$query = "SELECT * FROM follow WHERE acc_id_follower = {$_SESSION['userID']} AND acc_id_follows = {$_GET['acc_id']};";	
 						$result = mysqli_query ($dbconn, $query);
@@ -185,23 +185,25 @@
 			</div>
 		</div>
 		<script>
-			var modal = document.getElementById("EditPanel");
-			var btn = document.getElementById("Edit");
-			var span = document.getElementsByClassName("close")[0];
-
-			btn.onclick = function() {
-			    modal.style.display = "block";
-			}
-
-			span.onclick = function() {
-			    modal.style.display = "none";
-			}
-
-			window.onclick = function(event) {
-			    if (event.target == modal) {
-			        modal.style.display = "none";
-			    }
-			}
+		$(function(){
+			$("#followuser").click(function(){
+				$.ajax({
+					url:"follow.php",
+					type:"get",	
+					data:{"acc_id":"<?=$acc_id?>"},
+					success: function(data){
+						if(data=="follow"){
+							document.getElementById('followuser').innerHTML="Unfollow<span class='glyphicon glyphicon-minus'></span>";
+						}
+						if(data=="unfollow"){
+							document.getElementById('followuser').innerHTML="Follow<span class='glyphicon glyphicon-plus'></span>";
+						}
+						
+					}
+				});
+			});
+		});
+		
 
 			var loadFile = function(event){
 				var output_profile = document.getElementById('output_profile');

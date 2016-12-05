@@ -363,7 +363,7 @@
 				source:"tag_person.php",
 				minLength:2,
 				select: function(event, ui){
-					var insert = "<li>"+ui.item.value+"</li>";
+					var insert = "<li>"+ui.item.value+"<span> x</span></li>";
 					$("#tag_list").css("display","flex");
 					$("#tag_list").append(insert);
 					document.getElementById('person_tag').value="sdf";
