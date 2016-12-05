@@ -52,15 +52,21 @@
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<div id="addplace" class="modal">
+					<div id="addplace" class="modal" style="display: block;" >
 						<div id="unavailable" class="modal-content">
 							<div class="modal-header">
 							    <span id="closeA2" class="close">×</span>
 							    <h2>Place is unvailable.</h2>
-							 </div>
-							<span>This place is unavailable. Do you want to add it?</span>
-							<div id="map"></div>
-							<input id="add_place" type="button" name="place" value="Register">
+							</div>
+							<div class="modal-body">
+								<span>This place is unavailable. Fill this form to register place.</span>
+								<form>
+									<input type="text" name="place_name" placeholder="Place name...">
+									<textarea placeholder="Description..."></textarea>
+									<div id="map"></div>
+									<input id="add_place" type="submit" name="place" value="Register">
+								</form>
+							</div>
 						</div>
 					</div>
 					<div class="posting post-container" id="posting-container">
@@ -126,7 +132,11 @@
 						// Loop each post
 						foreach ($result as $value):?>
 							<div class="posted post-container">
-
+								<span class="show-dropdown glyphicon glyphicon-chevron-down"></span>
+								<ul class="dropdown">
+									<li><button class="delete">Delete</button></li>
+									<li><button>Edit</button></li>
+								</ul>
 								<a href="<?php 
 									if($value['acc_id']==$_SESSION['userID']){
 										echo "my_profile.php";
