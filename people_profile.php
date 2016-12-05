@@ -85,7 +85,7 @@
 			</div>
 			<ul class="visitor-options">
 				<li><a href="#"  class="active">Feed<span class="glyphicon glyphicon-credit-card"></a></li>
-				<li><a href="follow.php?acc_id=<?=$acc_id?>">
+				<li><a id="followuser"> href="follow.php?acc_id=<?=$acc_id?>">
 					<?php
 						$query = "SELECT * FROM follow WHERE acc_id_follower = {$_SESSION['userID']} AND acc_id_follows = {$_GET['acc_id']};";	
 						$result = mysqli_query ($dbconn, $query);
