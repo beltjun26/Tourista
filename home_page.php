@@ -119,14 +119,9 @@
 						$result = mysqli_query ($dbconn, $query);
 						$num_rows = mysqli_num_rows($result);
 						foreach ($result as $value):?>
-							<div class="posted post-container">
-<<<<<<< HEAD
-								<a href="people_profile.php">
-									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_cover.png'" alt="USER PHOTO" class="profile">
-=======
-								<a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>">
-									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile">
->>>>>>> 4324f339dd2c7fa94a150d6072cea6c26c8c992d
+							<div class="posted post-container">	
+								<a href="people_profile.php?acc_id=<?=$value['acc_id'];?>">
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" onerror = "this.src = 'images/default_profile.png'" class="profile" class="profile">
 									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>
 								<p class = "posted-text"><?=$value['content'];?></p>

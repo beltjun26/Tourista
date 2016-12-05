@@ -29,7 +29,6 @@
 		if($_GET['acc_id'] == $_SESSION['userID']){
 			header("Location: my_profile.php?acc_id=<?={$_SESSION['userID']}?>");
 		}
-
 		$acc_id = $_GET['acc_id'];
 	}else{
 		header("Location: error_page.php");
