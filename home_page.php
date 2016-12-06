@@ -137,7 +137,7 @@
 								<ul class="dropdown">
 									<li><button class="delete">Delete</button></li>
 									<li><button>Edit</button></li>
-								</ul>
+								</ul>	
 								<a href="<?php 
 									if($value['acc_id']==$_SESSION['userID']){
 										echo "my_profile.php";
@@ -411,7 +411,6 @@
 					var insert = "<li>"+ui.item.value+"<span> x</span></li>";
 					$("#tag_list").css("display","flex");
 					$("#tag_list").append(insert);
-					document.getElementById('person_tag').value="sdf";
 				}
 				
 			});
