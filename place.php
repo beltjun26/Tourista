@@ -25,7 +25,7 @@
 			$row = mysqli_fetch_assoc($result);
 
 			$placename = $row['name'];
-			$description = $row['desciption'];
+			$description = $row['description'];
 		?>
 
 		<div id = "navBar">

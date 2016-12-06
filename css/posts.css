@@ -148,7 +148,7 @@ body{
 	clear: both;
 	width: 100%;
 	padding: 0;
-	margin: 60px 0 0 0;
+	margin: 25px 0 0 0;
 	text-indent: 10px;
 }
 
@@ -352,6 +352,11 @@ span.tagged-location{
 	top: 10px;
 	right: 15px;
 	position: absolute;
+	opacity: 0.2;
+}
+
+.show-dropdown:hover{
+	opacity: 0.5;
 }
 
 .show-dropdown:hover + .dropdown,
@@ -449,4 +454,80 @@ span.tagged-location{
 
 #add_place:hover{
 	background-color: #00E5FF;
+}
+
+.with-people{
+	padding: 0;
+	margin: 13px auto 0 10px;
+	list-style: none;
+	display: flex;
+}
+
+.with-people li{
+	color: #888;
+	padding: 0 0 0 5px;
+}
+
+.with-people li a,
+.with-people span{
+	color: #0091EA;
+	cursor: pointer;
+}
+
+.with-people span:hover{
+	text-decoration: underline;
+}
+
+.tagged-panel{
+	z-index: 100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.tagged-panel .modal-content{
+	width: 25%;
+}
+
+.tagged-panel h2{
+	font-size: 1.5em;
+	margin: 0;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 0.1em;
+	padding: 0 30px;
+}
+
+.tagged-panel .close{
+	font-size: 1.5em;
+	color: #111;
+	top: 18px;
+	right: 15px;
+}
+
+.with-people-modal{
+	list-style: none;
+	padding: 0;
+}
+
+.with-people-modal li{
+	margin-bottom: 10px;
+	border: 1px solid #DDD;
+}
+
+.with-people-modal a{
+	padding-left: 10px;
+}
+
+.with-people-modal img{
+	height: 30px;
+	width: 30px;
+	object-position: center;
+	object-fit: cover;
+}
+
+.time-date{
+	margin-left: 10px;
+	color: #BBB;
+	font-size: 0.9em;
 }

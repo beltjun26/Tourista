@@ -10,7 +10,7 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/navigation_bar_and_body_style.css">
-		<link rel="stylesheet" type="text/css" href="css/Style_registration.css">
+		<link rel="stylesheet" type="text/css" href="css/Style_Registration.css">
 	</head>
 	<body>
 		<?php 
@@ -49,7 +49,8 @@
 								} 
 								if($numrows==1 && ($new_pass==$retype_new)){
 											$query = "UPDATE account SET password=MD5('$new_pass') where BINARY username='$user_name' ";
-											$result = mysqli_query($dbconn,$query); 
+											$result = mysqli_query($dbconn,$query);
+											$_SESSION["username"] = $_POST["username"]; 
 											// $passSuccess = "You have succesfully updated your password!";
 											$passSuccess = true;
 								 	} else {
@@ -117,14 +118,14 @@
 			<form method="post"> 
 				<input required type="text" name="username" placeholder="Username" value="<?php echo $user_name; ?>">
 				<?php if($userSuccess){ ?>
-				  			<span class="error">Username updated successfully</span>
+				  			<span class="success">Username updated successfully!</span>
 				 <?php }elseif ($usermsg) { ?>
 				  			<span class="error">Invalid! Username $username already taken.</span>
 				 <?php } ?>
 
-				<input type="password" name="curpass" placeholder="Current Password" required>
+				<input type="password" name="curpass" placeholder="Current Password">
 				<?php if ($passSuccess) { ?>
-				  			<span class="error">Password updated successfully!</span>
+				  			<span class="success">Password updated successfully!</span>
 				 <?php }elseif ($passWrong) { ?>
 				  			<span class="error">Sorry,that is not your password!</span>
 				 <?php } ?>
