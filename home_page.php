@@ -131,17 +131,14 @@
 						$num_rows = mysqli_num_rows($result);
 						// Loop each post
 						foreach ($result as $value):?>
-<<<<<<< HEAD
-								<div class="posted post-container">
 
-=======
 							<div class="posted post-container">
 								<span class="show-dropdown glyphicon glyphicon-chevron-down"></span>
 								<ul class="dropdown">
 									<li><button class="delete">Delete</button></li>
 									<li><button>Edit</button></li>
 								</ul>
->>>>>>> 7db331405d120acef4db55dde5919d127d93d41f
+
 								<a href="<?php 
 									if($value['acc_id']==$_SESSION['userID']){
 										echo "my_profile.php";
