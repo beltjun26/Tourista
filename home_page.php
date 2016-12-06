@@ -34,7 +34,7 @@
 			<ul id = "navList">
 				<li><a href="#" class="active"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
 				<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
+				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="Notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
 				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'"></a></li>
@@ -149,6 +149,35 @@
 
 									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>
+								<ul class="with-people">
+									<li>with</li>
+									<li><a href="#">Somebody</a>,</li>
+									<li><a href="#">Something</a>,</li>
+									<li><a href="#">Somebody</a></li>
+									<li>and <span onclick="">5 others</span></li>
+								</ul>
+								<!-- IF people are more than capacity. -->
+								<!-- <div id="people" class="modal tagged-panel">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h2>tagged people</h2>
+											<span class="close">×</span>
+										</div>
+										<div class="modal-body">
+											<ul class="with-people-modal">
+												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somebody</a></li>
+												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Something</a></li>
+												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Someone</a></li>
+												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somel</a></li>
+												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Solo</a></li>
+												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somewara</a></li>
+												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somedont</a></li>
+												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somewhat</a></li>
+											</ul>
+										</div>
+									</div>
+								</div> -->
+								<span class="time-date">3:57am December 7, 2016</span>
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
 								<?php if($value['if_image'] == 1): ?>
@@ -170,7 +199,7 @@
 									}
 									if($row){
 										if(in_array($value['post_id'], $likes_array)){
-											$style = "style='background-color: grey'";
+											$style = "style='background-color: #00E5FF'";
 										}
 										if($row==1){
 											echo "1 Like";

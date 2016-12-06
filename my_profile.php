@@ -54,7 +54,7 @@
 			<ul id = "navList">
 				<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
 				<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
+				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
 				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list active"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'"></a></li>
@@ -118,7 +118,7 @@
 				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" onerror = "this.src = 'images/default_cover.png'">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
 					      		<input type="file" name="cover" id="cover" class="inputfile" onchange="loadFilecover(event)">
-						      	<label for="cover">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
+						      	<label for="cover">Choose Cover Photo<span class="glyphicon glyphicon-download-alt"></span></label>
 					      		<input type="submit" name="change_profilecover" value="CHANGE">
 					      	</form>
 					    </div>
