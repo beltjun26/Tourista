@@ -60,11 +60,11 @@
 							</div>
 							<div class="modal-body">
 								<span>This place is unavailable. Fill this form to register place.</span>
-								<form>
-									<input type="text" name="place_name" placeholder="Place name...">
-									<textarea placeholder="Description..."></textarea>
+								<form id="addplaceform" enctype="multipart/form-data">
+									<input id="place_name" type="text" name="place_name" placeholder="Place name...">
+									<textarea id="description" name="description" placeholder="Description..."></textarea>
 									<div id="map"></div>
-									<input id="add_place" type="submit" name="place" value="Register">
+									<input id="add_place" type="button" name="place" value="Register">
 								</form>
 							</div>
 						</div>
@@ -316,12 +316,46 @@
 		}
 		$(function(){
 			$("#add_place").click(function(){
+				var place_name = document.getElementById('place_name').value;
+				var description = document.getElementById('description').value;
+				if(place_name==""&&description==""){
+					alert("Please enter the fields");
+				}
+				else if(place_name==""){
+					alert("Please enter the Place name");
+				}else if(description==""){
+					alert("Please enter the description of place");
+				}else{
+					var places = searchBox.getPlaces();
+					var google_placeId;
+					places.forEach(function(place){
+						google_placeId = place.place_id;
+					});
+					var formData = new FormData($("#addplaceform")[0]);
+					console.log(formData);
+					formData.append('place_id',google_placeId);
+					$.ajax({
+						url:"addplace.php",
+						type:"POST",
+						data:formData,
+						success:function(data){
+							$(".warning").css("display", "none");
+							$("#addplace").css("display", "none");
+							alert(data);
+							document.getElementById('place_name').value="";
+							document.getElementById('description').value="";
 
+						},
+						contentType: false,
+		        		processData: false
+					});
+				}
 			});
 
 			$("#posting").click(function(){
 
 				var places = searchBox.getPlaces();
+				var google_placeId;
 				places.forEach(function(place){
 					google_placeId = place.place_id;
 				});
@@ -342,9 +376,9 @@
 								success:function(data){
 									var values = JSON.parse(data);
 									if(values.if_image==0){
-										var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div>';
+										var insert = '<div class="posted post-container"><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div>';
 									}else{
-										var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
+										var insert = '<div class="posted post-container"><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
 									}
 									
 									
@@ -373,8 +407,8 @@
 				source:"tag_person.php",
 				minLength:2,
 				select: function(event, ui){
-					var insert = "<li>"+ui.item.value+"</li>";
-					$("#tag_list").css("display","block");
+					var insert = "<li>"+ui.item.value+"<span> x</span></li>";
+					$("#tag_list").css("display","flex");
 					$("#tag_list").append(insert);
 					document.getElementById('person_tag').value="sdf";
 				}

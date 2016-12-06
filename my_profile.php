@@ -85,7 +85,7 @@
 			</div>
 			<ul class="user-options">
 				<li><a href="#" class="active">Feed<span class="glyphicon glyphicon-credit-card"></span></a></li>
-				<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></span></a></li>
+				<li><a href="visit.php">Visits<span class="glyphicon glyphicon-map-marker"></span></a></li>
 				<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></span></a></li>
 				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></span></a></li>
 				<li><a href="Change_account.php">Change Account<span class="glyphicon glyphicon-cog"></span></a></li>
@@ -365,7 +365,7 @@
 			var captionText = document.getElementById("caption"+post_id);
 		    modal.style.display = "block";
 		    modalImg.src = 'images/post_img/'+post_id+'.jpg';
-			}
+			
 		}
 
 		//show map if add the place is clicked
