@@ -57,10 +57,16 @@
 							<div class="modal-header">
 							    <span id="closeA2" class="close">×</span>
 							    <h2>Place is unvailable.</h2>
-							 </div>
-							<span>This place is unavailable. Do you want to add it?</span>
-							<div id="map"></div>
-							<input id="add_place" type="button" name="place" value="Register">
+							</div>
+							<div class="modal-body">
+								<span>This place is unavailable. Fill this form to register place.</span>
+								<form id="addplaceform" enctype="multipart/form-data">
+									<input id="place_name" type="text" name="place_name" placeholder="Place name...">
+									<textarea id="description" name="description" placeholder="Description..."></textarea>
+									<div id="map"></div>
+									<input id="add_place" type="button" name="place" value="Register">
+								</form>
+							</div>
 						</div>
 					</div>
 					<div class="posting post-container" id="posting-container">
@@ -78,9 +84,10 @@
 							<img src="" alt="" id="image_preview" style="display: block">
 							<input type="text-field" placeholder="Tag a location" class="tag-location" id="location_tag">
 							<div class="location">	
-							<span class="tagged-location">Tagged place:</span>
-							<p id="tagged_place" class="tagged-location"></p>
+								<span class="tagged-location">Tagged place:</span>
+								<p id="tagged_place" class="tagged-location"></p>
 							</div>
+							<div class="error" style="display: none;">Please tag a location</div>
 							<div class="warning" style="display: none">
 								<span>Place not available.</span>
 								<input id="addform" type="button" name="addform" value="add">
@@ -124,8 +131,17 @@
 						$num_rows = mysqli_num_rows($result);
 						// Loop each post
 						foreach ($result as $value):?>
+<<<<<<< HEAD
 								<div class="posted post-container">
 
+=======
+							<div class="posted post-container">
+								<span class="show-dropdown glyphicon glyphicon-chevron-down"></span>
+								<ul class="dropdown">
+									<li><button class="delete">Delete</button></li>
+									<li><button>Edit</button></li>
+								</ul>
+>>>>>>> 7db331405d120acef4db55dde5919d127d93d41f
 								<a href="<?php 
 									if($value['acc_id']==$_SESSION['userID']){
 										echo "my_profile.php";
@@ -196,7 +212,7 @@
 		console.log(containerheight);
 		containerheight = containerheight + 10;
 		console.log(containerheight);
-		document.getElementById("posted-container").setAttribute("style","margin: "+containerheight+"px 0 20px 0;overflow: all;");
+		document.getElementById("posted-container").setAttribute("style","margin: "+containerheight+"px 0 20px 0;overflow: all; z-index: -1;");
 		//function for image modal
 		function showModal(post_id){
 			var modal = document.getElementById('myModal'+post_id);
@@ -305,12 +321,46 @@
 		}
 		$(function(){
 			$("#add_place").click(function(){
+				var place_name = document.getElementById('place_name').value;
+				var description = document.getElementById('description').value;
+				if(place_name==""&&description==""){
+					alert("Please enter the fields");
+				}
+				else if(place_name==""){
+					alert("Please enter the Place name");
+				}else if(description==""){
+					alert("Please enter the description of place");
+				}else{
+					var places = searchBox.getPlaces();
+					var google_placeId;
+					places.forEach(function(place){
+						google_placeId = place.place_id;
+					});
+					var formData = new FormData($("#addplaceform")[0]);
+					console.log(formData);
+					formData.append('place_id',google_placeId);
+					$.ajax({
+						url:"addplace.php",
+						type:"POST",
+						data:formData,
+						success:function(data){
+							$(".warning").css("display", "none");
+							$("#addplace").css("display", "none");
+							alert(data);
+							document.getElementById('place_name').value="";
+							document.getElementById('description').value="";
 
+						},
+						contentType: false,
+		        		processData: false
+					});
+				}
 			});
 
 			$("#posting").click(function(){
 
 				var places = searchBox.getPlaces();
+				var google_placeId;
 				places.forEach(function(place){
 					google_placeId = place.place_id;
 				});
@@ -331,9 +381,9 @@
 								success:function(data){
 									var values = JSON.parse(data);
 									if(values.if_image==0){
-										var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div>';
+										var insert = '<div class="posted post-container"><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div>';
 									}else{
-										var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
+										var insert = '<div class="posted post-container"><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
 									}
 									
 									
@@ -362,8 +412,8 @@
 				source:"tag_person.php",
 				minLength:2,
 				select: function(event, ui){
-					var insert = "<li>"+ui.item.value+"</li>";
-					$("#tag_list").css("display","block");
+					var insert = "<li>"+ui.item.value+"<span> x</span></li>";
+					$("#tag_list").css("display","flex");
 					$("#tag_list").append(insert);
 					document.getElementById('person_tag').value="sdf";
 				}
