@@ -56,7 +56,7 @@
 
 			<ul id = "navList">
 				<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
+				<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li>
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
@@ -96,7 +96,7 @@
 					?>
 				</span></a></li>
 				<li><a href="#">Ask for a Tour<span class="glyphicon glyphicon-sunglasses"></a></li>
-				<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></a></li>
+				<li><a href="visit.php?acc_id=<?=$_GET['acc_id']?>">Visits<span class="glyphicon glyphicon-map-marker"></a></li>
 				<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></a></li>
 				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></a></li>
 			</ul>
@@ -108,6 +108,12 @@
 					<?php 
 						require "connect.php";
 						$acc_id = $_GET['acc_id'];
+						$query = "SELECT * from upvote where acc_id = {$_SESSION['userID']}";
+						$result = mysqli_query($dbconn, $query);
+						$likes_array=[];
+						while($data = mysqli_fetch_assoc($result)){
+							$likes_array[]=$data['post_id'];
+						}
 						$query = "SELECT * 
 								  FROM posted 
 								  NATURAL JOIN account
@@ -133,16 +139,41 @@
 
 								<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
 								<div class="like">
-									<span class="num-likes">3 Likes</span>
-									<button>LIKE</button>
+									<span id="likes<?=$value['post_id']?>" class="num-likes">
+								<?php 
+									$query = "SELECT count(*) as likes from upvote where post_id = {$value['post_id']};";
+									$result = mysqli_query($dbconn, $query);
+									$row = 0;
+									$style = " ";
+									if(mysqli_affected_rows($dbconn)){
+										$data = mysqli_fetch_assoc($result);
+										$row = $data['likes'];
+									}
+									if($row){
+										if(in_array($value['post_id'], $likes_array)){
+											$style = "style='background-color: grey'";
+										}
+										if($row==1){
+											echo "1 Like";
+										}else{
+											echo $row." Likes";
+										}
+									}else{
+										echo " ";
+									}
+								 ?>
+									</span>
+									<button id="likebutton<?=$value['post_id']?>" <?=$style?> onclick="likeTriggered(<?=$value['post_id']?>)">LIKE</button>
 								</div>			
 							</div>
 							
+							<?php if($value['if_image'] == 1): ?>
 							<div id="myModal<?=$value['post_id']?>" class="modal">
 								<span id="close1" class="close" onclick="document.getElementById('myModal<?=$value['post_id']?>').style.display='none'">&times;</span>
 								<img class="modal-content postImg"  id="img<?=$value['post_id']?>">
 								<div id="caption<?=$value['post_id']?>" class="caption"></div>
 							</div>
+							<?php endif; ?>
 
 					<?php endforeach; ?>
 					</div>
@@ -170,18 +201,50 @@
 			        modal.style.display = "none";
 			    }
 			}
-		</script>
-		<script>
+
 			var loadFile = function(event){
 				var output_profile = document.getElementById('output_profile');
 				output_profile.src = URL.createObjectURL(event.target.files[0]);
 			};
-		</script>
-		<script>
+
 			var loadFilecover = function(event){
 				var output_cover = document.getElementById('output_cover');
 				output_cover.src = URL.createObjectURL(event.target.files[0]);
 			};
+
+			function showModal(post_id){
+			var modal = document.getElementById('myModal'+post_id);
+			var img = document.getElementById('myImg'+post_id);
+			var modalImg = document.getElementById("img"+post_id);
+			var captionText = document.getElementById("caption"+post_id);
+		    modal.style.display = "block";
+		    modalImg.src = 'images/post_img/'+post_id+'.jpg';
+		    
+		}
+		function likeTriggered(post_id){
+			$.ajax({
+				url:"like.php",
+				type:"post",
+				data:{'post_id': post_id},
+				success:function(data){
+					var values = JSON.parse(data);
+					if(values.status=="deleted"){
+						$("#likebutton"+post_id).css("background-color","#00BCD4");
+					}
+					if(values.status=="inserted"){
+						$("#likebutton"+post_id).css("background-color","grey");
+					}
+					if(values.likes==0){
+						document.getElementById("likes"+post_id).innerHTML=" ";
+					}
+					if(values.likes==1){
+						document.getElementById("likes"+post_id).innerHTML="1 Like";	
+					}if(values.likes>1){
+						document.getElementById("likes"+post_id).innerHTML=values.likes+" Likes";	
+					}
+				}
+			});
+		}
 		</script>
 	</body>
 </html>

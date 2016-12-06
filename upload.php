@@ -41,7 +41,7 @@
 	}
 	if($upload_cp == 1){
 		$newfilename = "cover_$user_id.png";
-		move_uploaded_file($_FILES['cover']['tmp_name'],'images/cover_img/' . $newfilename);
+		move_uploaded_file($_FILES['cover']['tmp_name'],'images/cover_img/'. $newfilename);
 	}
 
 	if($upload_pp == 1){

@@ -23,7 +23,12 @@
         header("Location:login.php");
       }
 			include 'connect.php';
-			$query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id";
+      if(isset($_GET['acc_id'])){
+         $query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_GET['acc_id']} and  l.place_id = p.place_id group by location_id";
+      }else{
+        $query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id";
+      }
+			
 			$result = mysqli_query($dbconn, $query);
 			$row = [];
 			if(!mysqli_affected_rows($dbconn)==0){
