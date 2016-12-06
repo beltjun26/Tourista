@@ -155,7 +155,7 @@
 						</div>
 					</div>
 					<div class="posting post-container" id="posting-container">
-						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile">
+						<img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" alt="USER PHOTO" class="profile" onerror = "this.src = 'images/default_profile.png'">
 						<p class="user-name"><?=$username?></p>
 						<form id="formsubmit" enctype="multipart/form-data">
 							<textarea id="post-text-area" cols="50" rows="5" placeholder="Say something..." name = "post"></textarea>

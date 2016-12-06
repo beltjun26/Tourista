@@ -131,6 +131,7 @@
 						$num_rows = mysqli_num_rows($result);
 						// Loop each post
 						foreach ($result as $value):?>
+
 							<div class="posted post-container">
 								<span class="show-dropdown glyphicon glyphicon-chevron-down"></span>
 								<ul class="dropdown">

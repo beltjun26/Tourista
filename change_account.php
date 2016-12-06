@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Toursita</title>
+		<title>Tourista</title>
 		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +16,87 @@
 		<?php 
 			require "connect.php";
 			session_start();
+			$change = 0;
+			$passBlank = false;
+			$passWrong = false;
+			$passSuccess = false;
+			$usermsg = false;
+			$userSuccess = false;
+			$mismatch = false;
+			if(!(isset($_SESSION["userName"]))){ 
+				header("Location:login.php");
+			} else {
+				$user_name = $_SESSION["userName"];	
+				if (isset($_POST['changeset'])){
+					$username = $_POST['username'];
+					$old_pass = $_POST['curpass'];
+					$new_pass = $_POST['newpass'];
+					$retype_new = $_POST['retpass'];
+					// if ($old_pass=='' || $new_pass=='' || $retype_new=='') { 
+					if ($new_pass=='' || $retype_new=='') {
+						// $passmsg1 = "Current password, new password, and password retype confirmation must be filled out to make changes to your current password.";
+						$passBlank = true;
+					} elseif(!empty($_POST["username"]) && !empty($_POST["curpass"]) && !empty($_POST["retpass"]) && !empty($_POST["newpass"])){
+								$query = "SELECT password FROM account WHERE password=MD5('$old_pass') ";
+								$result = mysqli_query($dbconn, $query);
+								$numrows = mysqli_num_rows($result);
+								if($numrows==0){
+									$passWrong = true;
+								} 
+								if($new_pass!=$retype_new){ 
+										// $mismatch = "Oops, new password and confirmation don't match!"; 
+									$mismatch = true;
+								} 
+								if($numrows==1 && ($new_pass==$retype_new)){
+											$query = "UPDATE account SET password=MD5('$new_pass') where BINARY username='$user_name' ";
+											$result = mysqli_query($dbconn,$query); 
+											// $passSuccess = "You have succesfully updated your password!";
+											$passSuccess = true;
+								 	} else {
+		 									//$passmsg3 = "New password must at least be 8 characters long and should contain at least 1 integer.";
+									}
+					}
+					if($_SESSION["userName"] != $username || $old_pass =='' || $new_pass=='' || $retype_new==''){
+						$query = "SELECT * FROM account WHERE BINARY username='$username'";
+						$result = mysqli_query($dbconn, $query);
+						$numrows = mysqli_num_rows($result);
+						if($numrows>=1){
+							// $usermsg = "Invalid! Username $username already taken.";
+							$usermsg = true;
+							$user_name = $username;
+							$passmsg1 =false;
+							$passmsg2 = false;
+							$passmsg3 = false;
+							$passmsg4 = false;;
+						} elseif( !($old_pass == '') && !($new_pass=='') && !($retype_new=='') ){
+								$change = 1;
+						} elseif((empty($old_pass) || empty($new_pass) || empty($retype_new))){
+							$change = 1;
+						} 
+						if(empty($old_pass) || empty($new_pass) || empty($retype_new)){ 
+							// $change = 1;
+							$passmsg1 =false;
+							$passmsg2 =false;
+							$passmsg3 =false;;
+						}
+						
+					} 
+				}
+			}
+
+			if($change == 1){
+				// $userSuccess = "Success! You change your username.";
+				$userSuccess = true;
+							$query = "UPDATE `account` SET username='$username' WHERE username='$user_name' ";
+							$result = mysqli_query($dbconn, $query);
+							$query = "SELECT username FROM account WHERE username='$username'";
+							$result = mysqli_query($dbconn, $query);
+							$row = mysqli_fetch_array($result);
+							$user_name = $row['username'];
+							$_SESSION["username"] = $_POST["username"];  
+			}
+
+
 		?>
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
@@ -33,18 +114,30 @@
 		</div>
 		<div class="container" id="container">
 			<h1>Change Account Settings</h1>
-			<form>
-				<input type="text" name="username" placeholder="Username">
-				<span class="error" style="display: none;">Error<!-- Echo error here --></span>
+			<form method="post"> 
+				<input required type="text" name="username" placeholder="Username" value="<?php echo $user_name; ?>">
+				<?php if($userSuccess){ ?>
+				  			<span class="error">Username updated successfully</span>
+				 <?php }elseif ($usermsg) { ?>
+				  			<span class="error">Invalid! Username $username already taken.</span>
+				 <?php } ?>
 
-				<input type="password" name="curpass" placeholder="Current Password">
-				<span class="error" style="display: none;"><!-- Echo error here --></span>
+				<input type="password" name="curpass" placeholder="Current Password" required>
+				<?php if ($passSuccess) { ?>
+				  			<span class="error">Password updated successfully!</span>
+				 <?php }elseif ($passWrong) { ?>
+				  			<span class="error">Sorry,that is not your password!</span>
+				 <?php } ?>
 
-				<input type="password" name="newpass" placeholder="New Password">
-				<span class="error" style="display: none;"><!-- Echo error here --></span>
+				<input pattern = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" type="password" name="newpass" placeholder="New Password(must be at least 8 characters with 1 integer)">
+				<?php if($passBlank):?>
+				  			<span class="error">Current password, new password, and password retype confirmation must be filled out to make changes to your current password!</span>
+				  		<?php endif; ?>
 
 				<input type="password" name="retpass" placeholder="Retype Password">
-				<span class="error" style="display: none;"><!-- Echo error here --></span>
+				<?php if($mismatch):?>
+				  			<span class="error">Oops! Your new password does not match with the retyped password.</span>
+				  		<?php endif; ?>
 				
 				<input type="submit" name="changeset" value="CHANGE">
 				<a class="pagelink" href="my_profile.php">CANCEL</a>
