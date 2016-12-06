@@ -58,7 +58,29 @@
 				</ul>
 			</div>
 			<ul id="Results" class="results-container">
-			<?php foreach ($result as $value) {?>
+			<?php 
+			$numRow = mysqli_num_rows($result);
+			$resPerPage = 6;
+			$paginationNum = ceil($numRow/$resPerPage); //10 results per 
+			$count = 0;
+			$pageNum;
+			if(isset($_GET["page"])){
+				$pageNum = $_GET["page"];
+			}else{
+				$pageNum = 1;
+			}
+
+			
+			for($i = 1; $i < $pageNum; $i++){
+				for($o = 0; $o < $resPerPage; $o++){
+					mysqli_fetch_row($result);
+				}
+
+			}
+
+
+			while($value = mysqli_fetch_assoc($result)){
+			//foreach ($result as $value) {?>
 				<li class="result-people">
 					<a href="people_profile.php?acc_id=<?=$value['acc_id']?>">
 							<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id'] ?>.jpg" alt="user image">
@@ -69,8 +91,22 @@
 						</div>
 					</a>
 				</li>
-			<?php } ?>
+			<?php 
+				$count++;
+				if($count >= $resPerPage){
+					break;
+				}
+			} ?>
 			</ul>
+
+			<?php
+				for($i = 1; $i <= $paginationNum; $i++){
+			?>
+
+			<a href="search_results_people.php?search=<?php echo $searchVal;?>&page=<?php echo $i;?>"><?php echo $i;?></a>
+		
+
+			<?php }?>
 		</div>
 	</body>
 </html>
