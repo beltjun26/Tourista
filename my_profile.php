@@ -205,11 +205,7 @@
 								  FROM posted 
 								  NATURAL JOIN account
 								  NATURAL JOIN places
-								  WHERE acc_id 
-								  IN (SELECT acc_id_follows 
-								  	  FROM follow 
-								  	  WHERE acc_id_follower = $acc_id)
-								  OR acc_id = $acc_id 
+								  WHERE acc_id = $acc_id 
 								  ORDER BY time_post 
 								  DESC;";
 

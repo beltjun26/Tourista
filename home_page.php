@@ -138,7 +138,6 @@
 									<li><button class="delete">Delete</button></li>
 									<li><button>Edit</button></li>
 								</ul>
-
 								<a href="<?php 
 									if($value['acc_id']==$_SESSION['userID']){
 										echo "my_profile.php";
