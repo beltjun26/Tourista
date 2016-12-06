@@ -118,7 +118,7 @@
 				      		<img id="output_cover" src="images/cover_img/cover_<?=$_SESSION['userID']?>.png" onerror = "this.src = 'images/default_cover.png'">
 					      	<form method="post" action="upload.php" enctype="multipart/form-data">
 					      		<input type="file" name="cover" id="cover" class="inputfile" onchange="loadFilecover(event)">
-						      	<label for="cover">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
+						      	<label for="cover">Choose Cover Photo<span class="glyphicon glyphicon-download-alt"></span></label>
 					      		<input type="submit" name="change_profilecover" value="CHANGE">
 					      	</form>
 					    </div>
