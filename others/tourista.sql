@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2016 at 08:06 AM
+-- Generation Time: Dec 06, 2016 at 07:31 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -130,7 +130,7 @@ CREATE TABLE `notification` (
 CREATE TABLE `places` (
   `place_id` int(9) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `desciption` varchar(100) NOT NULL,
+  `description` varchar(100) NOT NULL,
   `location_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -138,13 +138,15 @@ CREATE TABLE `places` (
 -- Dumping data for table `places`
 --
 
-INSERT INTO `places` (`place_id`, `name`, `desciption`, `location_id`) VALUES
+INSERT INTO `places` (`place_id`, `name`, `description`, `location_id`) VALUES
 (1, 'Miagao Church', 'This is Miagao Church.', 'ChIJCfn0zHZcrjMRqI11lJHSPGY'),
 (2, 'Balay Cawayan', 'Balay nga cawayan', 'ChIJNyOoLYRbrjMRKgljYP_KdWo'),
 (3, 'Lanz Pizza', 'Masharap na pizza lol', 'ChIJadk10nZcrjMRZ66xPc1HlXg'),
 (4, 'Plaza Miagao', 'Plaza sng Miagao', 'ChIJxW6uf4pbrjMRsZwTF9N9lko'),
 (5, 'College of Arts and Sciences (CAS)', 'College of really cool people.', 'ChIJRfmlQnpcrjMRO3w9ayZy24g'),
-(6, 'College of Fisheries and Ocean Studies', 'Isda isda fish fish', 'ChIJG1tKfY1CrjMRRMPdEBPMm_g');
+(6, 'College of Fisheries and Ocean Studies', 'Isda isda fish fish', 'ChIJG1tKfY1CrjMRRMPdEBPMm_g'),
+(7, 'Hello', 'This is asd', 'ChIJXVv44IZXrjMRs9UxhHyvvZo'),
+(8, 'Tigbauan', 'tje besad', 'ChIJw_tU9cn3rjMR9uAiLoZwTrU');
 
 -- --------------------------------------------------------
 
@@ -188,7 +190,9 @@ INSERT INTO `posted` (`post_id`, `content`, `place_id`, `acc_id`, `time_post`, `
 (25, 'Hello', 2, 2, '2016-11-24 22:29:38', 1),
 (26, '', 2, 2, '2016-11-25 03:34:20', 1),
 (27, 'a', 2, 2, '2016-11-25 04:43:05', 0),
-(28, 'adasdasd', 2, 12, '2016-12-05 06:21:15', 0);
+(28, 'adasdasd', 2, 12, '2016-12-05 06:21:15', 0),
+(29, 'Ari ko di', 7, 2, '2016-12-06 18:15:18', 0),
+(30, 'asdasdasdasddddddddd', 8, 2, '2016-12-06 18:16:11', 0);
 
 -- --------------------------------------------------------
 
@@ -229,7 +233,16 @@ CREATE TABLE `upvote` (
 --
 
 INSERT INTO `upvote` (`acc_id`, `post_id`) VALUES
-(12, 28);
+(12, 28),
+(2, 30),
+(2, 27),
+(2, 24),
+(2, 25),
+(2, 23),
+(2, 22),
+(2, 17),
+(2, 18),
+(2, 26);
 
 --
 -- Indexes for dumped tables
@@ -289,12 +302,12 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
-  MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `posted`
 --
 ALTER TABLE `posted`
-  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
