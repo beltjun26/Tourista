@@ -148,7 +148,7 @@ body{
 	clear: both;
 	width: 100%;
 	padding: 0;
-	margin: 25px 0 0 0;
+	margin: 15px 0 10px 0;
 	text-indent: 10px;
 }
 
@@ -479,10 +479,12 @@ span.tagged-location{
 }
 
 .tagged-panel{
-	z-index: 100;
+	z-index: 10;
+	position: fixed;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: rgba(0,0,0,0.6);
 }
 
 .tagged-panel .modal-content{

@@ -156,7 +156,7 @@
 									<li><a href="#">Somebody</a></li>
 									<li>and <span onclick="">5 others</span></li>
 								</ul>
-								<span class="time-date">3:57am December 7, 2016</span>
+								<!-- IF people are more than capacity. -->
 								<!-- <div id="people" class="modal tagged-panel">
 									<div class="modal-content">
 										<div class="modal-header">
@@ -177,6 +177,7 @@
 										</div>
 									</div>
 								</div> -->
+								<span class="time-date">3:57am December 7, 2016</span>
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
 								<?php if($value['if_image'] == 1): ?>
