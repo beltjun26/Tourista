@@ -56,6 +56,10 @@ body{
 	transition: 0.3s;
 }
 
+.posted{
+	z-index: -1;
+}
+
 .posted a:hover > .user-name{
 	color: #00B8D4;
 }
@@ -66,6 +70,7 @@ body{
 
 .posting{
 	position: absolute;
+	z-index: 0;
 }
 
 .posting > form{
@@ -407,11 +412,11 @@ span.tagged-location{
 	border: 1px solid #DDD;
 	border-radius: 3px;
 	margin: 10px 0;
-	transition: 0.3s;
+	height: 52px;
+	transition: 0.2s;
 }
 
 #unavailable form textarea{
-	max-height: 150px;
 	resize: vertical;
 }
 

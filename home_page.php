@@ -207,7 +207,7 @@
 		console.log(containerheight);
 		containerheight = containerheight + 10;
 		console.log(containerheight);
-		document.getElementById("posted-container").setAttribute("style","margin: "+containerheight+"px 0 20px 0;overflow: all;");
+		document.getElementById("posted-container").setAttribute("style","margin: "+containerheight+"px 0 20px 0;overflow: all; z-index: -1;");
 		//function for image modal
 		function showModal(post_id){
 			var modal = document.getElementById('myModal'+post_id);
