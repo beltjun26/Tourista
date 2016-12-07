@@ -15,6 +15,9 @@
 			$result = mysqli_query ($dbconn, $query);
 			$numberR = mysqli_num_rows($result);
 		}
+		if(!isset($_GET['page'])){
+			$_GET['page'] = 1;
+		}
 ?>
 
 
@@ -83,7 +86,7 @@
 			//foreach ($result as $value) {?>
 				<li class="result-people">
 					<a href="people_profile.php?acc_id=<?=$value['acc_id']?>">
-							<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id'] ?>.jpg" alt="user image">
+							<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id'] ?>.jpg" alt="user image" onerror = "this.src = 'images/default_profile.png'">
 						
 						<div class = "user-details">
 							<h2 class="username"><?php echo $value['firstname']." ".$value['lastname'] ?></h2>
@@ -98,15 +101,20 @@
 				}
 			} ?>
 			</ul>
-
-			<?php
-				for($i = 1; $i <= $paginationNum; $i++){
-			?>
-
-			<a href="search_results_people.php?search=<?php echo $searchVal;?>&page=<?php echo $i;?>"><?php echo $i;?></a>
-		
-
-			<?php }?>
+			<ul class="pagination">
+				<?php for($i = 1; $i <= $paginationNum; $i++): ?>
+				<li><a href="search_results_people.php?search=<?php echo $searchVal;?>&page=<?php echo $i;?>"  
+					<?php if ($_GET['page']==$i): ?>
+						class="active">
+					<?php else: ?>
+						>
+					<?php endif; 
+					      echo $i; 
+					      ?>
+					</a>
+				</li>
+				<?php endfor; ?>
+			</ul>
 		</div>
 	</body>
 </html>
