@@ -73,6 +73,36 @@ body{
 	z-index: 1;
 }
 
+.ui-autocomplete {
+    background: white;
+    color: #555;
+    border-radius: 0px;
+    position: absolute;
+    z-index: 10;
+    border: 1px solid #DDD;
+    border-width: 0 1px 1px 1px;
+    list-style: none;
+    cursor: pointer;
+    padding: 0;
+    max-width: 20%;
+}
+
+.ui-autocomplete.source:hover{
+	background: black;
+}
+
+.ui-menu .ui-menu-item{
+	cursor: pointer;
+	font-size: 0.9em;
+    padding: 7px 10px 5px 10px;
+	transition: 0.2s;
+}
+
+.ui-menu .ui-menu-item:hover{
+	background-color: #00BCD4;
+	color: white;
+}
+
 .posting > form{
 	clear: both;
 	display: flex;
