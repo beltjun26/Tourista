@@ -171,6 +171,7 @@
 								<?php endif ?>
 								<li>and <span onclick="">9 others</span></li>
 								</ul>
+
 								<!-- IF people are more than capacity. -->
 								<!-- <div id="people" class="modal tagged-panel">
 									<div class="modal-content">
@@ -193,6 +194,7 @@
 									</div>
 								</div> -->
 								<span class="time-date"><?php echo date("F j, Y, g:i a", strtotime($value['time_post'])); ?></span>
+
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
 								<?php if($value['if_image'] == 1): ?>
@@ -236,7 +238,27 @@
 								<div id="caption<?=$value['post_id']?>" class="caption"></div>
 							</div>
 							<?php endif; ?>
-
+							<!-- IF people are more than capacity. -->
+							<div id="people" class="modal tagged-panel" style="display: flex;">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h2>tagged people</h2>
+										<span class="close">×</span>
+									</div>
+									<div class="modal-body">
+										<ul class="with-people-modal">
+											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somebody</a></li>
+											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Something</a></li>
+											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Someone</a></li>
+											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somel</a></li>
+											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Solo</a></li>
+											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somewara</a></li>
+											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somedont</a></li>
+											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somewhat</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
 						<?php endforeach; ?>
 						
 						<!-- END OF POSTED -->

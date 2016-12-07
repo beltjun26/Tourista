@@ -32,8 +32,7 @@
 					$old_pass = $_POST['curpass'];
 					$new_pass = $_POST['newpass'];
 					$retype_new = $_POST['retpass'];
-					// if ($old_pass=='' || $new_pass=='' || $retype_new=='') { 
-					if ($new_pass=='' || $retype_new=='') {
+					 if ($old_pass=='' || $new_pass=='' || $retype_new=='') { 
 						// $passmsg1 = "Current password, new password, and password retype confirmation must be filled out to make changes to your current password.";
 						$passBlank = true;
 					} elseif(!empty($_POST["username"]) && !empty($_POST["curpass"]) && !empty($_POST["retpass"]) && !empty($_POST["newpass"])){
@@ -65,10 +64,10 @@
 							// $usermsg = "Invalid! Username $username already taken.";
 							$usermsg = true;
 							$user_name = $username;
-							$passmsg1 =false;
-							$passmsg2 = false;
-							$passmsg3 = false;
-							$passmsg4 = false;;
+							// $passmsg1 =false;
+							// $passmsg2 = false;
+							// $passmsg3 = false;
+							// $passmsg4 = false;;
 						} elseif( !($old_pass == '') && !($new_pass=='') && !($retype_new=='') ){
 								$change = 1;
 						} elseif((empty($old_pass) || empty($new_pass) || empty($retype_new))){
@@ -76,9 +75,9 @@
 						} 
 						if(empty($old_pass) || empty($new_pass) || empty($retype_new)){ 
 							// $change = 1;
-							$passmsg1 =false;
-							$passmsg2 =false;
-							$passmsg3 =false;;
+							// $passmsg1 =false;
+							// $passmsg2 =false;
+							// $passmsg3 =false;;
 						}
 						
 					} 
@@ -88,13 +87,17 @@
 			if($change == 1){
 				// $userSuccess = "Success! You change your username.";
 				$userSuccess = true;
-							$query = "UPDATE `account` SET username='$username' WHERE username='$user_name' ";
+							//$query = "UPDATE `account` SET username='$username' WHERE username='$user_name'";
+							$query = "UPDATE `account` SET `username` = '$username' WHERE `account`.`username`='$user_name'";
 							$result = mysqli_query($dbconn, $query);
+
+
+
 							$query = "SELECT username FROM account WHERE username='$username'";
 							$result = mysqli_query($dbconn, $query);
 							$row = mysqli_fetch_array($result);
 							$user_name = $row['username'];
-							$_SESSION["username"] = $_POST["username"];  
+							$_SESSION["userName"] = $_POST["username"];  
 			}
 
 
@@ -120,7 +123,7 @@
 				<?php if($userSuccess){ ?>
 				  			<span class="success">Username updated successfully!</span>
 				 <?php }elseif ($usermsg) { ?>
-				  			<span class="error">Invalid! Username $username already taken.</span>
+				  			<span class="error">Invalid! Username <?php echo $username ?> already taken.</span>
 				 <?php } ?>
 
 				<input type="password" name="curpass" placeholder="Current Password">
@@ -128,12 +131,14 @@
 				  			<span class="success">Password updated successfully!</span>
 				 <?php }elseif ($passWrong) { ?>
 				  			<span class="error">Sorry,that is not your password!</span>
+				 <?php }elseif (!$userSuccess && $passBlank) { ?>
+				 		<span class="error">Current password, new password, and password retype confirmation must be filled out to make changes to your current password!</span>
 				 <?php } ?>
 
 				<input pattern = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" type="password" name="newpass" placeholder="New Password(must be at least 8 characters with 1 integer)">
-				<?php if($passBlank):?>
+				<!-- <?php if($passBlank):?>
 				  			<span class="error">Current password, new password, and password retype confirmation must be filled out to make changes to your current password!</span>
-				  		<?php endif; ?>
+				  		<?php endif; ?> -->
 
 				<input type="password" name="retpass" placeholder="Retype Password">
 				<?php if($mismatch):?>
