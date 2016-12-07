@@ -269,3 +269,14 @@
 	font-family: Gotham;
 	color: #777;
 }
+
+.pagination{
+	margin: auto;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.pagination .active{
+	background-color: #CFD8DC;
+}
