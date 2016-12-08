@@ -55,12 +55,12 @@
 		<div class="container">
 			<div class="headerprofile">
 				<div id="coverphoto">
-					<img src="images/cover_img/cover_<?=$acc_id?>.png" alt="user-cover">
+					<img src="images/cover_img/cover_<?=$acc_id?>.png" alt="user-cover" onerror = "this.src = 'images/default_cover.png'">
 					<?php if ($acc_id==$_SESSION['userID']) { ?> <button id="Editcovbtn">Edit Cover <span class="glyphicon glyphicon-pencil"></span></button> <?php } ?>
 				</div>
 				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
 				<div id="userphoto">
-					<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg">
+					<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" onerror = "this.src = 'images/default_profile.png'">
 					<?php if ($acc_id==$_SESSION['userID']) { ?> <button id="Editpicbtn">Edit Profile Picture <span class="glyphicon glyphicon-pencil"></span></button> <?php } ?>
 				</div>
 				<ul id="follows">
