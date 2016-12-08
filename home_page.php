@@ -1,3 +1,4 @@
+
 <!-- THIS HAS NO NAV BAR -->
 <?php
 	session_start();  
@@ -133,11 +134,13 @@
 						foreach ($result as $value):?>
 
 							<div class="posted post-container">
+							<?php if($value['acc_id']==$_SESSION['userID']): ?>
 								<span class="show-dropdown glyphicon glyphicon-chevron-down"></span>
 								<ul class="dropdown">
-									<li><button class="delete">Delete</button></li>
+									<li><button onclick="deletePost(<?=$value['post_id']?>)" class="delete">Delete</button></li>
 									<li><button>Edit</button></li>
 								</ul>	
+							<?php endif ?>
 								<a href="<?php 
 									if($value['acc_id']==$_SESSION['userID']){
 										echo "my_profile.php";
@@ -263,6 +266,14 @@
 		    modalImg.src = 'images/post_img/'+post_id+'.jpg';
 
 		}
+		function deletePost(post_id){
+			window.location.replace("delete.php?post_id="+post_id);
+		}
+		function deleteTag(tag_id){
+			$.ajax({
+
+			});
+		}
 		//function for tag modal
 		function showOtherTag(post_id){
 			$("#people").css("display", "flex");
@@ -354,7 +365,7 @@
 			var input = document.getElementById('location_tag');
 			searchBox = new google.maps.places.SearchBox(input);
 			searchBox.addListener('places_changed', function() {
-				document.getElementById('tagged_place').style.display = "block";
+				// document.getElementById('tagged_place').style.display = "block";
 				document.getElementById('tagged_place').innerHTML = document.getElementById('location_tag').value;
 				$(".warning").css("display", "none");
 			});
@@ -372,7 +383,7 @@
 						$("#likebutton"+post_id).css("background-color","#00BCD4");
 					}
 					if(values.status=="inserted"){
-						$("#likebutton"+post_id).css("background-color","grey");
+						$("#likebutton"+post_id).css("background-color","#00E5FF");
 					}
 					if(values.likes==0){
 						document.getElementById("likes"+post_id).innerHTML=" ";
@@ -484,9 +495,9 @@
 									if(values.if_image==0){
 
 										
-										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button class="delete">Delete</button></li><li><button>Edit</button></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><span class="time-date">'+current_date+'</span><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div>';
+										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button onclick="deletePost('+values.post_id+')" class="delete">Delete</button></li><li><button>Edit</button></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><span class="time-date">'+current_date+'</span><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div>';
 									}else{
-										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button class="delete">Delete</button></li><li><button>Edit</button></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><span class="time-date">'+current_date+'</span><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
+										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button onclick="deletePost('+values.post_id+')" class="delete">Delete</button></li><li><button>Edit</button></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><span class="time-date">'+current_date+'</span><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
 									}
 									
 									
@@ -496,8 +507,8 @@
 									document.getElementById('location_tag').value="";
 									document.getElementById('image_preview').src="";
 									document.getElementById('tag_list').innerHTML="";
+									document.getElementById('tagged_place').innerHTML="";
 									$(".warning").css("display", "none");
-									$("#tagged_place").css("display", "none");
 									$(".posted-container").hide();
 									$(".posted-container").prepend(insert);
 									$(".posted-container").fadeIn();
