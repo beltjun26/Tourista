@@ -575,3 +575,114 @@ span.tagged-location{
 	color: #BBB;
 	font-size: 0.9em;
 }
+
+#delete-post,
+#edit-post{
+	display: none;
+	align-items: center;
+	justify-content: center;
+}
+
+#delete-post .modal-content{
+	width: 20%;
+}
+
+#edit-post .modal-content{
+	width: 30%;
+}
+
+#delete-post .modal-header,
+#edit-post .modal-header{
+	background-color: #00BCD4;
+	color: white;
+}
+
+#delete-post .modal-header h2,
+#edit-post .modal-header h2{
+	margin: 0;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+#delete-post .modal-header .close,
+#edit-post .modal-header .close{
+	opacity: 1;
+	color: #0097A7;
+	transition: 0.1s;
+	text-shadow: none;
+	font-size: 2em;
+	transform: scale(1,0.8);
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+
+#delete-post .modal-header .close:hover,
+#edit-post .modal-header .close:hover{
+	color: #B2EBF2;
+}
+
+#delete-post .modal-body,
+#edit-post .modal-body{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+#delete-post .modal-body span{
+	text-align: center;
+	margin-bottom: 10px;
+	color: #888;
+}
+
+#delete-post .modal-body div,
+#edit-post .modal-body div{
+	display: flex;
+	justify-content: space-around;
+}
+
+#delete-post .modal-body button,
+#edit-post .modal-body button,
+#edit-post .modal-body [type=submit]{
+	padding: 5px 20px;
+	background-color: #00BCD4;
+	font-family: Gotham;
+	color: white;
+	font-size: 1em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	border: none;
+	border-radius: 3px;
+	transition: 0.2s;
+}
+
+#delete-post .modal-body button:hover,
+#edit-post .modal-body button:hover,
+#edit-post .modal-body [type=submit]:hover{
+	background-color: #00E5FF;
+}
+
+#delete-post .modal-body .delete:hover{
+	background-color: #E91E63;
+}
+
+#edit-post .modal-body textarea{
+	width: 100%;
+	transition: 0.2s;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	height: 45px;
+	padding: 10px 20px;
+	resize: vertical;
+	max-height: 300px;
+}
+
+#edit-post .modal-body textarea:focus,
+#edit-post .modal-body textarea:active{
+	height: 200px;
+}
+
+#edit-post .modal-body div{
+	margin-top: 10px;
+}

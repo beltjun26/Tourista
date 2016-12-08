@@ -103,6 +103,39 @@
 					</div>	
 
 					<!-- Error message -->
+					<div class="modal" id="delete-post">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2>DELETE POST</h2>
+								<span class="close">x</span>
+							</div>
+							<div class="modal-body">
+								<span>Are you sure to delete this post?</span>
+								<div>
+									<button>Cancel</button>
+									<button class="delete">Delete</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal" id="edit-post" style="display: flex;">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2>EDIT POST</h2>
+								<span class="close">x</span>
+							</div>
+							<div class="modal-body">
+								<form>
+									<textarea placeholder="Description..."></textarea>
+									<div>
+										<button>Cancel</button>
+										<input type="submit" name="change">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 
 					<div class="posted-container" id="posted-container">
 					<!-- START OF POSTED -->
