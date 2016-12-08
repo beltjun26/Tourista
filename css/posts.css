@@ -336,6 +336,18 @@ a.tagged-location{
 	border-radius: 3px;
 }
 
+.tagged-people li span{
+	display: inline-block;
+	cursor: pointer;
+	transform: scale(1,0.8) translate(0,-1px);
+	color: #AAA;
+	margin-left: 5px;
+}
+
+.tagged-people li span:hover{
+	color: #F48FB1;
+}
+
 span.tagged-location{
 	background-color: #555;
 	color: white;
