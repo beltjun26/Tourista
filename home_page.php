@@ -201,7 +201,7 @@
 							</div>
 							<?php endif; ?>
 							<!-- IF people are more than capacity. -->
-							<div id="people" class="modal tagged-panel" style="display: flex;">
+							<div id="people" class="modal tagged-panel">
 								<div class="modal-content">
 									<div class="modal-header">
 										<h2>tagged people</h2>
