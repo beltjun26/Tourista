@@ -151,7 +151,7 @@
 								</a>
 								<ul class="with-people">
 								<?php 
-									$query= "SELECT concat(firstname, ' ', lastname) as fullname, acc_id from tag natural join account where post_id={$value['post_id']}";
+									$query= "SELECT username as fullname, acc_id from tag natural join account where post_id={$value['post_id']}";
 									$res = mysqli_query($dbconn, $query);
 									$no_tagged = mysqli_affected_rows($dbconn);
 								 ?>
@@ -164,35 +164,21 @@
 												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
 											}
 										}else{
-											
+											$tags = mysqli_affected_rows($dbconn);
+											$tags = $tags-3;
+												$data_row = mysqli_fetch_assoc($res);
+												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
+												$data_row = mysqli_fetch_assoc($res);
+												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
+												$data_row = mysqli_fetch_assoc($res);
+												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
+												echo "<li>and <span onclick='showOtherTag(".$value['post_id'].")'>".$tags." others</span></li>";				
 										}
 									 ?>
 								
 								<?php endif ?>
-								<li>and <span onclick="">9 others</span></li>
+								
 								</ul>
-
-								<!-- IF people are more than capacity. -->
-								<!-- <div id="people" class="modal tagged-panel">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h2>tagged people</h2>
-											<span class="close">×</span>
-										</div>
-										<div class="modal-body">
-											<ul class="with-people-modal">
-												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somebody</a></li>
-												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Something</a></li>
-												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Someone</a></li>
-												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somel</a></li>
-												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Solo</a></li>
-												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somewara</a></li>
-												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somedont</a></li>
-												<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somewhat</a></li>
-											</ul>
-										</div>
-									</div>
-								</div> -->
 								<span class="time-date"><?php echo date("F j, Y, g:i a", strtotime($value['time_post'])); ?></span>
 
 								<p class = "posted-text"><?=$value['content'];?></p>
@@ -239,28 +225,20 @@
 							</div>
 							<?php endif; ?>
 							<!-- IF people are more than capacity. -->
-							<div id="people" class="modal tagged-panel" style="display: flex;">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h2>tagged people</h2>
-										<span class="close">×</span>
-									</div>
-									<div class="modal-body">
-										<ul class="with-people-modal">
-											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somebody</a></li>
-											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Something</a></li>
-											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Someone</a></li>
-											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somel</a></li>
-											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Solo</a></li>
-											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somewara</a></li>
-											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somedont</a></li>
-											<li><img src="" onerror="this.src = 'images/default_profile.png'"><a href="#">Somewhat</a></li>
-										</ul>
-									</div>
+								
+						<?php endforeach; ?>
+						<div id="people" class="modal tagged-panel" style="display: none;">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h2>tagged people</h2>
+									<span id="tag_modal_close" class="close">×</span>
+								</div>
+								<div class="modal-body">
+									<ul id="list_tag_modal" class="with-people-modal">
+									</ul>
 								</div>
 							</div>
-						<?php endforeach; ?>
-						
+						</div>
 						<!-- END OF POSTED -->
 					</div>
 				</div>
@@ -284,6 +262,29 @@
 		    modal.style.display = "block";
 		    modalImg.src = 'images/post_img/'+post_id+'.jpg';
 
+		}
+		//function for tag modal
+		function showOtherTag(post_id){
+			$("#people").css("display", "flex");
+			$.ajax({
+				url:"othertag.php",
+				type:"post",
+				data:{'post_id':post_id},
+				success:function(data){
+					var result = JSON.parse(data);
+					document.getElementById('list_tag_modal').innerHTML="";
+					var x=0;
+					result.forEach(function(i){
+						if(x>2){
+							var insert = "<li><img src='images/profile_pic_img/acc_id_"+i.acc_id+".jpg' onerror='this.src = 'images/default_profile.png''><a href='people_profile.php?acc_id="+i.acc_id+"'>"+i.fullname+"</a></li>";
+							$("#list_tag_modal").append(insert);
+						}
+						x++;
+					});
+
+				}
+
+			});
 		}
 
 		//show map if add the place is clicked
@@ -335,6 +336,9 @@
 			})
 			$("#closeA2").click(function(){
 				$("#addplace").css("display", "none");
+			})
+			$("#tag_modal_close").click(function(){
+				$("#people").css("display","none");
 			})
 		});
 
@@ -466,20 +470,23 @@
 									  "November", "December"
 									];				
 									var date = new Date();
-									var current_date = monthNames[date.monthIndex]+" "+date.getDate()+", "+date.getFullYear()+", "+date.getHours()+":"+date.getMinutes();				
+									var hour = date.getHours();
+									var suffix = hour>=12?"pm":"am";
+									hour = ((hour + 11) % 12 + 1);
+									var current_date = monthNames[date.getMonth()]+" "+date.getDate()+", "+date.getFullYear()+", "+hour+":"+date.getMinutes()+" "+suffix;				
+									if(success_tag.length<4&&success_tag.length!=0){
+										tag = tag+"<li>with</li>";
+										success_tag.forEach(function(tag_people){
+											console.log(tag_people);
+											tag=tag+"<li><a href='people_profile.php?acc_id="+tag_people['tagged_id']+"'>"+tag_people['acc_name']+"</a>,</li>";
+										});
+									}
 									if(values.if_image==0){
 
-										if(success_tag.length<4&&success_tag.length!=0){
-
-											tag = tag+"<li>with</li>";
-											success_tag.forEach(function(tag_people){
-												console.log(tag_people);
-												tag=tag+"<li><a href='people_profile.php?acc_id="+tag_people['tagged_id']+"'>"+tag_people['acc_name']+"</a>,</li>";
-											});
-										}
+										
 										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button class="delete">Delete</button></li><li><button>Edit</button></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><span class="time-date">'+current_date+'</span><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div>';
 									}else{
-										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button class="delete">Delete</button></li><li><button>Edit</button></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
+										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button class="delete">Delete</button></li><li><button>Edit</button></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><span class="time-date">'+current_date+'</span><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
 									}
 									
 									
