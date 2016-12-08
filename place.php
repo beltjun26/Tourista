@@ -37,7 +37,7 @@
 				<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
 				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
-				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
+				<li><a href="logout.php" class="logout"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
 				<li><a href="my_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
 			</ul>
 		</div>
@@ -63,7 +63,29 @@
 			<p><?=$description?></p>
 		</div>
 		<div class="container" id="rev">
-			<h2>Reviews</h2>
+			<h2 class="headline">Reviews</h2>
+			<div class="review">
+				<form method="POST">
+					<h3>Love this place?</h3>
+					<div class="hearts">	
+						<input type="radio" name="star" id="star5">
+						<label for="star5"><span class="glyphicon glyphicon-heart-empty"></span></label>
+						<input type="radio" name="star" id="star4">
+						<label for="star4"><span class="glyphicon glyphicon-heart-empty"></span></label>
+						<input type="radio" name="star" id="star3">
+						<label for="star3"><span class="glyphicon glyphicon-heart-empty"></span></label>
+						<input type="radio" name="star" id="star2">
+						<label for="star2"><span class="glyphicon glyphicon-heart-empty"></span></label>
+						<input type="radio" name="star" id="star1">
+						<label for="star1"><span class="glyphicon glyphicon-heart-empty"></span></label>
+					</div>
+					<textarea placeholder="Comment here!"></textarea>
+					<input type="submit" name="review" value="REVIEW">
+				</form>
+				<ul>
+					<li>This is a review</li>
+				</ul>
+			</div>
 		</div>
 		<div class="container" id="post">
 			<h2>Posts go here</h2>
