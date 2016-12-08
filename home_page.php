@@ -104,6 +104,39 @@
 					</div>	
 
 					<!-- Error message -->
+					<div class="modal" id="delete-post">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2>DELETE POST</h2>
+								<span class="close">x</span>
+							</div>
+							<div class="modal-body">
+								<span>Are you sure to delete this post?</span>
+								<div>
+									<button>Cancel</button>
+									<button class="delete">Delete</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal" id="edit-post">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2>EDIT POST</h2>
+								<span class="close">x</span>
+							</div>
+							<div class="modal-body">
+								<form>
+									<textarea placeholder="Description..."></textarea>
+									<div>
+										<button>Cancel</button>
+										<input type="submit" name="change">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 
 					<div class="posted-container" id="posted-container">
 					<!-- START OF POSTED -->
@@ -228,7 +261,6 @@
 							</div>
 							<?php endif; ?>
 							<!-- IF people are more than capacity. -->
-								
 						<?php endforeach; ?>
 						<div id="people" class="modal tagged-panel" style="display: none;">
 							<div class="modal-content">
@@ -529,7 +561,7 @@
 				source:"tag_person.php",
 				minLength:2,
 				select: function(event, ui){
-					var insert = "<li>"+ui.item.value+"<span> x</span></li>";
+					var insert = "<li>"+ui.item.value+"<span>x</span></li>";
 					$("#tag_list").css("display","flex");
 					$("#tag_list").append(insert);
 					person_tagged.push(ui.item.id);
