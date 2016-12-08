@@ -283,31 +283,43 @@ a.tagged-location{
 	padding: 20px 15px 20px 5px;
 }
 
-.warning{
-	background-color: #FFEB3B;
-	color: white;
-	font-family: Gotham;
-	text-transform: uppercase;
-	font-weight: bold;
+.error-tag-loc{
+	background-color: #FCE4EC;
+	color: #E91E63;
+	font-family: Arial;
+	font-size: 1em;
 	letter-spacing: 0.05em;
 	padding: 5px 10px;
 	margin: 5px 0 5px 0;
 	border-radius: 2px;
+	border: 1px solid #E91E63;
 }
 
-.warning button{
+.warning{
+	background-color: #FFFDE7;
+	color: #FFC400;
+	font-family: Arial;
+	font-size: 1em;
+	letter-spacing: 0.05em;
+	padding: 5px 10px;
+	margin: 5px 0 5px 0;
+	border-radius: 2px;
+	border: 1px solid #FFC400;
+	/*box-shadow: 0 0 15px #FFEB3B;*/
+}
+
+.warning #addform{
 	background-color: transparent;
-	font-family: Gotham;
-	font-weight: bold;
-	border: 1px solid white;
-	color: white;
+	font-family: Arial;
+	border: 1px solid #FFC400;
+	color: #FFC400;
 	text-transform: uppercase;
 	border-radius: 2px;
 	transition: 0.2s;
 }
 
-.warning button:hover{
-	background-color: rgba(255,255,255,0.2);
+.warning #addform:hover{
+	background-color: white;
 }
 
 .tag-location,
