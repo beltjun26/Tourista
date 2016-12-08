@@ -119,7 +119,7 @@
 						</div>
 					</div>
 
-					<div class="modal" id="edit-post" style="display: flex;">
+					<div class="modal" id="edit-post">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h2>EDIT POST</h2>
