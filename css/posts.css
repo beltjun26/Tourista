@@ -331,6 +331,7 @@ a.tagged-location{
 }
 
 .tagged-people{
+	flex-wrap: wrap;
 	display: flex;
 	list-style: none;
 	padding: 0 0 5px 5px;
