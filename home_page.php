@@ -108,13 +108,13 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<h2>DELETE POST</h2>
-								<span class="close">x</span>
+								<span class="close" onclick="document.getElementById('delete-post').style.display='none'">x</span>
 							</div>
 							<div class="modal-body">
 								<span>Are you sure to delete this post?</span>
 								<div>
-									<button>Cancel</button>
-									<button class="delete">Delete</button>
+									<button onclick="document.getElementById('delete-post').style.display='none'">Cancel</button>
+									<button id="delete-button" class="delete">Delete</button>
 								</div>
 							</div>
 						</div>
@@ -124,14 +124,15 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<h2>EDIT POST</h2>
-								<span class="close">x</span>
+								<span class="close" onclick="document.getElementById('edit-post').style.display='none'">x</span>
 							</div>
 							<div class="modal-body">
-								<form>
-									<textarea placeholder="Description..."></textarea>
+								<form method="post" action="edit.php">
+									<textarea name="content" placeholder="Description..."></textarea>
+									<input id="editpostid" type="text" name="postid" style="display: none">
 									<div>
-										<button>Cancel</button>
-										<input type="submit" name="change">
+										<button onclick="document.getElementById('edit-post').style.display='none'">Cancel</button>
+										<input id="edit-button" type="submit">	
 									</div>
 								</form>
 							</div>
@@ -171,7 +172,7 @@
 								<span class="show-dropdown glyphicon glyphicon-chevron-down"></span>
 								<ul class="dropdown">
 									<li><button onclick="deletePost(<?=$value['post_id']?>)" class="delete">Delete</button></li>
-									<li><button>Edit</button></li>
+									<li><button onclick="editPost(<?=$value['post_id']?>)">Edit</button></li>
 								</ul>	
 							<?php endif ?>
 								<a href="<?php 
@@ -299,7 +300,17 @@
 
 		}
 		function deletePost(post_id){
-			window.location.replace("delete.php?post_id="+post_id);
+			document.getElementById('delete-post').style.display="flex";
+			$("#delete-button").click(function(){
+				window.location.replace("delete.php?post_id="+post_id);
+
+			});
+			// window.location.replace("delete.php?post_id="+post_id);
+
+		}
+		function editPost(post_id){
+			document.getElementById('edit-post').style.display="flex";
+			document.getElementById('editpostid').value=post_id;
 		}
 		function deleteTag(tag_id){
 			$.ajax({
