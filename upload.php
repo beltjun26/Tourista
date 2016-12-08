@@ -36,7 +36,7 @@
 			alert("Unsupported file type! Only .gif, .jpeg, .png only!");
 			window.location = 'my_profile.php';
 		</script> 
-		<?php 
+		<?php
 		die();
 	}
 	if($upload_cp == 1){
