@@ -42,54 +42,37 @@
 			</ul>
 		</div>
 		<div class="container">
-			
-							<div class="posted post-container">
-							<?php if($value['acc_id']==$_SESSION['userID']): ?>
-								<span class="show-dropdown glyphicon glyphicon-chevron-down"></span>
-								<ul class="dropdown">
-									<li><button onclick="deletePost(<?=$value['post_id']?>)" class="delete">Delete</button></li>
-									<li><button onclick="editPost(<?=$value['post_id']?>)">Edit</button></li>
-								</ul>	
-							<?php endif ?>
-								<a href="<?php 
-									if($value['acc_id']==$_SESSION['userID']){
-										echo "my_profile.php";
-									}else{
-										echo "people_profile.php?acc_id=".$value['acc_id'];
-									}
-								 ?>">
-									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_cover.png'" alt="USER PHOTO" class="profile">
+ <q></q>
+			<div class="row">
+				<div class="col-sm-3">
+				</div>
+				<div class="col-sm-6" id="one-post">
 
+					<div class="posted-container" id="posted-container">
+					<!-- START OF POSTED -->
+
+					<?php 
+						require "connect.php";
+
+						$query = "SELECT *
+								  FROM account 
+								  NATURAL JOIN posted
+								  WHERE post_id = {$_GET['post_id']}
+								  ";
+						$result = mysqli_query($dbconn, $query);
+
+						$value = mysqli_fetch_assoc($result);
+
+
+
+					 ?>
+
+							<div class="posted post-container">
+								<a href="people_profile.php?acc_id_=1">
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id'];?>.jpg" alt="USER PHOTO" class="profile">
 									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>
-								<ul class="with-people">
-								<?php 
-									$query= "SELECT username as fullname, acc_id from tag natural join account where post_id={$value['post_id']}";
-									$res = mysqli_query($dbconn, $query);
-									$no_tagged = mysqli_affected_rows($dbconn);
-								 ?>
-								 <?php if($no_tagged): ?>
-								 
-									<li>with</li>
-									<?php 
-										if($no_tagged<4){
-											while($data_row = mysqli_fetch_assoc($res)){
-												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
-											}
-										}else{
-											$tags = mysqli_affected_rows($dbconn);
-											$tags = $tags-3;
-												$data_row = mysqli_fetch_assoc($res);
-												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
-												$data_row = mysqli_fetch_assoc($res);
-												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
-												$data_row = mysqli_fetch_assoc($res);
-												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
-												echo "<li>and <span onclick='showOtherTag(".$value['post_id'].")'>".$tags." others</span></li>";				
-										}
-									 ?>
-								
-								<?php endif ?>
+								<p class = "posted-text"><?=$value['content'];?></p>
 								
 								</ul>
 								<span class="time-date"><?php echo date("F j, Y, g:i a", strtotime($value['time_post'])); ?></span>

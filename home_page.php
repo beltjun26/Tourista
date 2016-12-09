@@ -527,6 +527,7 @@
 										data:{'post_id':values.post_id},
 										success:function(id_notif){
 											notif_id = id_notif;
+											console.log(id_notif);
 										}
 									});
 									person_tagged.forEach(function(people){
@@ -559,9 +560,16 @@
 									if(success_tag.length<4&&success_tag.length!=0){
 										tag = tag+"<li>with</li>";
 										success_tag.forEach(function(tag_people){
-											console.log(tag_people);
+					
 											tag=tag+"<li><a href='people_profile.php?acc_id="+tag_people['tagged_id']+"'>"+tag_people['acc_name']+"</a>,</li>";
 										});
+									}
+									if(success_tag.length>=4&&success_tag.length!=0){
+										tag = tag+"<li>with</li>";
+										tag=tag+"<li><a href='people_profile.php?acc_id="+success_tag[0]['tagged_id']+"'>"+success_tag[0]['acc_name']+"</a>,</li>";
+										tag=tag+"<li><a href='people_profile.php?acc_id="+success_tag[1]['tagged_id']+"'>"+success_tag[1]['acc_name']+"</a>,</li>";
+										tag=tag+"<li><a href='people_profile.php?acc_id="+success_tag[2]['tagged_id']+"'>"+success_tag[3]['acc_name']+"</a>,</li>";
+										tag=tag+"<li>and <span onclick='showOtherTag("+values.post_id+")'>"+(success_tag.length-3)+" others</span></li>"
 									}
 									if(values.if_image==0){
 
