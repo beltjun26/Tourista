@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2016 at 07:31 PM
+-- Generation Time: Dec 09, 2016 at 01:17 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -54,7 +54,7 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`acc_id`, `username`, `firstname`, `lastname`, `password`, `email`, `address`, `about_me`) VALUES
 (1, 'clyde', 'Clyde', 'Delgado', '1f3e1525c6ee8678781be4b3dd87f778', 'clydedelgado@gmail.com', 'San Jose, Antique', 'Draw paint create master doctor derma '),
-(2, 'maynard', 'Maynard', 'Vargas', 'd49fab26ac2dfc1970ae462229264f35', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'asdfghjk12345678'),
+(2, 'maynard', 'Maynard', 'Vargas', '9460370bb0ca1c98a779b1bcc6861c2c', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'asdfghjk12345678'),
 (3, 'rollin', 'Rollin', 'Pacheco', 'e3b9592341f871b73ecff949459ba9c1', 'rollinpachecko@gmail.com', 'Rollin City, Pacheco', 'Rollin in the deep.'),
 (4, 'alonzo', 'Alonzo', 'Locsin', '0d2c075f8c7fe0ccb116bc03c9f6fac2', 'alonzolocsin@gmail.com', 'Alonzo City, Locsin, Iloilo', 'Ace hardware ace hardware.'),
 (5, 'andrew', 'Andrew', 'Dagdag', '0fd3764434fe203a9079675d7925a0ee', 'andrewdagdag@gmail.com', 'Andrew City, Dagdag', 'I am Andrew D.'),
@@ -69,17 +69,6 @@ INSERT INTO `account` (`acc_id`, `username`, `firstname`, `lastname`, `password`
 (14, 'hello', 'Alcohol', 'Ethyl', 'c7e7f28c887e9fdad93ed092cbb6a026', 'assd@gmail.com', '', ''),
 (16, 'shebna12', 'Shebna', 'Fabilloren', '482c811da5d5b4bc6d497ffa98491e38', 'jujujaja@mail.com', '', ''),
 (17, 'alexsandra', 'Alex', 'Sandra', '482c811da5d5b4bc6d497ffa98491e38', 'alex@mail.com', '', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bookmarks`
---
-
-CREATE TABLE `bookmarks` (
-  `place_id` int(9) NOT NULL,
-  `acc_id` int(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -104,7 +93,8 @@ INSERT INTO `follow` (`acc_id_follower`, `acc_id_follows`) VALUES
 (2, 8),
 (9, 2),
 (9, 3),
-(12, 2);
+(12, 2),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -113,13 +103,66 @@ INSERT INTO `follow` (`acc_id_follower`, `acc_id_follows`) VALUES
 --
 
 CREATE TABLE `notification` (
-  `notification_id` int(10) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `user_id` int(10) NOT NULL,
-  `notif_from` int(10) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `notif_id` int(9) NOT NULL,
+  `redirect_id` int(9) NOT NULL,
+  `user_id_from` int(9) NOT NULL,
+  `notif_type` int(1) NOT NULL,
+  `time_stamp_notif` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`notif_id`, `redirect_id`, `user_id_from`, `notif_type`, `time_stamp_notif`) VALUES
+(1, 55, 2, 1, '2016-12-08 20:56:24'),
+(2, 33, 1, 1, '2016-12-08 21:11:27'),
+(3, 32, 1, 1, '2016-12-08 21:13:29'),
+(4, 31, 1, 1, '2016-12-08 21:14:17'),
+(5, 29, 1, 1, '2016-12-08 21:14:21'),
+(6, 33, 1, 1, '2016-12-08 21:18:07'),
+(7, 33, 1, 1, '2016-12-08 21:18:11'),
+(8, 33, 1, 1, '2016-12-08 21:18:24'),
+(9, 33, 1, 1, '2016-12-08 21:18:28'),
+(10, 33, 1, 1, '2016-12-08 21:18:35'),
+(11, 33, 1, 1, '2016-12-08 21:18:39'),
+(12, 31, 1, 1, '2016-12-08 21:18:48'),
+(13, 31, 1, 1, '2016-12-08 21:18:48'),
+(14, 35, 2, 1, '2016-12-08 21:38:21'),
+(15, 35, 12, 1, '2016-12-08 21:47:58'),
+(16, 33, 12, 1, '2016-12-08 21:47:59'),
+(17, 36, 2, 1, '2016-12-08 23:34:04'),
+(18, 36, 2, 1, '2016-12-08 23:34:06'),
+(19, 36, 9, 1, '2016-12-08 23:46:53'),
+(20, 35, 9, 1, '2016-12-08 23:46:55'),
+(21, 34, 9, 1, '2016-12-08 23:46:56'),
+(22, 33, 9, 1, '2016-12-08 23:46:59'),
+(23, 32, 9, 1, '2016-12-08 23:47:00'),
+(24, 36, 9, 1, '2016-12-09 00:09:07'),
+(25, 35, 9, 1, '2016-12-09 00:09:09'),
+(26, 34, 9, 1, '2016-12-09 00:09:10'),
+(27, 32, 9, 1, '2016-12-09 00:09:14'),
+(28, 32, 9, 1, '2016-12-09 00:09:15'),
+(29, 34, 9, 1, '2016-12-09 00:09:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notified`
+--
+
+CREATE TABLE `notified` (
+  `notif_id` int(9) NOT NULL,
+  `user_id_notified` int(9) NOT NULL,
+  `int_read` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notified`
+--
+
+INSERT INTO `notified` (`notif_id`, `user_id_notified`, `int_read`) VALUES
+(0, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -146,7 +189,8 @@ INSERT INTO `places` (`place_id`, `name`, `description`, `location_id`) VALUES
 (5, 'College of Arts and Sciences (CAS)', 'College of really cool people.', 'ChIJRfmlQnpcrjMRO3w9ayZy24g'),
 (6, 'College of Fisheries and Ocean Studies', 'Isda isda fish fish', 'ChIJG1tKfY1CrjMRRMPdEBPMm_g'),
 (7, 'Hello', 'This is asd', 'ChIJXVv44IZXrjMRs9UxhHyvvZo'),
-(8, 'Tigbauan', 'tje besad', 'ChIJw_tU9cn3rjMR9uAiLoZwTrU');
+(8, 'Tigbauan', 'tje besad', 'ChIJw_tU9cn3rjMR9uAiLoZwTrU'),
+(9, 'SM City ', 'We got it all for you!', 'ChIJTyIENDrlrjMRrYuTwx6PpXE');
 
 -- --------------------------------------------------------
 
@@ -192,7 +236,13 @@ INSERT INTO `posted` (`post_id`, `content`, `place_id`, `acc_id`, `time_post`, `
 (27, 'a', 2, 2, '2016-11-25 04:43:05', 0),
 (28, 'adasdasd', 2, 12, '2016-12-05 06:21:15', 0),
 (29, 'Ari ko di', 7, 2, '2016-12-06 18:15:18', 0),
-(30, 'asdasdasdasddddddddd', 8, 2, '2016-12-06 18:16:11', 0);
+(30, 'asdasdasdasddddddddd', 8, 2, '2016-12-06 18:16:11', 0),
+(31, 'asdasda', 2, 2, '2016-12-07 04:54:01', 0),
+(32, 'ASDASDSA', 2, 2, '2016-12-07 04:54:12', 0),
+(33, 'Posting', 2, 2, '2016-12-07 04:54:52', 1),
+(34, 'asdasd', 2, 9, '2016-12-07 08:47:22', 0),
+(35, 'Hello :D', 9, 2, '2016-12-08 18:30:12', 0),
+(36, 'Rosiebedsfasdf', 9, 2, '2016-12-08 22:04:58', 0);
 
 -- --------------------------------------------------------
 
@@ -201,9 +251,10 @@ INSERT INTO `posted` (`post_id`, `content`, `place_id`, `acc_id`, `time_post`, `
 --
 
 CREATE TABLE `rating` (
-  `account_id` int(9) NOT NULL,
+  `acc_id` int(9) NOT NULL,
   `place_id` int(9) NOT NULL,
-  `comment` varchar(100) NOT NULL
+  `comment` varchar(100) NOT NULL,
+  `rating_no` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -216,6 +267,20 @@ CREATE TABLE `tag` (
   `acc_id` int(9) NOT NULL,
   `post_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tag`
+--
+
+INSERT INTO `tag` (`acc_id`, `post_id`) VALUES
+(14, 35),
+(9, 35),
+(2, 36),
+(12, 36),
+(1, 36),
+(10, 36),
+(12, 36),
+(8, 36);
 
 -- --------------------------------------------------------
 
@@ -242,7 +307,20 @@ INSERT INTO `upvote` (`acc_id`, `post_id`) VALUES
 (2, 22),
 (2, 17),
 (2, 18),
-(2, 26);
+(2, 26),
+(8, 15),
+(1, 35),
+(1, 32),
+(1, 29),
+(1, 33),
+(12, 35),
+(12, 33),
+(2, 36),
+(9, 33),
+(9, 36),
+(9, 35),
+(9, 32),
+(9, 34);
 
 --
 -- Indexes for dumped tables
@@ -255,16 +333,10 @@ ALTER TABLE `account`
   ADD PRIMARY KEY (`acc_id`);
 
 --
--- Indexes for table `bookmarks`
---
-ALTER TABLE `bookmarks`
-  ADD PRIMARY KEY (`place_id`,`acc_id`);
-
---
 -- Indexes for table `notification`
 --
 ALTER TABLE `notification`
-  ADD PRIMARY KEY (`notification_id`);
+  ADD PRIMARY KEY (`notif_id`);
 
 --
 -- Indexes for table `places`
@@ -282,7 +354,7 @@ ALTER TABLE `posted`
 -- Indexes for table `rating`
 --
 ALTER TABLE `rating`
-  ADD PRIMARY KEY (`account_id`,`place_id`);
+  ADD PRIMARY KEY (`acc_id`,`place_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -297,17 +369,17 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `notification_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `notif_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
-  MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `posted`
 --
 ALTER TABLE `posted`
-  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
