@@ -168,68 +168,32 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjA-G7nAd-602rgQZiEzTq_hBzxM8eM0E&libraries=places&callback=initTag" async defer></script>
 		<script >
 			var searchBox;
-			function initTag(){
-				var input = document.getElementById('location_tag');
-        		searchBox = new google.maps.places.SearchBox(input);
-        		searchBox.addListener('places_changed', function() {
-        			document.getElementById('tagged_place').style.display = "block";
-        			document.getElementById('tagged_place').innerHTML = document.getElementById('location_tag').value;
-        		});
-
-			}
-			$(function(){
-
-				$("#posting").click(function(){
-					var places = searchBox.getPlaces();
-					places.forEach(function(place){
-						google_placeId = place.place_id;
-					});
-					$.ajax({
-						url:"check_place.php",
-						type:"post",
-						data:{'place':google_placeId},
-						success:function(data1){
-							if(data1=='0'){
-								$(".warning").css("display","block");
-							}else{
-								var formData = new FormData($("#formsubmit")[0]);
-								formData.append('place', data1);
-								$.ajax({
-									url: "post.php",
-									type: "post",
-									data: formData,
-									success:function(data){
-										var values = JSON.parse(data);
-										if(values.if_image==0){
-											var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><button class="like">LIKE</button></div></div>';
-										}else{
-											var insert = '<div class="posted post-container"><a href="people_profile.php?acc_id_=<?=$value['acc_id'];?>"><img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$value['username'];?></h2></a><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><button class="like">LIKE</button></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
-										}
-										
-										
-										// console.log(values.if_image);
-										document.getElementById('post-text-area').value="";
-										document.getElementById('file').value="";
-										document.getElementById('location_tag').value="";
-										document.getElementById('image_preview').src="";
-										$("#tagged_place").css("display", "none");
-										$(".posted-container").hide();
-										$(".posted-container").prepend(insert);
-										$(".posted-container").fadeIn();
-										$("html, body").animate({ scrollTop: 200 }, "slow");
-									},
-									contentType: false,
-			        				processData: false
-								});	
-							}
-							
-						}
-					});
-				});
-
+			function likeTriggered(post_id){
+			$.ajax({
+				url:"like.php",
+				type:"post",
+				data:{'post_id': post_id},
+				success:function(data){
+					var values = JSON.parse(data);
+					if(values.status=="deleted"){
+						$("#likebutton"+post_id).css("background-color","#00BCD4");
+					}
+					if(values.status=="inserted"){
+						$("#likebutton"+post_id).css("background-color","#00E5FF");
+					}
+					if(values.likes==0){
+						document.getElementById("likes"+post_id).innerHTML=" ";
+					}
+					if(values.likes==1){
+						document.getElementById("likes"+post_id).innerHTML="1 Like";	
+					}if(values.likes>1){
+						document.getElementById("likes"+post_id).innerHTML=values.likes+" Likes";	
+					}
+				}
 			});
-		</script>
-		<script>
+		}
+			
+
 			h = $('#navBar').outerHeight(true);
 			console.log(h);
 			x = window.innerHeight;
