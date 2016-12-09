@@ -215,6 +215,7 @@
 								 ?>
 									</span>
 									<button id="likebutton<?=$value['post_id']?>" <?=$style?> onclick="likeTriggered(<?=$value['post_id']?>)">LIKE</button>
+									
 								</div>
 							</div>
 							<?php if($value['if_image'] == 1): ?>
