@@ -10,6 +10,7 @@
 
 	//Save the last increment of notif_id
 	$notif_id = mysqli_insert_id($dbconn);
+	echo $notif_id;
 
 
  ?>

@@ -16,6 +16,8 @@
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 		<link rel="stylesheet" type="text/css" href="css/profile_options.css">
 		<link rel="stylesheet" type="text/css" href="css/input_file.css">
+		
+
 	</head>
 	<body>
 
@@ -675,13 +677,24 @@
 								data: formData,
 								success:function(data){
 									var values = JSON.parse(data);
+									var notif_id;
 									success_tag = [];
+									$.ajax({
+										async:false,
+										url:"notification_tagging.php",
+										type:"post",
+										data:{'post_id':values.post_id},
+										success:function(id_notif){
+											notif_id = id_notif;
+											console.log(id_notif);
+										}
+									});
 									person_tagged.forEach(function(people){
 										$.ajax({
 											async: false,
 											url:"tagging.php",
 											type: "POST",
-											data:{'acc_id':people['id'],'post_id':values.post_id},
+											data:{'acc_id':people['id'],'post_id':values.post_id,'notif_id':notif_id},
 											success:function(name){
 												console.log(name);
 												var tag_data = JSON.parse(name);
@@ -706,9 +719,16 @@
 									if(success_tag.length<4&&success_tag.length!=0){
 										tag = tag+"<li>with</li>";
 										success_tag.forEach(function(tag_people){
-											console.log(tag_people);
+					
 											tag=tag+"<li><a href='people_profile.php?acc_id="+tag_people['tagged_id']+"'>"+tag_people['acc_name']+"</a>,</li>";
 										});
+									}
+									if(success_tag.length>=4&&success_tag.length!=0){
+										tag = tag+"<li>with</li>";
+										tag=tag+"<li><a href='people_profile.php?acc_id="+success_tag[0]['tagged_id']+"'>"+success_tag[0]['acc_name']+"</a>,</li>";
+										tag=tag+"<li><a href='people_profile.php?acc_id="+success_tag[1]['tagged_id']+"'>"+success_tag[1]['acc_name']+"</a>,</li>";
+										tag=tag+"<li><a href='people_profile.php?acc_id="+success_tag[2]['tagged_id']+"'>"+success_tag[3]['acc_name']+"</a>,</li>";
+										tag=tag+"<li>and <span onclick='showOtherTag("+values.post_id+")'>"+(success_tag.length-3)+" others</span></li>"
 									}
 									if(values.if_image==0){
 
