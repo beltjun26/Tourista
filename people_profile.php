@@ -59,18 +59,18 @@
 				<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
 				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
-				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
+				<li><a href="logout.php" class="logout"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
 				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
 			</ul>
 		</div>
 		<div class="container">
 			<div class="headerprofile">
 				<div id="coverphoto">
-					<img src="images/cover_img/cover_<?=$acc_id?>.png" alt="user-cover">
+					<img src="images/cover_img/cover_<?=$acc_id?>.png" alt="user-cover" onerror = "this.src = 'images/default_cover.png'">
 				</div>
 				<h1 id="username"><?=$fullname?><br><span class="usernameorig"><?=$username?></span></h1>
 				<div id="userphoto">
-					<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg">
+					<img src="images/profile_pic_img/acc_id_<?=$_GET['acc_id']?>.jpg" onerror = "this.src = 'images/default_profile.png'">
 				</div>
 				<ul id="follows">
 					<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following: <?php echo $followingcount['followingcount']; ?></a></li>

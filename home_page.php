@@ -1,3 +1,4 @@
+
 <!-- THIS HAS NO NAV BAR -->
 <?php
 	session_start();  
@@ -36,7 +37,7 @@
 				<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
 				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="Notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
-				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
+				<li><a href="logout.php" class="logout"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
 				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'"></a></li>
 			</ul>
 		</div>
@@ -87,7 +88,7 @@
 								<span class="tagged-location">Tagged place:</span>
 								<p id="tagged_place" class="tagged-location"></p>
 							</div>
-							<div class="error" style="display: none;">Please tag a location</div>
+							<div id="emptylocation" class="error-tag-loc" style="display: none;">Please tag a location</div>
 							<div class="warning" style="display: none">
 								<span>Place not available.</span>
 								<input id="addform" type="button" name="addform" value="add">
@@ -103,6 +104,40 @@
 					</div>	
 
 					<!-- Error message -->
+					<div class="modal" id="delete-post">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2>DELETE POST</h2>
+								<span class="close" onclick="document.getElementById('delete-post').style.display='none'">x</span>
+							</div>
+							<div class="modal-body">
+								<span>Are you sure to delete this post?</span>
+								<div>
+									<button onclick="document.getElementById('delete-post').style.display='none'">Cancel</button>
+									<button id="delete-button" class="delete">Delete</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal" id="edit-post">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2>EDIT POST</h2>
+								<span class="close" onclick="document.getElementById('edit-post').style.display='none'">x</span>
+							</div>
+							<div class="modal-body">
+								<form method="post" action="edit.php">
+									<textarea name="content" placeholder="Description..."></textarea>
+									<input id="editpostid" type="text" name="postid" style="display: none">
+									<div>
+										<button onclick="document.getElementById('edit-post').style.display='none'">Cancel</button>
+										<input id="edit-button" type="submit">	
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 
 					<div class="posted-container" id="posted-container">
 					<!-- START OF POSTED -->
@@ -133,11 +168,13 @@
 						foreach ($result as $value):?>
 
 							<div class="posted post-container">
+							<?php if($value['acc_id']==$_SESSION['userID']): ?>
 								<span class="show-dropdown glyphicon glyphicon-chevron-down"></span>
 								<ul class="dropdown">
-									<li><button class="delete">Delete</button></li>
-									<li><button>Edit</button></li>
+									<li><button onclick="deletePost(<?=$value['post_id']?>)" class="delete">Delete</button></li>
+									<li><button onclick="editPost(<?=$value['post_id']?>)">Edit</button></li>
 								</ul>	
+							<?php endif ?>
 								<a href="<?php 
 									if($value['acc_id']==$_SESSION['userID']){
 										echo "my_profile.php";
@@ -226,7 +263,6 @@
 							</div>
 							<?php endif; ?>
 							<!-- IF people are more than capacity. -->
-								
 						<?php endforeach; ?>
 						<div id="people" class="modal tagged-panel" style="display: none;">
 							<div class="modal-content">
@@ -263,6 +299,36 @@
 		    modal.style.display = "block";
 		    modalImg.src = 'images/post_img/'+post_id+'.jpg';
 
+		}
+		function deletePost(post_id){
+			document.getElementById('delete-post').style.display="flex";
+			$("#delete-button").click(function(){
+				window.location.replace("delete.php?post_id="+post_id);
+
+			});
+			// window.location.replace("delete.php?post_id="+post_id);
+
+		}
+		function editPost(post_id){
+			document.getElementById('edit-post').style.display="flex";
+			document.getElementById('editpostid').value=post_id;
+		}
+		function deleteTag(tag_id){
+			var temp = [];
+			var tag_list = document.getElementById('tag_list');
+			tag_list.innerHTML = "";
+			person_tagged.forEach(function(people){
+				if(people['id']!=tag_id){
+					temp.push({'id':people['id'], 'name':people['name']});
+					text = "<li>"+people['name']+"<span onclick=\"deleteTag("+people['id']+")\">x</span></li>";
+					$("#tag_list").append(text);
+				}
+
+			});
+			if(temp.length==0){
+					tag_list.style.display = "none";
+				}
+			person_tagged = temp;
 		}
 		//function for tag modal
 		function showOtherTag(post_id){
@@ -355,8 +421,9 @@
 			var input = document.getElementById('location_tag');
 			searchBox = new google.maps.places.SearchBox(input);
 			searchBox.addListener('places_changed', function() {
-				document.getElementById('tagged_place').style.display = "block";
+				// document.getElementById('tagged_place').style.display = "block";
 				document.getElementById('tagged_place').innerHTML = document.getElementById('location_tag').value;
+				document.getElementById('emptylocation').style.display="none";	
 				$(".warning").css("display", "none");
 			});
 
@@ -373,7 +440,7 @@
 						$("#likebutton"+post_id).css("background-color","#00BCD4");
 					}
 					if(values.status=="inserted"){
-						$("#likebutton"+post_id).css("background-color","grey");
+						$("#likebutton"+post_id).css("background-color","#00E5FF");
 					}
 					if(values.likes==0){
 						document.getElementById("likes"+post_id).innerHTML=" ";
@@ -425,9 +492,13 @@
 			});
 
 			$("#posting").click(function(){
-
+				if(document.getElementById('tagged_place').innerHTML==""){
+					document.getElementById('emptylocation').style.display="block";
+					return;
+				}
 				var places = searchBox.getPlaces();
 				var google_placeId;
+				console.log(searchBox.getPlaces());
 				places.forEach(function(place){
 					google_placeId = place.place_id;
 				});
@@ -453,7 +524,7 @@
 											async: false,
 											url:"tagging.php",
 											type: "POST",
-											data:{'acc_id':people,'post_id':values.post_id},
+											data:{'acc_id':people['id'],'post_id':values.post_id},
 											success:function(name){
 												console.log(name);
 												var tag_data = JSON.parse(name);
@@ -485,20 +556,19 @@
 									if(values.if_image==0){
 
 										
-										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button class="delete">Delete</button></li><li><button>Edit</button></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><span class="time-date">'+current_date+'</span><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div>';
+										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button onclick="deletePost('+values.post_id+')" class="delete">Delete</button></li><li><li><button onclick="editPost('+values.post_id+')">Edit</button></li></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><span class="time-date">'+current_date+'</span><p class = "posted-text">'+values.post+'</p><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div>';
 									}else{
-										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button class="delete">Delete</button></li><li><button>Edit</button></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><span class="time-date">'+current_date+'</span><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
+										var insert = '<div class="posted post-container"><span class="show-dropdown glyphicon glyphicon-chevron-down"></span><ul class="dropdown"><li><button onclick="deletePost('+values.post_id+')" class="delete">Delete</button></li><li><li><button onclick="editPost('+values.post_id+')">Edit</button></li></li></ul><a href="my_profile.php"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID'] ?>.jpg" alt="USER PHOTO" class="profile"><h2 class="user-name"><?=$_SESSION['userName']?></h2></a><ul class="with-people">'+tag+'</ul><span class="time-date">'+current_date+'</span><p class = "posted-text">'+values.post+'</p><button class="imagebtn"><img id="myImg'+values.post_id+'" onclick="showModal('+values.post_id+')" src="images/post_img/'+values.post_id+'.jpg"></button><div class="contain"><a href="place.php?place_id='+values.placeID+'" class="tagged-location">'+values.location_name+'</a><div class="like"><span id="likes'+values.post_id+'" class="num-likes"></span><button id="likebutton'+values.post_id+'"onclick="likeTriggered('+values.post_id+')">LIKE</button></div></div></div><div id="myModal'+values.post_id+'" class="modal"><span class="close" onclick="document.getElementById(\'myModal'+values.post_id+'\').style.display=\'none\'">&times;</span><img class="modal-content postImg"  id="img'+values.post_id+'"><div id="caption'+values.post_id+'" class="caption"></div></div>';
 									}
-									
-									
+
 									// console.log(values.if_image);
 									document.getElementById('post-text-area').value="";
 									document.getElementById('file').value="";
 									document.getElementById('location_tag').value="";
 									document.getElementById('image_preview').src="";
 									document.getElementById('tag_list').innerHTML="";
+									document.getElementById('tagged_place').innerHTML="";
 									$(".warning").css("display", "none");
-									$("#tagged_place").css("display", "none");
 									$(".posted-container").hide();
 									$(".posted-container").prepend(insert);
 									$(".posted-container").fadeIn();
@@ -519,10 +589,10 @@
 				source:"tag_person.php",
 				minLength:2,
 				select: function(event, ui){
-					var insert = "<li>"+ui.item.value+"<span> x</span></li>";
+					var insert = "<li>"+ui.item.value+"<span onclick=\"deleteTag("+ui.item.id+")\">x</span></li>";
 					$("#tag_list").css("display","flex");
 					$("#tag_list").append(insert);
-					person_tagged.push(ui.item.id);
+					person_tagged.push({'id':ui.item.id,'name':ui.item.value});
 					
 				}
 				
