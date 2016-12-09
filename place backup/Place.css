@@ -8,7 +8,7 @@
 	src: url("../used_fonts/GOTHAM-MEDIUM.TTF") format("truetype");
 }
 
-.header > h1, #desc h2, #rev h2#{
+.header > h1, #desc h2, #rev h2, #post h2, #post p{
 	font-family: GothamMed;
 }
 
@@ -103,7 +103,6 @@
 	transition: 0.2s;
 	border-radius: 3px;
 	box-shadow: 0 0 10px rgba(0,0,0,0.3);
-	border: none;
 }
 
 .options li a:hover{
@@ -137,30 +136,18 @@
 	letter-spacing: 0.05em
 }
 
-#rev{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-#rev h2{
+#rev h2,
+#post h2{
+	font-size: 3em;
+	color: #666;
 	text-transform: uppercase;
-	font-weight: bold;
-	font-size: 2em;
-	font-family: Gotham;
 	background-color: white;
-	padding: 10px 20px;
+	padding: 5px 20px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
 	border-radius: 3px;
-	box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-	margin-bottom: 10px;
 }
 
-#rev h2 span{
-	color: rgba(0,184,212 ,1);
-}
-
-/*#post{
+#post{
 	background-color: #CFD8DC;
 }
 
@@ -172,7 +159,7 @@
 	padding: 10px 30px;
 	margin-top: 10px;
 	letter-spacing: 0.2em;
-}*/
+}
 
 #backtop{
 	background-color: #0097A7;
@@ -268,20 +255,145 @@
 	color: white;
 }
 
-#post{
-	background-color: #CFD8DC;
-	padding-top: 100px;
+.review{
+	background-color: white;
+	margin-top: 20px;
+	padding: 20px 40px;
+	width: 80%;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+	border-radius: 3px;
 }
 
-#post .post-title{
-	color: #555;
+.review form{
+	background-color: white;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	width: 49%;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	background-color: rgba(236,239,241 ,0.25);
+}
+
+.review form h3{
 	font-family: Gotham;
-	font-size: 2em;
+	font-size: 1.5em;
 	font-weight: bold;
 	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: #555;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.review form .hearts{
+	display: flex;
+	flex-direction: row-reverse;
+	max-width: 100%;
+	justify-content: space-around;
+	/*border: 1px solid #DDD;*/
+	margin: 10px 0;
+	padding: 0 24%;
+}
+
+.review form textarea{
+	width: 80%;
 	background-color: white;
-	box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-	padding: 10px 20px;
+	border: 1px solid #DDD;
 	border-radius: 3px;
-	margin-bottom: 10px;
+	resize: vertical;
+	margin: auto;
+	max-height: 200px;
+	transition: 0.2s;
+	height: 42px;
+	padding: 10px 15px;
+}
+
+.review form textarea:focus{
+	height: 200px;
+	outline: none;
+	border-color: #00B8D4;
+}
+
+.review form input[type=submit]{
+	margin: 20px auto 10px auto;
+	padding: 10px 20px;
+	color: white;
+	font-family: Gotham;
+	border: none;
+	font-weight: bold;
+	text-transform: uppercase;
+	border-radius: 3px;
+	font-size: 1em;
+	letter-spacing: 0.1em;
+	background-color: #00BCD4;
+	transition: 0.2s;
+}
+
+.review form input[type=submit]:hover{
+	background-color: #00E5FF;
+}
+
+.review input[type=radio]{
+	display: none;
+}
+
+.review form .hearts label{
+	color: #777;
+	font-size: 1.5em;
+	transition: 0.2s;
+}
+
+.review form label:nth-child(10):hover,
+.review form label:nth-child(8):hover,
+.review form label:nth-child(6):hover,
+.review form label:nth-child(4):hover,
+.review form label:nth-child(2):hover,
+
+.review form label:nth-child(8):hover ~ label:nth-child(10),
+
+.review form label:nth-child(6):hover ~ label:nth-child(10),
+.review form label:nth-child(6):hover ~ label:nth-child(8),
+
+.review form label:nth-child(4):hover ~ label:nth-child(10),
+.review form label:nth-child(4):hover ~ label:nth-child(8),
+.review form label:nth-child(4):hover ~ label:nth-child(6),
+
+.review form label:nth-child(2):hover ~ label:nth-child(10),
+.review form label:nth-child(2):hover ~ label:nth-child(8),
+.review form label:nth-child(2):hover ~ label:nth-child(6),
+.review form label:nth-child(2):hover ~ label:nth-child(4){
+	color: #C2185B;
+}
+
+.review form input[type=radio]:checked:nth-child(9) + label,
+.review form input[type=radio]:checked:nth-child(7) + label,
+.review form input[type=radio]:checked:nth-child(5) + label,
+.review form input[type=radio]:checked:nth-child(3) + label,
+.review form input[type=radio]:checked:nth-child(1) + label,
+
+.review form input[type=radio]:checked:nth-child(7) + label ~ input[type=radio]:nth-child(9) + label,
+
+.review form input[type=radio]:checked:nth-child(5) + label ~ input[type=radio]:nth-child(9) + label,
+.review form input[type=radio]:checked:nth-child(5) + label ~ input[type=radio]:nth-child(7) + label,
+
+.review form input[type=radio]:checked:nth-child(3) + label ~ input[type=radio]:nth-child(9) + label,
+.review form input[type=radio]:checked:nth-child(3) + label ~ input[type=radio]:nth-child(7) + label,
+.review form input[type=radio]:checked:nth-child(3) + label ~ input[type=radio]:nth-child(5) + label,
+
+.review form input[type=radio]:checked:nth-child(1) + label ~ input[type=radio]:nth-child(9) + label,
+.review form input[type=radio]:checked:nth-child(1) + label ~ input[type=radio]:nth-child(7) + label,
+.review form input[type=radio]:checked:nth-child(1) + label ~ input[type=radio]:nth-child(5) + label,
+.review form input[type=radio]:checked:nth-child(1) + label ~ input[type=radio]:nth-child(3) + label{
+	color: #E91E63;
+	text-shadow: 0 0 10px white;
+}
+
+.review ul{
+	background-color: white;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	width: 49%;
 }
