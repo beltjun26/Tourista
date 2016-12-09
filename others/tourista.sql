@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2016 at 01:17 AM
+-- Generation Time: Dec 09, 2016 at 04:58 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -54,7 +54,7 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`acc_id`, `username`, `firstname`, `lastname`, `password`, `email`, `address`, `about_me`) VALUES
 (1, 'clyde', 'Clyde', 'Delgado', '1f3e1525c6ee8678781be4b3dd87f778', 'clydedelgado@gmail.com', 'San Jose, Antique', 'Draw paint create master doctor derma '),
-(2, 'maynard', 'Maynard', 'Vargas', '9460370bb0ca1c98a779b1bcc6861c2c', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'asdfghjk12345678'),
+(2, 'maynard', 'Maynard', 'Vargas', '63a090d564111973d07fc57a2c1a3a4d', 'vargasmaynard@gmail.com', 'Kalibo, Aklan', 'asdfghjk12345678'),
 (3, 'rollin', 'Rollin', 'Pacheco', 'e3b9592341f871b73ecff949459ba9c1', 'rollinpachecko@gmail.com', 'Rollin City, Pacheco', 'Rollin in the deep.'),
 (4, 'alonzo', 'Alonzo', 'Locsin', '0d2c075f8c7fe0ccb116bc03c9f6fac2', 'alonzolocsin@gmail.com', 'Alonzo City, Locsin, Iloilo', 'Ace hardware ace hardware.'),
 (5, 'andrew', 'Andrew', 'Dagdag', '0fd3764434fe203a9079675d7925a0ee', 'andrewdagdag@gmail.com', 'Andrew City, Dagdag', 'I am Andrew D.'),
@@ -68,7 +68,8 @@ INSERT INTO `account` (`acc_id`, `username`, `firstname`, `lastname`, `password`
 (13, 'popo', 'Dragon', 'Hehe', 'bd69c3999632d318b7973038b8964448', 'popo@gmail.com', '', ''),
 (14, 'hello', 'Alcohol', 'Ethyl', 'c7e7f28c887e9fdad93ed092cbb6a026', 'assd@gmail.com', '', ''),
 (16, 'shebna12', 'Shebna', 'Fabilloren', '482c811da5d5b4bc6d497ffa98491e38', 'jujujaja@mail.com', '', ''),
-(17, 'alexsandra', 'Alex', 'Sandra', '482c811da5d5b4bc6d497ffa98491e38', 'alex@mail.com', '', '');
+(17, 'alexsandra', 'Alex', 'Sandra', '482c811da5d5b4bc6d497ffa98491e38', 'alex@mail.com', '', ''),
+(18, 'adegala021#', 'Alexandra21', 'Degala02', '7c6a180b36896a0a8c02787eeafb0e4c', 'adegala021@gmail.com', '', '');
 
 -- --------------------------------------------------------
 
@@ -91,10 +92,13 @@ INSERT INTO `follow` (`acc_id_follower`, `acc_id_follows`) VALUES
 (3, 1),
 (2, 3),
 (2, 8),
-(9, 2),
 (9, 3),
 (12, 2),
-(1, 2);
+(1, 2),
+(9, 2),
+(18, 2),
+(18, 8),
+(18, 3);
 
 -- --------------------------------------------------------
 
@@ -143,7 +147,65 @@ INSERT INTO `notification` (`notif_id`, `redirect_id`, `user_id_from`, `notif_ty
 (26, 34, 9, 1, '2016-12-09 00:09:10'),
 (27, 32, 9, 1, '2016-12-09 00:09:14'),
 (28, 32, 9, 1, '2016-12-09 00:09:15'),
-(29, 34, 9, 1, '2016-12-09 00:09:17');
+(29, 34, 9, 1, '2016-12-09 00:09:17'),
+(30, 2, 2, 3, '2016-12-09 01:27:43'),
+(31, 2, 2, 3, '2016-12-09 01:27:45'),
+(32, 2, 2, 3, '2016-12-09 01:27:49'),
+(33, 2, 2, 3, '2016-12-09 01:27:57'),
+(34, 2, 2, 3, '2016-12-09 01:28:08'),
+(35, 7, 7, 3, '2016-12-09 01:29:59'),
+(36, 7, 7, 3, '2016-12-09 01:30:04'),
+(37, 36, 9, 1, '2016-12-09 01:36:38'),
+(38, 37, 9, 2, '2016-12-09 01:37:23'),
+(39, 19, 9, 1, '2016-12-09 01:38:53'),
+(40, 20, 9, 1, '2016-12-09 01:38:54'),
+(41, 8, 9, 1, '2016-12-09 01:38:57'),
+(42, 38, 9, 2, '2016-12-09 01:39:25'),
+(43, 9, 9, 3, '2016-12-09 01:39:39'),
+(44, 9, 9, 3, '2016-12-09 01:39:41'),
+(45, 36, 2, 1, '2016-12-09 02:35:46'),
+(46, 36, 2, 1, '2016-12-09 02:35:53'),
+(47, 36, 2, 1, '2016-12-09 02:35:59'),
+(48, 36, 2, 1, '2016-12-09 02:36:42'),
+(49, 36, 2, 1, '2016-12-09 02:38:40'),
+(50, 35, 2, 1, '2016-12-09 02:38:42'),
+(51, 36, 2, 1, '2016-12-09 02:41:39'),
+(52, 35, 2, 1, '2016-12-09 02:41:51'),
+(53, 35, 2, 1, '2016-12-09 02:42:41'),
+(54, 35, 2, 1, '2016-12-09 02:42:46'),
+(55, 35, 2, 1, '2016-12-09 02:43:00'),
+(56, 36, 2, 1, '2016-12-09 02:43:03'),
+(57, 36, 2, 1, '2016-12-09 02:43:12'),
+(58, 35, 2, 1, '2016-12-09 02:45:06'),
+(59, 32, 2, 1, '2016-12-09 02:45:08'),
+(60, 36, 2, 1, '2016-12-09 02:46:00'),
+(61, 36, 2, 1, '2016-12-09 02:46:03'),
+(62, 39, 2, 2, '2016-12-09 02:52:14'),
+(63, 40, 2, 2, '2016-12-09 02:58:19'),
+(64, 40, 2, 1, '2016-12-09 02:58:27'),
+(65, 39, 9, 1, '2016-12-09 03:01:15'),
+(66, 41, 18, 2, '2016-12-09 03:13:41'),
+(67, 42, 18, 2, '2016-12-09 03:14:55'),
+(68, 43, 18, 2, '2016-12-09 03:16:52'),
+(69, 18, 18, 3, '2016-12-09 03:17:17'),
+(70, 18, 18, 3, '2016-12-09 03:19:07'),
+(71, 18, 18, 3, '2016-12-09 03:19:18'),
+(72, 13, 18, 1, '2016-12-09 03:20:01'),
+(73, 14, 18, 1, '2016-12-09 03:20:02'),
+(74, 17, 18, 1, '2016-12-09 03:20:09'),
+(75, 39, 18, 1, '2016-12-09 03:22:21'),
+(76, 36, 18, 1, '2016-12-09 03:22:23'),
+(77, 35, 18, 1, '2016-12-09 03:22:25'),
+(78, 44, 18, 2, '2016-12-09 03:24:12'),
+(79, 17, 2, 1, '2016-12-09 03:25:51'),
+(80, 17, 2, 1, '2016-12-09 03:25:57'),
+(81, 17, 2, 1, '2016-12-09 03:25:57'),
+(82, 17, 2, 1, '2016-12-09 03:25:57'),
+(83, 17, 2, 1, '2016-12-09 03:25:58'),
+(84, 17, 2, 1, '2016-12-09 03:26:00'),
+(85, 44, 2, 1, '2016-12-09 03:26:58'),
+(86, 44, 2, 1, '2016-12-09 03:27:05'),
+(87, 38, 2, 1, '2016-12-09 03:51:02');
 
 -- --------------------------------------------------------
 
@@ -162,7 +224,30 @@ CREATE TABLE `notified` (
 --
 
 INSERT INTO `notified` (`notif_id`, `user_id_notified`, `int_read`) VALUES
-(0, 9, 0);
+(0, 9, 0),
+(31, 7, 0),
+(32, 7, 0),
+(33, 7, 0),
+(34, 7, 0),
+(38, 3, 0),
+(39, 2, 0),
+(40, 2, 0),
+(41, 2, 0),
+(62, 1, 0),
+(62, 8, 0),
+(65, 2, 0),
+(70, 8, 0),
+(71, 3, 0),
+(72, 3, 0),
+(73, 3, 0),
+(78, 9, 0),
+(78, 8, 0),
+(78, 10, 0),
+(78, 7, 0),
+(78, 1, 0),
+(85, 18, 0),
+(86, 18, 0),
+(87, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -190,7 +275,9 @@ INSERT INTO `places` (`place_id`, `name`, `description`, `location_id`) VALUES
 (6, 'College of Fisheries and Ocean Studies', 'Isda isda fish fish', 'ChIJG1tKfY1CrjMRRMPdEBPMm_g'),
 (7, 'Hello', 'This is asd', 'ChIJXVv44IZXrjMRs9UxhHyvvZo'),
 (8, 'Tigbauan', 'tje besad', 'ChIJw_tU9cn3rjMR9uAiLoZwTrU'),
-(9, 'SM City ', 'We got it all for you!', 'ChIJTyIENDrlrjMRrYuTwx6PpXE');
+(9, 'SM City ', 'We got it all for you!', 'ChIJTyIENDrlrjMRrYuTwx6PpXE'),
+(10, 'UP Visayas', 'Yey', 'ChIJ9SnGYYdbrjMRzTDMRHiMCos'),
+(11, 'Boracay', 'The best island', 'ChIJ505LMi88pTMRNtptXh7oOKc');
 
 -- --------------------------------------------------------
 
@@ -239,10 +326,16 @@ INSERT INTO `posted` (`post_id`, `content`, `place_id`, `acc_id`, `time_post`, `
 (30, 'asdasdasdasddddddddd', 8, 2, '2016-12-06 18:16:11', 0),
 (31, 'asdasda', 2, 2, '2016-12-07 04:54:01', 0),
 (32, 'ASDASDSA', 2, 2, '2016-12-07 04:54:12', 0),
-(33, 'Posting', 2, 2, '2016-12-07 04:54:52', 1),
 (34, 'asdasd', 2, 9, '2016-12-07 08:47:22', 0),
 (35, 'Hello :D', 9, 2, '2016-12-08 18:30:12', 0),
-(36, 'Rosiebedsfasdf', 9, 2, '2016-12-08 22:04:58', 0);
+(36, 'Rosiebedsfasdf', 9, 2, '2016-12-08 22:04:58', 0),
+(37, 'Tagging maynard', 2, 9, '2016-12-09 01:37:23', 0),
+(38, 'Maynard', 2, 9, '2016-12-09 01:39:25', 0),
+(39, 'WE GOT IT ALL FOR YOU!', 9, 2, '2016-12-09 02:52:14', 1),
+(40, 'Hi', 10, 2, '2016-12-09 02:58:19', 1),
+(42, 'Hello', 11, 18, '2016-12-09 03:14:55', 1),
+(43, 'I am in Palawan. ', 2, 18, '2016-12-09 03:16:52', 1),
+(44, 'Hahaha', 10, 18, '2016-12-09 03:24:12', 1);
 
 -- --------------------------------------------------------
 
@@ -280,7 +373,20 @@ INSERT INTO `tag` (`acc_id`, `post_id`) VALUES
 (1, 36),
 (10, 36),
 (12, 36),
-(8, 36);
+(8, 36),
+(2, 37),
+(3, 37),
+(2, 38),
+(1, 39),
+(9, 39),
+(8, 39),
+(9, 40),
+(2, 44),
+(9, 44),
+(8, 44),
+(10, 44),
+(7, 44),
+(1, 44);
 
 -- --------------------------------------------------------
 
@@ -305,22 +411,29 @@ INSERT INTO `upvote` (`acc_id`, `post_id`) VALUES
 (2, 25),
 (2, 23),
 (2, 22),
-(2, 17),
 (2, 18),
 (2, 26),
 (8, 15),
 (1, 35),
 (1, 32),
 (1, 29),
-(1, 33),
 (12, 35),
-(12, 33),
-(2, 36),
-(9, 33),
-(9, 36),
-(9, 35),
 (9, 32),
-(9, 34);
+(9, 36),
+(9, 19),
+(9, 20),
+(9, 8),
+(2, 35),
+(2, 32),
+(2, 40),
+(9, 39),
+(18, 17),
+(18, 39),
+(18, 36),
+(18, 35),
+(2, 17),
+(2, 44),
+(2, 38);
 
 --
 -- Indexes for dumped tables
@@ -364,22 +477,22 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `notif_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `notif_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 --
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
-  MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `place_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `posted`
 --
 ALTER TABLE `posted`
-  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `post_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
