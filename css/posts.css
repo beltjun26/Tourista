@@ -146,7 +146,7 @@ body{
 
 #posting,
 .like button{
-	background-color: #00BCD4;
+	background-color: #006064;
 	color: white;
 	font-size: 1em;
 	font-family: Gotham;
@@ -157,6 +157,10 @@ body{
 	border: none;
 	border-radius: 2px;
 	transition: 0.3s;
+}
+
+#posting{
+	background-color: #00BCD4;
 }
 
 #posting:hover,

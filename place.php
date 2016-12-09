@@ -145,14 +145,9 @@
 								  FROM posted 
 								  NATURAL JOIN account
 								  NATURAL JOIN places
-								  WHERE acc_id 
-								  IN (SELECT acc_id_follows 
-								  	  FROM follow 
-								  	  WHERE acc_id_follower = $acc_id)
-								  OR acc_id = $acc_id 
+								  WHERE place_id = '{$_GET['place_id']}'
 								  ORDER BY time_post 
 								  DESC;";
-
 						$result = mysqli_query ($dbconn, $query);
 						$num_rows = mysqli_num_rows($result);
 						// Loop each post
@@ -301,5 +296,32 @@
 		x = x - h;
 		console.log(x);
 		document.getElementById('head').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;background-image: url(images/places_img/place_id_<?=$_GET['place_id']?>.png);");
+	</script>
+
+	<script>
+		function likeTriggered(post_id){
+			$.ajax({
+				url:"like.php",
+				type:"post",
+				data:{'post_id': post_id},
+				success:function(data){
+					var values = JSON.parse(data);
+					if(values.status=="deleted"){
+						$("#likebutton"+post_id).css("background-color","#006064");
+					}
+					if(values.status=="inserted"){
+						$("#likebutton"+post_id).css("background-color","#00E5FF");
+					}
+					if(values.likes==0){
+						document.getElementById("likes"+post_id).innerHTML=" ";
+					}
+					if(values.likes==1){
+						document.getElementById("likes"+post_id).innerHTML="1 Like";	
+					}if(values.likes>1){
+						document.getElementById("likes"+post_id).innerHTML=values.likes+" Likes";	
+					}
+				}
+			});
+		}
 	</script>
 </html>

@@ -596,7 +596,7 @@
 				success:function(data){
 					var values = JSON.parse(data);
 					if(values.status=="deleted"){
-						$("#likebutton"+post_id).css("background-color","#00BCD4");
+						$("#likebutton"+post_id).css("background-color","#006064");
 					}
 					if(values.status=="inserted"){
 						$("#likebutton"+post_id).css("background-color","#00E5FF");

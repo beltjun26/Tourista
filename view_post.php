@@ -52,7 +52,13 @@
 
 					<?php 
 						require "connect.php";
-
+						$acc_id = $_SESSION['userID'];
+						$query = "SELECT * from upvote where acc_id = $acc_id";
+						$result = mysqli_query($dbconn, $query);
+						$likes_array=[];
+						while($data = mysqli_fetch_assoc($result)){
+							$likes_array[]=$data['post_id'];
+						}
 						$query = "SELECT *
 								  FROM account 
 								  NATURAL JOIN posted
