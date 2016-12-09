@@ -74,6 +74,7 @@
 								</a>
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
+
 								
 								<?php if($value['if_image'] == 1): ?>
 									<button class="imagebtn"><img id="myImg<?=$value['post_id']?>" onclick="showModal(<?=$value['post_id']?>)" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
