@@ -518,14 +518,23 @@
 								data: formData,
 								success:function(data){
 									var values = JSON.parse(data);
+									var notif_id;
 									success_tag = [];
-									
+									$.ajax({
+										async:false,
+										url:"notification_tagging.php",
+										type:"post",
+										data:{'post_id':values.post_id},
+										success:function(id_notif){
+											notif_id = id_notif;
+										}
+									});
 									person_tagged.forEach(function(people){
 										$.ajax({
 											async: false,
 											url:"tagging.php",
 											type: "POST",
-											data:{'acc_id':people['id'],'post_id':values.post_id},
+											data:{'acc_id':people['id'],'post_id':values.post_id,'notif_id':notif_id},
 											success:function(name){
 												console.log(name);
 												var tag_data = JSON.parse(name);

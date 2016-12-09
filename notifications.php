@@ -78,9 +78,9 @@
 			 ?>
 			<?php if ($value['notif_type'] == 1): ?>
 				<p><?= $fullname ?> liked one of your posts.</p><br>
-			<?php endif ($value['notif_type'] == 2): ?>
+			<?php elseif ($value['notif_type'] == 2): ?>
 				<p><?= $fullname ?> tagged you in his post.</p><br>
-			<?php endif ($value['notif_type'] == 3): ?>
+			<?php elseif ($value['notif_type'] == 3): ?>
 				<p><?= $fullname ?> started following you.</p><br>
 			<?php endif ?>
 			
