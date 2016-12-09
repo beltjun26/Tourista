@@ -55,6 +55,7 @@
 						$query = "SELECT *
 								  FROM account 
 								  NATURAL JOIN posted
+								  NATURAL JOIN places
 								  WHERE post_id = {$_GET['post_id']}
 								  ";
 						$result = mysqli_query($dbconn, $query);
@@ -72,10 +73,10 @@
 								</a>
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
-									<button class="imagebtn"><img id="myImg1" onclick="showModal(1)" src="images/post_img/1.jpg"></button>
+									<button class="imagebtn"><img id="myImg1" onclick="showModal(1)" src="images/post_img/<?=$value['post_id']?>.jpg"></button>
 
 
-								<a href="place.php?place_id=1" class="tagged-location">asdads</a>
+								<a href="place.php?place_id=1" class="tagged-location"><?=$value['name']?></a>
 								<div class="like">
 									<span class="num-likes">3 Likes</span>
 									<button>LIKE</button>
