@@ -49,12 +49,28 @@
 					<div class="posted-container" id="posted-container">
 					<!-- START OF POSTED -->
 
+					<?php 
+						require "connect.php";
+
+						$query = "SELECT *
+								  FROM account 
+								  NATURAL JOIN posted
+								  WHERE post_id = {$_GET['post_id']}
+								  ";
+						$result = mysqli_query($dbconn, $query);
+
+						$value = mysqli_fetch_assoc($result);
+
+
+
+					 ?>
+
 							<div class="posted post-container">
 								<a href="people_profile.php?acc_id_=1">
-									<img src="images/profile_pic_img/acc_id_1.jpg" alt="USER PHOTO" class="profile">
-									<h2 class="user-name"><!-- <?=$value['username'];?> -->Hello</h2>
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id'];?>.jpg" alt="USER PHOTO" class="profile">
+									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>
-								<p class = "posted-text">asdasdasd</p>
+								<p class = "posted-text"><?=$value['content'];?></p>
 								
 									<button class="imagebtn"><img id="myImg1" onclick="showModal(1)" src="images/post_img/1.jpg"></button>
 
