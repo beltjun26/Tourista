@@ -5,6 +5,7 @@
 		header('location:login.php');
 	}
 	$username = $_SESSION["userName"];
+	$query  = "SELECT * from posted natural join account"
 ?>
 
 <!DOCTYPE html>
@@ -41,40 +42,101 @@
 			</ul>
 		</div>
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-3">
-				</div>
-				<div class="col-sm-6" id="one-post">
-
-					<div class="posted-container" id="posted-container">
-					<!-- START OF POSTED -->
-
+			
 							<div class="posted post-container">
-								<a href="people_profile.php?acc_id_=1">
-									<img src="images/profile_pic_img/acc_id_1.jpg" alt="USER PHOTO" class="profile">
-									<h2 class="user-name"><!-- <?=$value['username'];?> -->Hello</h2>
+							<?php if($value['acc_id']==$_SESSION['userID']): ?>
+								<span class="show-dropdown glyphicon glyphicon-chevron-down"></span>
+								<ul class="dropdown">
+									<li><button onclick="deletePost(<?=$value['post_id']?>)" class="delete">Delete</button></li>
+									<li><button onclick="editPost(<?=$value['post_id']?>)">Edit</button></li>
+								</ul>	
+							<?php endif ?>
+								<a href="<?php 
+									if($value['acc_id']==$_SESSION['userID']){
+										echo "my_profile.php";
+									}else{
+										echo "people_profile.php?acc_id=".$value['acc_id'];
+									}
+								 ?>">
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_cover.png'" alt="USER PHOTO" class="profile">
+
+									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>
-								<p class = "posted-text">asdasdasd</p>
+								<ul class="with-people">
+								<?php 
+									$query= "SELECT username as fullname, acc_id from tag natural join account where post_id={$value['post_id']}";
+									$res = mysqli_query($dbconn, $query);
+									$no_tagged = mysqli_affected_rows($dbconn);
+								 ?>
+								 <?php if($no_tagged): ?>
+								 
+									<li>with</li>
+									<?php 
+										if($no_tagged<4){
+											while($data_row = mysqli_fetch_assoc($res)){
+												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
+											}
+										}else{
+											$tags = mysqli_affected_rows($dbconn);
+											$tags = $tags-3;
+												$data_row = mysqli_fetch_assoc($res);
+												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
+												$data_row = mysqli_fetch_assoc($res);
+												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
+												$data_row = mysqli_fetch_assoc($res);
+												echo "<li><a href='people_profile.php?acc_id=".$data_row['acc_id']."'>".$data_row['fullname']."</a>,</li>";
+												echo "<li>and <span onclick='showOtherTag(".$value['post_id'].")'>".$tags." others</span></li>";				
+										}
+									 ?>
 								
-									<button class="imagebtn"><img id="myImg1" onclick="showModal(1)" src="images/post_img/1.jpg"></button>
+								<?php endif ?>
+								
+								</ul>
+								<span class="time-date"><?php echo date("F j, Y, g:i a", strtotime($value['time_post'])); ?></span>
 
+								<p class = "posted-text"><?=$value['content'];?></p>
+								
+								<?php if($value['if_image'] == 1): ?>
+									<button class="imagebtn"><img id="myImg<?=$value['post_id']?>" onclick="showModal(<?=$value['post_id']?>)" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
 
-								<a href="place.php?place_id=1" class="tagged-location">asdads</a>
+								<?php endif; ?>
+
+								<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
 								<div class="like">
-									<span class="num-likes">3 Likes</span>
-									<button>LIKE</button>
+								<span id="likes<?=$value['post_id']?>" class="num-likes">
+								<?php 
+									$query = "SELECT count(*) as likes from upvote where post_id = {$value['post_id']};";
+									$result = mysqli_query($dbconn, $query);
+									$row = 0;
+									$style = " ";
+									if(mysqli_affected_rows($dbconn)){
+										$data = mysqli_fetch_assoc($result);
+										$row = $data['likes'];
+									}
+									if($row){
+										if(in_array($value['post_id'], $likes_array)){
+											$style = "style='background-color: #00E5FF'";
+										}
+										if($row==1){
+											echo "1 Like";
+										}else{
+											echo $row." Likes";
+										}
+									}else{
+										echo " ";
+									}
+								 ?>
+									</span>
+									<button id="likebutton<?=$value['post_id']?>" <?=$style?> onclick="likeTriggered(<?=$value['post_id']?>)">LIKE</button>
 								</div>
 							</div>
-							
+							<?php if($value['if_image'] == 1): ?>
 							<div id="myModal<?=$value['post_id']?>" class="modal">
-								<span id="close1" class="close" onclick="document.getElementById('myModal<?=$value['post_id']?>').style.display='none'">&times;</span>
+								<span class="close" onclick="document.getElementById('myModal<?=$value['post_id']?>').style.display='none'">&times;</span>
 								<img class="modal-content postImg"  id="img<?=$value['post_id']?>">
 								<div id="caption<?=$value['post_id']?>" class="caption"></div>
 							</div>
-
-					</div>
-				</div>
-			</div>
+							<?php endif; ?>
 		</div>
 
 		<script>
