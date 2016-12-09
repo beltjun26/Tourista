@@ -519,6 +519,7 @@
 								success:function(data){
 									var values = JSON.parse(data);
 									success_tag = [];
+									
 									person_tagged.forEach(function(people){
 										$.ajax({
 											async: false,
