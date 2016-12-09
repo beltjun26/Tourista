@@ -14,7 +14,7 @@
 					<script type="text/javascript">
 						alert("Unsupported file type! Only .gif, .jpeg, .png only!");
 						window.location = 'home_page.php';
-					</script> 
+					</script> ss
 	<?php 
 					die();
 				} else {

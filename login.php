@@ -1,6 +1,9 @@
 <?php
 session_start();
 $error=0;
+if(isset($_SESSION['userID'])){
+	header("Location: home_page.php");
+}
 if(isset($_POST["submit"])){
 
 	$username = $_POST["userName"];

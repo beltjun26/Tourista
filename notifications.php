@@ -36,38 +36,91 @@
 		</ul>
 	</div>
 	<div class="container">
+
+	<?php 
+
+		require 'connect.php';
+
+		$query = "SELECT *
+				  FROM notification
+				  NATURAL JOIN notified
+				  WHERE user_id_notified = '{$_SESSION['userID']}'
+				  ORDER BY time_stamp_notif DESC;";
+
+		$result = mysqli_query($dbconn, $query);
+
+	 if(mysqli_num_rows($result)){
+
+
+	  foreach ($result as $value): ?>
 		<div class="notif-container">
-			<img class="user-photo" src="images/pp_cover/Clyde1.jpg">
-			<button type="button" class="close">&times;</button>
-			<span class="username">Xon_123</span>
-			<span class="time-stamp">4:00AM November 14, 2016</span>
-			<p>Xon_123 started following you.</p><br>
-			<a href="people_profile.php" class="view">View</a>
+			<img class="user-photo" src="images/profile_pic_img/acc_id_<?=$value['user_id_from']?>.jpg">
+			<a href="delete_notif.php?notif_id=<?=$value['notif_id']?>" class="close">&times;</a>
+
+
+			<?php 
+				$query = "SELECT *
+						  FROM account
+						  WHERE acc_id = '{$value['user_id_from']}';";
+
+				$user_result = mysqli_query($dbconn, $query);
+				$row = mysqli_fetch_assoc($user_result);
+			 ?>
+
+			<span class="username"><?=$row['username']?></span>
+			<span class="time-stamp"><?php echo date("F j, Y, g:i a", strtotime($value['time_stamp_notif']));  ?></span>
+
+			<?php 
+
+			$fullname = $row['firstname']." ".$row['lastname'];
+
+
+			 ?>
+			<?php if ($value['notif_type'] == 1): ?>
+				<p><?= $fullname ?> liked one of your posts.</p><br>
+			<?php elseif ($value['notif_type'] == 2): ?>
+				<p><?= $fullname ?> tagged you in his post.</p><br>
+			<?php elseif ($value['notif_type'] == 3): ?>
+				<p><?= $fullname ?> started following you.</p><br>
+			<?php endif ?>
+			
+
+
+			<a href="delete_notif.php?redirect_id=<?=$value['redirect_id']?>&notif_id=<?=$value['notif_id']?>&notif_type=<?=$value['notif_type']?>" class="view">View</a>
 		</div>
-		<div class="notif-container">
-			<img class="user-photo" src="images/pp_cover/Clyde1.jpg">
-			<button type="button" class="close">&times;</button>
-			<span class="username">Xon_123</span>
-			<span class="time-stamp">4:00AM November 14, 2016</span>
-			<p>Xon_123 started following you.</p><br>
-			<a href="people_profile.php" class="view">View</a>
-		</div>
-		<div class="notif-container">
-			<img class="user-photo" src="images/pp_cover/Clyde1.jpg">
-			<button type="button" class="close">&times;</button>
-			<span class="username">Xon_123</span>
-			<span class="time-stamp">4:00AM November 14, 2016</span>
-			<p>Xon_123 started following you.</p><br>
-			<a href="people_profile.php" class="view">View</a>
-		</div>
-		<div class="notif-container">
-			<img class="user-photo" src="images/pp_cover/Clyde1.jpg">
-			<button type="button" class="close">&times;</button>
-			<span class="username">Xon_123</span>
-			<span class="time-stamp">4:00AM November 14, 2016</span>
-			<p>Xon_123 started following you.</p><br>
-			<a href="people_profile.php" class="view">View</a>
-		</div>
+	<?php endforeach; 
+	}
+	else{
+		?>
+
+
+		<span class="no-notifs">NO MORE NOTIFICATIONS</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<?php
+	}
+
+	?>
+	
+	
+
+
+
+
+
+
 	</div>
 </body>
 </html>
