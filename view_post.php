@@ -57,6 +57,7 @@
 						$query = "SELECT *
 								  FROM account 
 								  NATURAL JOIN posted
+								  NATURAL JOIN places
 								  WHERE post_id = {$_GET['post_id']}
 								  ";
 						$result = mysqli_query($dbconn, $query);
@@ -74,8 +75,9 @@
 								</a>
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
-								</ul>
-								<span class="time-date"><?php echo date("F j, Y, g:i a", strtotime($value['time_post'])); ?></span>
+
+									<button class="imagebtn"><img id="myImg1" onclick="showModal(1)" src="images/post_img/<?=$value['post_id']?>.jpg"></button>
+
 
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
@@ -84,7 +86,9 @@
 
 								<?php endif; ?>
 
+
 								<a href="place.php?place_id=<?=$value['place_id'];?>" class="tagged-location"><?=$value['name'];?></a>
+
 								<div class="like">
 								<span id="likes<?=$value['post_id']?>" class="num-likes">
 								<?php 
