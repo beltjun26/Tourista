@@ -182,7 +182,7 @@
 										echo "people_profile.php?acc_id=".$value['acc_id'];
 									}
 								 ?>">
-									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_cover.png'" alt="USER PHOTO" class="profile">
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_profile.png'" alt="USER PHOTO" class="profile">
 
 									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>

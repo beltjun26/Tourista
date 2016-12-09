@@ -11,9 +11,12 @@
 }
 
 .user-photo{
-	max-height: 75px;
+	height: 75px;
+	width: 75px;
 	float: left;
 	margin-right: 5px;
+	object-fit: cover;
+	object-position: center;
 }
 
 .username{
@@ -60,14 +63,15 @@ p{
 	text-align: center;
 	vertical-align: middle;
 	text-decoration: none;
-	transition: 0.2s;
+	transition: 0.1s;
 	z-index: -1;
 	transform: translate(0, 10px);
 	border-radius: 2px;
+	padding: 5px 20px;
 }
 
 .notif-container:hover > .view{
-	transform: translate(0, -20px);
+	transform: translate(0, -30px);
 }
 
 .view:hover{
