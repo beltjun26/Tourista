@@ -42,7 +42,6 @@
 			</ul>
 		</div>
 		<div class="container">
- <q></q>
 			<div class="row">
 				<div class="col-sm-3">
 				</div>
@@ -75,15 +74,9 @@
 								</a>
 								<p class = "posted-text"><?=$value['content'];?></p>
 								
-
-									<button class="imagebtn"><img id="myImg1" onclick="showModal(1)" src="images/post_img/<?=$value['post_id']?>.jpg"></button>
-
-
-								<p class = "posted-text"><?=$value['content'];?></p>
 								
 								<?php if($value['if_image'] == 1): ?>
 									<button class="imagebtn"><img id="myImg<?=$value['post_id']?>" onclick="showModal(<?=$value['post_id']?>)" src="images/post_img/<?=$value['post_id'];?>.jpg"></button>
-
 								<?php endif; ?>
 
 
