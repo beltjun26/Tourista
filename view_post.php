@@ -33,7 +33,7 @@
 				<input type="text" placeholder="Search..." name = "search">
 			</form>
 			<ul id = "navList">
-				<li><a href="#" class="active"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
+				<li><a href="home_page.php" class=><span class="glyphicon glyphicon-home"></span>HOME</a></li>
 				<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
 				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="Notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
