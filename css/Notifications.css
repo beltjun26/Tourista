@@ -11,9 +11,12 @@
 }
 
 .user-photo{
-	max-height: 75px;
+	height: 75px;
+	width: 75px;
 	float: left;
 	margin-right: 5px;
+	object-fit: cover;
+	object-position: center;
 }
 
 .username{
@@ -60,14 +63,15 @@ p{
 	text-align: center;
 	vertical-align: middle;
 	text-decoration: none;
-	transition: 0.2s;
+	transition: 0.1s;
 	z-index: -1;
 	transform: translate(0, 10px);
 	border-radius: 2px;
+	padding: 5px 20px;
 }
 
 .notif-container:hover > .view{
-	transform: translate(0, -20px);
+	transform: translate(0, -30px);
 }
 
 .view:hover{
@@ -76,3 +80,17 @@ p{
 	text-decoration: none;
 	background-color: #00E5FF;
 }
+
+.no-notifs{
+	font-family: "Gotham Light";
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: #888;
+	width: 100%;
+	text-align: center;
+	font-size: 1.5em;
+	display: block;
+	padding: 100px 0 0 0;
+}
+

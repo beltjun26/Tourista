@@ -152,7 +152,7 @@
 									}
 									if($row){
 										if(in_array($value['post_id'], $likes_array)){
-											$style = "style='background-color: grey'";
+											$style = "style='background-color: #00E5FF'";
 										}
 										if($row==1){
 											echo "1 Like";
@@ -234,10 +234,10 @@
 				success:function(data){
 					var values = JSON.parse(data);
 					if(values.status=="deleted"){
-						$("#likebutton"+post_id).css("background-color","#00BCD4");
+						$("#likebutton"+post_id).css("background-color","#006064");
 					}
 					if(values.status=="inserted"){
-						$("#likebutton"+post_id).css("background-color","grey");
+						$("#likebutton"+post_id).css("background-color","#00E5FF");
 					}
 					if(values.likes==0){
 						document.getElementById("likes"+post_id).innerHTML=" ";

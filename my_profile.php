@@ -13,6 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="css/People_Profile_Page_Style_Before.css">
 		<link rel="stylesheet" type="text/css" href="css/Style_Modal.css">
 		<link rel="stylesheet" type="text/css" href="css/edit_profile_style.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 		<link rel="stylesheet" type="text/css" href="css/profile_options.css">
 		<link rel="stylesheet" type="text/css" href="css/input_file.css">
@@ -269,7 +270,7 @@
 										echo "people_profile.php?acc_id=".$value['acc_id'];
 									}
 								 ?>">
-									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_cover.png'" alt="USER PHOTO" class="profile">
+									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id']; ?>.jpg" onerror = "this.src = 'images/default_profile.png'" alt="USER PHOTO" class="profile">
 
 									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>
@@ -596,7 +597,7 @@
 				success:function(data){
 					var values = JSON.parse(data);
 					if(values.status=="deleted"){
-						$("#likebutton"+post_id).css("background-color","#00BCD4");
+						$("#likebutton"+post_id).css("background-color","#006064");
 					}
 					if(values.status=="inserted"){
 						$("#likebutton"+post_id).css("background-color","#00E5FF");

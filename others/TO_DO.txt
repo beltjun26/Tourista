@@ -1,0 +1,86 @@
+1. Create account validation
+	IMPORTANT {
+		No requires
+		Validation of 
+			names - should all be letters
+			username - no special characters (limit to 3 to 16 char)
+			email - serverside validation - 
+				pattern 
+				already in database (duplicate)
+		No confirmation create account	
+	}
+	
+
+2. Post
+	IMPORTANT{
+		Notification on error prof image
+	}
+	
+	add place success
+	No posting if both are not present (caption, image)
+	
+	For new accounts (no prof and cover photo)
+		Ajax, profile image if none, then error in ajax posting 
+		posted, cover photo 
+	
+3. Nav bar visits - IMPORTANT
+
+4. Wrong behavior on visits showing image (FOR ROSIEBELT) 
+
+5. All "#", links - IMPORTANT
+
+6. Implement explore
+
+7. Implement ask for a tour
+
+8. Visitor options  		-IMPORTANT
+	Swap following followers
+
+9. Database Cleaning 	-IMPORTANT
+
+10. Travel photos 
+
+
+11. Travel posts
+
+12. Populate 
+		posts
+
+13. Privacy 	
+	Cant view posts
+	can view 
+
+14. View post 		-IMPORTANT
+	Show tagged
+ 	people
+
+15. No access to any of the sites if not logged in 	-IMPORTANT
+
+16. Issue with visits location tag link awkward 
+
+17. Search  -IMPORTANT
+		Pagination
+		Style improve
+		Cover photo no on error in search
+
+18. Good cover photos
+
+19. Search datalist 
+
+20. Place -IMPORTANT
+		Give default background image
+		Allow user to edit image
+
+		Implement backround image for place
+		TOWN, PROVINCE, BARANGAY show
+		Chapparal pro light about place
+		
+		Show rating in cover section of place
+
+		Reviews
+			Implement reviews
+			Warn if review again
+			On error image
+		
+
+

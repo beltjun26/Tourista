@@ -24,9 +24,9 @@
       }
 			include 'connect.php';
       if(isset($_GET['acc_id'])){
-         $query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_GET['acc_id']} and  l.place_id = p.place_id group by location_id";
+         $query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_GET['acc_id']} and  l.place_id = p.place_id group by location_id ORDER BY time_post ";
       }else{
-        $query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id";
+        $query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id group by location_id ORDER BY time_post ";
       }
 			
 			$result = mysqli_query($dbconn, $query);
@@ -108,7 +108,7 @@
                 });
                 if(if_img==1){
                   var infowindow = new google.maps.InfoWindow({
-                  content:'<IMG BORDER="0" ALIGN="Left" style="width:100px;height:auto" SRC="images/post_img/'+img_id+'.jpg"><br><a href="place.php?place_id=1">Visit page<a/><br><p>'+name+'<p/>'
+                  content:'<IMG BORDER="0" ALIGN="Left" style="width:100px;height:auto" SRC="images/post_img/'+img_id+'.jpg"><br><a href="place.php?place_id='+dplace_id+'">Visit page<a/><br><p>'+name+'<p/>'
                   });  
                 }else{
                     var infowindow = new google.maps.InfoWindow({

@@ -1,0 +1,198 @@
+@font-face{
+	font-family: Gotham;
+	src: url("../used_fonts/GOTHAM-LIGHT.TTF") format("truetype");
+}
+
+@font-face{
+	font-family: GothamMed;
+	src: url("../used_fonts/GOTHAM-MEDIUM.TTF") format("truetype");
+}
+
+.review{
+	display: flex;
+	width: 80%;
+	margin: 10px auto 10px auto;
+	background-color: white;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	padding: 15px 20px;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.review > form,
+.review > div{
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	width: 49%;
+	padding: 15px 20px;
+	height: 370px;
+}
+
+.review > div{
+	overflow-y: scroll;
+}
+
+.review > form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.review > form textarea{
+	width: 100%;
+	height: 42px;
+	padding: 10px 20px;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	margin: 10px;
+	transition: 0.3s;
+}
+
+.review > form textarea:focus{
+	outline: none;
+	height: 200px;
+}
+
+.review form button{
+	font-family: Gotham;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	text-decoration: none;
+	background-color: #00BCD4;
+	padding: 10px 15px;
+	font-size: 1em;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	color: white;
+	transition: 0.2s;
+	border-radius: 3px;
+	border: none;
+}
+
+.review form h3{
+	font-family: Gotham;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+.review form button:hover{
+	background-color: #00E5FF;
+	color: white;
+}
+
+.postedrev{
+	border: 1px solid #DDD;
+	margin: 10px 0;
+	width: 100%;
+}
+
+.postedrevtop{
+	width: 100%;
+	margin: 5px;
+	display: flex;
+	align-items: center;
+}
+
+.postedrevtop a{
+	font-family: Gotham;
+	color: rgba(0,184,212 ,1);
+	margin: 0 10px;
+	font-size: 1.2em;
+	text-align: center;
+}
+/*
+#reviewscroll > .postedrev > .postedrevtop > .postedstars > img{
+	width: 21px;
+	height: 21px;
+	margin-top: 18px;
+}*/
+
+/*#reviewscroll > .postedrev > .postedrevtop > .postedstars{
+}*/
+
+.postedrevtop > img{
+	width: 50px;
+	height: 50px;
+	margin: 5px;
+}
+
+#reviewscroll > .postedrev > .postedrevbot{
+	width: 100%;
+	padding: 0 20px 5px 20px;
+}
+
+#reviewscroll > .postedrev > .postedrevbot > h4{
+	font-family: Arial;
+	width: 100%;
+}
+
+.hearts:not(old){
+  display        : flex;
+  /*width          : 7.5em;
+  height         : 1.5em;*/
+  flex-direction: row-reverse;
+  margin: 10px auto 10px auto;
+  width: 100%;
+justify-content: center;
+align-items: center;
+  overflow       : hidden;
+  vertical-align : bottom;
+  color: #CFD8DC;
+}
+
+.hearts input{
+  display: none;
+}
+
+.hearts:not(old) > label{
+ /* display         : block;
+  float           : right;
+  position        : relative;*/
+  font-size: 1.5em;
+  transition  	  : 0.3s;
+  margin: 3px;
+
+  /*background      : url('../images/staroff.png');*/
+  /*background-size : contain;*/
+}
+
+/*.hearts:not(old) > label:before{
+  content         : '';
+  display         : block;
+  width           : 1.5em;
+  height          : 1.5em;
+  background      : url('../images/staron.png');
+  background-size : contain;
+  opacity         : 0;
+  transition      : opacity 0.2s linear;
+}*/
+
+/*.hearts:not(old) > label:hover:before,
+.hearts:not(old) > label:hover ~ label:before,
+.hearts:not(:hover) > :checked ~ label:before{
+  opacity : 1;
+}*/
+
+.hearts:not(old) > label:hover,
+.hearts:not(old) > label:hover ~ label{
+	color: #C2185B;
+}
+
+.hearts:not(old) > :checked ~ label{
+	color: #F50057!important;
+	text-shadow: 0 0 2px rgba(213,0,249 ,0.5);
+}
+
+.red{
+	color: #F50057;
+}
+
+.gray{
+	color: #CFD8DC;
+}
