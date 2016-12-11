@@ -10,6 +10,9 @@
 		require "connect.php";
 			
 			if (isset($_GET["search"])) {
+				if(!isset($_GET['page'])){
+					$_GET['page'] = 1;
+				}
 				$searchVal = $_GET["search"];
 				
 				$query = "SELECT * FROM places WHERE places.name like '%$searchVal%'";		
@@ -40,7 +43,7 @@
 				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php" class="logout"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
+				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'"></a></li>
 			</ul>
 		</div>
 		<div class="search-container" style="margin-top: 60px;">
@@ -77,7 +80,7 @@
 			//foreach ($result as $value) {?>
 				<li class="result-place">
 					<a class="place-link" href="place.php?place_id=<?=$value['place_id']?>">
-						<img class = "place-photo" src="images/places_img/place_id_<?=$value['place_id'] ?>.png" alt="filler image">
+						<img class = "place-photo" src="images/places_img/place_id_<?=$value['place_id'] ?>.png" alt="filler image" onerror = "this.src = 'images/default_cover.png'">
 						<h2 class="place-name"><?=$value['name']?></h2>
 					</a>
 				</li>
@@ -88,15 +91,20 @@
 				}
 			} ?>
 			</ul>
-			<?php
-				for($i = 1; $i <= $paginationNum; $i++){
-			?>
-
-			<a href="search_results_places.php?search=<?php echo $searchVal;?>&page=<?php echo $i;?>"><?php echo $i;?></a>
-		
-
-			<?php }?>
+			<ul class="pagination">
+				<?php for($i = 1; $i <= $paginationNum; $i++): ?>
+				<li><a href="search_results_places.php?search=<?php echo $searchVal;?>&page=<?php echo $i;?>"  
+					<?php if ($_GET['page']==$i): ?>
+						class="active">
+					<?php else: ?>
+						>
+					<?php endif; 
+					      echo $i; 
+					      ?>
+					</a>
+				</li>
+				<?php endfor; ?>
+			</ul>
 		</div>
-
 	</body>
 </html>

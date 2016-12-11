@@ -285,3 +285,37 @@
 	border-radius: 3px;
 	margin-bottom: 10px;
 }
+
+#warning{
+	display: none;
+	opacity: 0;
+	background-color: #E91E63;
+	color: white;
+	font-family: Arial;
+	font-size: 0.9em;
+	margin-bottom: 10px;
+	padding: 5px 20px;
+	border-radius: 3px;
+	text-align: center;
+	box-sizing: border-box;
+	transition: 0.6s;
+}
+
+#warning p{
+	margin: 0;
+	display: inline-block;
+}
+
+#warning .closebtn{
+	float: right;
+	margin-left: 10px;
+	line-height: 1em;
+	font-size: 1.5em;
+	opacity: 0.5;
+	transition: 0.2s;
+}
+
+#warning .closebtn:hover{
+	opacity: 1;
+	cursor: pointer;
+}

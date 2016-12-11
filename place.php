@@ -1,3 +1,16 @@
+<?php 
+	require "connect.php";
+	session_start();
+
+	$queryplaces = "SELECT * FROM places WHERE place_id = '{$_GET['place_id']}';";
+	$result = mysqli_query($dbconn, $queryplaces);
+	$row = mysqli_fetch_assoc($result);
+
+	$placename = $row['name'];
+	$description = $row['description'];
+?>
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,19 +30,6 @@
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 	</head>
 	<body>
-
-		<?php 
-			require "connect.php";
-			session_start();
-
-			$queryplaces = "SELECT * FROM places WHERE place_id = '{$_GET['place_id']}';";
-			$result = mysqli_query($dbconn, $queryplaces);
-			$row = mysqli_fetch_assoc($result);
-
-			$placename = $row['name'];
-			$description = $row['description'];
-		?>
-
 		<div id = "navBar">
 			<form action="search_results_places.php" method="get">
 				<input type="text" placeholder="Search..." name = "search">
@@ -40,7 +40,7 @@
 				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php" class="logout"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg"></a></li>
+				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list active"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'"></a></li>
 			</ul>
 		</div>
 		<div class="container header" id="head" style="">
@@ -67,7 +67,7 @@
 		<div class="container" id="rev">
 			<h2>Overall Rating: <span>4.6</span></h2>
 			<div class="review">
-				<form method = "post" action = "">
+				<form name="reviewform" method="post" action="review.php">
 					<h3>Love this place?</h3>
 					<div class="hearts">
 						  <input id="rating5" type="radio" name="rating" value="5">
@@ -81,8 +81,12 @@
 						  <input id="rating1" type="radio" name="rating" value="1">
 						  <label for="rating1"><span class="glyphicon glyphicon-heart-empty"></span></label>
 					</div>
-					<textarea placeholder="Comment here!"></textarea>
-					<button name = "submitreview" type="submit">Review</button>
+					<textarea placeholder="Comment here!" name="comment"></textarea>
+					<div id="warning">
+					  	<span class="closebtn">&times;</span> 
+					  	<p>Rate the place first.<p>
+					</div>
+					<button name="review" type="submit" onsubmit="validateReview()">Review</button>
 				</form>
 				<div id="reviewscroll">
 					<!--<p>php loop goes here</p>-->
@@ -133,7 +137,6 @@
 			<div class="posted-container" id="posted-container" style="width:40%">
 					<!-- START OF POSTED -->
 					<?php 
-						require "connect.php";
 						$acc_id = $_SESSION['userID'];
 						$query = "SELECT * from upvote where acc_id = $acc_id";
 						$result = mysqli_query($dbconn, $query);
@@ -322,6 +325,25 @@
 					}
 				}
 			});
+		}
+		function validateReview(){
+		    var rating = document.forms["reviewform"]["rating"].value;
+			var warning = document.getElementById("warning");
+		    if (rating == "") {
+		    	warning.style.display = "inline-block";
+		        warning.style.opacity = "1";	       
+		        return false;
+		    }
+		}
+		var close = document.getElementsByClassName("closebtn");
+		var i;
+
+		for (i = 0; i < close.length; i++) {
+		    close[i].onclick = function(){
+		        var div = this.parentElement;
+		        div.style.opacity = "0";
+		        setTimeout(function(){ div.style.display = "none"; }, 600);
+		    }
 		}
 	</script>
 </html>

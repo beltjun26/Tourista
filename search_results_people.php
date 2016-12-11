@@ -49,7 +49,7 @@
 				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php" class="logout"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="my_profile.php?=<?=$_SESSION['userID']?>" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
+				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'"></a></li>
 			</ul>
 		</div>
 		<div class="search-container" style="margin-top: 60px;">
@@ -86,8 +86,7 @@
 			//foreach ($result as $value) {?>
 				<li class="result-people">
 					<a href="people_profile.php?acc_id=<?=$value['acc_id']?>">
-							<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id'] ?>.jpg" alt="user image" onerror = "this.src = 'images/default_profile.png'">
-						
+						<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id'] ?>.jpg" alt="user image" onerror = "this.src = 'images/default_profile.png'">
 						<div class = "user-details">
 							<h2 class="username"><?php echo $value['firstname']." ".$value['lastname'] ?></h2>
 							<p><?=$value['about_me'] ?></p>
