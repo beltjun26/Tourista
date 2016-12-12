@@ -1,6 +1,9 @@
 <?php 
 	require "connect.php";
 	session_start();
+	if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+	}
 
 	$queryplaces = "SELECT * FROM places WHERE place_id = '{$_GET['place_id']}';";
 	$result = mysqli_query($dbconn, $queryplaces);

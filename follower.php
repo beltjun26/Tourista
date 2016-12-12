@@ -1,4 +1,7 @@
 <?php
+	if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+	}
 	$db = 'tourista';
 	$connect = mysqli_connect('localhost', 'root', '', $db) or die('Could not connect to database.');
 	// $acc_id = $_GET['acc_id'];
