@@ -1,6 +1,9 @@
 <?php 
-	require "connect.php";
 	session_start();
+	require "connect.php";
+	if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+	}
 	$status = "";
 	$follow_user = $_GET['acc_id'];
 

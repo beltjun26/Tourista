@@ -13,13 +13,13 @@
 
 2. Post
 	IMPORTANT{
-		Notification on error prof image
+		Notification on error prof image 	-DONE!
 	}
 	
-	add place success
-	No posting if both are not present (caption, image)
+	add place success 	-JUST A REFINEMENT
+	No posting if both are not present (caption, image) 
 	
-	For new accounts (no prof and cover photo)
+	For new accounts (no prof and cover photo) 				- DONE!
 		Ajax, profile image if none, then error in ajax posting 
 		posted, cover photo 
 	
@@ -29,24 +29,24 @@
 
 5. All "#", links - IMPORTANT ;finished!
 
-6. Implement explore
+6. Implement explore - NOT IMPLEMENTED
 
-7. Implement ask for a tour
+7. Implement ask for a tour - NOT IMPLEMENTED
 
 8. Visitor options  		-IMPORTANT
 	Swap following followers
 
-9. Database Cleaning 	-IMPORTANT
+9. Database Cleaning 	-IMPORTANT ! DONE!
 
-10. Travel photos 
+10. Travel photos  - DONE!
 
 
-11. Travel posts
+11. Travel posts - DONE!
 
-12. Populate 
+12. Populate  	- DONE!
 		posts
 
-13. Privacy 	
+13. Privacy 	-NOT TO BE IMPLEMENTED
 	Cant view posts
 	can view 
 
@@ -54,16 +54,16 @@
 	Show tagged
  	people
 
-15. No access to any of the sites if not logged in 	-IMPORTANT
+15. No access to any of the sites if not logged in 	-IMPORTANT - DONE!
 
 16. Issue with visits location tag link awkward 
 
-17. Search  -IMPORTANT
+17. Search  -IMPORTANT -DONE!
 		Pagination
 		Style improve
 		Cover photo no on error in search
 
-18. Good cover photos
+18. Good cover photos - DONE!
 
 19. Search datalist 
 
@@ -82,5 +82,6 @@
 			Warn if review again
 			On error image
 		
-21. Weird behaivior on the tagging showing
+21. Weird behaivior on the tagging showing 
 
+22. Error images - Important; Finished. (default images)

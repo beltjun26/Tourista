@@ -8,6 +8,10 @@
 	
 
 		require "connect.php";
+
+		if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+		}
 			
 			if (isset($_GET["search"])) {
 				if(!isset($_GET['page'])){
