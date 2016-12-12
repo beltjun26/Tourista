@@ -67,7 +67,7 @@
 		<div class="container" id="rev">
 			<h2>Overall Rating: <span>4.6</span></h2>
 			<div class="review">
-				<form name="reviewform" method="post" action="review.php">
+				<form name="reviewform" method="post" action="review.php" onsubmit="return validateReview(this)">
 					<h3>Love this place?</h3>
 					<div class="hearts">
 						  <input id="rating5" type="radio" name="rating" value="5">
@@ -86,7 +86,8 @@
 					  	<span class="closebtn">&times;</span> 
 					  	<p>Rate the place first.<p>
 					</div>
-					<button name="review" type="submit" onsubmit="validateReview()">Review</button>
+					<input type="hidden" name="place" value="<?=$_GET['place_id']?>">
+					<button name="review" type="submit" onclick="return validateReview();">Review</button>
 				</form>
 				<div id="reviewscroll">
 					<!--<p>php loop goes here</p>-->
