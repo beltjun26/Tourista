@@ -12,7 +12,7 @@
 	font-family: GothamMed;
 }
 
-.address li, .options li a, #backtop + .tooltip > .tooltip-inner, .gallery a, .background label{
+.address li, .options li a, #backtop + .tooltip > .tooltip-inner, .gallery a{
 	font-family: Gotham;
 }
 
@@ -225,7 +225,7 @@
 	opacity: 0;
 }
 
-.gallery,.background{
+.gallery{
 	height: 40px;
 	overflow: hidden;
 	background-color: rgba(0,188,212 ,1);
@@ -247,7 +247,7 @@
 	transform: translate(0, -150%);
 }
 
-.gallery a, .background label{
+.gallery a{
 	font-weight: bold;
 	text-transform: uppercase;
 	display: block;
@@ -255,23 +255,6 @@
 	padding: 10px 15px;
 	text-decoration: none;
 	transition: 0.2s;
-}
-
-.background label{
-	text-align: center;
-}
-
-.background label:hover{
-	background-color: #00E5FF;
-	cursor: pointer;
-}
-
-.background{
-	margin-top: 20px;
-}
-
-#background{
-	display: none;
 }
 
 .gallery span{
@@ -335,4 +318,39 @@
 #warning .closebtn:hover{
 	opacity: 1;
 	cursor: pointer;
+}
+
+.background{
+	margin-top: 100px;
+}
+
+.background > *{
+	background-color: #00BCD4;
+	padding: 10px 20px;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	font-family: Gotham;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	font-weight: bold;
+	text-align: center;
+	transition: 0.2s;
+}
+
+.background > *:hover{
+	background-color: #00E5FF;
+	cursor: pointer;
+}
+
+.background > .cancel{
+	background-color: #E91E63;
+}
+
+.background > .cancel:hover{
+	background-color: #FF4081;
+}
+
+#background{
+	display: none;
 }

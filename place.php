@@ -62,10 +62,12 @@
 				<span class="glyphicon glyphicon-camera"></span>
 				<a href="gallery.php?place_id=<?=$_GET['place_id']?>">View Gallery</a>
 			</div>
-			<div class="background">
+			<form class="background">
 				<label for="background"><span class="glyphicon glyphicon-picture"></span> Change Background</label>
 				<input type="file" name="background" id="background">
-			</div>
+				<input type="submit" name="upload" value="upload">
+				<input type="button" name="cancel" value="cancel" class="cancel">
+			</form>
 		</div>
 		<div class="container" id="desc">
 			<h2>About the place</h2>
