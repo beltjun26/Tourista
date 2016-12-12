@@ -96,7 +96,7 @@
 					while($count!=0){?>
 						<div class = "postedrev">
 							<div class = "postedrevtop">
-								<img src = "images/profile_pic_img/acc_id_<?=$count?>.jpg">
+								<img src = "images/profile_pic_img/acc_id_<?=$count?>.jpg" onerror="this.src = 'images/default_profile.png'">
 								<?php
 								$nquery = "SELECT username FROM account WHERE acc_id=$count";
 								$nresult = mysqli_query($dbconn, $nquery);
