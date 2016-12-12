@@ -10,6 +10,7 @@
 		echo $rate." ".$comment." ".$place." ".$user;
 		$query = "INSERT INTO `rating`(`acc_id`, `place_id`, `comment`, `rating_no`) VALUES ('$user' ,'$place' ,'$comment' ,'$rate');";
 		mysqli_query($dbconn, $query);
+		
 		header("Location: place.php?place_id=$place");
 	}
 ?>

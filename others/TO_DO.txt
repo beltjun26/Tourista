@@ -23,7 +23,7 @@
 		Ajax, profile image if none, then error in ajax posting 
 		posted, cover photo 
 	
-3. Nav bar visits - IMPORTANT
+3. Nav bar visits - IMPORTANT - Finished!
 
 4. Wrong behavior on visits showing image (FOR ROSIEBELT) finished
 
