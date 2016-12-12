@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2016 at 05:23 PM
+-- Generation Time: Dec 12, 2016 at 11:01 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -63,7 +63,8 @@ INSERT INTO `account` (`acc_id`, `username`, `firstname`, `lastname`, `password`
 (9, 'rosiebelt', 'Rosiebelt Jun', 'Abisado', 'b60a41f4619d920abe5550473176f2e3', 'beltjun@gmail.com', 'About about about rosiebelt.'),
 (10, 'rosjel', 'Rosjel Jolly', 'Lambungan', 'b853337477f12302aee400fa56edfcbf', 'lambunganrosjel@gmail.com', 'Adventure junkie\r\n'),
 (11, 'salvy', 'Salvy Jessa', 'Arnaiz', '734a5311c4b5470784a16f600297b9ac', 'arnaiz@gmail.com', 'Hahahaha. '),
-(12, 'shebna', 'Shebna Rose', 'Fabilloren', '38a542d4677b83db32880b30057eacf7', 'shebnarose@gmail.com', 'Ako shebna shebna');
+(12, 'shebna', 'Shebna Rose', 'Fabilloren', '38a542d4677b83db32880b30057eacf7', 'shebnarose@gmail.com', 'Ako shebna shebna'),
+(20, 'hello', 'Hello', 'World', '6a864555478cae0aa7751f19123973ac', 'hello@gmail.com', '');
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,8 @@ INSERT INTO `follow` (`acc_id_follower`, `acc_id_follows`) VALUES
 (2, 5),
 (10, 4),
 (10, 12),
-(10, 3);
+(10, 3),
+(20, 2);
 
 -- --------------------------------------------------------
 
@@ -175,7 +177,9 @@ INSERT INTO `notification` (`notif_id`, `redirect_id`, `user_id_from`, `notif_ty
 (46, 30, 10, 2, '2016-12-12 16:20:16'),
 (47, 10, 10, 3, '2016-12-12 16:20:55'),
 (48, 10, 10, 3, '2016-12-12 16:21:03'),
-(49, 10, 10, 3, '2016-12-12 16:21:22');
+(49, 10, 10, 3, '2016-12-12 16:21:22'),
+(50, 20, 20, 3, '2016-12-12 17:28:53'),
+(51, 30, 2, 1, '2016-12-12 20:08:22');
 
 -- --------------------------------------------------------
 
@@ -207,7 +211,9 @@ INSERT INTO `notified` (`notif_id`, `user_id_notified`) VALUES
 (37, 5),
 (47, 4),
 (48, 12),
-(49, 3);
+(49, 3),
+(50, 2),
+(51, 10);
 
 -- --------------------------------------------------------
 
@@ -274,7 +280,6 @@ CREATE TABLE `posted` (
 --
 
 INSERT INTO `posted` (`post_id`, `content`, `place_id`, `acc_id`, `time_post`, `if_image`) VALUES
-(1, 'Cousieeees. <3', 13, 10, '2016-12-12 14:51:34', 1),
 (3, 'Kayo na ang humusga...', 13, 9, '2016-12-12 15:07:20', 1),
 (8, 'Anona plan ta guys lol', 6, 2, '2016-12-12 15:39:24', 1),
 (10, 'Bleeeeeh', 4, 5, '2016-12-12 15:42:56', 1),
@@ -306,6 +311,14 @@ CREATE TABLE `rating` (
   `rating_no` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`acc_id`, `place_id`, `comment`, `rating_no`) VALUES
+(2, 15, 'The best. <3', 4),
+(3, 15, 'Ang lamig pero ang ganda! ', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -327,6 +340,13 @@ CREATE TABLE `upvote` (
   `acc_id` int(9) NOT NULL,
   `post_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `upvote`
+--
+
+INSERT INTO `upvote` (`acc_id`, `post_id`) VALUES
+(2, 30);
 
 --
 -- Indexes for dumped tables
@@ -370,12 +390,12 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `acc_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `notif_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `notif_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `places`
 --
