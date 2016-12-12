@@ -53,6 +53,7 @@
 14. View post 		-IMPORTANT
 	Show tagged
  	people
+ 	MODAL FOR IMAGE - DONE
 
 15. No access to any of the sites if not logged in 	-IMPORTANT - DONE!
 
@@ -75,7 +76,7 @@
 		TOWN, PROVINCE, BARANGAY show
 		Chapparal pro light about place
 		
-		Show rating in cover section of place
+		Show rating in cover section of place 
 
 		Reviews
 			Implement reviews
