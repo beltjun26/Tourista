@@ -68,68 +68,71 @@
 			<h2>Overall Rating: <span>4.6</span></h2>
 			<div class="review">
 				<form name="reviewform" method="post" action="review.php" onsubmit="return validateReview(this)">
-					<h3>Love this place?</h3>
-					<div class="hearts">
-						  <input id="rating5" type="radio" name="rating" value="5">
-						  <label for="rating5"><span class="glyphicon glyphicon-heart-empty"></span></label>
-						  <input id="rating4" type="radio" name="rating" value="4">
-						  <label for="rating4"><span class="glyphicon glyphicon-heart-empty"></span></label>
-						  <input id="rating3" type="radio" name="rating" value="3">
-						  <label for="rating3"><span class="glyphicon glyphicon-heart-empty"></span></label>
-						  <input id="rating2" type="radio" name="rating" value="2">
-						  <label for="rating2"><span class="glyphicon glyphicon-heart-empty"></span></label>
-						  <input id="rating1" type="radio" name="rating" value="1">
-						  <label for="rating1"><span class="glyphicon glyphicon-heart-empty"></span></label>
-					</div>
-					<textarea placeholder="Comment here!" name="comment"></textarea>
-					<div id="warning">
-					  	<span class="closebtn">&times;</span> 
-					  	<p>Rate the place first.<p>
-					</div>
-					<input type="hidden" name="place" value="<?=$_GET['place_id']?>">
-					<button name="review" type="submit" onclick="return validateReview();">Review</button>
+					<?php 
+						$query = "SELECT * FROM rating WHERE acc_id = '{$_SESSION['userID']}' AND place_id = '{$_GET['place_id']}';"; 
+						$result = mysqli_query($dbconn, $query);
+						if(mysqli_affected_rows($dbconn)){ ?>
+							<h3>Review this place again?</h3>
+						<?php } else { ?>
+							<h3>Love this place?</h3>
+						<?php } ?>
+							<div class="hearts">
+								  <input id="rating5" type="radio" name="rating" value="5">
+								  <label for="rating5"><span class="glyphicon glyphicon-heart-empty"></span></label>
+								  <input id="rating4" type="radio" name="rating" value="4">
+								  <label for="rating4"><span class="glyphicon glyphicon-heart-empty"></span></label>
+								  <input id="rating3" type="radio" name="rating" value="3">
+								  <label for="rating3"><span class="glyphicon glyphicon-heart-empty"></span></label>
+								  <input id="rating2" type="radio" name="rating" value="2">
+								  <label for="rating2"><span class="glyphicon glyphicon-heart-empty"></span></label>
+								  <input id="rating1" type="radio" name="rating" value="1">
+								  <label for="rating1"><span class="glyphicon glyphicon-heart-empty"></span></label>
+							</div>
+							<textarea placeholder="Comment here!" name="comment"></textarea>
+							<div id="warning">
+							  	<span class="closebtn">&times;</span> 
+							  	<p>Rate the place first.<p>
+							</div>
+							<input type="hidden" name="place" value="<?=$_GET['place_id']?>">
+						<?php if(mysqli_affected_rows($dbconn)){ ?>
+							<button name="reviewagain" type="submit" onclick="return validateReview();">Review Again</button>
+						<?php } else { ?>
+							<button name="review" type="submit" onclick="return validateReview();">Review</button>
+						<?php } ?>
 				</form>
 				<div id="reviewscroll">
 					<!--<p>php loop goes here</p>-->
-					<?php
-					$count=5;
-					while($count!=0){?>
-						<div class = "postedrev">
-							<div class = "postedrevtop">
-								<img src = "images/profile_pic_img/acc_id_<?=$count?>.jpg">
-								<?php
-								$nquery = "SELECT username FROM account WHERE acc_id=$count";
-								$nresult = mysqli_query($dbconn, $nquery);
-								if(mysqli_num_rows($nresult) > 0){
-									$row = mysqli_fetch_assoc($nresult);?>
-									<a href="people_profile.php?acc_id=<?=$count?>"><?=$row["username"]?></a>
-								<?php
-								}?>
-								<span class="postedstars">
-									<?php
-									$count2 = $count;
-									while($count2!=0){?>
-										<span class="glyphicon glyphicon-heart-empty red"></span>
-									<?php
-									$count2 = $count2-1;
-									}
-									$count2 = 5-$count;
-									while($count2!=0){?>
-										<span class="glyphicon glyphicon-heart-empty gray"></span>
-									<?php
-									$count2 = $count2-1;
-									}
-									?>
-								</span>
-							</div>
-							<div class="postedrevbot">
-								<p>This is place is amazing!</p>
-							</div>
-						</div>
-						<?php
-						$count = $count-1;
-					}
-					?>
+					<?php 
+						$query = "SELECT * FROM rating NATURAL JOIN account WHERE place_id = '{$_GET['place_id']}';"; 
+						$result = mysqli_query($dbconn, $query);
+						if (mysqli_affected_rows($dbconn)) {
+							foreach ($result as $value):?>
+								<div class = "postedrev">
+									<div class = "postedrevtop">
+										<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id']?>.jpg">
+										<a href="people_profile.php?acc_id=<?=$value['acc_id']?>"><?=$value['username']?></a>
+										<span class="postedstars">
+											<?php
+											$count = $value['rating_no'];
+											while($count!=0){?>
+												<span class="glyphicon glyphicon-heart-empty red"></span>
+											<?php $count--; }
+											$count = 5-$value['rating_no'];
+											while($count!=0){?>
+												<span class="glyphicon glyphicon-heart-empty gray"></span>
+											<?php $count--; } ?>
+										</span>
+									</div>
+									<?php if($value['comment'] != ""){ ?>
+										<div class="postedrevbot">
+											<p><?=$value['comment']?></p>
+										</div>
+									<?php } ?>
+								</div>
+							<?php endforeach; 
+						} else { ?>
+							<p class="no-review">No Reviews for this place</p>
+						<?php } ?>
 				</div>
 			</div>
 		</div>
