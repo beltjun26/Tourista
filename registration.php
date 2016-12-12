@@ -2,9 +2,12 @@
 $dbconn = mysqli_connect("localhost","root","","tourista") or die("Could not connect to database!");
 mysqli_select_db($dbconn, "tourista");
 $emailError = false;
+$firstnameError = false;
+$lastnameError = false;
 $userNameError = false;
 $passwordError = false;
-if( isset($_POST['submit']) ) { 
+$formError = false;
+if(isset($_POST['submit']) ) { 
 	$firstname = ($_POST['firstname']);
 	$lastname = ($_POST['lastname']);
 	$username = ($_POST['username']);
@@ -12,14 +15,23 @@ if( isset($_POST['submit']) ) {
 	$password = ($_POST['password']);
 	$retype = ($_POST['retype']);
 
+	if ($firstname == "" || $lastname == "" || $username == "" || $email == "" || $password == "" || $retype == "") {
+		$formError = true;
+	}
 
+	if ($firstname == ""){
+		$firstnameError = true;
+	}
 
+	if ($lastname == ""){
+		$lastnameError = true;
+	}
 
 	//check username if duplicate
 	$checkUserQuery = "SELECT username from account WHERE username = '$username'";
 	$dupUserRes = mysqli_query($dbconn,$checkUserQuery);
 	if(mysqli_num_rows($dupUserRes) != 0){
-		$userNameError = true; 
+		$userNameError = true;
 	}
 
 
@@ -38,12 +50,10 @@ if( isset($_POST['submit']) ) {
 
 
 	//add details to database
-	if(!$emailError && !$userNameError && !$passwordError){
+	if(!$formError && !$firstnameError && !$lastnameError && !$emailError && !$userNameError && !$passwordError){
 		$addQuery = "INSERT INTO account(username, firstname, lastname, password, email) VALUES('{$_POST[username]}','{$_POST[firstname]}','{$_POST[lastname]}',MD5('{$_POST[password]}'),'{$_POST[email]}')";
 		$addRes = mysqli_query($dbconn,$addQuery);
 		header('Location: login.php');
-	}
-	else{
 	}
 
 }
@@ -66,23 +76,20 @@ if( isset($_POST['submit']) ) {
 		<div class="container" id="container">
 			<h1> CREATE ACCOUNT </h1>
 			<form method = "post">
+						<?php if($formError): ?>
+				  			<span class="error">Please fill the form completely</span>
+				  		<?php endif; ?>
+				  		<input type="text" id="first_name" name="firstname" pattern="^[a-zA-Z\s]+$" value="<?php if(isset($_POST['submit'])) echo ($_POST['firstname']); ?>" placeholder="First Name" autofocus>
 
-				  		<input type="text" required id="first_name" name="firstname"  value="<?php if(isset($_POST['submit'])) echo ($_POST['firstname']); ?>" placeholder="First Name" autofocus>
-				  		<!-- 
-				  		<span class="error">Echo errors here</span> -->
-
-
-				  		<input type="text" required id="last_name" name="lastname"  value="<?php if(isset($_POST['submit'])) echo ($_POST['lastname']); ?>" placeholder="Last Name"><!-- 
-				  		<span class="error">Echo errors here</span> -->
-
+				  		<input type="text" id="last_name" name="lastname" pattern="^[a-zA-Z\s]+$" value="<?php if(isset($_POST['submit'])) echo ($_POST['lastname']); ?>" placeholder="Last Name">
 
 						<!-- Add minimum length 8 and at least 1 integer. -->
-				  		<input type="text" required id="user_name" name="username"  value="<?php if(isset($_POST['submit']) && !$userNameError) echo ($_POST['username']); ?>" placeholder="Username">
+				  		<input type="text" id="user_name" name="username"  value="<?php if(isset($_POST['submit']) && !$userNameError) echo ($_POST['username']); ?>" placeholder="Username">
 				  		<?php if($userNameError): ?>
 				  			<span class="error">Username already exists!</span>
 				  		<?php endif; ?>
 
-				  		<input pattern = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" type="password" required id="password" name="password" placeholder="Password(at least 8 alphabet characters and 1 integer)">
+				  		<input pattern = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" type="password" id="password" name="password" placeholder="Password(at least 8 alphabet characters and 1 no.)">
 
 				  		<!-- Need to retype password for verification. -->
 				  		<input type="password" name="retype" placeholder="Retype Password">
@@ -91,7 +98,7 @@ if( isset($_POST['submit']) ) {
 				  		<?php endif; ?>
 
 
-				 		<input type="email"  required name="email"  value="<?php if(isset($_POST['submit']) && !$emailError) echo ($_POST['email']); ?>" placeholder="Email (example123@sample.com)">
+				 		<input type="email" name="email"  value="<?php if(isset($_POST['submit']) && !$emailError) echo ($_POST['email']); ?>" placeholder="Email (example123@sample.com)">
 				  		<?php if($emailError): ?>
 				  			<span class="error">Email is already taken.</span>
 				  		<?php endif; ?>
