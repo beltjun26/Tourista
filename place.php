@@ -6,6 +6,8 @@
 	}
 	require "connect.php";
 
+	$_SESSION['place_id'] = $_GET['place_id'];
+
 	$queryplaces = "SELECT * FROM places WHERE place_id = '{$_GET['place_id']}';";
 	$result = mysqli_query($dbconn, $queryplaces);
 	$row = mysqli_fetch_assoc($result);
@@ -63,11 +65,12 @@
 				<span class="glyphicon glyphicon-camera"></span>
 				<a href="gallery.php?place_id=<?=$_GET['place_id']?>">View Gallery</a>
 			</div>
-			<form class="background">
+			<form class="background" method="post" action="upload_place_photo.php" enctype="multipart/form-data">
 				<label for="background"><span class="glyphicon glyphicon-picture"></span> Change Background</label>
-				<input type="file" name="background" id="background">
-				<input type="submit" name="upload" value="upload">
-				<input type="button" name="cancel" value="cancel" class="cancel">
+				<input type="file" name="background" id="background" onchange="loadFile(event)" accept=".png, .jpg, .jpeg, .gif" onchange="loadFile(event)">
+
+				<input type="submit" name="upload" id = "submit" value="upload" name = "post">
+				<input type="button" name="cancel" id = "cancel" value="cancel" class="cancel" onclick="cancel_upload(event)">
 			</form>
 		</div>
 		<div class="container" id="desc">
@@ -371,5 +374,38 @@
 		        setTimeout(function(){ div.style.display = "none"; }, 600);
 		    }
 		}
+	</script>
+	<script>
+		
+		var loadFile = function(event){
+			var location = URL.createObjectURL(event.target.files[0]);
+
+			h = $('#navBar').outerHeight(true);
+			console.log(h);
+			x = window.innerHeight;
+			console.log(x);
+			x = x - h;
+			console.log(x);
+			document.getElementById('head').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;background-image: url("+location+");");
+
+			document.getElementById('cancel').style.display = "inline-block";	
+			document.getElementById('submit').style.display = "inline-block";
+		};
+
+		var cancel_upload = function(event){
+			document.getElementById('cancel').style.display = "none";	
+			document.getElementById('submit').style.display = "none";
+
+			h = $('#navBar').outerHeight(true);
+			console.log(h);
+			x = window.innerHeight;
+			console.log(x);
+			x = x - h;
+			console.log(x);
+			document.getElementById('head').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;background-image: url(images/places_img/place_id_<?=$_GET['place_id']?>.png);");
+		}
+
+
+
 	</script>
 </html>

@@ -354,3 +354,11 @@
 #background{
 	display: none;
 }
+
+/*
+edited by maynard below*/
+
+#submit,
+#cancel{
+	display: none;
+}
