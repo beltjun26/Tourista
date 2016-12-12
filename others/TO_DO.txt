@@ -22,23 +22,24 @@
 	For new accounts (no prof and cover photo)
 		Ajax, profile image if none, then error in ajax posting 
 		posted, cover photo 
+	
+3. Nav bar visits - IMPORTANT
 
-<!-- 3. Nav bar visits - IMPORTANT -->
+4. Wrong behavior on visits showing image (FOR ROSIEBELT) finished
 
-4. Wrong behavior on visits showing image (FOR ROSIEBELT) 
-
-5. All "#", links - IMPORTANT
+5. All "#", links - IMPORTANT ;finished!
 
 6. Implement explore
 
 7. Implement ask for a tour
 
-<!-- 8. Visitor options -IMPORTANT
-	Swap following followers -->
+8. Visitor options  		-IMPORTANT
+	Swap following followers
 
 9. Database Cleaning 	-IMPORTANT
 
 10. Travel photos 
+
 
 11. Travel posts
 
@@ -57,10 +58,10 @@
 
 16. Issue with visits location tag link awkward 
 
-<-- 17. Search  -IMPORTANT
+17. Search  -IMPORTANT
 		Pagination
 		Style improve
-		Cover photo no on error in search -->
+		Cover photo no on error in search
 
 18. Good cover photos
 
@@ -81,9 +82,5 @@
 			Warn if review again
 			On error image
 		
-<!-- 21. Following Followers pagination. -->
 
-<!-- 22. Change account navigation bar profile default -->
-
-23. Featured Places on home page right panel.
 
