@@ -90,7 +90,24 @@
 
 
           <?php foreach ($row as $value):?>
+            <?php if($value['if_image']==0){
+              if(isset($_GET['acc_id'])){
+                $query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_GET['acc_id']} and  l.place_id = p.place_id and if_image=1 and location_id = '{$value['location_id']}' group by location_id ORDER BY time_post ";
+              }else{
+                $query = "SELECT post_id, p.place_id, if_image, name, location_id from posted as p, places as l where p.acc_id = {$_SESSION['userID']} and  l.place_id = p.place_id and if_image=1 and location_id = '{$value['location_id']}' group by location_id ORDER BY time_post ";
+              }
+              $result = mysqli_query($dbconn, $query);
+              if(mysqli_affected_rows($dbconn)){
+                  $data = mysqli_fetch_assoc($result);
+                  ?>
+                    putplace(map, '<?php echo $data['location_id'] ?>','<?php echo $data['post_id'] ?>', '<?php echo $data['name'] ?>', '<?php echo $data['if_image'] ?>', '<?php echo $data['place_id']?>');
+                  <?php 
+                  continue;
+              }
+            }
+             ?>
               putplace(map, '<?php echo $value['location_id'] ?>','<?php echo $value['post_id'] ?>', '<?php echo $value['name'] ?>', '<?php echo $value['if_image'] ?>', '<?php echo $value['place_id']?>');
+            
           <?php endforeach?>
       }
 

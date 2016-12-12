@@ -27,7 +27,7 @@
 
 4. Wrong behavior on visits showing image (FOR ROSIEBELT) 
 
-5. All "#", links - IMPORTANT
+5. All "#", links - IMPORTANT ;finished!
 
 6. Implement explore
 
