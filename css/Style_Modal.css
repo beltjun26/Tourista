@@ -5,10 +5,10 @@
     transition: 0.3s;
 }
 
-.postImg:hover {opacity: 0.7;}
+/*.postImg:hover {opacity: 0.7;}*/
 
 /* The Modal (background) */
-.modal {
+.edit_profile.modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -23,13 +23,13 @@
 }
 
 /* Modal Content (Image) */
-.modal-content {
+.edit_profile.modal-content {
     margin: auto;
     width: 80%;
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
-.caption {
+.edit_profile.caption {
     margin: auto;
     display: block;
     width: 80%;
@@ -41,7 +41,7 @@
 }
 
 /* Add Animation - Zoom in the Modal */
-.modal-content, .caption { 
+.edit_profile.modal-content, .caption { 
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
@@ -59,7 +59,7 @@
 }
 
 /* The Close Button */
-.close {
+.edit_profile.close {
     position: absolute;
     top: 5px;
     right: 10px;
@@ -69,8 +69,8 @@
     opacity: 0.5;
 }
 
-.close:hover,
-.close:focus {
+.edit_profile.close:hover,
+.edit_profile.close:focus {
     color: white;
     opacity: 1;
     text-decoration: none;
@@ -82,4 +82,8 @@
     .modal-content {
         width: 100%;
     }
+}
+
+.edit_profile .modal-content{
+    max-height: 80%;
 }

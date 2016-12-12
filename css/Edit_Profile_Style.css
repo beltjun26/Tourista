@@ -1,18 +1,30 @@
-.modal{
+.edit_profile.modal{
 	z-index: 5;
 }
 
-.modal-content{
+.edit_profile .modal-content{
 	overflow: initial;
 	width: 70%;
 }
 
-.modal-header{
+.edit_profile .modal-header .close{
+	font-size: 2em;
+	top: 6px;
+	right: 10px;
+	color: white;
+	opacity: 0.8em;
+}
+
+.edit_profile .modal-header .close:hover{
+	opacity: 1;
+}
+
+.edit_profile .modal-header{
 	padding: 0;
 	background-color: #00BCD4;
 }
 
-.modal-header h2{
+.edit_profile .modal-header h2{
 	font-family: "Gotham Light";
 	text-transform: uppercase;
 	text-align: center;
@@ -56,13 +68,13 @@
 	border: none;
 }
 
-.modal-body{
+.edit_profile .modal-body{
 	overflow: auto;
 	background-color: #ECEFF1;
 	padding: 5px;
 }
 
-.modal-body form{
+.edit_profile .modal-body form{
 	display: inline-flex;
 	flex-direction: column;
 	width: 100%;
@@ -71,7 +83,7 @@
 	box-sizing: border-box;
 }
 
-.modal-body form textarea{
+.edit_profile .modal-body form textarea{
 	width: 100%;
 	box-sizing: border-box;
 	height: 200px;
@@ -83,14 +95,14 @@
 	transition: 0.4s;
 }
 
-.modal-body form textarea:focus,
-.modal-body form textarea:active{
+.edit_profile .modal-body form textarea:focus,
+.edit_profile .modal-body form textarea:active{
 	outline: none;
 	box-shadow: 0 0 5px rgba(0,184,212 ,0.8);
 	border-color: rgba(0,151,167 ,0.5);
 }
 
-.modal-body form div{
+.edit_profile .modal-body form div{
 	width: 100%;
 }
 
@@ -120,7 +132,7 @@
 	background-color: #00E5FF;
 }
 
-.modal-body form div input[type=submit]{
+.edit_profile .modal-body form div input[type=submit]{
 	padding: 10px;
 }
 
@@ -147,6 +159,23 @@
 	width: 100%;
 }
 
+#EditProfilePicture,
+#EditCoverPhoto,
+#EditDescription{
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+/*#EditProfilePicture .modal-content{
+	max-height: 80%;
+}
+#EditCoverPhoto .modal-content{
+
+}
+#EditDescription .modal-content{
+
+}*/
 
 
 
