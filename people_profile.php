@@ -98,8 +98,8 @@
 				</span></a></li>
 				<li><a href="#">Ask for a Tour<span class="glyphicon glyphicon-sunglasses"></a></li>
 				<li><a href="visit.php?acc_id=<?=$_GET['acc_id']?>">Visits<span class="glyphicon glyphicon-map-marker"></a></li>
-				<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></a></li>
 				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></a></li>
+				<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></a></li>
 			</ul>
 			<div class="row">
 				<div class="col-sm-3"></div>
