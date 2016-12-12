@@ -198,3 +198,9 @@ align-items: center;
 .gray{
 	color: #CFD8DC;
 }
+
+.no-review{
+	text-align: center;
+	color: #888;
+	margin-top: 30%;
+}
