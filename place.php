@@ -59,6 +59,10 @@
 				<span class="glyphicon glyphicon-camera"></span>
 				<a href="gallery.php">View Gallery</a>
 			</div>
+			<div class="background">
+				<label for="background"><span class="glyphicon glyphicon-picture"></span> Change Background</label>
+				<input type="file" name="background" id="background">
+			</div>
 		</div>
 		<div class="container" id="desc">
 			<h2>About the place</h2>
