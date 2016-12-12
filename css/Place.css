@@ -270,6 +270,10 @@
 	margin-top: 20px;
 }
 
+#background{
+	display: none;
+}
+
 .gallery span{
 	display: block;
 	width: 100%;
