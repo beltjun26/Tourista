@@ -57,7 +57,7 @@
 			</ul>
 			<div class="gallery">
 				<span class="glyphicon glyphicon-camera"></span>
-				<a href="gallery.php">View Gallery</a>
+				<a href="gallery.php?place_id=<?=$_GET['place_id']?>">View Gallery</a>
 			</div>
 			<div class="background">
 				<label for="background"><span class="glyphicon glyphicon-picture"></span> Change Background</label>
