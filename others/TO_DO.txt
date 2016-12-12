@@ -57,7 +57,7 @@
 
 15. No access to any of the sites if not logged in 	-IMPORTANT - DONE!
 
-16. Issue with visits location tag link awkward 
+16. Issue with visits location tag link awkward - DONE
 
 17. Search  -IMPORTANT -DONE!
 		Pagination
@@ -68,11 +68,11 @@
 
 19. Search datalist 
 
-20. Place -IMPORTANT
+20. Place -IMPORTANT - DONE!
 		Give default background image
 		Allow user to edit image
 
-		Implement backround image for place
+		Implement backround image for place -EXCEPT
 		TOWN, PROVINCE, BARANGAY show
 		Chapparal pro light about place
 		
