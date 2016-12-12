@@ -28,6 +28,8 @@
     display: block;
     max-width: 1200px;
     height: 600px;
+    /*object-fit: cover;
+    object-position: center;*/
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -83,4 +85,8 @@
     .modal-content {
         width: 100%;
     }
+}
+
+div.ui-helper-hidden-accessible{
+    display: none!important;
 }

@@ -16,6 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="css/edit_profile_style.css">
 		<link rel="stylesheet" type="text/css" href="css/posts.css">
 		<link rel="stylesheet" type="text/css" href="css/profile_options.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
 
@@ -100,7 +101,6 @@
 						}
 					?>
 				</span></a></li>
-				<li><a href="#">Ask for a Tour<span class="glyphicon glyphicon-sunglasses"></a></li>
 				<li><a href="visit.php?acc_id=<?=$_GET['acc_id']?>">Visits<span class="glyphicon glyphicon-map-marker"></a></li>
 				<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></a></li>
 				<li><a href="people_profile_list_of_followers.php?acc_id=<?=$acc_id?>#follow-head">Followers<span class="glyphicon glyphicon-hand-left"></a></li>

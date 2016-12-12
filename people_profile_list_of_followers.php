@@ -164,7 +164,6 @@
 								}
 							?>
 						</span></a></li>
-						<li><a href="#">Ask for a Tour<span class="glyphicon glyphicon-sunglasses"></a></li>
 						<li><a href="#">Visits<span class="glyphicon glyphicon-map-marker"></a></li>
 						<li><a href="people_profile_list_of_following.php?acc_id=<?=$acc_id?>#follow-head">Following<span class="glyphicon glyphicon-hand-right"></a></li>
 						<li><a href="#" class="active">Followers<span class="glyphicon glyphicon-hand-left"></a></li>
