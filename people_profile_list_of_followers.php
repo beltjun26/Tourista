@@ -18,11 +18,12 @@
 	<body>
 	
 		<?php 
+		session_start();
 		if(!isset($_SESSION['userID'])){
 				header("Location: login.php");
 		}
 		require "connect.php";
-		session_start();
+		
 
 		$acc_id = $_GET['acc_id'];
 

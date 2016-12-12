@@ -1,9 +1,10 @@
 <?php 
-	require "connect.php";
+	
 	session_start();
 	if(!isset($_SESSION['userID'])){
 				header("Location: login.php");
 	}
+	require "connect.php";
 
 	$queryplaces = "SELECT * FROM places WHERE place_id = '{$_GET['place_id']}';";
 	$result = mysqli_query($dbconn, $queryplaces);
@@ -72,7 +73,21 @@
 			<p><?=$description?></p>
 		</div>
 		<div class="container" id="rev">
-			<h2>Overall Rating: <span>4.6</span></h2>
+			<?php 
+				$query = "SELECT ROUND(AVG(rating_no), 1)
+						  FROM rating
+						  WHERE place_id = '{$_GET['place_id']}'
+						  ;";
+				$ratingresult = mysqli_query($dbconn, $query);
+				$ratingrow = mysqli_fetch_row($ratingresult);
+
+
+			 ?>
+
+
+
+
+			<h2>Overall Rating: <span><?=$ratingrow[0]; ?></span></h2>
 			<div class="review">
 				<form name="reviewform" method="post" action="review.php" onsubmit="return validateReview(this)">
 					<?php 

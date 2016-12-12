@@ -38,7 +38,7 @@
 				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="Notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php" class="logout"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror="this.src = 'images/default_profile.png'"></a></li>
+				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id<?=$_SESSION['userID']?>.jpg" onerror="this.src = 'images/default_profile.png'"></a></li>
 			</ul>
 		</div>
 		<div class="container">
@@ -74,7 +74,7 @@
 					 ?>
 
 							<div class="posted post-container">
-								<a href="people_profile.php?acc_id_=1">
+								<a href="people_profile.php?acc_id=<?=$value['acc_id'];?>">
 									<img src="images/profile_pic_img/acc_id_<?=$value['acc_id'];?>.jpg" alt="USER PHOTO" class="profile" onerror="this.src = 'images/default_profile.png'">
 									<h2 class="user-name"><?=$value['username'];?></h2>
 								</a>

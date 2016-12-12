@@ -1,4 +1,6 @@
 <?php 
+	
+	session_start();
 	if(!isset($_SESSION['userID'])){
 				header("Location: login.php");
 	}
@@ -37,7 +39,23 @@
 	<div class="container gal">
 		<h2>Gallery for -Place-</h2>
 		<div class="flex-images">
-			<a href="view_post.php?post_id=<?php?>"><img src="images/post_img/3.jpg" class="gal-image"></a>
+
+			<?php 
+				require "connect.php";
+
+				$query = "SELECT post_id
+						  FROM posted
+						  WHERE place_id = {$_GET['place_id']}
+						  ;";
+				$result = mysqli_query($dbconn, $query);
+
+				foreach ($result as $value) {
+			 ?>
+			
+			<a href="view_post.php?post_id=<?=$value['post_id'] ?>"><img src="images/post_img/<?=$value['post_id'] ?>.jpg" class="gal-image"></a>
+
+			<?php } ?>
+
 		</div>
 	</div>
 </body>

@@ -21,11 +21,12 @@
 
 
 	<?php
+	session_start();
 	if(!isset($_SESSION['userID'])){
 				header("Location: login.php");
 	} 
 	require "connect.php";
-	session_start();
+	
 
 
 	if(isset($_GET['acc_id'])){

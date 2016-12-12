@@ -1,6 +1,7 @@
 <?php
-	require "connect.php";
 	session_start();
+	require "connect.php";
+	
 
 	if (isset($_POST["review"])) {
 		$rate = $_POST["rating"];

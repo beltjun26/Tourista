@@ -1,6 +1,7 @@
 <?php
-	include 'connect.php';
 	session_start();
+	include 'connect.php';
+	
 
 	// $_SESSION['user_id'] = ;
 	$user_id = $_SESSION['userID'];
