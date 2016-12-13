@@ -44,9 +44,9 @@ h2{
 	opacity: 0.1;
 }
 
-.gal > .image{
+/*.gal > .image{
 	background-image: url(../images/places/diwata/1.jpg);
-}
+}*/
 
 /*.gal > .image:nth-child(2){
 	background-image: url(../images/places/diwata/2.jpg);

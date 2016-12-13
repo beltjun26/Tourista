@@ -16,6 +16,20 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+<?php 
+	require "connect.php";
+	session_start();
+
+	$queryplaces = "SELECT * FROM places natural join posted where if_image=1 and place_id = {$_GET['place_id']}";
+	$result = mysqli_query($dbconn, $queryplaces);
+	$row = [];
+	if(mysqli_affected_rows($dbconn)){
+		while($data = mysqli_fetch_assoc($result)){
+			$row[] = $data;
+		}
+	}
+
+?>
 	<div id = "navBar">
 		<form action="search_results_places.php" method="get">
 			<input type="text" placeholder="Search..." name="search">
@@ -38,24 +52,11 @@
 		  	<img class="modal-content" id="img01">
 		  	<div id="caption"></div>
 		</div>
-		<div class="image"><button id="myBtn2" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn3" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn4" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn5" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn6" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn7" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn8" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn9" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn10" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn11" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn12" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn13" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn14" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn15" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn16" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn17" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn18" class="imagebtn"></button></div>
-		<div class="image"><button id="myBtn19" class="imagebtn"></button></div>
+		<?php foreach ($row as $value):?>
+			<div class="image"><img src="images/post_img/<?=$value['post_id']?>.jpg"><!-- <button id="myBtn2" class="imagebtn"> --></button></div>	
+		<?php endforeach ?>
+
+		
 		<!-- <div class="image"><button id="myBtn20" class="imagebtn"></button></div> -->
 		<!-- <p class="place-name"></p> -->
 	</div>
