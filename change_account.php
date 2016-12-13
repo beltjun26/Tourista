@@ -14,8 +14,12 @@
 	</head>
 	<body>
 		<?php 
-			require "connect.php";
+			
 			session_start();
+			if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+			}
+			require "connect.php";
 			$change = 0;
 			$passBlank = false;
 			$passWrong = false;
@@ -113,7 +117,7 @@
 				<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 				<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 				<li><a href="logout.php" class="logout"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
-				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id_<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'"></a></li>
+				<li><a href="my_profile.php" class="image-list"><img src="images/profile_pic_img/acc_id<?=$_SESSION['userID']?>.jpg" onerror = "this.src = 'images/default_profile.png'"></a></li>
 			</ul>
 		</div>
 		<div class="container" id="container">

@@ -1,6 +1,9 @@
 <?php
 
 	session_start();
+	if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+	}
 
 
 
@@ -54,7 +57,7 @@
 
 	  foreach ($result as $value): ?>
 		<div class="notif-container">
-			<img class="user-photo" src="images/profile_pic_img/acc_id_<?=$value['user_id_from']?>.jpg">
+			<img class="user-photo" src="images/profile_pic_img/acc_id_<?=$value['user_id_from']?>.jpg" onerror="this.src = 'images/default_profile.png'">
 			<a href="delete_notif.php?notif_id=<?=$value['notif_id']?>" class="close">&times;</a>
 
 

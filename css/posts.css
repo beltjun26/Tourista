@@ -3,10 +3,6 @@
 	outline: none;
 }
 
-body{
-	padding-bottom: 20px;
-}
-
 @font-face{
 	font-family: Gotham;
 	src: url("../used_fonts/GOTHAM-LIGHT.TTF") format("truetype");

@@ -1,4 +1,8 @@
 <?php
+	session_start();
+	if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+	}
 	include 'connect.php';
 	$query = mysqli_query($dbconn, "SELECT acc_id_follows from follow where acc_id_follower = $acc_id");
 ?>

@@ -1,3 +1,11 @@
+<?php 
+	
+	session_start();
+	if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+	}
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +45,6 @@
 		<ul id = "navList">
 			<li><a href="home_page.php"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
 			<li><a href="visit.php"><span class="glyphicon glyphicon-map-marker"></span>VISITS</a></li>
-			<!-- <li><a href="#"><span class="glyphicon glyphicon-globe"></span>EXPLORE</a></li> -->
 			<li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span>NOTIFICATIONS</a></li>
 			<li><a href="logout.php" class="logout"><span class="glyphicon glyphicon-log-out"></span>LOGOUT</a></li>
 			<li><a href="people_profile.php" class="image-list"><img src="images/pp_cover/Clyde1.jpg"></a></li>
@@ -45,36 +52,34 @@
 	</div>
 	<div class="container gal">
 		<h2>Gallery for -Place-</h2>
-		<div class="image"><button id="myBtn" class="imagebtn"></button></div>
-		<!-- <img id="myImg" src="images/places/diwata/1.jpg" alt="Trolltunga, Norway" width="300" height="200"> -->
-		<div id="myModal" class="modal">
-		  	<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-		  	<img class="modal-content" id="img01">
-		  	<div id="caption"></div>
+		<div class="flex-images">
+
+			<?php 
+				require "connect.php";
+
+				$query = "SELECT post_id
+						  FROM posted
+						  WHERE place_id = {$_GET['place_id']}
+						  ;";
+				$result = mysqli_query($dbconn, $query);
+
+				foreach ($result as $value) {
+			 ?>
+			
+			<a href="view_post.php?post_id=<?=$value['post_id'] ?>"><img src="images/post_img/<?=$value['post_id'] ?>.jpg" class="gal-image"></a>
+
+			<?php } ?>
+
 		</div>
+
 		<?php foreach ($row as $value):?>
 			<div class="image"><img src="images/post_img/<?=$value['post_id']?>.jpg"><!-- <button id="myBtn2" class="imagebtn"> --></button></div>	
 		<?php endforeach ?>
 
 		
-		<!-- <div class="image"><button id="myBtn20" class="imagebtn"></button></div> -->
+		<div class="image"><button id="myBtn20" class="imagebtn"></button></div>
 		<!-- <p class="place-name"></p> -->
-	</div>
 
-	<script>
-		var modal = document.getElementById('myModal');
-		var img = document.getElementById('myImg');
-		var modalImg = document.getElementById("img01");
-		var captionText = document.getElementById("caption");
-		img.onclick = function(){
-		    modal.style.display = "block";
-		    modalImg.src = this.src;
-		    captionText.innerHTML = this.alt;
-		}
-		var span = document.getElementsByClassName("close")[0];
-		span.onclick = function() { 
-		  modal.style.display = "none";
-		}
-	</script>
+	</div>
 </body>
 </html>

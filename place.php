@@ -1,6 +1,12 @@
 <?php 
-	require "connect.php";
+	
 	session_start();
+	if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+	}
+	require "connect.php";
+
+	$_SESSION['place_id'] = $_GET['place_id'];
 
 	$queryplaces = "SELECT * FROM places WHERE place_id = '{$_GET['place_id']}';";
 	$result = mysqli_query($dbconn, $queryplaces);
@@ -57,78 +63,103 @@
 			</ul>
 			<div class="gallery">
 				<span class="glyphicon glyphicon-camera"></span>
-				<a href="gallery.php">View Gallery</a>
+				<a href="gallery.php?place_id=<?=$_GET['place_id']?>">View Gallery</a>
 			</div>
+			<form class="background" method="post" action="upload_place_photo.php" enctype="multipart/form-data">
+				<label for="background"><span class="glyphicon glyphicon-picture"></span> Change Background</label>
+				<input type="file" name="background" id="background" onchange="loadFile(event)" accept=".png, .jpg, .jpeg, .gif" onchange="loadFile(event)">
+
+				<input type="submit" name="upload" id = "submit" value="upload" name = "post">
+				<input type="button" name="cancel" id = "cancel" value="cancel" class="cancel" onclick="cancel_upload(event)">
+			</form>
 		</div>
 		<div class="container" id="desc">
 			<h2>About the place</h2>
 			<p><?=$description?></p>
 		</div>
 		<div class="container" id="rev">
-			<h2>Overall Rating: <span>4.6</span></h2>
+			<?php 
+				$query = "SELECT ROUND(AVG(rating_no), 1)
+						  FROM rating
+						  WHERE place_id = '{$_GET['place_id']}'
+						  ;";
+				$ratingresult = mysqli_query($dbconn, $query);
+				$ratingrow = mysqli_fetch_row($ratingresult);
+
+
+			 ?>
+
+
+
+
+			<h2>Overall Rating: <span><?=$ratingrow[0]; ?></span></h2>
 			<div class="review">
-				<form name="reviewform" method="post" action="review.php">
-					<h3>Love this place?</h3>
-					<div class="hearts">
-						  <input id="rating5" type="radio" name="rating" value="5">
-						  <label for="rating5"><span class="glyphicon glyphicon-heart-empty"></span></label>
-						  <input id="rating4" type="radio" name="rating" value="4">
-						  <label for="rating4"><span class="glyphicon glyphicon-heart-empty"></span></label>
-						  <input id="rating3" type="radio" name="rating" value="3">
-						  <label for="rating3"><span class="glyphicon glyphicon-heart-empty"></span></label>
-						  <input id="rating2" type="radio" name="rating" value="2">
-						  <label for="rating2"><span class="glyphicon glyphicon-heart-empty"></span></label>
-						  <input id="rating1" type="radio" name="rating" value="1">
-						  <label for="rating1"><span class="glyphicon glyphicon-heart-empty"></span></label>
-					</div>
-					<textarea placeholder="Comment here!" name="comment"></textarea>
-					<div id="warning">
-					  	<span class="closebtn">&times;</span> 
-					  	<p>Rate the place first.<p>
-					</div>
-					<button name="review" type="submit" onsubmit="validateReview()">Review</button>
+				<form name="reviewform" method="post" action="review.php" onsubmit="return validateReview(this)">
+					<?php 
+						$query = "SELECT * FROM rating WHERE acc_id = '{$_SESSION['userID']}' AND place_id = '{$_GET['place_id']}';"; 
+						$result = mysqli_query($dbconn, $query);
+						if(mysqli_affected_rows($dbconn)){ ?>
+							<h3>Review this place again?</h3>
+						<?php } else { ?>
+							<h3>Love this place?</h3>
+						<?php } ?>
+							<div class="hearts">
+								  <input id="rating5" type="radio" name="rating" value="5">
+								  <label for="rating5"><span class="glyphicon glyphicon-heart-empty"></span></label>
+								  <input id="rating4" type="radio" name="rating" value="4">
+								  <label for="rating4"><span class="glyphicon glyphicon-heart-empty"></span></label>
+								  <input id="rating3" type="radio" name="rating" value="3">
+								  <label for="rating3"><span class="glyphicon glyphicon-heart-empty"></span></label>
+								  <input id="rating2" type="radio" name="rating" value="2">
+								  <label for="rating2"><span class="glyphicon glyphicon-heart-empty"></span></label>
+								  <input id="rating1" type="radio" name="rating" value="1">
+								  <label for="rating1"><span class="glyphicon glyphicon-heart-empty"></span></label>
+							</div>
+							<textarea placeholder="Comment here!" name="comment"></textarea>
+							<div id="warning">
+							  	<span class="closebtn">&times;</span> 
+							  	<p>Rate the place first.<p>
+							</div>
+							<input type="hidden" name="place" value="<?=$_GET['place_id']?>">
+						<?php if(mysqli_affected_rows($dbconn)){ ?>
+							<button name="reviewagain" type="submit" onclick="return validateReview();">Review Again</button>
+						<?php } else { ?>
+							<button name="review" type="submit" onclick="return validateReview();">Review</button>
+						<?php } ?>
 				</form>
 				<div id="reviewscroll">
 					<!--<p>php loop goes here</p>-->
-					<?php
-					$count=5;
-					while($count!=0){?>
-						<div class = "postedrev">
-							<div class = "postedrevtop">
-								<img src = "images/profile_pic_img/acc_id_<?=$count?>.jpg">
-								<?php
-								$nquery = "SELECT username FROM account WHERE acc_id=$count";
-								$nresult = mysqli_query($dbconn, $nquery);
-								if(mysqli_num_rows($nresult) > 0){
-									$row = mysqli_fetch_assoc($nresult);?>
-									<a href="people_profile.php?acc_id=<?=$count?>"><?=$row["username"]?></a>
-								<?php
-								}?>
-								<span class="postedstars">
-									<?php
-									$count2 = $count;
-									while($count2!=0){?>
-										<span class="glyphicon glyphicon-heart-empty red"></span>
-									<?php
-									$count2 = $count2-1;
-									}
-									$count2 = 5-$count;
-									while($count2!=0){?>
-										<span class="glyphicon glyphicon-heart-empty gray"></span>
-									<?php
-									$count2 = $count2-1;
-									}
-									?>
-								</span>
-							</div>
-							<div class="postedrevbot">
-								<p>This is place is amazing!</p>
-							</div>
-						</div>
-						<?php
-						$count = $count-1;
-					}
-					?>
+					<?php 
+						$query = "SELECT * FROM rating NATURAL JOIN account WHERE place_id = '{$_GET['place_id']}';"; 
+						$result = mysqli_query($dbconn, $query);
+						if (mysqli_affected_rows($dbconn)) {
+							foreach ($result as $value):?>
+								<div class = "postedrev">
+									<div class = "postedrevtop">
+										<img src = "images/profile_pic_img/acc_id_<?=$value['acc_id']?>.jpg">
+										<a href="people_profile.php?acc_id=<?=$value['acc_id']?>"><?=$value['username']?></a>
+										<span class="postedstars">
+											<?php
+											$count = $value['rating_no'];
+											while($count!=0){?>
+												<span class="glyphicon glyphicon-heart-empty red"></span>
+											<?php $count--; }
+											$count = 5-$value['rating_no'];
+											while($count!=0){?>
+												<span class="glyphicon glyphicon-heart-empty gray"></span>
+											<?php $count--; } ?>
+										</span>
+									</div>
+									<?php if($value['comment'] != ""){ ?>
+										<div class="postedrevbot">
+											<p><?=$value['comment']?></p>
+										</div>
+									<?php } ?>
+								</div>
+							<?php endforeach; 
+						} else { ?>
+							<p class="no-review">No Reviews for this place</p>
+						<?php } ?>
 				</div>
 			</div>
 		</div>
@@ -343,5 +374,38 @@
 		        setTimeout(function(){ div.style.display = "none"; }, 600);
 		    }
 		}
+	</script>
+	<script>
+		
+		var loadFile = function(event){
+			var location = URL.createObjectURL(event.target.files[0]);
+
+			h = $('#navBar').outerHeight(true);
+			console.log(h);
+			x = window.innerHeight;
+			console.log(x);
+			x = x - h;
+			console.log(x);
+			document.getElementById('head').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;background-image: url("+location+");");
+
+			document.getElementById('cancel').style.display = "inline-block";	
+			document.getElementById('submit').style.display = "inline-block";
+		};
+
+		var cancel_upload = function(event){
+			document.getElementById('cancel').style.display = "none";	
+			document.getElementById('submit').style.display = "none";
+
+			h = $('#navBar').outerHeight(true);
+			console.log(h);
+			x = window.innerHeight;
+			console.log(x);
+			x = x - h;
+			console.log(x);
+			document.getElementById('head').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;background-image: url(images/places_img/place_id_<?=$_GET['place_id']?>.png);");
+		}
+
+
+
 	</script>
 </html>

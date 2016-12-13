@@ -1,7 +1,10 @@
 
 <!-- THIS HAS NO NAV BAR -->
 <?php
-	session_start();  
+	session_start();
+	if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+	}  
 	if(!isset($_SESSION["userName"])){ 
 		header('location:login.php');
 	}

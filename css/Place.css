@@ -319,3 +319,46 @@
 	opacity: 1;
 	cursor: pointer;
 }
+
+.background{
+	margin-top: 100px;
+}
+
+.background > *{
+	background-color: #00BCD4;
+	padding: 10px 20px;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	font-family: Gotham;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	font-weight: bold;
+	text-align: center;
+	transition: 0.2s;
+}
+
+.background > *:hover{
+	background-color: #00E5FF;
+	cursor: pointer;
+}
+
+.background > .cancel{
+	background-color: #E91E63;
+}
+
+.background > .cancel:hover{
+	background-color: #FF4081;
+}
+
+#background{
+	display: none;
+}
+
+/*
+edited by maynard below*/
+
+#submit,
+#cancel{
+	display: none;
+}

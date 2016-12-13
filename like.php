@@ -1,4 +1,5 @@
-<?php
+<?php	
+
 	session_start(); 
 	require "connect.php";
 	$query = "SELECT * from upvote where post_id={$_POST['post_id']}";

@@ -5,9 +5,14 @@
 		<title>TourisTA!</title>
 		<link rel="shortcut icon" href="images/Tourista_Logo_Outline_blue.ico"/>
 	<?php 
-	
+		session_start();
+		if(!isset($_SESSION['userID'])){
+				header("Location: login.php");
+		}
 
 		require "connect.php";
+
+		
 			
 			if (isset($_GET["search"])) {
 				if(!isset($_GET['page'])){
